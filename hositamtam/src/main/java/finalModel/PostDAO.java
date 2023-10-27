@@ -1,0 +1,502 @@
+package finalModel;
+
+import java.sql.*;
+import java.util.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import model.MemberDO;
+
+
+public class PostDAO {
+
+	// ㄱ. 전체글 조회 : 인기순, 제목 출력
+	// ㄴ. 시장을 선택 후 전체 글 조회 : 인기순, 제목 출력
+	// ㄷ. 시장을 선택 후 카테고리에 따른 글 조회
+	// ㄹ. 글을 클릭시 글의 본문과 댓글 출력
+	// ㅁ. 글을 입력
+	// ㅅ. 댓글을 입력
+	// ㅇ. 좋아요를 클릭
+
+	// 글번호, 제목, 내용을 15자 + ... 글사진, 좋아요수, 댓글 수
+
+// 초기화
+	private Connection conn;
+	private Statement stmt;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	private String sql;
+
+	public PostDAO() {
+		String jdbc_driver = "oracle.jdbc.driver.OracleDriver";
+		String jdbc_url = "jdbc:oracle:thin:@localhost:1521:XE";
+
+		if (conn == null) {
+			try {
+				Class.forName(jdbc_driver);
+				conn = DriverManager.getConnection(jdbc_url, "scott", "tiger");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	// ㄱ.전체 글 조회
+	public String getAllPost(int mno) {
+		ArrayList<PostDO> postList = new ArrayList<PostDO>();
+		
+		JSONArray jsonArray = new JSONArray();
+		JSONObject jsonObject = null;
+		
+		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+				+ "(select nickname from member where post.id = member.id) as nickname "
+				+ "FROM post "
+				+ "WHERE mno = ? "
+				+ "ORDER BY pregdate DESC";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+				// PostDO 객체의 속성을 설정
+				postDO.setPno(rs.getInt("pno"));
+				postDO.setPtitle(rs.getString("ptitle"));
+				postDO.setPcontent(rs.getString("pcontent"));
+				postDO.setPregdate(rs.getString("pregdate"));
+				postDO.setPphoto(rs.getString("pphoto"));
+				postDO.setPlikecount(rs.getInt("plikecount"));
+				postDO.setNickname(rs.getString("nickname"));
+				postDO.setCountcomments(rs.getInt("countcomments"));
+
+				// 수정된 PostDO 객체를 리스트에 추가
+				postList.add(postDO);
+			}
+			
+			for(PostDO post : postList) {
+				jsonObject = new JSONObject(); // jsonObject 초기화
+				
+				jsonObject.put("pno", post.getPno());
+				jsonObject.put("ptitle", post.getPtitle());
+				jsonObject.put("pcontent", post.getPcontent());
+				jsonObject.put("pregdate", post.getPregdate());
+				jsonObject.put("pphoto", post.getPphoto());
+				jsonObject.put("plikecount", post.getPlikecount());
+				jsonObject.put("nickname", post.getNickname());
+				jsonObject.put("countcomments", post.getCountcomments());
+				
+				jsonArray.add(jsonObject);
+			}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return jsonArray.toJSONString();
+	}
+
+	
+	
+	public String getAllMarket() {
+		ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
+		
+		JSONArray jsonArray = new JSONArray();
+		JSONObject jsonObject = null;
+		
+		sql = "select mno, mname from market";
+
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				MarketDO marketDO2 = new MarketDO();
+
+				marketDO2.setMno(rs.getInt("mno"));
+				marketDO2.setMname(rs.getString("mname"));
+
+				
+				marketList.add(marketDO2);
+			}
+			
+			for(MarketDO market : marketList) {
+				jsonObject = new JSONObject(); // jsonObject 초기화
+				
+				jsonObject.put("mno", market.getMno());
+				jsonObject.put("mname", market.getMname());
+				
+				jsonArray.add(jsonObject);
+			}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return jsonArray.toJSONString();
+	}
+
+
+	
+	
+	
+	// ㄱ.해당 시장의 '인기글' 조회
+	public String getPostHot(int mno) {
+		ArrayList<PostDO> postList = new ArrayList<PostDO>();
+		
+		JSONArray jsonArray = new JSONArray();
+		JSONObject jsonObject = null;
+		
+		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+				+ "(select nickname from member where post.id = member.id) as nickname "
+				+ "FROM post "
+				+ "WHERE mno = ? AND plikecount >= 130"
+				+ "ORDER BY plikecount DESC";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+				// PostDO 객체의 속성을 설정
+				postDO.setPno(rs.getInt("pno"));
+				postDO.setPtitle(rs.getString("ptitle"));
+				postDO.setPcontent(rs.getString("pcontent"));
+				postDO.setPregdate(rs.getString("pregdate"));
+				postDO.setPphoto(rs.getString("pphoto"));
+				postDO.setPlikecount(rs.getInt("plikecount"));
+				postDO.setNickname(rs.getString("nickname"));
+				postDO.setCountcomments(rs.getInt("countcomments"));
+
+				// 수정된 PostDO 객체를 리스트에 추가
+				postList.add(postDO);
+			}
+			
+			for(PostDO post : postList) {
+				jsonObject = new JSONObject(); // jsonObject 초기화
+				
+				jsonObject.put("pno", post.getPno());
+				jsonObject.put("ptitle", post.getPtitle());
+				jsonObject.put("pcontent", post.getPcontent());
+				jsonObject.put("pregdate", post.getPregdate());
+				jsonObject.put("pphoto", post.getPphoto());
+				jsonObject.put("plikecount", post.getPlikecount());
+				jsonObject.put("nickname", post.getNickname());
+				jsonObject.put("countcomments", post.getCountcomments());
+				
+				jsonArray.add(jsonObject);
+			}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return jsonArray.toJSONString();
+	}
+	
+/*	
+	
+	// ㄱ.전체 글 조회
+		public String getPostQue(int mno) {
+			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+			
+			JSONArray jsonArray = new JSONArray();
+			JSONObject jsonObject = null;
+			
+			sql = "SELECT pno, ptitle, pcontent, pregdate, pphoto, plikecount, pcategory, (select nickname from member where post.id = member.id) as nickname "
+					+ "FROM post "
+					+ "WHERE mno = ? "
+					+ "ORDER BY pregdate DESC";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mno);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+					// PostDO 객체의 속성을 설정
+					postDO.setPno(rs.getInt("pno"));
+					postDO.setPtitle(rs.getString("ptitle"));
+					postDO.setPcontent(rs.getString("pcontent"));
+					postDO.setPregdate(rs.getString("pregdate"));
+					postDO.setPphoto(rs.getString("pphoto"));
+					postDO.setPlikecount(rs.getInt("plikecount"));
+					postDO.setPcategory(rs.getString("pcategory"));
+					postDO.setNickname(rs.getString("nickname"));
+
+					// 수정된 PostDO 객체를 리스트에 추가
+					postList.add(postDO);
+				}
+				
+				for(PostDO post : postList) {
+					jsonObject = new JSONObject(); // jsonObject 초기화
+					
+					jsonObject.put("pno", post.getPno());
+					jsonObject.put("ptitle", post.getPtitle());
+					jsonObject.put("pcontent", post.getPcontent());
+					jsonObject.put("pregdate", post.getPregdate());
+					jsonObject.put("pphoto", post.getPphoto());
+					jsonObject.put("plikecount", post.getPlikecount());
+					jsonObject.put("pcategory", post.getPcategory());
+					jsonObject.put("nickname", post.getNickname());
+					
+					jsonArray.add(jsonObject);
+				}
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return jsonArray.toJSONString();
+		}
+		
+		
+		
+		
+		// ㄱ.전체 글 조회
+		public String getPostAcc(int mno) {
+			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+			
+			JSONArray jsonArray = new JSONArray();
+			JSONObject jsonObject = null;
+			
+			sql = "SELECT pno, ptitle, pcontent, pregdate, pphoto, plikecount, pcategory, (select nickname from member where post.id = member.id) as nickname "
+					+ "FROM post "
+					+ "WHERE mno = ? "
+					+ "ORDER BY pregdate DESC";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mno);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+					// PostDO 객체의 속성을 설정
+					postDO.setPno(rs.getInt("pno"));
+					postDO.setPtitle(rs.getString("ptitle"));
+					postDO.setPcontent(rs.getString("pcontent"));
+					postDO.setPregdate(rs.getString("pregdate"));
+					postDO.setPphoto(rs.getString("pphoto"));
+					postDO.setPlikecount(rs.getInt("plikecount"));
+					postDO.setPcategory(rs.getString("pcategory"));
+					postDO.setNickname(rs.getString("nickname"));
+
+					// 수정된 PostDO 객체를 리스트에 추가
+					postList.add(postDO);
+				}
+				
+				for(PostDO post : postList) {
+					jsonObject = new JSONObject(); // jsonObject 초기화
+					
+					jsonObject.put("pno", post.getPno());
+					jsonObject.put("ptitle", post.getPtitle());
+					jsonObject.put("pcontent", post.getPcontent());
+					jsonObject.put("pregdate", post.getPregdate());
+					jsonObject.put("pphoto", post.getPphoto());
+					jsonObject.put("plikecount", post.getPlikecount());
+					jsonObject.put("pcategory", post.getPcategory());
+					jsonObject.put("nickname", post.getNickname());
+					
+					jsonArray.add(jsonObject);
+				}
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return jsonArray.toJSONString();
+		}
+		
+		
+		
+		
+		// ㄱ.전체 글 조회
+		public String getPostDay(int mno) {
+			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+			
+			JSONArray jsonArray = new JSONArray();
+			JSONObject jsonObject = null;
+			
+			sql = "SELECT pno, ptitle, pcontent, pregdate, pphoto, plikecount, pcategory, (select nickname from member where post.id = member.id) as nickname "
+					+ "FROM post "
+					+ "WHERE mno = ? "
+					+ "ORDER BY pregdate DESC";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mno);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+					// PostDO 객체의 속성을 설정
+					postDO.setPno(rs.getInt("pno"));
+					postDO.setPtitle(rs.getString("ptitle"));
+					postDO.setPcontent(rs.getString("pcontent"));
+					postDO.setPregdate(rs.getString("pregdate"));
+					postDO.setPphoto(rs.getString("pphoto"));
+					postDO.setPlikecount(rs.getInt("plikecount"));
+					postDO.setPcategory(rs.getString("pcategory"));
+					postDO.setNickname(rs.getString("nickname"));
+
+					// 수정된 PostDO 객체를 리스트에 추가
+					postList.add(postDO);
+				}
+				
+				for(PostDO post : postList) {
+					jsonObject = new JSONObject(); // jsonObject 초기화
+					
+					jsonObject.put("pno", post.getPno());
+					jsonObject.put("ptitle", post.getPtitle());
+					jsonObject.put("pcontent", post.getPcontent());
+					jsonObject.put("pregdate", post.getPregdate());
+					jsonObject.put("pphoto", post.getPphoto());
+					jsonObject.put("plikecount", post.getPlikecount());
+					jsonObject.put("pcategory", post.getPcategory());
+					jsonObject.put("nickname", post.getNickname());
+					
+					jsonArray.add(jsonObject);
+				}
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return jsonArray.toJSONString();
+		}
+		
+		
+		
+		
+		// ㄱ.전체 글 조회
+		public String getPostLost(int mno) {
+			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+			
+			JSONArray jsonArray = new JSONArray();
+			JSONObject jsonObject = null;
+			
+			sql = "SELECT pno, ptitle, pcontent, pregdate, pphoto, plikecount, pcategory, (select nickname from member where post.id = member.id) as nickname "
+					+ "FROM post "
+					+ "WHERE mno = ? "
+					+ "ORDER BY pregdate DESC";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mno);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+					// PostDO 객체의 속성을 설정
+					postDO.setPno(rs.getInt("pno"));
+					postDO.setPtitle(rs.getString("ptitle"));
+					postDO.setPcontent(rs.getString("pcontent"));
+					postDO.setPregdate(rs.getString("pregdate"));
+					postDO.setPphoto(rs.getString("pphoto"));
+					postDO.setPlikecount(rs.getInt("plikecount"));
+					postDO.setPcategory(rs.getString("pcategory"));
+					postDO.setNickname(rs.getString("nickname"));
+
+					// 수정된 PostDO 객체를 리스트에 추가
+					postList.add(postDO);
+				}
+				
+				for(PostDO post : postList) {
+					jsonObject = new JSONObject(); // jsonObject 초기화
+					
+					jsonObject.put("pno", post.getPno());
+					jsonObject.put("ptitle", post.getPtitle());
+					jsonObject.put("pcontent", post.getPcontent());
+					jsonObject.put("pregdate", post.getPregdate());
+					jsonObject.put("pphoto", post.getPphoto());
+					jsonObject.put("plikecount", post.getPlikecount());
+					jsonObject.put("pcategory", post.getPcategory());
+					jsonObject.put("nickname", post.getNickname());
+					
+					jsonArray.add(jsonObject);
+				}
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return jsonArray.toJSONString();
+		}
+		
+*/		
+}
