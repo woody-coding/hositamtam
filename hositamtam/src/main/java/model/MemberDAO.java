@@ -63,10 +63,10 @@ public class MemberDAO {
 	
 	// ㄴ.회원 정보 조회
 	// 
-	public ArrayList<MemberDO> getMember() {
+	public ArrayList<MemberDO> getMember(String id) {
 		ArrayList<MemberDO> memberList = new ArrayList<MemberDO>();
 
-			sql = "SELECT * FROM member";
+			sql = "SELECT id, nickname, passwd, to_char(birthdate, 'YYYY-MM-DD HH24:MI:SS') as birthdate, gender, exp, grade  FROM member where id = ?";
 
 		try {
 			stmt = conn.createStatement();

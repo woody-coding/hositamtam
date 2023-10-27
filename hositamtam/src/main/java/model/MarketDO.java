@@ -2,25 +2,6 @@ package model;
 
 import java.util.Date;
 
-<<<<<<< HEAD
-	private int mNo ;
-	private String mName;
-	private String mType;
-	private double mLat;
-	private double mLng;
-	
-	public int getMNo() {
-		return mNo;
-	}
-	public void setMNo(int mNo) {
-		this.mNo = mNo;
-	}
-	public String getMName() {
-		return mName;
-	}
-	public void setMName(String mName) {
-		this.mName = mName;
-=======
 public class MarketDO {
     private int mno;
     private String mname;
@@ -44,27 +25,14 @@ public class MarketDO {
 	}
 	public void setMname(String mname) {
 		this.mname = mname;
->>>>>>> 80c5b608be4ab2be372614acbb8d3c5496d5129a
 	}
 	public String getMType() {
-		return mType;
+		return mtype;
 	}
 	public void setMType(String mType) {
-		this.mType = mType;
+		this.mtype = mType;
 	}
-<<<<<<< HEAD
-	public double getMLat() {
-		return mLat;
-	}
-	public void setMLat(double mLat) {
-		this.mLat = mLat;
-	}
-	public double getMLng() {
-		return mLng;
-	}
-	public void setMLng(double mLng) {
-		this.mLng = mLng;
-=======
+
 	public String getMaddr() {
 		return maddr;
 	}
@@ -82,7 +50,7 @@ public class MarketDO {
 	}
 	public void setMlng(String mlng) {
 		this.mlng = mlng;
->>>>>>> 80c5b608be4ab2be372614acbb8d3c5496d5129a
+
 	}
 	public String getMtoilet() {
 		return mtoilet;
