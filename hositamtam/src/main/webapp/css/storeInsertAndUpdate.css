@@ -28,78 +28,130 @@ body {
   margin: 0;
 }
 
+h2 {
+  margin: 0;
+}
+
 /* common */
 .max-container {
   max-width: var(--size-max-width);
   margin: auto;
 }
 
-/* Sign Up */
-#join {
+/* Store Insert And Update */
+#store__update {
   display: flex;
   height: 745px;
   margin: auto;
 }
 
-.join {
+.store__update {
   display: block;
   align-items: center;
   text-align: center;
   margin-top: 5rem;
   padding: 40px;
-  width: 450px;
+  width: 800px;
   border: 3px solid var(--color-accent);
   border-radius: 50px;
 }
 
-#join__form {
+#store__update__form {
   margin: 0;
 }
 
-.join__label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.5rem;
+.store__update__form {
+  margin-left: 5rem;
 }
 
-.join__input {
+.store__label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.store__input {
   display: block;
-  margin: 5px 0;
-  width: 100%;
-  padding: 10px;
+  /* margin: 5px 0; */
+  width: 40%;
+  padding: 0.5rem;
   border: 3px solid var(--color-primary);
   border-radius: 4px;
   font-size: 1rem;
 }
 
-.duplication__check {
-  width: 20%;
+.change__location {
+  width: 14%;
   border: none;
   border-radius: 4px;
   color: var(--color-background);
   background-color: #d9d9d9;
-  font-size: 15px;
+  font-size: 1rem;
+  margin-left: 1rem;
+  padding: 0.5rem;
+}
+
+.store__type,
+.store__payment,
+.store__photo,
+.store__category3 {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.store__category,
+.store__category2 {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.store__category2,
+.store__category3 {
+  margin-left: 8.2rem;
+}
+
+.store__type__title,
+.store__payment__title,
+.store__category__title,
+.store__photo__title {
+  padding-top: 5px;
+  margin-right: 2rem;
+}
+
+.store__type__button,
+.store__payment__button,
+.store__category__button {
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-background);
+  font-size: 1.3rem;
   margin-left: 1rem;
 }
 
-.join__error {
-  color: red;
-  margin: 1rem 0;
+.store__type__button:hover,
+.store__payment__button:hover,
+.store__category__button:hover {
+  color: var(--color-background);
+  background-color: var(--color-primary-variant);
 }
 
-.join__button {
-  width: 40%;
+.store__photo__label {
+  padding-top: 5px;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.store__update__button {
+  width: 15%;
   height: 40px;
-  font-size: 20px;
+  font-size: 1.3rem;
   border-radius: 4px;
   border: none;
   color: var(--color-background);
   background-color: var(--color-primary);
   transition: all 0.15s linear;
-  margin-bottom: 4px;
+  margin: 1rem 0 0;
 }
 
-.join__button:hover {
+.store__update__button:hover {
   background-color: var(--color-accent);
 }
