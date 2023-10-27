@@ -1,0 +1,193 @@
+/* Global */
+:root {
+  /* App Colors */
+  --color-primary: var(--color-navy);
+  --color-primary-variant: var(--color-purple);
+  --color-accent: var(--color-blue);
+  --color-accent-variant: var(--color-pink);
+  --color-background: var(--color-white);
+
+  /* Colors */
+  --color-white: #ffffff;
+  --color-navy: #0e4194;
+  --color-blue: #0188cc;
+  --color-pink: #e6007e;
+  --color-purple: #662583;
+  --color-gray: #a6a6a6;
+
+  /* Size */
+  --size-max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "GmarketSans";
+  margin: 0;
+}
+
+hr {
+  background: var(--color-accent);
+  height: 1px;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* common */
+.max-container {
+  max-width: var(--size-max-width);
+  margin: auto;
+}
+
+/* My Information */
+#myinfo {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.mylevel {
+  display: block;
+  align-items: center;
+  text-align: center;
+  margin: 6rem 0 2rem 5rem;
+  padding: 40px;
+  width: 500px;
+  border: 3px solid var(--color-accent);
+  border-radius: 30px;
+}
+
+.mylevel__info {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 15px 0 0 0;
+  justify-content: space-between;
+}
+
+.mylevel__picture {
+  margin-left: 3rem;
+  font-size: 3rem;
+}
+
+.mylevel__name {
+  margin-right: 3rem;
+}
+
+.mylevel__gage {
+  width: 100%;
+  height: 20px;
+  background-color: #f2f2f2;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+}
+.mylevel__gage__value {
+  height: 20px;
+  padding-top: 3px;
+  color: var(--color-background);
+  border-radius: 5px;
+}
+
+.mylevel__gage__data {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.myprofile {
+  display: block;
+  align-items: center;
+  text-align: center;
+  margin: 6rem 5rem 2rem 0;
+  padding: 20px;
+  width: 500px;
+  border: 3px solid var(--color-accent);
+  border-radius: 30px;
+}
+
+.modify__delete__button {
+  display: flex;
+  padding: 0 10px;
+  margin-top: 1rem;
+}
+
+.myprofile__modify__button {
+  width: 100%;
+  height: 30px;
+  margin: 0 1rem;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  color: var(--color-background);
+  background-color: var(--color-primary);
+  transition: all 0.15s linear;
+}
+
+.myprofile__delete__button {
+  width: 100%;
+  height: 30px;
+  margin: 0 1rem;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  color: var(--color-background);
+  background-color: var(--color-gray);
+  transition: all 0.15s linear;
+}
+
+.myprofile__modify__button:hover {
+  background-color: var(--color-accent);
+}
+
+.myprofile__delete__button:hover {
+  background-color: var(--color-accent);
+}
+
+.myprofile__activity {
+  display: flex;
+  margin: 1rem 0;
+}
+
+.myprofile__activity2 {
+  display: flex;
+}
+
+.myprofile__activity__contents {
+  border: 3px solid var(--color-primary);
+  width: 60%;
+  margin: 0 0.5rem;
+}
+
+/* My Activity */
+#myactivity {
+  width: 100%;
+}
+
+.myStore,
+.myPost,
+.myReview,
+.myStoreLike {
+  display: flex;
+  justify-content: space-between;
+}
+
+.myStore__contents,
+.myPost__contents,
+.myReview__contents,
+.myStoreLike__contents {
+  display: block;
+}
+
+.myStore__more,
+.myPost__more,
+.myReview__more,
+.myStoreLike__more {
+  border: none;
+  border-radius: 4px;
+  color: var(--color-background);
+  background-color: var(--color-accent);
+}
