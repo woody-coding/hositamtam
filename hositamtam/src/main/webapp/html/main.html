@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호시탐탐</title>   
+       <!-- Favicon -->
+       <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+       <!-- G-Market Fonts -->
+       <link
+         href="https://webfontworld.github.io/gmarket/GmarketSans.css"
+         rel="stylesheet"
+       />
+   
+       <!-- Font Awesome -->
+       <script
+         src="https://kit.fontawesome.com/89490613c7.js"
+         crossorigin="anonymous"
+       ></script>
+       <!-- CSS -->
+    <link rel="stylesheet" href="css/loginHeader.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- JavaScript -->
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    ​<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script defer src="./js/main.js"></script>
+    
+</head>
+<body>
+  
+    <div  class="section" id="section1">
+      <header class="mainHeader">
+        <div class="mainHeader__logo">
+          <img class="mainHeader__logo__img" src="images/logo.ico" alt="logo" />
+        </div>
+  
+        <form id="searchForm" method="get" action="SearchController">
+          <div class="market__search">
+            <input
+              type="text"
+              class="market__searchInput"
+              name="market"
+              id="searchInput"
+              placeholder="   궁금한 시장 이름을 입력하세요. Ex.부평깡통시장"
+            />
+            <button
+              class="market__searchButton"
+              type="submit"
+              name="action"
+              value="search"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+  
+        <nav class="mainHeader__nav">
+          <ul class="mainHeader__menu">
+            <li><a class="mainHeader__menu__item">서비스안내</a></li>
+            <li><a class="mainHeader__menu__item">시끌시끌</a></li>
+            <li><a class="mainHeader__menu__item">카테고리</a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- header 끝 -->
+      <div class="listCategory" >
+        <div class="close"></div>
+        <div class="listCategoryContent">
+
+          <form method="get" action="form-action.html">
+            
+            <p>어떤 시장이 궁금한가요?</p>
+            <div class="left">
+              <label><input type="checkbox" name="" value="">농산물</label>
+            </div>
+            <div class="right">
+              <label><input type="checkbox" name="" value="">음식점</label>
+            </div>
+            <div class="left">
+              <label><input type="checkbox" name="" value="">가공식품</label>
+            </div>
+            <div class="right">
+              <label><input type="checkbox" name="" value="">수산물</label>
+            </div>
+            <div class="left">
+              <label><input type="checkbox" name="" value="">축산물</label>
+            </div>
+            <div class="right">
+              <label><input type="checkbox" name="" value="">가정용품</label>
+            </div>
+            <div class="left">
+              <label><input type="checkbox" name="" value="">의류</label>
+            </div>
+            <div class="right">
+              <label><input type="checkbox" name="" value="">신발</label>
+            </div>
+            <div class="left">
+              <label><input type="checkbox" name="" value="">기타</label>
+            </div>
+          
+       
+  
+            <p><input type="submit" value="이동하기" id="submit">
+              
+            </p>
+          </form>
+        </div>  
+      </div> 
+     
+      
+      <div id="btnGroup">
+        
+          <button id="mkList" class="category"><i class="bi bi-basket-fill"></i><br> 시장 리스트 </button>
+          <button id="category" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
+          <button id="category" class="category"><i class="bi bi-info-circle-fill"></i><br> 서비스 안내</button>
+         
+      </div>
+      <div id="busanExplain" >
+        <p>부산 전통 시장</p>
+         <p>부산의 맛과 문화를 만나다!</p>
+     </div>
+       
+        
+    </div>
+    <div class="section" id="section2">
+      <h4>호시탐탐 안내</h4>
+      <div class="hosiInfo"></div>
+      <h4>등급 안내</h4>
+      <div class="gradeInfo">
+        <div class="gradeLine">
+          <div class="grade1"></div>
+          <div class="grade2"></div>
+          <div class="grade3"></div>
+          <div class="grade4"></div>
+        </div>
+        <div class="gradeNameBox">
+          <div class="gradeName">시장 햇병아리</div>
+          <div class="gradeName">시장 탐험가</div>
+          <div class="gradeName">시장 지킴이</div>
+          <div class="gradeName">시장 지박령</div>
+
+        </div>  
+          
+      </div>
+      <!-- <footer id="information" class="section">
+        <div class="information__located">
+          <div class="max-container">
+            <h2 class="information__title">&copy; TMI - All rights reserved</h2>
+            <div class="information__contents">
+              <p class="information__title">
+                Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
+                팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
+                팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
+              </p>
+              <p class="information__title">
+                <br />
+                <i class="fa-brands fa-github"></i>
+                https://github.com/wlstjd3398/TMI.git
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>  -->
+    </div>
+    
+</body>
+</html>

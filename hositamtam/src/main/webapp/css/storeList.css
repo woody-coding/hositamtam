@@ -1,0 +1,186 @@
+.section {
+    margin-top: 75px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+.app{
+    display: flex;
+}
+#map{
+    width:70%; 
+    height:860px;   
+    float: left;
+}
+button{
+    display: inline-block;
+    cursor: pointer;
+
+}
+.right{
+    border-left: 2px solid #0e4194;
+    width: 30%;
+    /* background-color: #eeeeee; */
+}
+#information{
+    clear: both;
+}
+.mkcontainer{
+    display: flex;
+    border-bottom: 2px solid #0e4194;
+}
+#mkSearchName{
+    font-size: 2rem;
+    font-weight: bold;
+    border-bottom: 2px solid #0e4194;
+
+}
+#mkName, #mkaddr{
+    font-size: 1.5rem;
+}
+.searchResultName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 500px; */
+    /* background-color: #eeeeee; */
+
+}
+.searchResultName h4{
+    font-size: 40px;
+}
+
+.searchResultName button{
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    font-size: 35px;
+    height: 60px;
+    background-color: #e6007e;
+    border: 0;
+    margin-left: 10px;
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 0px 5px 0px 0px pink;
+}
+
+
+
+.searchResultName button:hover{
+    transform: rotate(15deg);
+    animation: rotateAnimation 0.5s ease-in-out infinite;
+}
+
+@keyframes rotateAnimation {
+    0% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
+.btnSort{
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #0e4194;
+}
+.btnSort button {
+    padding: 2px;
+    width: 200px;
+    background-color: #0e4194;
+    color: white;
+    margin-left: 20px;
+    font-size: 1.5rem;
+    border: 0px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.insertStoreContainer{
+    display: flex;
+   justify-content: center;
+    
+}
+#insertStore{
+    background-color: #e6007e;
+    box-shadow: 0px 5px 0px 0px pink;
+    color: white;
+    border: 0;
+    font-size: 2.5rem;
+    border-radius: 10px;
+    transform: scale(0.8);
+
+}
+#insertStore:hover{
+    transition: all 1s;
+
+    transform: scale(1);
+    
+
+}
+#mkImg img{
+    width: 300px;
+
+}
+#mkListResult{
+    overflow: auto;
+}
+.iwContent{
+    width: 100px;
+    height: 40px;
+    /* background-color: #e6007e; */
+    position: relative;
+    text-align: center;
+    font-size: 2rem;
+    overflow: hidden;
+   
+    line-height: 40px;
+}
+.iwContent a{
+    text-decoration: none;
+    color: #e6007e;
+    
+}
+.up {
+    position: absolute;
+    top: 0;
+    left: 35px;
+    transition: top 100ms;
+    transition: transform 0.5s ease-in-out;
+    animation: rotateAnimation 0.5s ease-in-out infinite;
+  }
+  
+  .down {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 40px; /* 초기에 숨겨진 상태 */
+    transition: top 100ms;
+
+  }
+  
+  .iwContent:hover .up {
+    top: -40px; /* hover 상태에서 up을 위로 이동하여 숨김 */
+  }
+  
+  .iwContent:hover .down {
+    top: 0; /* hover 상태에서 down을 아래로 이동하여 표시 */
+  }
+.infoContent{
+    width: 350px;
+    padding: 10px;
+    /* background-color: #eeeeee; */
+}
+.infoContent h4{
+    text-align: center;
+}
+.countContainer{
+    display: flex;
+}
+.btnContainer{
+    text-align: center;
+}
+/* #information{
+    clear: both;
+} */

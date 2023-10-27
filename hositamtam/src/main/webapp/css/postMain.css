@@ -1,0 +1,284 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* letter-spacing: 1.5px; *//
+    
+}
+html {
+    overflow: hidden;
+  }
+  html, body {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    
+  }
+.section {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  #section1{
+      margin-top: 3rem;
+      
+      width: 100%;
+      height: 100%;
+      position: relative;
+      
+  }
+a{
+    text-decoration: none;
+}
+ul.list {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #0188CC;
+}
+ul.list::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.tab-button {
+    display: block;
+    padding: 10px 20px 10px 20px;
+    float: left;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    color: grey;
+    text-decoration: none;
+    cursor: pointer;
+}
+.tab-button:hover{
+    background-color: #0188CC;
+    border-radius: 10px;
+    color: black;
+    
+}
+.orange {
+    
+    border-bottom: 1px solid white;
+    background-color: #0188CC;
+    border-radius: 10px;
+    color: black;
+    margin-top: -2px;
+}
+.tab-content {
+    display: none;
+    padding: 10px;
+    
+
+}
+#tab-contentBox{
+    border-bottom: 1px solid #0188CC;
+    /* height: 155px; */
+    /* overflow: hidden;  */
+}
+.commentBox{
+    display: none;
+}
+.commentList{
+    display: none;
+}
+.show-more{
+    display: block;
+
+}
+
+.firstShow{
+    width: 700px;
+    height: 500px;
+    margin: 0 auto;
+    background-image: url(../images/보고.PNG);
+        background-size: 100% 100%;
+
+}
+
+.form-hide{
+    display: none;
+}
+
+#tabCategory{
+    color: gray;
+}
+#btnDown{
+    background-color: white;
+    border: 0;
+}
+.commentBox{
+    border-top: 1px solid #0188CC;
+
+}
+.commentList{
+border-bottom: 1px solid #0188CC;
+}
+#commentInput{
+    width: 800px;
+}
+#btnPost{
+    float: right;
+}
+/* #section2 {
+    width : 100%;
+    height : 100%;
+    position : fixed;
+    background : rgba(0,0,0,0.5);
+    z-index : 5;
+    padding: 30px;
+  } */
+
+  .black-bg {
+    width : 100%;
+    height : 100vh;
+    /* bottom: 50%; */
+    position : absolute;
+    background : rgba(0,0,0,0.5);
+    padding: 30px;
+    visibility : hidden;
+    opacity : 0;
+    transition : all 1s;
+    transform: translateY(100%);
+    
+  }
+  .black-bg-modify {
+    width : 100%;
+    height : 100vh;
+    /* bottom: 50%; */
+    position : absolute;
+    background : rgba(0,0,0,0.5);
+    padding: 30px;
+    visibility : hidden;
+    opacity : 0;
+    transition : all 1s;
+    transform: translateY(100%);
+    
+  }
+  .white-bg {
+    background: white;
+    border-radius: 5px;
+    padding: 30px;
+    border: 4px solid #0188CC;
+    
+  } 
+  
+  .show {
+    display: block;
+  }
+  .show-modal {
+    z-index : 99;
+
+    visibility : visible;
+  opacity : 1;
+  transition : all 1s;
+  transform: translateY(0%);
+  }
+  .left{
+    display: flex;
+    
+  }
+  .postPictureArea{
+    width: 500px;
+    height: 500px;
+    border: 4px solid #0188CC;
+  }
+.postHead{
+    border: 4px solid #0188CC;
+    
+}
+.postHead input{
+    border: 0px;
+}
+.postContent{
+    border: 4px solid #0188CC;
+
+}
+.postContent textarea{
+    border: 0px;
+}
+.postPicture{
+    display: flex;
+}
+#mkName{
+    font-size: 40px;
+}
+#submit{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+}
+.submitBox{
+    text-align: center;
+
+}
+
+#writePost{
+    width: 100px;
+    border: 0;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #0188CC;
+    color: white;
+}
+
+.mkNameList{
+    /* z-index: 5; */
+    position: absolute;
+    
+    width: 1400px;
+    visibility: hidden;
+    
+    opacity: 0;
+    background-color: white;
+}
+.mkNameList span{
+    margin-left: 20px;
+}
+.btnDown{
+  /* transition : all 1s; */
+
+}
+/* .show-rolling{
+  transition : all 1s;
+  transform: rotate(180deg);
+
+} */
+.show-mkNameList{
+  transition : all 1s;
+
+    visibility: visible;
+    opacity: 1;
+    
+}
+#btnUp{
+    border: 0;
+    background-color: white;
+}
+.commentBox button{
+    width: 80px;
+    border: 0;
+    background-color: #0188CC;
+}
+.commentList #submit{
+    width: 80px;
+    height: 40px;
+    border: 0;
+    background-color: #0188CC;
+}
+#delete{
+    width: 80px;
+    height: 40px;
+    border: 0;
+    background-color: #eeeeee;
+}
+#postModify{
+    width: 80px;
+    height: 40px;
+    border: 0;
+    background-color: #eeeeee;
+}

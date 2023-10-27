@@ -1,0 +1,338 @@
+:root {
+    /* App Colors */
+    --color-primary: var(--color-navy);
+    --color-primary-variant: var(--color-purple);
+    --color-accent: var(--color-blue);
+    --color-accent-variant: var(--color-pink);
+    --color-background: var(--color-white);
+  
+    /* Colors */
+    --color-white: #ffffff;
+    --color-navy: #0e4194;
+    --color-blue: #0188cc;
+    --color-pink: #e6007e;
+    --color-purple: #662583;
+    --color-gray: #a6a6a6;
+  
+    /* Size */
+    --size-max-width: 1200px;
+  }
+  
+/* @font-face {
+    font-family: "GmarketSans";
+    src: url("./fonts/GmarketSansTTFLight.ttf");
+} */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1.5px;
+    font-family: 'GmarketSans', serif;
+}
+html {
+  overflow: hidden;
+}
+html, body {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  
+}
+body {
+  font-family: "GmarketSans";
+  margin: 0;
+}
+
+button {
+    display: inline-block;
+   
+}
+a {
+    text-decoration: none;
+}
+.section {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#section1{
+    margin-top: 3rem;
+    background-image:
+      linear-gradient(
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.4)),  
+        url(../images/메인페이지-배경.png);
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    
+}
+#section2 {
+  background-color: #eeeeee;
+}
+ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* header */
+  .mainHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    background-color: var(--color-background);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+  
+  .mainHeader__logo__img {
+    width: 150px;
+    padding: 0 1rem;
+  }
+  
+  .market__search {
+  }
+  
+  .market__searchInput {
+    width: 40rem;
+    height: 3rem;
+    align-items: center;
+    padding: 0;
+    font-size: 1.5rem;
+    border-radius: 4px;
+  }
+  
+  .market__searchButton {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: none;
+    font-size: 1.5rem;
+    background-color: white;
+  }
+  
+  .market__searchButton:hover {
+    color: var(--color-accent);
+  }
+  
+  .mainHeader__menu {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .mainHeader__menu__item {
+    display: block;
+    font-size: 1.5rem;
+    padding: 8px 16px;
+    border-bottom: 1px solid transparent;
+  }
+  
+  .mainHeader__menu__item:hover {
+    border-bottom: 1px solid var(--color-accent);
+  }
+  
+  .mainHeader__menu__item.active {
+    border: 1px solid var(--color-accent);
+    border-radius: 4px;
+  }
+  /* ---------------------- header */
+#serviceInfo{
+    width: 100%;
+    height: 100vh;
+    background-color: #eeeeee;
+}
+
+
+
+#busanExplain{
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+}
+#btnGroup{
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  font-size: 2rem;
+   /* margin-left: -150px;  */
+  /* margin-top: -50px;  */
+}
+.category{
+    margin-top: 10px;
+    margin-left: 50px;
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #0188CC;
+    border: 0px;
+    color: white;
+    /* font-size: 2.5em; */
+
+}
+.category:hover{
+    
+    background-color: #0E4194;
+    
+
+}
+.listCategory{
+  display: flex;
+  justify-content: flex-end;
+        width: 550px; 
+        height: 100vh; 
+        background: #0E4194; 
+        position: fixed; 
+        z-index: 5;
+        color: white;
+        right: 0;
+        text-align: right;
+      /*  애니메이션시작화면 */
+        transition : all 0.5s;
+        transform: translateX(550px);
+     
+   
+}
+
+.show-list{
+  transition : all 0.5s;
+  transform: translateX(0px);
+}
+.listCategoryContent{
+  font-size: 2.5rem;
+  float: right;
+}
+/* Footer */
+#information {
+  position: relative;
+  text-align: center;
+  background-color: #d9d9d9;
+  color: white;
+  padding: 1rem;
+}
+
+.information__title {
+  margin: 0;
+  padding: 0.5rem 10rem;
+}
+
+.information__contents {
+  display: flex;
+  justify-content: space-between;
+}
+#submit {
+  /* border-radius: 20px; */
+  border: 0px;
+  background-color: #0188CC;
+  transition : all 0.5s;
+  color: white;
+
+}
+#submit:hover {
+  border-radius: 20px;
+  border: 0px;
+  transition : all 0.5s;
+  color: white;
+
+  background-color: #0188CC;
+
+}
+.close {
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+}
+
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 40px;
+  width: 5px;
+  background-color: #ffffff;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+/*========================= section2===================================== */
+.hosiInfo{
+  width: 80%;
+  height: 50vh;
+  border: 4px solid #0E4194;
+  margin: 0 auto;
+}
+.gradeInfo{
+
+}
+.gradeLine{
+  display: flex;
+  justify-content: center;
+}
+.grade1, .grade2, .grade3, .grade4{
+ width: 250px;
+ height: 50px;
+}
+.grade1{
+
+  background-color: #e6007e;
+}
+.grade2{
+  background-color: #0188CC;
+}
+.grade3{
+  background-color: #662583;
+}
+.grade4{
+  background-color: #0E4194;
+  
+}
+.gradeNameBox{
+  display: flex;
+  justify-content: center;
+
+}
+.gradeName{
+ width: 250px;
+ text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
