@@ -7,6 +7,7 @@
 <%
 	String command = request.getParameter("command");
 	String mno = request.getParameter("mno");
+	String pno = request.getParameter("pno");
 	
 	
 	if(command != null && command.equals("getMarket")) {
@@ -14,6 +15,12 @@
 	}
 	else if(command != null && command.equals("getPost")) {
 		out.println(postDAO.getAllPost((Integer.parseInt(mno))));
+	}
+	else if(command != null && command.equals("getComments")) {
+		out.println(postDAO.getComments((Integer.parseInt(pno))));
+	}
+	else if(command != null && command.equals("getPnoPost")) {
+		out.println(postDAO.getPcontent((Integer.parseInt(pno))));
 	}
 	else if(command != null && command.equals("hot")) {
 		out.println(postDAO.getPostHot((Integer.parseInt(mno))));
