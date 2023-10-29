@@ -49,7 +49,7 @@ public class PostDAO {
 		JSONArray jsonArray = new JSONArray();
 		JSONObject jsonObject = null;
 		
-		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 				+ "(select nickname from member where post.id = member.id) as nickname "
 				+ "FROM post "
 				+ "WHERE mno = ? "
@@ -72,6 +72,7 @@ public class PostDAO {
 				postDO.setPlikecount(rs.getInt("plikecount"));
 				postDO.setNickname(rs.getString("nickname"));
 				postDO.setCountcomments(rs.getInt("countcomments"));
+				postDO.setPcategory(rs.getString("pcategory"));
 
 				// 수정된 PostDO 객체를 리스트에 추가
 				postList.add(postDO);
@@ -88,6 +89,7 @@ public class PostDAO {
 				jsonObject.put("plikecount", post.getPlikecount());
 				jsonObject.put("nickname", post.getNickname());
 				jsonObject.put("countcomments", post.getCountcomments());
+				jsonObject.put("pcategory", post.getPcategory());
 				
 				jsonArray.add(jsonObject);
 			}
@@ -168,7 +170,7 @@ public class PostDAO {
 		JSONArray jsonArray = new JSONArray();
 		JSONObject jsonObject = null;
 		
-		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 				+ "(select nickname from member where post.id = member.id) as nickname "
 				+ "FROM post "
 				+ "WHERE mno = ? AND plikecount >= 130"
@@ -191,6 +193,7 @@ public class PostDAO {
 				postDO.setPlikecount(rs.getInt("plikecount"));
 				postDO.setNickname(rs.getString("nickname"));
 				postDO.setCountcomments(rs.getInt("countcomments"));
+				postDO.setPcategory(rs.getString("pcategory"));
 
 				// 수정된 PostDO 객체를 리스트에 추가
 				postList.add(postDO);
@@ -207,6 +210,7 @@ public class PostDAO {
 				jsonObject.put("plikecount", post.getPlikecount());
 				jsonObject.put("nickname", post.getNickname());
 				jsonObject.put("countcomments", post.getCountcomments());
+				jsonObject.put("pcategory", post.getPcategory());
 				
 				jsonArray.add(jsonObject);
 			}
@@ -236,7 +240,7 @@ public class PostDAO {
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jsonObject = null;
 			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 					+ "(select nickname from member where post.id = member.id) as nickname "
 					+ "from post "
 					+ "where mno = ? and pcategory = '시장질문' "
@@ -259,6 +263,7 @@ public class PostDAO {
 					postDO.setPlikecount(rs.getInt("plikecount"));
 					postDO.setNickname(rs.getString("nickname"));
 					postDO.setCountcomments(rs.getInt("countcomments"));
+					postDO.setPcategory(rs.getString("pcategory"));
 
 					// 수정된 PostDO 객체를 리스트에 추가
 					postList.add(postDO);
@@ -275,6 +280,7 @@ public class PostDAO {
 					jsonObject.put("plikecount", post.getPlikecount());
 					jsonObject.put("nickname", post.getNickname());
 					jsonObject.put("countcomments", post.getCountcomments());
+					jsonObject.put("pcategory", post.getPcategory());
 					
 					jsonArray.add(jsonObject);
 				}
@@ -305,7 +311,7 @@ public class PostDAO {
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jsonObject = null;
 			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 					+ "(select nickname from member where post.id = member.id) as nickname "
 					+ "from post "
 					+ "where mno = ? and pcategory = '사건사고' "
@@ -328,6 +334,7 @@ public class PostDAO {
 					postDO.setPlikecount(rs.getInt("plikecount"));
 					postDO.setNickname(rs.getString("nickname"));
 					postDO.setCountcomments(rs.getInt("countcomments"));
+					postDO.setPcategory(rs.getString("pcategory"));
 
 					// 수정된 PostDO 객체를 리스트에 추가
 					postList.add(postDO);
@@ -344,6 +351,7 @@ public class PostDAO {
 					jsonObject.put("plikecount", post.getPlikecount());
 					jsonObject.put("nickname", post.getNickname());
 					jsonObject.put("countcomments", post.getCountcomments());
+					jsonObject.put("pcategory", post.getPcategory());
 					
 					jsonArray.add(jsonObject);
 				}
@@ -374,7 +382,7 @@ public class PostDAO {
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jsonObject = null;
 			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 					+ "(select nickname from member where post.id = member.id) as nickname "
 					+ "from post "
 					+ "where mno = ? and pcategory = '일상' "
@@ -397,6 +405,7 @@ public class PostDAO {
 					postDO.setPlikecount(rs.getInt("plikecount"));
 					postDO.setNickname(rs.getString("nickname"));
 					postDO.setCountcomments(rs.getInt("countcomments"));
+					postDO.setPcategory(rs.getString("pcategory"));
 
 					// 수정된 PostDO 객체를 리스트에 추가
 					postList.add(postDO);
@@ -413,6 +422,7 @@ public class PostDAO {
 					jsonObject.put("plikecount", post.getPlikecount());
 					jsonObject.put("nickname", post.getNickname());
 					jsonObject.put("countcomments", post.getCountcomments());
+					jsonObject.put("pcategory", post.getPcategory());
 					
 					jsonArray.add(jsonObject);
 				}
@@ -443,7 +453,7 @@ public class PostDAO {
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jsonObject = null;
 			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 					+ "(select nickname from member where post.id = member.id) as nickname "
 					+ "from post "
 					+ "where mno = ? and pcategory = '실종/분실' "
@@ -466,6 +476,7 @@ public class PostDAO {
 					postDO.setPlikecount(rs.getInt("plikecount"));
 					postDO.setNickname(rs.getString("nickname"));
 					postDO.setCountcomments(rs.getInt("countcomments"));
+					postDO.setPcategory(rs.getString("pcategory"));
 
 					// 수정된 PostDO 객체를 리스트에 추가
 					postList.add(postDO);
@@ -482,6 +493,7 @@ public class PostDAO {
 					jsonObject.put("plikecount", post.getPlikecount());
 					jsonObject.put("nickname", post.getNickname());
 					jsonObject.put("countcomments", post.getCountcomments());
+					jsonObject.put("pcategory", post.getPcategory());
 					
 					jsonArray.add(jsonObject);
 				}

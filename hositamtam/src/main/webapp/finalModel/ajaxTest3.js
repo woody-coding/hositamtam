@@ -14,7 +14,7 @@ function postAjaxHandler() {
         } 
         
         for (let i in allPost) {
-            posts += '<h4>닉네임: ' + allPost[i].nickname + ', 제목: ' + allPost[i].ptitle + ', 내용: ' + allPost[i].pcontent + 
+            posts += '<h4>닉네임: ' + allPost[i].nickname + ', 카테고리: ' + allPost[i].pcategory + ', 제목: ' + allPost[i].ptitle + ', 내용: ' + allPost[i].pcontent + 
             ', 이미지: ' + allPost[i].pphoto + ', 작성시간: ' + allPost[i].pregdate + ', 좋아요: ' + allPost[i].plikecount + 
             ', 댓글수: ' + allPost[i].countcomments + '</h4>';
         }
