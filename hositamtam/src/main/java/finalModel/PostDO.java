@@ -15,10 +15,10 @@ public class PostDO {
 	private int plikecount;
 	private String pcategory;
 	private int countcomments;
-	
-    private int cno;         // 댓글 번호
-    private String ccontent; // 댓글 내용
-    private Date cregdate;   // 댓글 작성 시간
+	private int cno;
+	private String cnickname;
+	private String ccontent;
+	private String cregdate;
 	
 	public int getPno() {
 		return pno;
@@ -86,10 +86,10 @@ public class PostDO {
 	public void setCcontent(String ccontent) {
 		this.ccontent = ccontent;
 	}
-	public Date getCregdate() {
+	public String getCregdate() {
 		return cregdate;
 	}
-	public void setCregdate(Date cregdate) {
+	public void setCregdate(String cregdate) {
 		this.cregdate = cregdate;
 	}
 	public String getNickname() {
@@ -103,6 +103,12 @@ public class PostDO {
 	}
 	public void setCountcomments(int countcomments) {
 		this.countcomments = countcomments;
+	}
+	public String getCnickname() {
+		return cnickname;
+	}
+	public void setCnickname(String cnickname) {
+		this.cnickname = cnickname;
 	}
 	
 }
