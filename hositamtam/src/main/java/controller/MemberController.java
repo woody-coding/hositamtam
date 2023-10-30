@@ -72,10 +72,32 @@ public class MemberController {
 		
 	return "redirect:/post/PostMain.html";
 	}
+	
 	@GetMapping("/views/market")
 	public String toMarket() {
 		return "redirect:/views/toMarket";
 	}
+	
+	
+	//회원가입 화면
+	@PostMapping("/views/joinMember")
+	public String insert(@ModelAttribute MemberDO command, Model model) {
+		String viewName = "";
+		
+		try {
+			memberDAO.joinMember(command);
+			viewName = "redirect:/login";
+			
+		}catch(Exception e) {
+			model.addAttribute("msg", e.getMessage());
+			model.addAttribute("member", memberDAO.getMember(id));
+			
+			viewName = "login";
+		}
+		
+		return viewName;
+	}
+	
 	
 	//로그인 화면
 	@PostMapping("/views/loginMember")
@@ -93,24 +115,7 @@ public class MemberController {
 		}
 		return viewName;
 	}
-	
-	//회원가입 화면
-	@PostMapping("/views/joinMember")
-	public String joinMember(@ModelAttribute MemberDO command, Model model) {
-		String viewName = "";
-		
-		try {
 
-			memberDAO.insertMember(command);
-			viewName = "redirect:/login";
-			
-		}catch(Exception e) {
-			model.addAttribute("msg", e.getMessage());
-			
-			viewName = "join";
-		}
-		return viewName;
-	}
 	
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")

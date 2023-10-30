@@ -25,109 +25,319 @@ public class MemberDAO {
 		}
 	}
 
-	// ㄱ.회원 가입 / db에 등록된 아이디와 중복 검사.
-	// ㄴ.회원 정보 조회
-	// ㄷ.회원 정보 수정
+	// 1.회원 정보 조회
+	// 2.회원 가입 -> db에 등록된 아이디와 닉네임끼리 중복 검사, 비밀번호는 이전 비밀번호와 중복 검사
+	// 3.회원 정보 수정
+	// 4.회원 정보 삭제(회원 탈퇴)
 	
-	// ㄱ.회원 가입
-	public int joinMember(MemberDO memberDO) {
-		int rowCount = 0;
+	
+	// 1.회원 정보 조회
+	public MemberDO getMember(String id) {
+		MemberDO memberDO = null;
 
-		sql = "INSERT INTO member (id, nickname, passwd, birthdate, gender, exp, grade) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		this.sql = "SELECT id, nickname, passwd, to_char(birthdate, 'YYYY-MM-DD HH24:MI:SS') as birthdate, gender, exp, grade  FROM member where id = ?";
 
 		try {
-			pstmt = conn.prepareStatement(sql);
-
-            pstmt.setString(1, memberDO.getId());
-            pstmt.setString(2, memberDO.getNickname());
-            pstmt.setString(3, memberDO.getPasswd());
-            pstmt.setDate(4, new java.sql.Date(memberDO.getBirthdate().getTime()));
-            pstmt.setString(5, memberDO.getGender());
-            pstmt.setInt(6, memberDO.getExp());
-            pstmt.setInt(7, memberDO.getGrade());
-
-			rowCount = pstmt.executeUpdate();
+			this.pstmt = conn.prepareStatement(sql);
+			this.pstmt.setString(1, id);
+			rs = this.pstmt.executeQuery();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return rowCount;
-	}
-	
-	// ㄴ.회원 정보 조회
-	// 
-	public ArrayList<MemberDO> getMember(String id) {
-		ArrayList<MemberDO> memberList = new ArrayList<MemberDO>();
-
-			sql = "SELECT id, nickname, passwd, to_char(birthdate, 'YYYY-MM-DD HH24:MI:SS') as birthdate, gender, exp, grade  FROM member where id = ?";
-
-		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-
 			while (rs.next()) {
-				MemberDO memberDO = new MemberDO(); // MemberDO 객체 생성
+				memberDO = new MemberDO(); // MemberDO 객체 생성
 
 				memberDO.setId(rs.getString("id"));
                 memberDO.setNickname(rs.getString("nickname"));
                 memberDO.setPasswd(rs.getString("passwd"));
-                memberDO.setBirthdate(rs.getDate("birthdate"));
+                memberDO.setBirthdate(rs.getString("birthdate"));
                 memberDO.setGender(rs.getString("gender"));
                 memberDO.setExp(rs.getInt("exp"));
                 memberDO.setGrade(rs.getInt("grade"));
-
-                memberList.add(memberDO);
+                
 	            }
-			
-			// '내가 등록한 점포, 내가 작성한 글, 찜한 점포, 작성 리뷰 조회' 기능추가해야함.
-		
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-		} finally {
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (Exception e) {
-					e.printStackTrace();
+		}finally {
+			try {
+				if(!pstmt.isClosed()) {
+					pstmt.close();					
 				}
 			}
-		}
-		return memberList;
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}		
+		
+		return memberDO;
+	}
+	
+		
+	// 2.회원 가입
+	public int joinMember(MemberDO memberDO) throws Exception {
+	    int rowCount = 0;
+	    boolean isIdDuplicate = false;
+	    boolean isNicknameDuplicate = false;
+	    boolean isPasswordMatch = false;
+
+	    try {
+	        // 아이디 중복 확인
+	        this.sql = "SELECT id FROM member WHERE id = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, memberDO.getId());
+	        this.rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            isIdDuplicate = true;
+	        }
+
+	        // 닉네임 중복 확인
+	        this.sql = "SELECT id FROM member WHERE nickname = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, memberDO.getNickname());
+	        this.rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            isNicknameDuplicate = true;
+	        }
+
+	        // 비밀번호 중복 확인
+	        this.sql = "SELECT passwd FROM member WHERE id = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, memberDO.getId());
+	        this.rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            String savedPassword = rs.getString("passwd");
+	            if (savedPassword.equals(memberDO.getPasswd())) {
+	            	isPasswordMatch = true;
+	            }
+	        }
+
+	        if (!isIdDuplicate && !isNicknameDuplicate && isPasswordMatch) {
+	            // 아이디, 닉네임 중복이 아니고, 비밀번호가 비밀번호 확인란과 일치하는 경우에만 회원 등록 수행
+	            this.sql = "INSERT INTO member (id, nickname, passwd, gender) VALUES (?, ?, ?, ?)";
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, memberDO.getId());
+	            pstmt.setString(2, memberDO.getNickname());
+	            pstmt.setString(3, memberDO.getPasswd());
+	            pstmt.setString(4, memberDO.getGender());
+
+	            rowCount = pstmt.executeUpdate();
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null && !pstmt.isClosed()) {
+	                pstmt.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    if (isIdDuplicate) {
+	        throw new Exception("아이디가 중복되었습니다.");
+	    }
+
+	    if (isNicknameDuplicate) {
+	        throw new Exception("닉네임이 중복되었습니다.");
+	    }
+
+	    if (!isPasswordMatch) {
+	        throw new Exception("비밀번호가 일치하지 않습니다.");
+	    }
+
+	    return rowCount;
 	}
 
-	// ㄷ.회원 정보 수정
-	public int updateMember(MemberDO memberDO) {
+//	
+//	
+//	// 2-1.회원 가입에서 아이디가 db에 존재하는지 중복확인
+//	public int dupliId(MemberDO memberDO) {
+//		int rowCount = 0;
+//
+//		this.sql = "UPDATE member SET nickname = ? WHERE id = ?";
+//
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//
+//            pstmt.setString(1, memberDO.getId());
+//            pstmt.setString(2, memberDO.getNickname());
+//
+//			rowCount = pstmt.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (pstmt != null)
+//					pstmt.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return rowCount;
+//	}
+//	
+//
+//	// 2-2.회원 정보 수정에서 닉네임 db에 존재하는지 중복확인
+//	public int dupliNickname(MemberDO memberDO) {
+//		int rowCount = 0;
+//
+//		this.sql = "UPDATE member SET nickname = ? WHERE id = ?";
+//
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//
+//            pstmt.setString(1, memberDO.getId());
+//            pstmt.setString(2, memberDO.getNickname());
+//
+//			rowCount = pstmt.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (pstmt != null)
+//					pstmt.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return rowCount;
+//	}
+//	
+//	
+//	// 2-3.회원 정보 수정에서 비밀번호가 이전 비밀번호와 중복확인
+//	public int dupliPasswd(MemberDO memberDO) {
+//		int rowCount = 0;
+//
+//		sql = "UPDATE member SET passwd = ? WHERE id = ?";
+//
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//
+//            pstmt.setString(1, memberDO.getId());
+//            pstmt.setString(2, memberDO.getPasswd());
+//
+//			rowCount = pstmt.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (pstmt != null)
+//					pstmt.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return rowCount;
+//	}
+	
+	// 3. 회원 정보 수정
+	public int changePasswd(MemberDO member) {
+	    int rowCount = 0;
+	    boolean isNicknameDuplicate = false;
+	    boolean isPasswordMatch = false;
+
+	    try {
+	        // 닉네임 중복 확인
+	        this.sql = "SELECT id FROM member WHERE nickname = ? AND id != ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, member.getNickname());
+	        pstmt.setString(2, member.getId());
+	        this.rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            isNicknameDuplicate = true;
+	        }
+
+	        // 비밀번호 확인
+	        this.sql = "SELECT passwd FROM member WHERE id = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, member.getId());
+	        this.rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            String savedPassword = rs.getString("passwd");
+	            if (savedPassword.equals(member.getNewPasswd())) {
+	                isPasswordMatch = true;
+	            }
+	        }
+
+	        if (!isNicknameDuplicate && !isPasswordMatch) {
+	            // 닉네임 중복이 아니고, 비밀번호가 일치하지 않는 경우에만 비밀번호 변경 수행
+	            this.sql = "UPDATE member SET passwd = ? WHERE id = ?";
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, member.getNewPasswd());
+	            pstmt.setString(2, member.getId());
+
+	            rowCount = pstmt.executeUpdate();
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null && !pstmt.isClosed()) {
+	                pstmt.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    if (isNicknameDuplicate) {
+	        // 닉네임이 중복되어 수정 불가능
+	        throw new Exception("닉네임이 다른 사용자와 중복됩니다. 다른 닉네임을 선택해주세요.");
+	    }
+
+	    if (isPasswordMatch) {
+	        // 새로운 비밀번호가 이전 비밀번호와 동일하여 수정 불가능
+	        throw new Exception("새로운 비밀번호는 이전 비밀번호와 동일할 수 없습니다.");
+	    }
+
+	    return rowCount;
+	}
+	
+	
+	// 4. 회원 정보 삭제
+	public int deleteMember(String id) {
 		int rowCount = 0;
-
-		sql = "UPDATE member SET nickname = '새로운닉네임', passwd = '새로운비밀번호' WHERE id = '사용자아이디'";
-
+		
+		this.sql = "delete from member where id = ?";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
-
-            pstmt.setString(1, memberDO.getId());
-            pstmt.setString(2, memberDO.getNickname());
-            pstmt.setString(3, memberDO.getPasswd());
-
+			pstmt.setString(1, id);
+			
 			rowCount = pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
+		}catch(Exception e) {
 			e.printStackTrace();
-		} finally {
+			
+		}finally{
 			try {
-				if (pstmt != null)
+				if(!pstmt.isClosed()) {
 					pstmt.close();
-			} catch (SQLException e) {
+				}
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 		return rowCount;
+	}
+	
+	public void closeConn() {
+		try {
+			if(!conn.isClosed()) {
+				conn.close();
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
