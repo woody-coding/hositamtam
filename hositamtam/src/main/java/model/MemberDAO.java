@@ -237,7 +237,7 @@ public class MemberDAO {
 //	}
 	
 	// 3. 회원 정보 수정
-	public int changePasswd(MemberDO member) {
+	public int changePasswd(MemberDO memberDO) throws Exception {
 	    int rowCount = 0;
 	    boolean isNicknameDuplicate = false;
 	    boolean isPasswordMatch = false;
@@ -246,8 +246,8 @@ public class MemberDAO {
 	        // 닉네임 중복 확인
 	        this.sql = "SELECT id FROM member WHERE nickname = ? AND id != ?";
 	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1, member.getNickname());
-	        pstmt.setString(2, member.getId());
+	        pstmt.setString(1, memberDO.getNickname());
+	        pstmt.setString(2, memberDO.getId());
 	        this.rs = pstmt.executeQuery();
 
 	        if (rs.next()) {
@@ -257,12 +257,12 @@ public class MemberDAO {
 	        // 비밀번호 확인
 	        this.sql = "SELECT passwd FROM member WHERE id = ?";
 	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1, member.getId());
+	        pstmt.setString(1, memberDO.getId());
 	        this.rs = pstmt.executeQuery();
 
 	        if (rs.next()) {
 	            String savedPassword = rs.getString("passwd");
-	            if (savedPassword.equals(member.getNewPasswd())) {
+	            if (savedPassword.equals(memberDO.getPasswd())) {
 	                isPasswordMatch = true;
 	            }
 	        }
@@ -271,8 +271,8 @@ public class MemberDAO {
 	            // 닉네임 중복이 아니고, 비밀번호가 일치하지 않는 경우에만 비밀번호 변경 수행
 	            this.sql = "UPDATE member SET passwd = ? WHERE id = ?";
 	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setString(1, member.getNewPasswd());
-	            pstmt.setString(2, member.getId());
+	            pstmt.setString(1, memberDO.getPasswd());
+	            pstmt.setString(2, memberDO.getId());
 
 	            rowCount = pstmt.executeUpdate();
 	        }
