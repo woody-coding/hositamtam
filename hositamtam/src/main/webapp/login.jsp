@@ -5,23 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>로그인 페이지입니다.</title>
 </head>
 <body>
 
 	<h2>호시탐탐의 로그인 페이지입니다</h2>
 	
-	<form method="GET" action="/finalProject/views/main">
+	<form method="POST" action="/finalProject/views/main">
 	
 	<label for="id">아이디</label>
 	<input type="text" name="id" id="id"/>
 
-	<label for="double">중복선택</label> 
-	<input type="checkbox" name="double" value="선택1"/>
-	<input type="checkbox" name="double" value="선택2"/>
-	<input type="checkbox" name="double" value="선택3"/>
+	<label for="passwd">중복선택</label> 
+	<input type="password" name="passwd" id="passwd" />
 
-	<input type="submit" value="등록"/> 
+	<input type="submit" value="로그인"/> 
 	</form>
 </body>
 </html>

@@ -33,7 +33,8 @@
 		<input type="checkbox" name="gender" value="남자"/>
 		<input type="checkbox" name="gender" value="여자"/> :::
 		
-		<input type="submit" value="가입" />
+		<input type="submit" value="회원가입" />
+		
 	</fieldset>
 	</form>
 	
