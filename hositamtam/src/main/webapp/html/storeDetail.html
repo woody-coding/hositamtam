@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>호시탐탐</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <!-- G-Market Fonts -->
+    <link
+      href="https://webfontworld.github.io/gmarket/GmarketSans.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/89490613c7.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/loginHeader.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/storeDetail.css" />
+
+    <!-- JavaScript -->
+    <script type="module" src="src/storeDetailReview.js" defer></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="mainHeader">
+      <div class="mainHeader__logo">
+        <img class="mainHeader__logo__img" src="images/logo.ico" alt="logo" />
+      </div>
+
+      <form id="searchForm" method="get" action="SearchController">
+        <div class="market__search">
+          <input
+            type="text"
+            class="market__searchInput"
+            name="market"
+            id="searchInput"
+            placeholder="   궁금한 시장 이름을 입력하세요. Ex.부평깡통시장"
+          />
+          <button
+            class="market__searchButton"
+            type="submit"
+            name="action"
+            value="search"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+
+      <nav class="mainHeader__nav">
+        <ul class="mainHeader__menu">
+          <li><a class="mainHeader__menu__item" href="#">서비스안내</a></li>
+          <li><a class="mainHeader__menu__item" href="#">시끌시끌</a></li>
+          <li><a class="mainHeader__menu__item" href="#">카테고리</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <!-- Store Detail -->
+    <section id="storeDetail" class="max-container">
+      <div class="storeDetail__info">
+        <button class="storeDetail__like">
+          <i class="fa-solid fa-heart"></i>
+        </button>
+        탐탐 님이 등록한 점포입니다.
+        <button class="storeDetail__modify">점포 수정</button>
+      </div>
+      <div class="storeDetail__star__name">
+        <span><h4>⭐ 4.0</h4></span>
+        <span><h4>초량 신발원 옆 러시아 음식점</h4></span>
+      </div>
+      <div class="storeDetail__storeType">
+        <span class="storeDetail__storeType__title"><h4>가게 형태</h4></span>
+        <span>매장</span>
+      </div>
+      <div class="storeDetail__payment">
+        <span class="storeDetail__payment__title"><h4>결제 방식</h4></span>
+        <span>현금 &nbsp;&nbsp;&nbsp; 카드 &nbsp;&nbsp;&nbsp; 계좌이체</span>
+      </div>
+      <div class="storeDetail__category">
+        <span class="storeDetail__category__title"><h4>취급 품목</h4></span>
+        <span>음식점</span>
+      </div>
+      <div class="storeDetail__photo">
+        <!-- 등록된 점포 사진 -->
+      </div>
+    </section>
+
+    <!-- Review -->
+    <section id="review" class="max-container">
+      <hr />
+      <div class="review__info">
+        <span class="review__level__photo" style="color: #e6007e">
+          <i class="fa-solid fa-user"></i>
+        </span>
+        <span class="review__ask">탐탐 님 해당 점포에 리뷰를 남겨주세요.</span>
+        <span class="review__star">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </span>
+      </div>
+
+      <div>
+        <form id="review__form" style="display: none">
+          <div class="review__form">
+            <label class="review__label">
+              <input
+                class="review__input"
+                type="text"
+                id=""
+                placeholder="리뷰를 남겨주세요."
+              />
+            </label>
+          </div>
+
+          <button class="review__button" type="submit">작성하기</button>
+        </form>
+      </div>
+      <hr />
+    </section>
+
+    <!-- Review Contents -->
+    <section id="review__contents" class="max-container">
+      <div class="review__contents__total">
+        <span class="review__contents__star">⭐ 4.0</span><span>📝 12</span>
+      </div>
+      <hr />
+      <div class="review__contents__list">
+        <section class="review__contents__photo" style="color: #0188cc">
+          <i class="fa-solid fa-user"></i>
+        </section>
+        <section class="review__contents__main">
+          <div class="review__contents__name">호탐시탐짱입니당</div>
+          <div class="review__contents__ownerInfo">
+            리뷰 15 &nbsp; 별점평균 4.5 &nbsp; | &nbsp; 23.10.15
+          </div>
+        </section>
+        <section class="review__contents__value">
+          샤슬릭이 좋습니다. 샤슬릭이 좋습니다. 샤슬릭이 좋습니다. 샤슬릭이
+          좋습니다. 샤슬릭이 좋습니다. 샤슬릭이 좋습니다. 샤슬릭이 좋습니다.
+          샤슬릭이 좋습니다. 샤슬릭이 좋습니다. 샤슬릭이 좋습니다. 샤슬릭이
+          좋습니다.
+        </section>
+      </div>
+      <hr />
+      <div class="review__contents__list">
+        <section class="review__contents__photo" style="color: #662583">
+          <i class="fa-solid fa-user"></i>
+        </section>
+        <section class="review__contents__main">
+          <div class="review__contents__name">쩝쩝박사</div>
+          <div class="review__contents__ownerInfo">
+            리뷰 20 &nbsp; 별점평균 4.0 &nbsp; | &nbsp; 23.10.10
+          </div>
+        </section>
+        <section class="review__contents__value">SIUUUUUU</section>
+      </div>
+      <hr />
+    </section>
+
+    <!-- Footer -->
+    <footer id="information" class="section">
+      <div class="information__located">
+        <div class="max-container">
+          <h2 class="information__title">&copy; TMI - All rights reserved</h2>
+          <div class="information__contents">
+            <p class="information__title">
+              Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
+              팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
+              팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
+            </p>
+            <p class="information__title">
+              <br />
+              <i class="fa-brands fa-github"></i>
+              https://github.com/wlstjd3398/hositamtam
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
