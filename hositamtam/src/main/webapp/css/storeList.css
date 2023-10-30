@@ -9,7 +9,7 @@
 }
 #map{
     width:70%; 
-    height:860px;   
+    height:880px;   
     float: left;
 }
 button{
@@ -184,3 +184,7 @@ button{
 /* #information{
     clear: both;
 } */
+.fa-heart{
+    font-size: 33px;
+    color: #e6007e;
+}
