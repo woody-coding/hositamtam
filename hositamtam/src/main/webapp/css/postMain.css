@@ -3,11 +3,10 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* letter-spacing: 1.5px; *//
     
 }
 html {
-    overflow: hidden;
+    overflow: hidden;  
   }
   html, body {
     display: block;
@@ -23,12 +22,13 @@ html {
   }
   #section1{
       margin-top: 3rem;
-      
+      padding-top: 10px;
       width: 100%;
       height: 100%;
       position: relative;
       
   }
+
 a{
     text-decoration: none;
 }
@@ -141,7 +141,7 @@ border-bottom: 1px solid #0188CC;
     background : rgba(0,0,0,0.5);
     padding: 30px;
     visibility : hidden;
-    opacity : 0;
+    opacity : 0; 
     transition : all 1s;
     transform: translateY(100%);
     
@@ -166,6 +166,7 @@ border-bottom: 1px solid #0188CC;
     border: 4px solid #0188CC;
     
   } 
+
   
   .show {
     display: block;
@@ -182,13 +183,38 @@ border-bottom: 1px solid #0188CC;
     display: flex;
     
   }
-  .postPictureArea{
-    width: 500px;
-    height: 500px;
-    border: 4px solid #0188CC;
-  }
+.postCategory{
+    margin: 1rem;
+
+}
+.postCategory-radio{
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-around;
+}  
+.postCategory-radio input[type="radio"]{
+    display: none;
+}  
+
+.postCategory-radio label {
+    color: black;   
+}
+
+.postCategory-radio label.selected {
+    color: #0e4194; 
+}
+
+.radioBox{
+    width: 160px;
+    text-align: center;
+}
+.radioBox:hover{
+    background-color: #0188CC;
+}
 .postHead{
     border: 4px solid #0188CC;
+    font-size: 1.5rem;
+    margin: 1rem;
     
 }
 .postHead input{
@@ -196,6 +222,9 @@ border-bottom: 1px solid #0188CC;
 }
 .postContent{
     border: 4px solid #0188CC;
+    margin: 1rem;
+    font-size: 1.3rem;
+
 
 }
 .postContent textarea{
@@ -203,6 +232,18 @@ border-bottom: 1px solid #0188CC;
 }
 .postPicture{
     display: flex;
+    margin: 1rem;
+
+}
+#image_container{
+    max-width: 900px;
+    max-height: 400px;
+}
+
+
+#image_container img {
+    max-width: 100%; /* 이미지를 컨테이너의 가로 크기에 맞게 조정 */
+    max-height: 100%; /* 이미지를 컨테이너의 세로 크기에 맞게 조정 */
 }
 #mkName{
     font-size: 40px;
@@ -281,4 +322,7 @@ border-bottom: 1px solid #0188CC;
     height: 40px;
     border: 0;
     background-color: #eeeeee;
+}
+.btn-primary{
+    background-color: #0e4194;
 }
