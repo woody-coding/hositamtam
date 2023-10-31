@@ -45,9 +45,9 @@ body {
   display: block;
   align-items: center;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 5rem;
   padding: 40px;
-  width: 800px;
+  width: 700px;
   border: 3px solid var(--color-accent);
   border-radius: 50px;
 }
@@ -57,27 +57,27 @@ body {
 }
 
 .store__update__form {
-  margin-left: 3rem;
+  padding-left: 6.3rem;
 }
 
 .store__label {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
 .store__input {
   display: block;
-  /* margin: 5px 0; */
-  width: 40%;
+  width: 50%;
   padding: 0.5rem;
   border: 3px solid var(--color-primary);
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .change__location {
-  width: 14%;
+  width: 15%;
   border: none;
   border-radius: 4px;
   color: var(--color-background);
@@ -143,6 +143,18 @@ body {
 .store__category__button:hover,
 .store__category__button2:hover {
   color: var(--color-background);
+}
+
+.store__type__button:hover {
+  background-color: var(--color-accent-variant);
+}
+
+.store__payment__button:hover {
+  background-color: var(--color-accent);
+}
+
+.store__category__button:hover,
+.store__category__button2:hover {
   background-color: var(--color-primary-variant);
 }
 
@@ -153,7 +165,7 @@ body {
 }
 
 .store__update__button {
-  width: 15%;
+  width: 20%;
   height: 40px;
   font-size: 1.3rem;
   border-radius: 4px;

@@ -14,6 +14,7 @@
   --color-pink: #e6007e;
   --color-purple: #662583;
   --color-gray: #a6a6a6;
+  --color-lightgray: #d9d9d9;
 
   /* Size */
   --size-max-width: 1200px;
@@ -28,12 +29,6 @@ body {
   margin: 0;
 }
 
-hr {
-  background: var(--color-accent);
-  height: 1px;
-  border: 0;
-}
-
 a {
   text-decoration: none;
 }
@@ -45,10 +40,6 @@ a {
 }
 
 /* My Information */
-/* #myPage {
-  height: 1116px;
-} */
-
 #myinfo {
   display: flex;
   width: 100%;
@@ -59,7 +50,7 @@ a {
   display: block;
   align-items: center;
   text-align: center;
-  margin: 10rem 0 4rem 5rem;
+  margin: 9rem 0 4rem 5rem;
   padding: 40px;
   width: 500px;
   border: 3px solid var(--color-accent);
@@ -111,7 +102,7 @@ a {
   display: block;
   align-items: center;
   text-align: center;
-  margin: 10rem 5rem 4rem 0;
+  margin: 9rem 5rem 4rem 0;
   padding: 40px;
   width: 500px;
   border: 3px solid var(--color-accent);
@@ -188,7 +179,7 @@ a {
 }
 
 .myActivity {
-  margin-bottom: 2rem;
+  margin: 0 5rem 4rem;
 }
 
 .myStore,
@@ -197,23 +188,54 @@ a {
 .myStoreLike {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.myStore__contents,
+.myPage__h2 {
+  margin: 0;
+}
+
+.myPage__table {
+  width: 100%;
+  border-top: 2px solid var(--color-lightgray);
+  border-collapse: collapse;
+}
+
+.myPage__th {
+  border-bottom: 2px solid var(--color-lightgray);
+  padding: 10px;
+}
+
+.myPage__td {
+  border-bottom: 1px solid var(--color-lightgray);
+  padding: 10px;
+}
+
+/* .myStore__contents,
 .myPost__contents,
 .myReview__contents,
 .myStoreLike__contents {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   display: block;
-}
+} */
 
 .myStore__more,
 .myPost__more,
 .myReview__more,
 .myStoreLike__more {
-  font-size: 1.2rem;
+  height: 1.4rem;
+  font-size: 1rem;
+  margin-top: 0.3rem;
   border: none;
-  border-radius: 4px;
-  color: var(--color-background);
-  background-color: var(--color-accent);
+  border-bottom: 1px solid var(--color-gray);
+  /* border-radius: 4px; */
+  color: var(--color-gray);
+  background-color: var(--color-background);
+  /* background-color: var(--color-accent); */
 }
+
+/* .myPage__hr {
+  background: var(--color-accent);
+  height: 1px;
+  border: 0;
+} */
