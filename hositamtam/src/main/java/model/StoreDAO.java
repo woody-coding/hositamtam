@@ -32,6 +32,7 @@ public class StoreDAO {
 	// ㄹ.점포 수정
 	// ㅁ.폐업 제보
 	// ㅂ.찜하기
+	// ㅅ.점포 삭제
 
 	// ㄱ-1.점포 리스트 조회 (찜 많은 순)
 	public ArrayList<StoreDO> getStorebyFavoritecount(String mno) {
@@ -189,6 +190,7 @@ public class StoreDAO {
 		String sql = "INSERT INTO store (sno, mno, id, spno, sono, sname, slat, slng, stype, sphoto) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 
@@ -253,10 +255,10 @@ public class StoreDAO {
 	}
 
 	// ㅁ.폐업 제보
-	public int closeStore(StoreDO storeDO, int sno, String id) {
+	public int closeStore(StoreDO storeDO, int sono, String id) {
 		int rowCount = 0;
 
-		sql = "INSERT INTO member_store_close (sno, id) + VALUES (?, ?)";
+		sql = "INSERT INTO member_store_close (sono, id) + VALUES (?, ?)";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -279,6 +281,29 @@ public class StoreDAO {
 	}
 
 	// ㅂ.찜하기
-	
+	public int favoriteStore(StoreDO storeDO, int sono, String id) {
+		int rowCount = 0;
+
+		sql = "INSERT INTO member_store_favorite (sono, id) + VALUES (?, ?)";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, storeDO.getSno());
+			pstmt.setInt(2, storeDO.getMno());
+
+			rowCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return rowCount;
+	}
 	
 }
