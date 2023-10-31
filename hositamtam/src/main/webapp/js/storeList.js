@@ -70,7 +70,7 @@ for (var i = 0; i < locations.length; i++) {
             // content: '<div style="background-color: red; width: 20px; height: 20px; border-radius: 50%;"></div>'
             '<div class="infoContent">'+ 
         '<h4>'+ locations[i].place + '</h4>'+
-            '<div class="countContainer"><div class="rating">별점</div><div class="reviewCount">리뷰개수</div><div class="likeCount">찜 개수</div></div>'+
+            '<div class="countContainer"><div class="rating"><img src="./images/2b50.png" alt="">별점</div><div class="reviewCount"><img src="./images/review.png" alt="">리뷰개수</div><div class="likeCount"><i class="fa-solid fa-heart"></i>찜 개수</div></div>'+
             '<div class="infoContent-addr">주소</div><div class="btnContainer">'+
                 '<button>점포 상세페이지</button><button>점포 정보 수정</button><button>폐업 제보</button></div></div>'
 

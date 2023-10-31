@@ -1,15 +1,17 @@
 package model;
 
-import java.util.Date;
-
 public class MemberDO {
     private String id;
     private String nickname;
     private String passwd;
-    private Date birthdate;
+    private String birthdate;
     private String gender;
     private int exp;
     private int grade;
+    
+    public MemberDO() {
+    	
+    }
     
 	public String getId() {
 		return id;
@@ -29,10 +31,10 @@ public class MemberDO {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 	public String getGender() {
