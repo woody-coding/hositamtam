@@ -68,14 +68,11 @@ public class MemberController {
 		return "join";
 	}
 	@GetMapping("/views/post")
-	public String toPost() {	
-		return "redirect:/post/postMain.html";
+	public String toPost() {
+		int mno = 100;
+		return "redirect:/views/postMain?mno=" + mno;
 	}
-<<<<<<< HEAD
 	// marketAndStoreController로 이동
-=======
-	
->>>>>>> 7f0cd44c540d67a32ee00dc1cf9284fab0366450
 	@GetMapping("/views/market")
 	public String toMarket() {
 		return "redirect:/views/marketList";
@@ -89,8 +86,6 @@ public class MemberController {
 		keyword = java.net.URLEncoder.encode(keyword, "UTF-8");
 		return "redirect:/views/marketBySearch?keyword=" + keyword;
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	//회원가입 화면
@@ -113,7 +108,6 @@ public class MemberController {
 	}
 	
 	
->>>>>>> 7f0cd44c540d67a32ee00dc1cf9284fab0366450
 	//로그인 화면
 	@PostMapping("/views/loginMember")
 	public String loginMember(@ModelAttribute MemberDO command, Model model) {
@@ -130,21 +124,6 @@ public class MemberController {
 		}
 		return viewName;
 	}
-
-<<<<<<< HEAD
-//			memberDAO.insertMember(command);
-			viewName = "redirect:/login";
-			
-		}catch(Exception e) {
-			model.addAttribute("msg", e.getMessage());
-			
-			viewName = "join";
-		}
-		return viewName;
-	}
-=======
->>>>>>> 7f0cd44c540d67a32ee00dc1cf9284fab0366450
-	
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
 	public void toMyPage(@RequestParam("id") String id) {

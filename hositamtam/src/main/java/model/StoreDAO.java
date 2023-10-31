@@ -140,7 +140,6 @@ public class StoreDAO {
 
 	// ㄴ.점포 상세페이지 조회
 
-	// 작성중
 	public ArrayList<StoreDO> getStoreDetail() {
 		ArrayList<StoreDO> storeList = new ArrayList<StoreDO>();
 
@@ -184,13 +183,13 @@ public class StoreDAO {
 	}
 
 	// ㄷ.점포 등록
-	public int insertStore(StoreDO storeDO, int mno, String id) {
+	public int insertStore(StoreDO storeDO) {
 		int rowCount = 0;
 
-		String sql = "INSERT INTO store (sno, mno, id, spno, sono, sname, slat, slng, stype, sphoto) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		sql = "INSERT INTO store (sno, mno, id, spno, sono, sname, slat, slng, stype, sphoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
+		sql = "INSERT INTO store_payment (id, payno) VALUES (?, ?)";
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 
@@ -204,6 +203,7 @@ public class StoreDAO {
 			pstmt.setString(8, storeDO.getSlng());
 			pstmt.setString(9, storeDO.getStype());
 			pstmt.setString(10, storeDO.getSphoto());
+			pstmt.setInt(11,  storeDO.getPayno());
 
 			rowCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -220,10 +220,11 @@ public class StoreDAO {
 	}
 
 	// ㄹ.점포 수정
-	public int updateStore(StoreDO storeDO, int mno, String id) {
+	public int updateStore(StoreDO storeDO) {
 		int rowCount = 0;
 
-		String sql = "INSERT INTO store (sno, mno, id, spno, sono, sname, slat, slng, stype, sphoto) "
+		// 점포를 불러오기
+		String sql = "INSERT INTO store (sno, mno, id, spno, sono, sname, slat, slng, stype, sphoto)"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -255,7 +256,7 @@ public class StoreDAO {
 	}
 
 	// ㅁ.폐업 제보
-	public int closeStore(StoreDO storeDO, int sono, String id) {
+	public int closeStore(StoreDO storeDO) {
 		int rowCount = 0;
 
 		sql = "INSERT INTO member_store_close (sono, id) + VALUES (?, ?)";
@@ -281,7 +282,7 @@ public class StoreDAO {
 	}
 
 	// ㅂ.찜하기
-	public int favoriteStore(StoreDO storeDO, int sono, String id) {
+	public int favoriteStore(StoreDO storeDO) {
 		int rowCount = 0;
 
 		sql = "INSERT INTO member_store_favorite (sono, id) + VALUES (?, ?)";
@@ -304,6 +305,11 @@ public class StoreDAO {
 			}
 		}
 		return rowCount;
+	}
+	
+	// ㅅ.점포 삭제
+	public void deleteStore() {
+		
 	}
 	
 }
