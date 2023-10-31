@@ -27,12 +27,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     ​<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-   <script defer src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  
+    <script defer src="./js/main.js"></script>
     
 </head>
 <body>
   
     <div  class="section" id="section1">
+     <video src="./video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
+
       <header class="mainHeader">
         <div class="mainHeader__logo">
           <img class="mainHeader__logo__img" src="images/logo.ico" alt="logo" />
@@ -67,6 +76,7 @@
         </nav>
       </header>
       <!-- header 끝 -->
+
       <div class="listCategory" >
         <div class="close"></div>
         <div class="listCategoryContent">
@@ -74,39 +84,28 @@
           <form method="get" action="form-action.html">
             
             <p>어떤 시장이 궁금한가요?</p>
-            <div class="left">
-              <label><input type="checkbox" name="" value="">농산물</label>
+            <div class="goCategory">
+              농산물
             </div>
-            <div class="right">
-              <label><input type="checkbox" name="" value="">음식점</label>
+            <div class="goCategory">
+              수산물
+            </div><div class="goCategory">
+              축산물
+            </div><div class="goCategory">
+              가공식품
+            </div><div class="goCategory">
+              음식점
+            </div><div class="goCategory">
+              가정용품
+            </div><div class="goCategory">
+              의류
+            </div><div class="goCategory">
+              신발
+            </div><div class="goCategory">
+              기타
             </div>
-            <div class="left">
-              <label><input type="checkbox" name="" value="">가공식품</label>
-            </div>
-            <div class="right">
-              <label><input type="checkbox" name="" value="">수산물</label>
-            </div>
-            <div class="left">
-              <label><input type="checkbox" name="" value="">축산물</label>
-            </div>
-            <div class="right">
-              <label><input type="checkbox" name="" value="">가정용품</label>
-            </div>
-            <div class="left">
-              <label><input type="checkbox" name="" value="">의류</label>
-            </div>
-            <div class="right">
-              <label><input type="checkbox" name="" value="">신발</label>
-            </div>
-            <div class="left">
-              <label><input type="checkbox" name="" value="">기타</label>
-            </div>
-          
-       
-  
-            <p><input type="submit" value="이동하기" id="submit">
-              
-            </p>
+      
+            <!-- <p><input type="submit" value="이동하기" id="submit"></p> -->
           </form>
         </div>  
       </div> 
@@ -116,28 +115,76 @@
         
           <button id="mkList" class="category"><i class="bi bi-basket-fill"></i><br> 시장 리스트 </button>
           <button id="category" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
-          <button id="category" class="category"><i class="bi bi-info-circle-fill"></i><br> 서비스 안내</button>
-         
+          <button id="category" class="category"><i class="bi bi-info-circle-fill"></i><br><a href="#section2">서비스 안내</a></button>
+         <!-- 서비스안내 조정 -->
       </div>
       <div id="busanExplain" >
         <p>부산 전통 시장</p>
          <p>부산의 맛과 문화를 만나다!</p>
      </div>
-       
-        
     </div>
+
+  <!---------------------- section1 끝 ------------------------>
+
     <div class="section" id="section2">
-      <h4>호시탐탐 안내</h4>
-      <div class="hosiInfo"></div>
+      <!-- <h4>호시탐탐 안내</h4> -->
+      <div class="hosiInfo">
+        <p>부산 전통시장에 대한 정보를 공유하고 등록되지 않은 점포를 등록해보세요!</p>
+        <!-- carosell 3초마다 이미지 변경 시장리스트사진 커뮤니티  모든 페이지 완성하면 캡쳐해서 슬라이드이미지로 넣기-->
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">시끌시끌사이트이미지</div>
+            <div class="swiper-slide">시장사이트이미지</div>
+            <div class="swiper-slide">시장내부사이트이미지</div>
+            
+          </div>
+          <!-- If we need pagination -->
+          <div class="swiper-pagination"></div>
+        
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        
+         
+        </div>
+      </div>
       <h4>등급 안내</h4>
       <div class="gradeInfo">
+        <div class="gradeIcon">
+          <div class="gradeImage">
+            <img src="./images/icons8-병아리-60.png" alt="">
+  
+            </div>
+          <div class="gradeImage">
+          <img src="./images/icons8-caveman-64.png" alt="">
+
+          </div>
+          <div class="gradeImage">
+            <img src="./images/icons8-explorer-60.png" alt="">
+
+          </div>
+          <div class="gradeImage">
+            <img src="./images/icons8-기사-64.png" alt="">
+
+          </div>
+          <div class="gradeImage">
+            <img src="./images/icons8-spaceman-66.png" alt="">
+
+          </div>
+
+        </div>
         <div class="gradeLine">
           <div class="grade1"></div>
           <div class="grade2"></div>
           <div class="grade3"></div>
           <div class="grade4"></div>
+          <div class="grade5"></div>
+
         </div>
         <div class="gradeNameBox">
+          <div class="gradeName">시장 왕초보</div>
           <div class="gradeName">시장 햇병아리</div>
           <div class="gradeName">시장 탐험가</div>
           <div class="gradeName">시장 지킴이</div>
@@ -146,26 +193,40 @@
         </div>  
           
       </div>
-      <!-- <footer id="information" class="section">
-        <div class="information__located">
-          <div class="max-container">
-            <h2 class="information__title">&copy; TMI - All rights reserved</h2>
-            <div class="information__contents">
-              <p class="information__title">
-                Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
-                팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
-                팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
-              </p>
-              <p class="information__title">
-                <br />
-                <i class="fa-brands fa-github"></i>
-                https://github.com/wlstjd3398/hositamtam
-              </p>
+      
+    </div>
+    <footer id="information" class="section">
+      <div class="information__located">
+        <div class="max-container">
+          <img class="footer__logo__img" src="images/logo.ico" alt="logo" />
+
+
+          <h2 class="information__title">&copy; TMI - All rights reserved</h2>
+          <div class="information__contents">
+            <p class="information__title">
+              Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
+              팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
+              팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
+            </p>
+            <p class="information__title">
+              <p>저희 호시탐탐은 2030 부산세계박람회 개최를 응원합니다!</p>
+              <a href="https://github.com/wlstjd3398/TMI.git" target="blank"><i class="fa-brands fa-github"></i></a>
+            </p>
+            <div class="dropdown">
+              <div class="btnDrop">관련사이트<i class="bi bi-chevron-down"></i>  </div>
+              <ul class="dropDownMenu">
+                <li><a class="dropdown-item" target="_blank" href="https://www.busan.go.kr/index">부산광역시</a></li>
+                <li><a class="dropdown-item" target="_blank"  href="https://www.expo2030busan.kr/kor/index.do">2030 부산세계박람회</a></li>
+                <li><a class="dropdown-item" target="_blank"  href="https://www.multicampus.com/main">멀티캠퍼스</a></li>
+              </ul>
             </div>
+            <a href="#top"><i class="bi bi-arrow-up-circle-fill"></i></a>
+            <!-- <a target="_blank" href="https://icons8.com/icon/eKTNqgVxGqcN/%EB%B3%91%EC%95%84%EB%A6%AC">병아리</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
+          <!-- 관련사이트 드롭다운 부산광역시/ 2030부산엑스포 / 멀티캠퍼스 / 부산관광공사-->
           </div>
         </div>
-      </footer>  -->
-    </div>
+      </div>
+    </footer> 
     
 </body>
 </html>
