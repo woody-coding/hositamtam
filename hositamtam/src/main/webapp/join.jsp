@@ -32,8 +32,8 @@
 		<input type="password" id="repasswd" placeholder="비밀번호를 한번 더 입력해주세요" required /><br />
 		
 		<label for="gender">성별</label>
-		<input type="radio" name="gender" value="male" checked/>남자
-		<input type="radio" name="gender" value="female"/>여자 <br /><br />
+		<input type="radio" name="gender" id="male" value="male" checked/>남자
+		<input type="radio" name="gender" id="female" value="female"/>여자 <br /><br />
 		
 		<input type="submit" value="회원가입" />
 		

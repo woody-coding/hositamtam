@@ -16,7 +16,7 @@
 	<label for="id">아이디</label>
 	<input type="text" name="id" id="id"/>
 
-	<label for="passwd">중복선택</label> 
+	<label for="passwd">비밀번호</label> 
 	<input type="password" name="passwd" id="passwd" />
 
 	<input type="submit" value="로그인"/> 
