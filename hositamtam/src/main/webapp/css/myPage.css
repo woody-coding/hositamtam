@@ -45,6 +45,10 @@ a {
 }
 
 /* My Information */
+/* #myPage {
+  height: 1116px;
+} */
+
 #myinfo {
   display: flex;
   width: 100%;
@@ -55,7 +59,7 @@ a {
   display: block;
   align-items: center;
   text-align: center;
-  margin: 6rem 0 2rem 5rem;
+  margin: 10rem 0 4rem 5rem;
   padding: 40px;
   width: 500px;
   border: 3px solid var(--color-accent);
@@ -64,30 +68,35 @@ a {
 
 .mylevel__info {
   display: flex;
-  margin-bottom: 1rem;
-  padding: 15px 0 0 0;
+  margin-bottom: 2rem;
+  padding: 37px 0 0 0;
   justify-content: space-between;
 }
 
 .mylevel__picture {
   margin-left: 3rem;
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 .mylevel__name {
+  font-size: 1.5rem;
   margin-right: 3rem;
+}
+
+#mylevel__gage {
+  padding: 0 18px;
 }
 
 .mylevel__gage {
   width: 100%;
-  height: 20px;
+  height: 30px;
   background-color: #f2f2f2;
   margin-bottom: 0.5rem;
   border-radius: 5px;
 }
 .mylevel__gage__value {
-  height: 20px;
-  padding-top: 3px;
+  height: 30px;
+  padding-top: 7px;
   color: var(--color-background);
   border-radius: 5px;
 }
@@ -95,30 +104,34 @@ a {
 .mylevel__gage__data {
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .myprofile {
   display: block;
   align-items: center;
   text-align: center;
-  margin: 6rem 5rem 2rem 0;
-  padding: 20px;
+  margin: 10rem 5rem 4rem 0;
+  padding: 40px;
   width: 500px;
   border: 3px solid var(--color-accent);
   border-radius: 30px;
 }
 
+.myprofile__name {
+  font-size: 1.5rem;
+}
+
 .modify__delete__button {
   display: flex;
-  padding: 0 10px;
+  padding: 0 30px;
   margin-top: 1rem;
 }
 
 .myprofile__modify__button {
   width: 100%;
-  height: 30px;
   margin: 0 1rem;
+  padding: 5px;
   font-size: 20px;
   border-radius: 4px;
   border: none;
@@ -129,7 +142,6 @@ a {
 
 .myprofile__delete__button {
   width: 100%;
-  height: 30px;
   margin: 0 1rem;
   font-size: 20px;
   border-radius: 4px;
@@ -159,12 +171,24 @@ a {
 .myprofile__activity__contents {
   border: 3px solid var(--color-primary);
   width: 60%;
+  padding: 8px 0;
+  font-size: 1.05rem;
   margin: 0 0.5rem;
 }
 
 /* My Activity */
-#myactivity {
+#myActivity {
   width: 100%;
+}
+
+.myActivity__title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0.9rem 0;
+}
+
+.myActivity {
+  margin-bottom: 2rem;
 }
 
 .myStore,
@@ -179,6 +203,7 @@ a {
 .myPost__contents,
 .myReview__contents,
 .myStoreLike__contents {
+  font-size: 1.25rem;
   display: block;
 }
 
@@ -186,6 +211,7 @@ a {
 .myPost__more,
 .myReview__more,
 .myStoreLike__more {
+  font-size: 1.2rem;
   border: none;
   border-radius: 4px;
   color: var(--color-background);

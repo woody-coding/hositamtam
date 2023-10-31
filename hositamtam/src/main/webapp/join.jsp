@@ -18,20 +18,22 @@
 		<legend>회원 정보를 입력하세요.</legend>
 		
 		<label for="id">아이디</label>
-		<input type="email" name="id" id="id" placeholder="ex) example@gmail.com" required /><br />
-		
-		<label for="passwd">비밀번호</label>
-		<input type="password" name="passwd" id="passwd" placeholder="4글자 이상" required /><br />
-		
-		<label for="repasswd">비밀번호 확인</label>
-		<input type="password" id="repasswd" placeholder="위와 같은 비밀번호 입력" required /><br />
+		<input type="text" name="id" id="id" placeholder="4글자 이상 12글자 이하" required />
+		<button class="idcheck">중복확인</button><br />
 		
 		<label for="nicakname">닉네임</label>
-		<input type="text" name="nickname" id="nickname" placeholder="두글자 이상의 닉네임을 입력해주세요" required />
+		<input type="text" name="nickname" id="nickname" placeholder="2글자 이상 8글자 이하" required />
+		<button class="nicknamecheck">중복확인</button><br />
+		
+		<label for="passwd">비밀번호</label>
+		<input type="password" name="passwd" id="passwd" placeholder="8글자 이상 16글자 이하" required /><br />
+		
+		<label for="repasswd">비밀번호 확인</label>
+		<input type="password" id="repasswd" placeholder="비밀번호를 한번 더 입력해주세요" required /><br />
 		
 		<label for="gender">성별</label>
-		<input type="checkbox" name="gender" value="남자"/>
-		<input type="checkbox" name="gender" value="여자"/> :::
+		<input type="radio" name="gender" value="male" checked/>남자
+		<input type="radio" name="gender" value="female"/>여자 <br /><br />
 		
 		<input type="submit" value="회원가입" />
 		

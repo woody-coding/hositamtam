@@ -23,7 +23,6 @@
 	
 	<hr/>
 	<h2>호시탐탐의 메인 페이지입니다</h2> 
-	<hr/>
 	
 	<form method="GET" action="/finalProject/views/market">
 	<button>부산 전체 시장</button>

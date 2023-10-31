@@ -1,9 +1,12 @@
 package controller;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpSession;
 
 import model.TestModel;
 
+import org.apache.catalina.util.URLEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,11 +54,9 @@ public class MemberController {
 		this.memberDAO = memberDAO;
 	}
 	
-	// 메인화면
+	// 헤더
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
 	public String toMain(TestModel testModel) {
-		String controllerMsg ="현재 memberController에서 화면 구현 중";
-		testModel.setControllerMsg(controllerMsg);
 		return "main";
 	}
 	@GetMapping("/views/login")
@@ -66,17 +67,30 @@ public class MemberController {
 	public String toJoin() {
 		return "join";
 	}
-	
 	@GetMapping("/views/post")
-	public String toPost() {
-		
-	return "redirect:/post/PostMain.html";
+	public String toPost() {	
+		return "redirect:/post/postMain.html";
 	}
+<<<<<<< HEAD
+	// marketAndStoreController로 이동
+=======
 	
+>>>>>>> 7f0cd44c540d67a32ee00dc1cf9284fab0366450
 	@GetMapping("/views/market")
 	public String toMarket() {
-		return "redirect:/views/toMarket";
+		return "redirect:/views/marketList";
 	}
+	@PostMapping("/views/marketCategory")
+	public String toMarketByCategory(@RequestParam String cateno) {
+		return "redirect:/views/marketByCategory?cateno=" + cateno;
+	}
+	@GetMapping("/views/marketSearch")
+	public String toMarketBySearch(@RequestParam String keyword) throws UnsupportedEncodingException {
+		keyword = java.net.URLEncoder.encode(keyword, "UTF-8");
+		return "redirect:/views/marketBySearch?keyword=" + keyword;
+	}
+<<<<<<< HEAD
+=======
 	
 	
 	//회원가입 화면
@@ -86,26 +100,27 @@ public class MemberController {
 		
 		try {
 			memberDAO.joinMember(command);
-			viewName = "redirect:/login";
+			viewName = "redirect:/views/joinMember";
 			
 		}catch(Exception e) {
 			model.addAttribute("msg", e.getMessage());
-			model.addAttribute("member", memberDAO.getMember(id));
+			model.addAttribute("join", memberDAO.getMember(command.getId()));
 			
-			viewName = "login";
+			viewName = "join";
 		}
 		
 		return viewName;
 	}
 	
 	
+>>>>>>> 7f0cd44c540d67a32ee00dc1cf9284fab0366450
 	//로그인 화면
 	@PostMapping("/views/loginMember")
 	public String loginMember(@ModelAttribute MemberDO command, Model model) {
 		String viewName = "";
 		
 		try {
-			memberDAO.checkLogin(command);
+//			memberDAO.checkLogin(command);
 			viewName = "redirect:/main";
 			
 		}catch(Exception e) {
@@ -116,6 +131,19 @@ public class MemberController {
 		return viewName;
 	}
 
+<<<<<<< HEAD
+//			memberDAO.insertMember(command);
+			viewName = "redirect:/login";
+			
+		}catch(Exception e) {
+			model.addAttribute("msg", e.getMessage());
+			
+			viewName = "join";
+		}
+		return viewName;
+	}
+=======
+>>>>>>> 7f0cd44c540d67a32ee00dc1cf9284fab0366450
 	
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
@@ -129,21 +157,21 @@ public class MemberController {
 	
 	@PostMapping("/myPage/updatePasswd")
 	public String updatePasswd(@ModelAttribute MemberDO command) {
-		memberDAO.updatePasswd(command);
+//		memberDAO.updatePasswd(command);
 			
 		return "redirect:/myPage";
 	}
 	
 	@PostMapping("/views/myPage/updateNickname")
 	public String updateNickname(@ModelAttribute MemberDO command) {
-		memberDAO.updateNickname(command);
+//		memberDAO.updateNickname(command);
 			
 		return "redirect:/myPage";
 	}
 	
 	@PostMapping("/views/myPage/deleteMember")
 	public String deleteMember(@RequestParam("id") String id) {
-		memberDAO.deleteMember(id);
+//		memberDAO.deleteMember(id);
 		
 		return "redirect:/main";
 	}
