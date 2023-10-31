@@ -130,7 +130,7 @@ public class MemberController {
 		
 	}
 	
-	@GetMapping("/views/myPage/update")
+	@GetMapping("/views/myPageUpdate")
 	public void toMyPageUpdate(@RequestParam("id") String id) {
 	}
 	
