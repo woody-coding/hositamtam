@@ -88,29 +88,23 @@ public class MemberDAO {
 
 	        if (rs.next()) {
 	            isIdDuplicate = true;
+	            throw new Exception("아이디가 중복되었습니다.");
 	        }
 
 	        // 닉네임 중복 확인
-	        this.sql = "SELECT id FROM member WHERE nickname = ?";
+	        this.sql = "SELECT nickname FROM member WHERE nickname = ?";
 	        pstmt = conn.prepareStatement(sql);
 	        pstmt.setString(1, memberDO.getNickname());
 	        this.rs = pstmt.executeQuery();
 
 	        if (rs.next()) {
 	            isNicknameDuplicate = true;
+	            throw new Exception("닉네임이 중복되었습니다.");
 	        }
 
-	        // 비밀번호 중복 확인
-	        this.sql = "SELECT passwd FROM member WHERE id = ?";
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1, memberDO.getId());
-	        this.rs = pstmt.executeQuery();
-
+	        // 비밀번호란와 비밀번호확인란 같은지 확인
 	        if (rs.next()) {
-	            String savedPassword = rs.getString("passwd");
-	            if (savedPassword.equals(memberDO.getPasswd())) {
-	            	isPasswordMatch = true;
-	            }
+            	isPasswordMatch = true;
 	        }
 
 	        if (!isIdDuplicate && !isNicknameDuplicate && isPasswordMatch) {
@@ -134,18 +128,6 @@ public class MemberDAO {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	    }
-
-	    if (isIdDuplicate) {
-	        throw new Exception("아이디가 중복되었습니다.");
-	    }
-
-	    if (isNicknameDuplicate) {
-	        throw new Exception("닉네임이 중복되었습니다.");
-	    }
-
-	    if (!isPasswordMatch) {
-	        throw new Exception("비밀번호가 일치하지 않습니다.");
 	    }
 
 	    return rowCount;

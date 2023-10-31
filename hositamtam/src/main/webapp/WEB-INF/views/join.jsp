@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,10 +26,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
     <link rel="stylesheet" href="/finalProject/css/footer.css" />
-    <link rel="stylesheet" href="/finalProject/css/myPageUpdate.css" />
+    <link rel="stylesheet" href="/finalProject/css/join.css" />
 
     <!-- JavaScript -->
-    <script src="/finalProject/js/myPageUpdate.js" charset="UTF-8"></script>
+    <script src="/finalProject/js/join.js" charset="UTF-8"></script>
   </head>
   <body>
     <!-- Header -->
@@ -65,53 +68,73 @@
     </header>
 
     <!-- Main -->
-    <!-- My Page Update -->
-    <section id="mypage__update" class="section">
+    <!-- Sign Up -->
+    <section id="join" class="section">
       <div class="max-container">
-        <div class="mypage__update">
-          <form id="mypage__update__form">
-            <div class="mypage__update__form">
-              <label for="new-username" class="mypage__update__id">
-                tmi****
-              </label>
-
-              <label for="change-nickname" class="mypage__update__label">
+        <div class="join">
+          <form method="POST" id="join__form">
+            <div class="join__form">
+              <label for="id" class="join__label">
                 <input
-                  class="mypage__update__input"
+                  class="join__input"
                   type="text"
-                  id="change-nickname"
+                  id="id"
+                  name="id"
+                  placeholder="아이디"
+                />
+                <button type="button" class="duplication__check" id="id_check">중복확인</button>
+              </label>
+              
+              <label for="nickname" class="join__label">
+                <input
+                  class="join__input"
+                  type="text"
+                  id="nickname"
+                  name="nickname"
                   placeholder="닉네임"
                 />
-                <button class="duplication__check">중복확인</button>
+                <button type="button" class="duplication__check" id="nick_check">중복확인</button>
               </label>
 
-              <label for="change-password" class="mypage__update__label">
+              <label for="passwd" class="join__label">
                 <input
-                  class="mypage__update__input"
+                  class="join__input"
                   type="password"
-                  id="change-password"
-                  placeholder="변경할 비밀번호"
+                  id="passwd"
+                  name="passwd"
+                  placeholder="비밀번호"
                 />
-                <button class="duplication__check">중복확인</button>
               </label>
 
-              <label for="confirm-password" class="mypage__update__label">
+              <label for="repasswd" class="join__label">
                 <input
-                  class="mypage__update__input"
+                  class="join__input"
                   type="password"
-                  id="confirm__password"
-                  placeholder="변경할 비밀번호 확인"
+                  id="repasswd"
+                  name="repasswd"
+                  placeholder="비밀번호 확인"
                 />
+              </label>
+
+              <label for="birthdate" class="join__label">
+                <input
+                  class="join__input"
+                  type="date"
+                  id="birthdate"
+                  name="birthdate"
+                  placeholder="생년월일"
+                />
+              </label>
+
+              <label for="gender" class="join__label">
+                <input type="radio"  id="gender" name="gender" value="man" />남
+                <input type="radio" id="gender" name="gender" value="woman" />여
               </label>
             </div>
 
-            <div class="mypage__update__error">
-              비밀번호가 일치하지 않습니다.
-            </div>
+            <div class="join__error" id="msg">${msg}</div>
 
-            <button class="mypage__update__button" type="submit">
-              수정하기
-            </button>
+            <button class="join__button" type="submit">회원가입</button>
           </form>
         </div>
       </div>

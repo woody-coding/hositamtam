@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,7 +29,7 @@
     <link rel="stylesheet" href="/finalProject/css/myPage.css" />
 
     <!-- JavaScript -->
-    <script src="/finalProject/js/myPage.js" charset="UTF-8"></script>>
+    <script src="/finalProject/js/myPage.js" charset="UTF-8"></script>
   </head>
   <body>
     <!-- Header -->

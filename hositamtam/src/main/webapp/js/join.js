@@ -36,10 +36,11 @@ function submitHandler(event){
 	if(!inputCheck){
 		event.preventDefault();
 		msgDiv.innerHTML = msg;
+		
 	}else{
 		
-		let idCheckValue = '';
-		let nicknameCheckValue = '';
+		let idCheckValue = 'duplicate';
+		let nicknameCheckValue = 'duplicate';
 		
 		if(idCheckValue === 'duplicate'){
 			event.preventDefault();
