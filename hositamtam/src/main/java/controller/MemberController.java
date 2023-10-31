@@ -51,7 +51,7 @@ public class MemberController {
 		this.memberDAO = memberDAO;
 	}
 	
-	// 메인화면
+	// 헤더
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
 	public String toMain(TestModel testModel) {
 		String controllerMsg ="현재 memberController에서 화면 구현 중";
@@ -86,13 +86,13 @@ public class MemberController {
 		
 		try {
 			memberDAO.joinMember(command);
-			viewName = "redirect:/login";
+			viewName = "redirect:/views/joinMember";
 			
 		}catch(Exception e) {
 			model.addAttribute("msg", e.getMessage());
-			model.addAttribute("member", memberDAO.getMember(id));
+			model.addAttribute("join", memberDAO.getMember(command.getId()));
 			
-			viewName = "login";
+			viewName = "join";
 		}
 		
 		return viewName;
