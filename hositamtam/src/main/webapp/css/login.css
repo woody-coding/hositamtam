@@ -57,8 +57,8 @@ body {
 /* Login */
 #login {
   display: flex;
-  height: 745px;
-  /* height: 522px; */
+  /* height: 745px; */
+  height: 1116px;
   width: 100%;
 }
 
