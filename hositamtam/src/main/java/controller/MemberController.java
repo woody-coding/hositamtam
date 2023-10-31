@@ -54,8 +54,6 @@ public class MemberController {
 	// 헤더
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
 	public String toMain(TestModel testModel) {
-		String controllerMsg ="현재 memberController에서 화면 구현 중";
-		testModel.setControllerMsg(controllerMsg);
 		return "main";
 	}
 	@GetMapping("/views/login")
