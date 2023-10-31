@@ -6,11 +6,31 @@
   }
 .app{
     display: flex;
+    height:820px;   
+
 }
 #map{
     width:70%; 
-    height:860px;   
     float: left;
+}
+.plusStore{
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 50%;
+    color: white;
+    font-size: 35px;
+    line-height: 35px;
+    background-color: #e6007e;
+    z-index: 9;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    transition: all 0.5s;
+}
+.plusStore:hover{
+    
+  
 }
 button{
     display: inline-block;
@@ -20,8 +40,30 @@ button{
 .right{
     border-left: 2px solid #0e4194;
     width: 30%;
+    max-height: 820px;
+    overflow: auto;
     /* background-color: #eeeeee; */
 }
+/* Footer */
+#information {
+    position: relative;
+    text-align: center;
+    background-color: #d9d9d9;
+    color: white;
+    padding: 1rem;
+    /* transform : translateY(-100%); */
+  }
+  
+  .information__title {
+    margin: 0;
+    padding: 0.5rem 10rem;
+  }
+  
+  .information__contents {
+    display: flex;
+    justify-content: space-between;
+  }
+  
 #information{
     clear: both;
 }
@@ -42,6 +84,8 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100px;
+
     /* width: 500px; */
     /* background-color: #eeeeee; */
 
@@ -55,7 +99,7 @@ button{
     color: white;
     border-radius: 10px;
     font-size: 35px;
-    height: 60px;
+    height: 50px;
     background-color: #e6007e;
     border: 0;
     margin-left: 10px;
@@ -98,12 +142,14 @@ button{
     border-radius: 10px;
     margin-bottom: 10px;
 }
+
 .insertStoreContainer{
     display: flex;
    justify-content: center;
     
 }
-#insertStore{
+
+/* .insertStoreContainer button{
     background-color: #e6007e;
     box-shadow: 0px 5px 0px 0px pink;
     color: white;
@@ -119,7 +165,8 @@ button{
     transform: scale(1);
     
 
-}
+} */
+
 #mkImg img{
     width: 300px;
 
@@ -169,11 +216,21 @@ button{
   }
 .infoContent{
     width: 350px;
-    padding: 10px;
+    padding: 5px;
     /* background-color: #eeeeee; */
 }
 .infoContent h4{
     text-align: center;
+}
+.infoContent button{
+    display: inline-block;
+    /* font-family: 'GmarketSans'; */
+    margin-left: 5px;
+    background-color: #0e4194;
+    color: white;
+    border: 0px;
+    font-size: 14px;
+    border-radius: 10px;
 }
 .countContainer{
     display: flex;
@@ -181,6 +238,8 @@ button{
 .btnContainer{
     text-align: center;
 }
-/* #information{
-    clear: both;
-} */
+
+.fa-heart{
+    font-size: 33px;
+    color: #e6007e;
+}

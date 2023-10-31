@@ -28,10 +28,6 @@ body {
   margin: 0;
 }
 
-h2 {
-  margin: 0;
-}
-
 /* common */
 .max-container {
   max-width: var(--size-max-width);
@@ -41,7 +37,7 @@ h2 {
 /* Store Insert And Update */
 #store__update {
   display: flex;
-  height: 745px;
+  height: 1116px;
   margin: auto;
 }
 
@@ -51,7 +47,7 @@ h2 {
   text-align: center;
   margin-top: 5rem;
   padding: 40px;
-  width: 800px;
+  width: 700px;
   border: 3px solid var(--color-accent);
   border-radius: 50px;
 }
@@ -61,27 +57,27 @@ h2 {
 }
 
 .store__update__form {
-  margin-left: 5rem;
+  padding-left: 6.3rem;
 }
 
 .store__label {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
 .store__input {
   display: block;
-  /* margin: 5px 0; */
-  width: 40%;
+  width: 50%;
   padding: 0.5rem;
   border: 3px solid var(--color-primary);
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .change__location {
-  width: 14%;
+  width: 15%;
   border: none;
   border-radius: 4px;
   color: var(--color-background);
@@ -97,6 +93,10 @@ h2 {
 .store__category3 {
   display: flex;
   margin-bottom: 1rem;
+}
+
+.siau__h2 {
+  margin: 0;
 }
 
 .store__category,
@@ -120,28 +120,52 @@ h2 {
 
 .store__type__button,
 .store__payment__button,
-.store__category__button {
+.store__category__button,
+.store__category__button2 {
   border: none;
   border-radius: 4px;
   background-color: var(--color-background);
   font-size: 1.3rem;
+}
+
+.store__type__button,
+.store__payment__button,
+.store__category__button {
   margin-left: 1rem;
+}
+
+.store__category__button2 {
+  margin-left: 2.3rem;
 }
 
 .store__type__button:hover,
 .store__payment__button:hover,
-.store__category__button:hover {
+.store__category__button:hover,
+.store__category__button2:hover {
   color: var(--color-background);
+}
+
+.store__type__button:hover {
+  background-color: var(--color-accent-variant);
+}
+
+.store__payment__button:hover {
+  background-color: var(--color-accent);
+}
+
+.store__category__button:hover,
+.store__category__button2:hover {
   background-color: var(--color-primary-variant);
 }
 
 .store__photo__label {
   padding-top: 5px;
   border-bottom: 1px solid var(--color-gray);
+  margin-left: 1rem;
 }
 
 .store__update__button {
-  width: 15%;
+  width: 20%;
   height: 40px;
   font-size: 1.3rem;
   border-radius: 4px;

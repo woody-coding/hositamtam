@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/join.css" />
 
     <!-- JavaScript -->
+    <script src="/finalProject/js/join.js" charset="UTF-8"></script>
   </head>
   <body>
     <!-- Header -->
@@ -68,62 +69,67 @@
     <section id="join" class="section">
       <div class="max-container">
         <div class="join">
-          <form id="join__form">
+          <form method="POST" id="join__form">
             <div class="join__form">
-              <label for="new-nickname" class="join__label">
+              <label for="id" class="join__label">
                 <input
                   class="join__input"
                   type="text"
-                  id="new-nickname"
-                  placeholder="닉네임"
-                />
-                <button class="duplication__check">중복확인</button>
-              </label>
-
-              <label for="new-username" class="join__label">
-                <input
-                  class="join__input"
-                  type="text"
-                  id="new-username"
+                  id="id"
+                  name="id"
                   placeholder="아이디"
                 />
-                <button class="duplication__check">중복확인</button>
+                <button class="duplication__check" id="id_check">중복확인</button>
+              </label>
+              
+              <label for="nickname" class="join__label">
+                <input
+                  class="join__input"
+                  type="text"
+                  id="nickname"
+                  name="nickname"
+                  placeholder="닉네임"
+                />
+                <button class="duplication__check" id="nick_check">중복확인</button>
               </label>
 
-              <label for="new-password" class="join__label">
+              <label for="passwd" class="join__label">
                 <input
                   class="join__input"
                   type="password"
-                  id="new-password"
+                  id="passwd"
+                  name="passwd"
                   placeholder="비밀번호"
                 />
               </label>
 
-              <label for="confirm-password" class="join__label">
+              <label for="repasswd" class="join__label">
                 <input
                   class="join__input"
                   type="password"
-                  id="confirm__password"
+                  id="repasswd"
+                  name="repasswd"
                   placeholder="비밀번호 확인"
                 />
               </label>
 
-              <label for="dob" class="join__label">
+              <label for="birthdate" class="join__label">
                 <input
                   class="join__input"
                   type="date"
-                  id="dob"
+                  id="birthdate"
+                  name="birthdate"
                   placeholder="생년월일"
                 />
               </label>
 
-              <label for="join__gender" class="join__label">
-                <input type="radio" name="gender" value="man" />남
-                <input type="radio" name="gender" value="woman" />여
+              <label for="gender" class="join__label">
+                <input type="radio"  id="gender" name="gender" value="man" />남
+                <input type="radio" id="gender" name="gender" value="woman" />여
               </label>
             </div>
 
-            <div class="join__error">비밀번호가 일치하지 않습니다.</div>
+            <div class="join__error" id="msg">${msg}</div>
 
             <button class="join__button" type="submit">회원가입</button>
           </form>
@@ -145,7 +151,7 @@
             <p class="information__title">
               <br />
               <i class="fa-brands fa-github"></i>
-              https://github.com/wlstjd3398/hositamtam
+              https://github.com/wlstjd3398/TMI.git
             </p>
           </div>
         </div>

@@ -9,7 +9,8 @@ import model.MemberDAO;
 public class ControllerConfig {
 
 	@Bean
-	public MemberDAO memberDAO() {		
+	public MemberDAO memberDAO() {	
+		
 		return new MemberDAO();
 	}
 	
@@ -17,6 +18,7 @@ public class ControllerConfig {
 	public MemberController MemberController() {
 		return new MemberController(this.memberDAO());
 	}
+	
 	@Bean
 	public MarketAndStoreController marketAndStoreController() {
 		return new MarketAndStoreController();
@@ -24,5 +26,9 @@ public class ControllerConfig {
 	@Bean
 	public TestController testController() {
 		return new TestController();
+	}
+	@Bean
+	public PostController postController() {
+		return new PostController();
 	}
 }

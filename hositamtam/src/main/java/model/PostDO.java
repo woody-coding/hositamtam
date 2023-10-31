@@ -1,22 +1,22 @@
 package model;
 
-import java.util.Date;
-
 public class PostDO {
 
 	private int pno;
 	private int mno;
 	private String id;
-	private Date pregdate;
+	private String nickname;
+	private String pregdate;
 	private String ptitle;
 	private String pcontent;
 	private String pphoto;
 	private int plikecount;
 	private String pcategory;
-	
-    private int cno;         // 댓글 번호
-    private String ccontent; // 댓글 내용
-    private Date cregdate;   // 댓글 작성 시간
+	private int countcomments;
+	private int cno;
+	private String cnickname;
+	private String ccontent;
+	private String cregdate;
 	
 	public int getPno() {
 		return pno;
@@ -36,10 +36,10 @@ public class PostDO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Date getPregdate() {
+	public String getPregdate() {
 		return pregdate;
 	}
-	public void setPregdate(Date pregdate) {
+	public void setPregdate(String pregdate) {
 		this.pregdate = pregdate;
 	}
 	public String getPtitle() {
@@ -84,11 +84,29 @@ public class PostDO {
 	public void setCcontent(String ccontent) {
 		this.ccontent = ccontent;
 	}
-	public Date getCregdate() {
+	public String getCregdate() {
 		return cregdate;
 	}
-	public void setCregdate(Date cregdate) {
+	public void setCregdate(String cregdate) {
 		this.cregdate = cregdate;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public int getCountcomments() {
+		return countcomments;
+	}
+	public void setCountcomments(int countcomments) {
+		this.countcomments = countcomments;
+	}
+	public String getCnickname() {
+		return cnickname;
+	}
+	public void setCnickname(String cnickname) {
+		this.cnickname = cnickname;
 	}
 	
 }
