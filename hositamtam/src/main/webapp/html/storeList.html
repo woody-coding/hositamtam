@@ -23,12 +23,12 @@
      ></script>
  
      <!-- CSS -->
-     <link rel="stylesheet" href="css/loginHeader.css" />
-     <link rel="stylesheet" href="css/login.css" />
-     <link rel="stylesheet" href="css/storeList.css" />
+     <link rel="stylesheet" href="../css/loginHeader.css" />
+     <link rel="stylesheet" href="../css/login.css" />
+     <link rel="stylesheet" href="../css/storeList.css" />
  
      <!-- JavaScript -->
-     <script defer src="./js/storeList.js"></script>
+     <script defer src="../js/storeList.js"></script>
 </head>
 <body>
     <header class="mainHeader">
@@ -67,7 +67,10 @@
       <!-- header 끝 -->
 <div class="section">
     <div class="app">
-        <div id="map" ></div>
+        <div id="map" >
+          <button id="insertStore" class="plusStore"><i class="bi bi-plus-circle-fill"></i></button>
+
+        </div>
         <!-- style="width:1100px; height:700px;" -->
         <!-- <button id="insertStore">새 점포 등록</button>
         <button id="gps">현재 내 위치 중심으로 보기</button>
@@ -82,7 +85,6 @@
                 <button>리뷰 많은순</button><button>별점 높은 순</button><button>찜 많은 순</button>
             </div>
             <div id="mkListResult" class="row">
-                <!-- <div id="mkSearchName">부평으로 검색된 결과입니다.</div> -->
                 <div class="mkcontainer" class="row">
                     <div id="mkImg" class="col-3">
                         <img src="./images/거인통닭.jpg" >
@@ -91,12 +93,27 @@
                         <p id="mkName">거인통닭</p>
                         <p id="mkaddr">부평1길 39</p>
                         
-                        <img src="./images/review.png" alt="">리뷰개수
-                        <img src="./images/2b50.png" alt="">별점
+                        <img src="./images/review.png">리뷰개수
+                        <img src="./images/2b50.png" >별점
                         
                         <i class="fa-solid fa-heart"></i>찜개수
                     </div>
                     
+                </div>
+                <div class="mkcontainer" class="row">
+                  <div id="mkImg" class="col-3">
+                      <img src="./images/거인통닭.jpg" >
+                  </div>
+                  <div class="col-9">
+                      <p id="mkName">거인통닭</p>
+                      <p id="mkaddr">부평1길 39</p>
+                      
+                      <img src="./images/review.png" alt="">리뷰개수
+                      <img src="./images/2b50.png" alt="">별점
+                      
+                      <i class="fa-solid fa-heart"></i>찜개수
+                  </div>
+                  
                 </div>
                 <!-- mk -> store 로 바꾸기 -->
                 <div class="mkcontainer" class="row">
@@ -129,35 +146,35 @@
                 </div>
             </div>
             <!-- 점포명storeName reviewCount리뷰개수 rating별점 likeCount찜 개수 점포 사진 -->
-            <div class="insertStoreContainer">
+            <!-- <div class="insertStoreContainer">
                     <button id="insertStore">새 점포 등록</button>
-            </div>
+            </div> -->
         </div>
-        <!-- <footer id="information" class="section">
-                <div class="information__located">
-                  <div class="max-container">
-                    <h2 class="information__title">&copy; TMI - All rights reserved</h2>
-                    <div class="information__contents">
-                      <p class="information__title">
-                        Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
-                        팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
-                        팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
-                      </p>
-                      <p class="information__title">
-                        <br />
-                        <i class="fa-brands fa-github"></i>
-                        https://github.com/wlstjd3398/TMI.git
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </footer>  -->
+        
     </div>
-   
+    
       
         
        </div>
-   
+       <footer id="information">
+        <div class="information__located">
+          <div class="max-container">
+            <h2 class="information__title">&copy; TMI - All rights reserved</h2>
+            <div class="information__contents">
+              <p class="information__title">
+                Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
+                팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
+                팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
+              </p>
+              <p class="information__title">
+                <br />
+                <i class="fa-brands fa-github"></i>
+                https://github.com/wlstjd3398/TMI.git
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer> 
          
 <!--     
        <div class="infoContent">
