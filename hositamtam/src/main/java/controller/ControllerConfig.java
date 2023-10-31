@@ -23,9 +23,12 @@ public class ControllerConfig {
 	public MarketAndStoreController marketAndStoreController() {
 		return new MarketAndStoreController();
 	}
-	
 	@Bean
 	public TestController testController() {
 		return new TestController();
+	}
+	@Bean
+	public PostController postController() {
+		return new PostController();
 	}
 }
