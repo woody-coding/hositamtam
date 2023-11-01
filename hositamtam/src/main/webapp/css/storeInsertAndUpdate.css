@@ -73,7 +73,7 @@ body {
   padding: 0.5rem;
   border: 3px solid var(--color-primary);
   border-radius: 4px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .change__location {
@@ -90,7 +90,7 @@ body {
 .store__type,
 .store__payment,
 .store__photo,
-.store__category3 {
+.store__category {
   display: flex;
   margin-bottom: 1rem;
 }
@@ -99,15 +99,19 @@ body {
   margin: 0;
 }
 
-.store__category,
-.store__category2 {
+.category__label {
   display: flex;
-  margin-bottom: 0.5rem;
+  align-items: center;
 }
 
-.store__category2,
-.store__category3 {
-  margin-left: 8.2rem;
+.category__input {
+  display: block;
+  width: 267px;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  border: 3px solid var(--color-primary);
+  border-radius: 4px;
+  font-size: 1rem;
 }
 
 .store__type__title,
@@ -119,9 +123,7 @@ body {
 }
 
 .store__type__button,
-.store__payment__button,
-.store__category__button,
-.store__category__button2 {
+.store__payment__button {
   border: none;
   border-radius: 4px;
   background-color: var(--color-background);
@@ -129,8 +131,7 @@ body {
 }
 
 .store__type__button,
-.store__payment__button,
-.store__category__button {
+.store__payment__button {
   margin-left: 1rem;
 }
 
@@ -139,9 +140,7 @@ body {
 }
 
 .store__type__button:hover,
-.store__payment__button:hover,
-.store__category__button:hover,
-.store__category__button2:hover {
+.store__payment__button:hover {
   color: var(--color-background);
 }
 
@@ -153,15 +152,22 @@ body {
   background-color: var(--color-accent);
 }
 
-.store__category__button:hover,
-.store__category__button2:hover {
-  background-color: var(--color-primary-variant);
-}
+/* .active {
+  background-color: #ffcc00;
+} */
 
 .store__photo__label {
   padding-top: 5px;
   border-bottom: 1px solid var(--color-gray);
   margin-left: 1rem;
+}
+
+.store__photo__preview {
+  max-width: 200px;
+  max-height: 200px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 .store__update__button {
@@ -173,7 +179,7 @@ body {
   color: var(--color-background);
   background-color: var(--color-primary);
   transition: all 0.15s linear;
-  margin: 1rem 0 0;
+  margin: 2rem 0 0;
 }
 
 .store__update__button:hover {

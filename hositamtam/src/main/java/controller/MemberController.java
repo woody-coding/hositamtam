@@ -72,6 +72,7 @@ public class MemberController {
 		int mno = 100;
 		return "redirect:/views/postMain?mno=" + mno;
 	}
+
 	// marketAndStoreController로 이동
 	@GetMapping("/views/market")
 	public String toMarket() {
@@ -87,7 +88,7 @@ public class MemberController {
 		return "redirect:/views/marketBySearch?keyword=" + keyword;
 	}
 	
-	
+
 	// 회원가입 화면
 	@PostMapping("/views/joinMember")
 	public String insert(@ModelAttribute MemberDO command, Model model) throws Exception {
@@ -138,6 +139,7 @@ public class MemberController {
 		}
 		return viewName;
 	}
+
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
 	public void toMyPage(@RequestParam("id") String id) {

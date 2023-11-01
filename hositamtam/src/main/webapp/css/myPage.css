@@ -24,6 +24,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "GmarketSans";
   margin: 0;
@@ -65,13 +69,17 @@ a {
 }
 
 .mylevel__picture {
-  margin-left: 3rem;
-  font-size: 3.5rem;
+  margin-left: 3.5rem;
 }
 
 .mylevel__name {
   font-size: 1.5rem;
   margin-right: 3rem;
+}
+
+.mylevel__grade {
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 #mylevel__gage {
@@ -197,27 +205,58 @@ a {
 
 .myPage__table {
   width: 100%;
+  table-layout: fixed;
   border-top: 2px solid var(--color-lightgray);
   border-collapse: collapse;
 }
 
-.myPage__th {
+.myStore__th,
+.myPost__th,
+.myPost__th__title,
+.myReview__th__name,
+.myReview__th__star,
+.myReview__th,
+.myReview__th__contents,
+.myReview__th__date,
+.myStoreLike__th {
   border-bottom: 2px solid var(--color-lightgray);
-  padding: 10px;
+  padding: 5px;
+  text-align: center;
 }
 
-.myPage__td {
+.myStore__td,
+.myPost__td,
+.myPost__td__title,
+.myReview__td__name,
+.myReview__td__star,
+.myReview__td,
+.myReview__td__contents,
+.myReview__td__date,
+.myStoreLike__td {
   border-bottom: 1px solid var(--color-lightgray);
   padding: 10px;
+  text-align: center;
 }
 
-/* .myStore__contents,
-.myPost__contents,
-.myReview__contents,
-.myStoreLike__contents {
-  font-size: 1.2rem;
-  display: block;
-} */
+.myPost__th__title,
+.myPost__td__title {
+  width: 40%;
+}
+
+.myReview__th__name,
+.myReview__td__name {
+  width: 25%;
+}
+
+.myReview__th__star,
+.myReview__td__star {
+  width: 10%;
+}
+
+.myReview__th__contents,
+.myReview__td__contents {
+  width: 53%;
+}
 
 .myStore__more,
 .myPost__more,
@@ -234,8 +273,108 @@ a {
   /* background-color: var(--color-accent); */
 }
 
-/* .myPage__hr {
-  background: var(--color-accent);
-  height: 1px;
-  border: 0;
+/* Anchor */
+.myPage__store,
+.myPage__post,
+.myPage__review,
+.myPage__storeLike,
+.myPage__arrow-up {
+  background-color: var(--color-background);
+  text-decoration: none;
+  position: fixed;
+  right: 3rem;
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: var(--color-gray) 0px 3px 8px;
+  transition: all 300ms ease-in;
+}
+
+.myPage__store {
+  /* bottom: 19rem; */
+  bottom: 44.25rem;
+}
+
+.myPage__post {
+  /* bottom: 15rem; */
+  bottom: 40.25rem;
+}
+
+.myPage__review {
+  /* bottom: 11rem; */
+  bottom: 36.25rem;
+}
+
+.myPage__storeLike {
+  /* bottom: 7rem; */
+  bottom: 32.25rem;
+}
+
+.myPage__arrow-up {
+  /* bottom: 3rem; */
+  bottom: 28.25rem;
+}
+
+.store__icon,
+.arrow-up__icon {
+  padding: 0.4rem;
+}
+
+.myPage__store__info,
+.myPage__post__info,
+.myPage__review__info,
+.myPage__storeLike__info,
+.myPage__arrow-up__info {
+  opacity: 0;
+  position: fixed;
+  right: 7rem;
+}
+
+.myPage__store__info {
+  bottom: 45rem;
+}
+
+.myPage__post__info {
+  bottom: 41rem;
+}
+
+.myPage__review__info {
+  bottom: 37rem;
+}
+
+.myPage__storeLike__info {
+  bottom: 33rem;
+}
+
+.myPage__arrow-up__info {
+  bottom: 29rem;
+}
+
+.myPage__store:hover,
+.myPage__post:hover,
+.myPage__review:hover,
+.myPage__storeLike:hover,
+.myPage__arrow-up:hover {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+/* .myPage__store:hover .store__icon,
+.myPage__post:hover .store__icon,
+.myPage__review:hover .store__icon,
+.myPage__storeLike:hover .store__icon,
+.myPage__arrow-up:hover .store__icon {
+  padding: 0.7rem;
+  transition: all 200ms ease-in;
 } */
+
+.myPage__store:hover ~ .myPage__store__info,
+.myPage__post:hover ~ .myPage__post__info,
+.myPage__review:hover ~ .myPage__review__info,
+.myPage__storeLike:hover ~ .myPage__storeLike__info,
+.myPage__arrow-up:hover ~ .myPage__arrow-up__info {
+  opacity: 1;
+  transition: all 200ms ease-in;
+}
