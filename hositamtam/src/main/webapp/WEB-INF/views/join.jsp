@@ -82,7 +82,7 @@
                   name="id"
                   placeholder="아이디"
                 />
-                <button type="button" class="duplication__check" id="id_check">중복확인</button>
+                <button type="button" class="duplication__check" id="id_check" onclick="checkIdDuplicate()">중복확인</button>
               </label>
               
               <label for="nickname" class="join__label">
@@ -93,7 +93,7 @@
                   name="nickname"
                   placeholder="닉네임"
                 />
-                <button type="button" class="duplication__check" id="nick_check">중복확인</button>
+                <button type="button" class="duplication__check" id="nickname_check" onclick="checkNicknameDuplicate()">중복확인</button>
               </label>
 
               <label for="passwd" class="join__label">
@@ -127,19 +127,19 @@
               </label>
 
               <label for="gender" class="join__label">
-                <input type="radio"  id="gender" name="gender" value="man" />남
-                <input type="radio" id="gender" name="gender" value="woman" />여
+                <input type="radio"  id="genderm" name="gender" value="men" checked/>남
+                <input type="radio" id="genderw" name="gender" value="women" />여
               </label>
             </div>
 
             <div class="join__error" id="msg">${msg}</div>
 
-            <button class="join__button" type="submit">회원가입</button>
+            <button class="join__button" type="submit" id="join_button">회원가입</button>
           </form>
         </div>
       </div>
     </section>
-
+s
     <!-- Footer -->
     <footer id="information" class="section">
       <div class="information__located">
