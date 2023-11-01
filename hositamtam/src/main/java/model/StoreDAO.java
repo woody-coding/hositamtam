@@ -190,6 +190,7 @@ public class StoreDAO {
 		
 		sql = "INSERT INTO store_payment (sono, payno) VALUES (?, ?)";
 
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 

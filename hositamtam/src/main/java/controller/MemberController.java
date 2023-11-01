@@ -74,7 +74,6 @@ public class MemberController {
 	}
 
 	// marketAndStoreController로 이동
-
 	@GetMapping("/views/market")
 	public String toMarket() {
 		return "redirect:/views/marketList";
@@ -125,7 +124,7 @@ public class MemberController {
 		}
 		return viewName;
 	}
-	
+
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
 	public void toMyPage(@RequestParam("id") String id) {
