@@ -1,34 +1,41 @@
+function loginHandler(event) {
+    event.preventDefault();
+
+    // 사용자가 입력한 아이디와 비밀번호 값을 가져옴
+    let id = document.querySelector('#id').value;
+    let passwd = document.querySelector('#passwd').value;
+
+    // 서버에 로그인 요청을 보냄
+    fetch('/views/loginMember', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id, passwd }), // 아이디와 비밀번호를 JSON 형태로 전송
+    })
+    .then(response => {
+        if (response.status === 200) {
+            // 로그인 성공 시, 메인 페이지로 이동
+            window.location.href = '/views/main';
+        } else {
+            // 로그인 실패 시, 에러 메시지를 표시
+            document.querySelector('.login__error').textContent = '아이디 혹은 패스워드가 틀렸습니다.';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 function init() {
-  let username = document.querySelector('#id');
-  let password = document.querySelector('#passwd');
-  let loginForm = document.querySelector('#login__form');
-  let errorMsg = document.querySelector('.login__error');
-
-  loginForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // 폼 제출을 막습니다.
-
-    let usernameValue = username.value;
-    let passwordValue = password.value;
-
-    // 여기에 유효성 검사 로직을 추가합니다.
-    if (usernameValue.length === 0 || passwordValue.length === 0) {
-      errorMsg.innerHTML = '아이디와 비밀번호를 입력하세요.';
-      return;
-    }else if(){
-		
-		
-	}else if(){
-		
-		
-	}else{
-		
-		
-	}
-
-    // 유효성 검사를 통과하면 로그인 처리를 수행할 수 있습니다.
-    // 여기에서 실제 로그인 처리를 수행합니다.
-    // 로그인이 성공하면 리디렉션 또는 다른 작업을 수행할 수 있습니다.
-  });
+    let login__form = document.querySelector('#login__form');
+    login__form.addEventListener('submit', loginHandler);
+    
+    let signupButton = document.querySelector('#signup-button');
+    signupButton.addEventListener('click', function() {
+        // 회원가입 페이지로 이동
+        window.location.href = '/views/join';
+    });
 }
 
 window.addEventListener('load', init);
