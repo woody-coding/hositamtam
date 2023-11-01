@@ -4,6 +4,11 @@ document.getElementById('writePost').addEventListener('click', function () {
 });
 
 
+// document.getElementById('close').addEventListener('click', function () {
+//   document.querySelector('.black-bg').classList.remove('show-modal');
+// });
+
+
 document.getElementById('close').addEventListener('click', function () {
   document.querySelector('.black-bg').classList.remove('show-modal');
   document.querySelector('.black-bg-modify').classList.remove('show-modal');
@@ -14,6 +19,9 @@ document.getElementById('postModify').addEventListener('click', function () {
   document.querySelector('.black-bg-modify').classList.add('show-modal');
 });
 
+// document.getElementById('close').addEventListener('click', function () {
+//   document.querySelector('.black-bg-modify').classList.remove('show-modal');
+// });
 
 
 var count = 0;
@@ -55,6 +63,7 @@ document.getElementById("image").addEventListener("change", function (event) {
   setThumbnail(event);
 });
 
+
 function setThumbnail(event) {
   var reader = new FileReader();
 
@@ -93,4 +102,14 @@ radioButtons.forEach(function(radioButton) {
         }
     });
 });
+
+
+// function init() {
+ 
+
+// }
+
+
+// window.addEventListener('load', init);
+
 

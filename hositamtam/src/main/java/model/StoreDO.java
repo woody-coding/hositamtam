@@ -13,6 +13,7 @@ public class StoreDO {
     private String sphoto;
     private int sclosecount;
     private int sfavoritecount;
+    private int payno;
     
 	public int getSno() {
 		return sno;
@@ -85,5 +86,11 @@ public class StoreDO {
 	}
 	public void setSfavoritecount(int sfavoritecount) {
 		this.sfavoritecount = sfavoritecount;
+	}
+	public int getPayno() {
+		return payno;
+	}
+	public void setPayno(int payno) {
+		this.payno = payno;
 	}
 }

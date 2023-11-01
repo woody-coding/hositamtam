@@ -15,6 +15,8 @@
 	<a href="/finalProject/views/login">로그인</a>
 	<a href="/finalProject/views/join">회원가입</a>
 	<a href="/finalProject/views/post">시끌시끌</a>
+	<a href="/finalProject/views/store">가게(임시)</a>
+	<a href="/finalProject/views/storeDetail">가게상세(임시)</a>
 	<form method="GET" action="/finalProject/views/marketSearch">
 	<label for=keyword></label>
 	<input type="text" id="keyword" name="keyword" value="">
