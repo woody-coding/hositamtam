@@ -10,18 +10,18 @@
 </head>
 <body>
 
-	<h2>호시탐탐의 ${testModel.name}의 점포 페이지입니다</h2>
+	<h2>호시탐탐의 ${store.sname}의 점포 페이지입니다</h2>
 
 
 	<form method="GET" action="/finalProject/views/storeDetail">
 		<table>
 			<tr>
-				<th>점포번호:</th>
-				<td>${testModel.no}</td>
+				<th>시장명</th>
+				<td>${store.mno}</td>
 			</tr>
 			<tr>
 				<th>점포명:</th>
-				<td>${testModel.storeName}</td>
+				<td>${store.sname}</td>
 			</tr>
 			<tr>
 				<td>
