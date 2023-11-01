@@ -102,7 +102,7 @@ public class MemberDAO {
 	            throw new Exception("닉네임이 중복되었습니다.");
 	        }
 
-	        // 비밀번호란와 비밀번호확인란 같은지 확인
+	        // 비밀번호란과 비밀번호확인란이 같은지 확인
 	        if (rs.next()) {
             	isPasswordMatch = true;
 	        }
@@ -133,90 +133,55 @@ public class MemberDAO {
 	    return rowCount;
 	}
 
-//	
-//	
-//	// 2-1.회원 가입에서 아이디가 db에 존재하는지 중복확인
-//	public int dupliId(MemberDO memberDO) {
-//		int rowCount = 0;
-//
-//		this.sql = "UPDATE member SET nickname = ? WHERE id = ?";
-//
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//
-//            pstmt.setString(1, memberDO.getId());
-//            pstmt.setString(2, memberDO.getNickname());
-//
-//			rowCount = pstmt.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (pstmt != null)
-//					pstmt.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return rowCount;
-//	}
-//	
-//
-//	// 2-2.회원 정보 수정에서 닉네임 db에 존재하는지 중복확인
-//	public int dupliNickname(MemberDO memberDO) {
-//		int rowCount = 0;
-//
-//		this.sql = "UPDATE member SET nickname = ? WHERE id = ?";
-//
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//
-//            pstmt.setString(1, memberDO.getId());
-//            pstmt.setString(2, memberDO.getNickname());
-//
-//			rowCount = pstmt.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (pstmt != null)
-//					pstmt.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return rowCount;
-//	}
-//	
-//	
-//	// 2-3.회원 정보 수정에서 비밀번호가 이전 비밀번호와 중복확인
-//	public int dupliPasswd(MemberDO memberDO) {
-//		int rowCount = 0;
-//
-//		sql = "UPDATE member SET passwd = ? WHERE id = ?";
-//
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//
-//            pstmt.setString(1, memberDO.getId());
-//            pstmt.setString(2, memberDO.getPasswd());
-//
-//			rowCount = pstmt.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (pstmt != null)
-//					pstmt.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return rowCount;
-//	}
+
+	// 아이디 중복 확인
+	public String isIdDuplicate(MemberDO memberDO) throws Exception {
+	    boolean isIdDuplicate = false;
+	    String errorMessage = "";
+
+	    try {
+	        this.sql = "SELECT id FROM member WHERE id = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, memberDO.getId());
+	        this.rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            isIdDuplicate = true;
+	            errorMessage = "아이디가 중복되었습니다.";
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        errorMessage = "아이디 중복 확인 중 오류가 발생했습니다.";
+	    }
+
+	    return errorMessage;
+	}
+
+	// 닉네임 중복 확인
+	public String isNicknameDuplicate(MemberDO memberDO) throws Exception {
+	    boolean isNicknameDuplicate = false;
+	    String errorMessage = "";
+
+	    try {
+	        this.sql = "SELECT nickname FROM member WHERE nickname = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, memberDO.getNickname());
+	        this.rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            isNicknameDuplicate = true;
+	            errorMessage = "닉네임이 중복되었습니다.";
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        errorMessage = "닉네임 중복 확인 중 오류가 발생했습니다.";
+	    }
+
+	    return errorMessage;
+	}
+	
+	
+
 	
 	// 3. 회원 정보 수정
 	public int changePasswd(MemberDO memberDO) throws Exception {
@@ -282,6 +247,34 @@ public class MemberDAO {
 
 	    return rowCount;
 	}
+	
+	
+//	// 3-1.회원 정보 수정에서 비밀번호가 이전 비밀번호와 중복확인
+//	public int dupliPasswd(MemberDO memberDO) {
+//		int rowCount = 0;
+//
+//		sql = "UPDATE member SET passwd = ? WHERE id = ?";
+//
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//
+//            pstmt.setString(1, memberDO.getId());
+//            pstmt.setString(2, memberDO.getPasswd());
+//
+//			rowCount = pstmt.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (pstmt != null)
+//					pstmt.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return rowCount;
+//	}
 	
 	
 	// 4. 회원 정보 삭제
