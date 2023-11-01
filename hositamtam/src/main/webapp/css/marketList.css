@@ -4,25 +4,43 @@
 	height: 100%;
 	position: relative;
 }
-
+body{
+	overflow: hidden;
+}
 #map {
 	width: 70%;
-	height: 700px;
+	height: 1027px;
 	float: left;
 }
 
 #mkListResult {
 	width: 30%;
+	height: 1027px;
+	overflow: auto;
 	/* background-color: #eeeeee; */
 }
+/* Chrome, Whale, Edge */
 
-#information {
-	clear: both;
+#mkListResult::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
 }
+
+#mkListResult::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #0e4194; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+#mkListResult::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+
 
 .mkcontainer {
 	display: flex;
 	border-bottom: 2px solid #0e4194;
+	/*height: 150px;*/
 }
 
 #mkSearchName {
@@ -87,4 +105,4 @@
   
   .goMarket:hover .down {
     top: 0; /* hover 상태에서 down을 아래로 이동하여 표시 */
-  }
+  }	

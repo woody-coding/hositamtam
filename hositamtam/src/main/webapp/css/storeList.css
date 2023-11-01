@@ -1,3 +1,19 @@
+/* Chrome, Whale, Edge */
+
+.right::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
+
+.right::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #0e4194; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+.right::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
 .section {
     margin-top: 75px;
     width: 100%;
@@ -6,7 +22,7 @@
   }
 .app{
     display: flex;
-    height:820px;   
+    height:1027px;   
 
 }
 #map{
@@ -28,10 +44,7 @@
     bottom: 10px;
     transition: all 0.5s;
 }
-.plusStore:hover{
-    
-  
-}
+
 button{
     display: inline-block;
     cursor: pointer;
@@ -40,33 +53,14 @@ button{
 .right{
     border-left: 2px solid #0e4194;
     width: 30%;
-    max-height: 820px;
+    height: 1020px;
     overflow: auto;
     /* background-color: #eeeeee; */
 }
-/* Footer */
-#information {
-    position: relative;
-    text-align: center;
-    background-color: #d9d9d9;
-    color: white;
-    padding: 1rem;
-    /* transform : translateY(-100%); */
-  }
-  
-  .information__title {
-    margin: 0;
-    padding: 0.5rem 10rem;
-  }
-  
-  .information__contents {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-#information{
+
+/*#information{
     clear: both;
-}
+}*/
 .mkcontainer{
     display: flex;
     border-bottom: 2px solid #0e4194;
@@ -86,8 +80,7 @@ button{
     align-items: center;
     height: 100px;
 
-    /* width: 500px; */
-    /* background-color: #eeeeee; */
+   
 
 }
 .searchResultName h4{
@@ -148,24 +141,6 @@ button{
    justify-content: center;
     
 }
-
-/* .insertStoreContainer button{
-    background-color: #e6007e;
-    box-shadow: 0px 5px 0px 0px pink;
-    color: white;
-    border: 0;
-    font-size: 2.5rem;
-    border-radius: 10px;
-    transform: scale(0.8);
-
-}
-#insertStore:hover{
-    transition: all 1s;
-
-    transform: scale(1);
-    
-
-} */
 
 #mkImg img{
     width: 300px;
