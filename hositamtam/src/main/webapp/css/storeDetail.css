@@ -23,6 +23,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "GmarketSans";
   margin: 0;
@@ -136,13 +140,18 @@ body {
 
 .review__info {
   display: block;
-  font-size: 1.5rem;
-  margin: 3rem 0 1.7rem;
+  font-size: 1.7rem;
+  margin: 2.5rem 0 1.7rem;
+}
+
+.review__level {
+  margin-right: 1rem;
 }
 
 .review__level__photo {
-  color: var(--color-gray);
-  margin-right: 2rem;
+  width: 2rem;
+  margin-right: 1rem;
+  padding-top: 1rem;
 }
 
 .review__ask {
@@ -215,6 +224,10 @@ body {
   padding: 10px 0 0 0;
 }
 
+.review__contents__img {
+  margin-right: 2.5rem;
+}
+
 .review__contents__main {
   display: flex;
   justify-content: space-between;
@@ -232,4 +245,25 @@ body {
 .review__contents__value {
   /* color: var(--color-gray); */
   color: #7f7f7f;
+}
+
+/* Anchor */
+.storeDetail__arrow-up {
+  background-color: var(--color-background);
+  text-decoration: none;
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: gray 0px 3px 8px;
+  transition: all 300ms ease-in;
+}
+
+.arrow-up__icon {
+  /* padding: 0.7rem; */
+  padding: 0.4rem;
 }
