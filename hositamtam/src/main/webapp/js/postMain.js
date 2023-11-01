@@ -1,57 +1,8 @@
-// $('#writePost').on('click', function(){
-//     $('.black-bg').addClass('show-modal');
-//   });
-// $('#close').on('click',function(){
 
-// $('.black-bg').removeClass('show-modal');
-// });
-
-//   $('#postModify').on('click', function(){
-//   $('.black-bg-modify').addClass('show-modal');
-// });
-// $('#close').on('click',function(){
-//     $('.black-bg-modify').removeClass('show-modal');
-//   });
-
-
-//   var count = 0;
-
-//   $('#btnDown').on('click', function(){
-//   $('.mkNameList').addClass('show-mkNameList');
-// });
-
-      
-// $('#btnUp').on('click', function(){
-//   $('.mkNameList').removeClass('show-mkNameList');
-// });
-
-// //for문 사용
-// for (let i = 0; i < $(".tab-button").length; i++) {
-//   $(".tab-button")
-//     .eq(i)
-//     .on("click", function () {
-//       $(".tab-button").removeClass("orange");
-//       $(".tab-button").eq(i).addClass("orange");
-//       $(".tab-content").removeClass("show");
-//       $(".tab-content").eq(i).addClass("show");
-//     });
-// }
-// $(".moreContents").on("click", function() {
-//   $(".commentBox").addClass("show-more");
-//   $(".commentList").addClass("show-more");
-
-// });
-
-// $("#delete").on("click", function() {
-//   confirm("정말 삭제하시겠습니까?")
-// })
 document.getElementById('writePost').addEventListener('click', function () {
   document.querySelector('.black-bg').classList.add('show-modal');
 });
 
-// document.getElementById('close').addEventListener('click', function () {
-//   document.querySelector('.black-bg').classList.remove('show-modal');
-// });
 
 document.getElementById('close').addEventListener('click', function () {
   document.querySelector('.black-bg').classList.remove('show-modal');
@@ -63,9 +14,7 @@ document.getElementById('postModify').addEventListener('click', function () {
   document.querySelector('.black-bg-modify').classList.add('show-modal');
 });
 
-// document.getElementById('close').addEventListener('click', function () {
-//   document.querySelector('.black-bg-modify').classList.remove('show-modal');
-// });
+
 
 var count = 0;
 
@@ -102,6 +51,9 @@ document.getElementById('delete').addEventListener('click', function () {
 
 
 // 파일 업로드 하고 미리보기
+document.getElementById("image").addEventListener("change", function (event) {
+  setThumbnail(event);
+});
 
 function setThumbnail(event) {
   var reader = new FileReader();
@@ -141,14 +93,4 @@ radioButtons.forEach(function(radioButton) {
         }
     });
 });
-
-
-
-// function init() {
- 
-
-// }
-
-
-// window.addEventListener('load', init);
 
