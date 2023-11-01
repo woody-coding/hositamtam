@@ -1,4 +1,4 @@
-// ID 중복 검사 수행
+/*// ID 중복 검사 수행
 function checkIdDuplicate() {
   var id = document.getElementById("id").value;
   var xhr = new XMLHttpRequest();
@@ -71,53 +71,55 @@ function checkNicknameDuplicate() {
   document.getElementById("passwd").addEventListener("blur", checkPasswordMatch);
   document.getElementById("repasswd").addEventListener("blur", checkPasswordMatch);
 };
+*/
 
-/* function submitHandler(event){
-	let id = document.querySelector('#id');
-	let nickname = document.querySelector('#nickname');
-	let passwd = document.querySelector('#passwd'); 
-	let repasswd = document.querySelector('#repasswd');
-	let msgDiv = document.querySelector('#msg');
-	let inputCheck = true;
-	let msg = '';
-	
-	msgDiv.innerHTML = '';
-	
-	if(passwd.value !== repasswd.value){
-		msg = '비밀번호와 비밀번호 확인은 서로 일치해야 합니다!';
-		passwd.value = '';
-		repasswd.value = '';
-		inputCheck = false;
-	}
-	
-	if (!inputCheck) {
-        event.preventDefault();
-        msgDiv.innerHTML = msg;
-        
-    } else {
-        let idCheckValue = 'duplicate';
-        let nicknameCheckValue = 'duplicate';
+function submitHandler(event) {
+    event.preventDefault();
 
-        if (idCheckValue === 'duplicate') {
-            event.preventDefault();
-            msgDiv.innerHTML = '아이디가 이미 사용중입니다.';
-        } else if (nicknameCheckValue === 'duplicate') {
-            msgDiv.innerHTML = '닉네임이 이미 사용 중입니다.';
-        } else {
-            // 중복 확인이 모두 통과한 경우 폼을 제출
-            document.querySelector('#join__form').submit();
-        }
+    let id = document.querySelector('#id').value;
+    let nickname = document.querySelector('#nickname').value;
+    let passwd = document.querySelector('#passwd').value;
+    let repasswd = document.querySelector('#repasswd').value;
+    let msgDiv = document.querySelector('#msg');
+
+    if (id && nickname && passwd && repasswd) {
+        let formData = new FormData();
+        formData.append("id", id);
+        formData.append("nickname", nickname);
+        formData.append("passwd", passwd);
+
+        fetch("/views/joinMember", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 서버에서 회원가입이 성공적으로 처리됨
+                msgDiv.innerHTML = '회원가입이 성공적으로 완료되었습니다.';
+            } else {
+                // 서버에서 오류 또는 회원가입 실패를 반환한 경우
+                msgDiv.innerHTML = '회원가입에 실패했습니다. 다시 시도하세요.';
+            }
+        })
+        .catch(error => {
+            // 네트워크 오류 등의 예외 처리
+            msgDiv.innerHTML = '서버와 통신 중 오류가 발생했습니다.';
+        });
     }
 }
+
 
 function init() {
     let join__form = document.querySelector('#join__form');
     join__form.addEventListener('submit', submitHandler);
 }
 
+
 window.addEventListener('load', init);
 
-*/
+
+
 
 
 

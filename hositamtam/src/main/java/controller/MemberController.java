@@ -92,32 +92,43 @@ public class MemberController {
 	// 회원가입 화면
 	@PostMapping("/views/joinMember")
 	public String insert(@ModelAttribute MemberDO command, Model model) throws Exception {
-	    String viewName = "";
+	    
 
-	    String idDuplicateMessage = memberDAO.isIdDuplicate(command);
-	    String nicknameDuplicateMessage = memberDAO.isNicknameDuplicate(command);
-
-	    if (!idDuplicateMessage.isEmpty()) {
-	        // 아이디 중복 메시지가 비어있지 않으면 중복
-	        model.addAttribute("msg", idDuplicateMessage);
-	        viewName = "join";
-	        
-	    } else if (!nicknameDuplicateMessage.isEmpty()) {
-	        // 닉네임 중복 메시지가 비어있지 않으면 중복
-	        model.addAttribute("msg", nicknameDuplicateMessage);
-	        viewName = "join";
-	        
-	    } else {
-	        // 중복이 없을 경우 회원 등록
-	        try {
-	            memberDAO.joinMember(command);
-	            viewName = "redirect:/views/joinMember";
-	        } catch (Exception e) {
-	            model.addAttribute("msg", e.getMessage());
-	            model.addAttribute("join", memberDAO.getMember(command.getId()));
-	            viewName = "join";
-	        }
-	    }
+//	    String idDuplicateMessage = memberDAO.isIdDuplicate(command);
+//	    String nicknameDuplicateMessage = memberDAO.isNicknameDuplicate(command);
+//
+//	    if (!idDuplicateMessage.isEmpty()) {
+//	        // 아이디 중복 메시지가 비어있지 않으면 중복
+//	        model.addAttribute("msg", idDuplicateMessage);
+//	        viewName = "join";
+//	        
+//	    } else if (!nicknameDuplicateMessage.isEmpty()) {
+//	        // 닉네임 중복 메시지가 비어있지 않으면 중복
+//	        model.addAttribute("msg", nicknameDuplicateMessage);
+//	        viewName = "join";
+//	        
+//	    } else {
+//	        // 중복이 없을 경우 회원 등록
+//	        try {
+//	            memberDAO.joinMember(command);
+//	            viewName = "redirect:/views/joinMember";
+//	        } catch (Exception e) {
+//	            model.addAttribute("msg", e.getMessage());
+//	            model.addAttribute("join", memberDAO.getMember(command.getId()));
+//	            viewName = "join";
+//	        }
+//	    }
+	    
+		String viewName = "";
+		
+	    try {
+            memberDAO.joinMember(command);
+            viewName = "redirect:/views/joinMember";
+        } catch (Exception e) {
+            model.addAttribute("msg", e.getMessage());
+            model.addAttribute("join", memberDAO.getMember(command.getId()));
+            viewName = "join";
+        }
 
 	    return viewName;
 	}
