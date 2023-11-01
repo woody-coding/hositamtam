@@ -68,9 +68,12 @@ public class MemberController {
 		return "join";
 	}
 	@GetMapping("/views/post")
-	public String toPost() {	
-		return "redirect:/post/postMain.html";
+	public String toPost() {
+		int mno = 100;
+		return "redirect:/views/postMain?mno=" + mno;
 	}
+
+	// marketAndStoreController로 이동
 
 	@GetMapping("/views/market")
 	public String toMarket() {
@@ -85,8 +88,6 @@ public class MemberController {
 		keyword = java.net.URLEncoder.encode(keyword, "UTF-8");
 		return "redirect:/views/marketBySearch?keyword=" + keyword;
 	}
-
-	
 	
 	//회원가입 화면
 	@PostMapping("/views/joinMember")
@@ -124,9 +125,6 @@ public class MemberController {
 		}
 		return viewName;
 	}
-
-
-
 	
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
@@ -134,7 +132,7 @@ public class MemberController {
 		
 	}
 	
-	@GetMapping("/views/myPage/update")
+	@GetMapping("/views/myPageUpdate")
 	public void toMyPageUpdate(@RequestParam("id") String id) {
 	}
 	

@@ -22,7 +22,7 @@
 
 		<table id="listTable">
 			<tr>
-				<th>닉네임</th>
+				<th>등록자 닉네임</th>
 				<th>점포명</th>
 				<th>가게형태</th>
 				<th>결제방식</th>

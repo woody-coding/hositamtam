@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,9 +24,9 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/loginHeader.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/join.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/join.css" />
 
     <!-- JavaScript -->
     <script src="/finalProject/js/join.js" charset="UTF-8"></script>
@@ -79,7 +82,7 @@
                   name="id"
                   placeholder="아이디"
                 />
-                <button class="duplication__check" id="id_check">중복확인</button>
+                <button type="button" class="duplication__check" id="id_check">중복확인</button>
               </label>
               
               <label for="nickname" class="join__label">
@@ -90,7 +93,7 @@
                   name="nickname"
                   placeholder="닉네임"
                 />
-                <button class="duplication__check" id="nick_check">중복확인</button>
+                <button type="button" class="duplication__check" id="nick_check">중복확인</button>
               </label>
 
               <label for="passwd" class="join__label">

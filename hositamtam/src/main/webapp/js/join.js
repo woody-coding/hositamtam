@@ -36,31 +36,30 @@ function submitHandler(event){
 	if(!inputCheck){
 		event.preventDefault();
 		msgDiv.innerHTML = msg;
+		
 	}else{
 		
-		let idCheckValue = '';
+		let idCheckValue = 'duplicate';
+		let nicknameCheckValue = 'duplicate';
 		
 		if(idCheckValue === 'duplicate'){
 			event.preventDefault();
 			msgDiv.innerHTML = '아이디가 이미 사용중입니다.';
 			
-		}else{
-			
-		let nicknameCheckValue = '';
-
-	        if (nicknameCheckValue === 'duplicate') {
-	            event.preventDefault();
-	            msgDiv.innerHTML = '닉네임이 이미 사용 중입니다.';
-            }
-		}
+		}else if (nicknameCheckValue === 'duplicate') {
+	      msgDiv.innerHTML = '닉네임이 이미 사용 중입니다.';
+	      
+	    }else {
+	      // 중복 확인이 모두 통과한 경우 폼을 제출
+	      document.querySelector('#join__form').submit();
+	    }
 	}
-	
 }
 
 function init(){
-	let insertMember = document.querySelector('#insertMember');
+	let join__form = document.querySelector('#join__form');
 	
-	insertMember.addEventListener('submit', submitHandler);
+	join__form.addEventListener('submit', submitHandler);
 }
 
 window.addEventListener('load', init);

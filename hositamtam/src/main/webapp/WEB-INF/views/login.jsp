@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,12 +24,12 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/loginHeader.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/join.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/login.css" />
 
     <!-- JavaScript -->
-    <script src="/finalProject/js/join.js" charset="UTF-8"></script>
+    <script src="/finalProject/js/login.js" charset="UTF-8"></script>
   </head>
   <body>
     <!-- Header -->
@@ -57,81 +60,69 @@
 
       <nav class="mainHeader__nav">
         <ul class="mainHeader__menu">
-          <li><a class="mainHeader__menu__item" href="#">서비스안내</a></li>
-          <li><a class="mainHeader__menu__item" href="#">시끌시끌</a></li>
-          <li><a class="mainHeader__menu__item" href="#">카테고리</a></li>
+          <li><a class="mainHeader__menu__item">서비스안내</a></li>
+          <li><a class="mainHeader__menu__item">시끌시끌</a></li>
+          <li><a class="mainHeader__menu__item" id="category">카테고리</a></li>
         </ul>
       </nav>
     </header>
 
     <!-- Main -->
-    <!-- Sign Up -->
-    <section id="join" class="section">
+    <!-- Category -->
+    <!-- <section class="category">
+      <div class="category__menu">
+        <ul class="category__list">
+          <li><a class="category__contents">농산물</a></li>
+          <li><a class="category__contents">가공식품</a></li>
+          <li><a class="category__contents">축산물</a></li>
+          <li><a class="category__contents">의류</a></li>
+          <li><a class="category__contents">신발</a></li>
+        </ul>
+        <ul class="category__list">
+          <li><a class="category__contents">음식점</a></li>
+          <li><a class="category__contents">수산물</a></li>
+          <li><a class="category__contents">가정용품</a></li>
+          <li><a class="category__contents">기타</a></li>
+        </ul>
+      </div>
+    </section> -->
+
+    <!-- Login -->
+    <section id="login" class="section">
       <div class="max-container">
-        <div class="join">
-          <form method="POST" id="join__form">
-            <div class="join__form">
-              <label for="id" class="join__label">
+        <div class="login">
+          <form id="login__form">
+            <div class="login__form">
+              <label for="id" class="login__label">
                 <input
-                  class="join__input"
+                  class="login__input"
                   type="text"
                   id="id"
                   name="id"
                   placeholder="아이디"
                 />
-                <button class="duplication__check" id="id_check">중복확인</button>
-              </label>
-              
-              <label for="nickname" class="join__label">
-                <input
-                  class="join__input"
-                  type="text"
-                  id="nickname"
-                  name="nickname"
-                  placeholder="닉네임"
-                />
-                <button class="duplication__check" id="nick_check">중복확인</button>
+                <br />
               </label>
 
-              <label for="passwd" class="join__label">
+              <label for="password" class="login__label">
                 <input
-                  class="join__input"
-                  type="password"
+                  class="login__input"
+                  type="passwd"
                   id="passwd"
-                  name="passwd"
                   placeholder="비밀번호"
                 />
+                <br />
               </label>
 
-              <label for="repasswd" class="join__label">
-                <input
-                  class="join__input"
-                  type="password"
-                  id="repasswd"
-                  name="repasswd"
-                  placeholder="비밀번호 확인"
-                />
-              </label>
+              <div class="login__error">아이디 혹은 패스워드가 틀렸습니다.</div>
 
-              <label for="birthdate" class="join__label">
-                <input
-                  class="join__input"
-                  type="date"
-                  id="birthdate"
-                  name="birthdate"
-                  placeholder="생년월일"
-                />
-              </label>
-
-              <label for="gender" class="join__label">
-                <input type="radio"  id="gender" name="gender" value="man" />남
-                <input type="radio" id="gender" name="gender" value="woman" />여
-              </label>
+              <div class="login__signup__button">
+                <button class="login__button" type="submit">로그인</button>
+                <button class="signup__button" id="signup-button">
+                  회원가입
+                </button>
+              </div>
             </div>
-
-            <div class="join__error" id="msg">${msg}</div>
-
-            <button class="join__button" type="submit">회원가입</button>
           </form>
         </div>
       </div>
