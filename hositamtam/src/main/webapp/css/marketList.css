@@ -1,34 +1,90 @@
 .section {
-    margin-top: 75px;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-#map{
-    width:70%; 
-    height:700px;
-    float: left;
+	margin-top: 75px;
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
-#mkListResult{
-    width: 30%;
-    /* background-color: #eeeeee; */
+
+#map {
+	width: 70%;
+	height: 700px;
+	float: left;
 }
-#information{
-    clear: both;
+
+#mkListResult {
+	width: 30%;
+	/* background-color: #eeeeee; */
 }
-.mkcontainer{
-    display: flex;
-    border-bottom: 2px solid #0e4194;
+
+#information {
+	clear: both;
 }
-#mkSearchName{
-    font-size: 2rem;
-    font-weight: bold;
-    border-bottom: 2px solid #0e4194;
+
+.mkcontainer {
+	display: flex;
+	border-bottom: 2px solid #0e4194;
+}
+
+#mkSearchName {
+	font-size: 2rem;
+	font-weight: bold;
+	border-bottom: 2px solid #0e4194;
 
 }
-#mkName, #mkaddr{
-    font-size: 1.5rem;
+
+#mkName,
+#mkaddr {
+	font-size: 1.5rem;
 }
-.col-9 span{
-    font-size: 1.5rem;
+
+.col-9 span {
+	font-size: 1.5rem;
 }
+
+.mainHeader__nav a {
+	color: black;
+	text-decoration: none;
+}
+
+.goMarket{
+    max-width: 300px;
+    width: 160px;
+    height: 40px;
+    font-family: 'GmarketSans';
+    position: relative;
+    font-size: 20px;
+    overflow: hidden;
+    line-height: 40px;
+}
+.goMarket a{
+    text-decoration: none;
+    color: #e6007e;
+}
+.up {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    max-width: 300px;
+    width: 160px;
+    text-align: center;
+    transition: top 100ms;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .down {
+
+    position: absolute;
+    left: 30px;
+    font-size: 1.5rem;
+    top: 40px; /* 초기에 숨겨진 상태 */
+    transition: top 100ms;
+
+  }
+  
+  .goMarket:hover .up {
+    top: -40px; /* hover 상태에서 up을 위로 이동하여 숨김 */
+  }
+  
+  .goMarket:hover .down {
+    top: 0; /* hover 상태에서 down을 아래로 이동하여 표시 */
+  }
