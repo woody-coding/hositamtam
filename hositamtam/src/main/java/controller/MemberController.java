@@ -69,8 +69,7 @@ public class MemberController {
 	}
 	@GetMapping("/views/post")
 	public String toPost() {
-		int mno = 100;
-		return "redirect:/views/postMain?mno=" + mno;
+		return "redirect:/views/postForMarketList";
 	}
 	// marketAndStoreController로 이동
 	@GetMapping("/views/market")
