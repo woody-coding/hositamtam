@@ -1,6 +1,8 @@
 let xhr = new XMLHttpRequest();
 let locations = [];
 
+
+
 // 지도 생성
 var mapOptions = {
     center: new naver.maps.LatLng(35.21003, 129.0689),
@@ -12,13 +14,62 @@ var mapOptions = {
     }
 };
 
+
+
 var map = new naver.maps.Map('map', mapOptions);
+
+
+
 
 // 지도 위에 표시되는 마커 배열
 var markers = [];
 
+
+
+
 // 초기화 함수
 function init() {
+	
+	// 로그인되어 있는지 아닌지
+	const memberInfo = window.localStorage.getItem('memberInfo');
+   
+	if (memberInfo) {
+	    const member = JSON.parse(memberInfo);
+	    console.log('id:', member.id);
+	    console.log('nickname:', member.nickname);
+	    
+	    currentid = member.id;
+	    currentnickname = member.nickname;
+	} else {
+	    console.log('로컬 스토리지에 멤버 정보가 없습니다.');
+	}
+	
+	
+	
+	
+    // URL에서 검색어 파라미터 추출
+    const searchParams = new URLSearchParams(location.search);
+    const keywordParam = searchParams.get('query');
+
+    if (keywordParam) {
+        let currentKeyword = decodeURIComponent(keywordParam);
+        
+        //alert(decodeURIComponent(keywordParam));
+        
+        xhr.onreadystatechange = marketAjaxHandler;
+        
+        let param = '?command=getMarketListBySearch&keyword=' + currentKeyword;
+        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+        xhr.send();
+    }
+
+	
+
+
+
+
+
+/*    
     const marketCategory = window.localStorage.getItem('marketCategory');
     const marketSearchKeyword = window.localStorage.getItem('marketSearchKeyword');
 		
@@ -50,21 +101,11 @@ function init() {
         // 로컬 스토리지에서 keyword 값 삭제
         window.localStorage.removeItem('marketSearchKeyword');
     }
-    
-    document.querySelector('#map').addEventListener('click', function(event) {
-			        if (event.target.className === 'mnoToStoreList') {
-	            const mno = event.target.getAttribute('id');
-	            const marketmno = { mno: mno };
-	            const marketMno = JSON.stringify(marketmno);
-	            window.localStorage.setItem('marketMno', marketMno);
-	            
-	            const marketMnoData = window.localStorage.getItem('marketMno');
-	            console.log(marketMnoData);
-	        }
-	});
-    
-
+*/
 }
+
+
+
 
 // marketAjaxHandler 함수
 function marketAjaxHandler() {
@@ -106,6 +147,9 @@ function marketAjaxHandler() {
     }
 }
 
+
+
+
 // 지도 위에 마커를 표시하는 함수
 function showMarkers() {
     for (var i = 0; i < locations.length; i++) {
@@ -115,7 +159,7 @@ function showMarkers() {
         });
 
         var infowindow = new naver.maps.InfoWindow({
-            content: '<div>' + locations[i].mname + '</div><a class="mnoToStoreList" id="'+ locations[i].mno +'"href="storeController.jsp?command=getStoreInMarket">이동하기!</a>'
+            content: '<div>' + locations[i].mname + '</div><a href="storeList.jsp?mno=' + locations[i].mno + '">이동하기!</a>'
         });
 
 
@@ -139,6 +183,9 @@ function showMarkers() {
     }
 }
 
+
+
+
 // 지도 위에 표시되고 있는 마커를 모두 제거하는 함수
 function removeMarker() {
     for (var i = 0; i < markers.length; i++) {
@@ -146,6 +193,9 @@ function removeMarker() {
     }
     markers = [];
 }
+
+
+
 
 // 페이지 로딩 시 초기화 함수 호출
 window.addEventListener('load', init);

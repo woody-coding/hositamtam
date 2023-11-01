@@ -1,9 +1,12 @@
 let xhr = new XMLHttpRequest();
+let xhr2 = new XMLHttpRequest();
+
 let locations = [];
 
 // 위도, 경도 초기 값을 설정할 변수
 let mlat;
 let mlng;
+
 
 // 지도 생성 (+ 일반, 위성 지도 선택할 수 있도록 토글 버튼 생성)
 var mapOptions = {
@@ -20,7 +23,51 @@ var map = new naver.maps.Map('map', mapOptions);
 
 var markers = [];
 
+
+
+
+
+
+
 function init() {
+	
+        let currentMno = location.search.substring(5).trim();
+		xhr.onreadystatechange = latLngAjaxHandler;
+		xhr2.onreadystatechange = storeAjaxHandler;
+		
+		
+        let param = '?command=getMarketLatLng&mno=' + currentMno;
+        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+        xhr.send();
+		
+		
+        let param2 = '?command=getStoreInMarket&mno=' + currentMno;
+        xhr2.open('GET', 'toAjaxController.jsp' + param2, true);
+        xhr2.send();
+    
+	
+}
+	
+	
+	
+
+function latLngAjaxHandler() {
+	    if (xhr.readyState === 4 && xhr.status === 200) {
+
+        const latLng = JSON.parse(xhr.responseText);
+	
+		
+
+		mlat = parseFloat(latLng.mlat);
+		mlng = parseFloat(latLng.mlng);
+        }	
+        // mlat과 mlng 값을 업데이트하고 지도의 초기 좌표를 설정
+        map.setCenter(new naver.maps.LatLng(mlat, mlng));
+}
+
+
+	
+/*
     const marketMno = window.localStorage.getItem('marketMno');
 
     if (marketMno) {
@@ -36,7 +83,13 @@ function init() {
         // 로컬 스토리지에서 cateno 값 삭제
         window.localStorage.removeItem('marketMno');
     }
-}
+*/    
+
+
+
+
+
+
 
 // '새 점포 등록' 버튼 클릭 이벤트
 let insertStore = document.querySelector('#insertStore');
@@ -133,12 +186,14 @@ function storeAjaxHandler() {
                 scategory: scategory,
                 nickname: nickname
             };
-
+            
             locations.push(location);
         }
 
+		//console.log(locations.length > 0 ? locations[0].mlat : "locations 배열이 비어 있습니다.");
+		
         // mlat과 mlng 값을 업데이트하고 지도의 초기 좌표를 설정
-        map.setCenter(new naver.maps.LatLng(mlat, mlng));
+        //map.setCenter(new naver.maps.LatLng(mlat, mlng));
 
         // 마커를 다시 생성하고 표시
         showMarkers();
