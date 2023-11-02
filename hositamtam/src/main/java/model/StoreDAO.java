@@ -271,7 +271,7 @@ public class StoreDAO {
 		sql = "INSERT INTO store (sno, mno, id, sname, slat, slng, stype, sphoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		sql = "INSERT INTO store_payment (sno, payno) VALUES (?, ?)";
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 

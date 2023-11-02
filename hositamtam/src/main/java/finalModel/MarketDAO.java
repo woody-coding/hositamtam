@@ -99,6 +99,60 @@ public class MarketDAO {
 		
 		
 		
+		
+		
+		// ㄴ. 해당 시장의 위, 경도 값 가져오기
+		public String getMarketLatLng(int mno) {
+			ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
+			
+			JSONArray jsonArray = new JSONArray();
+			JSONObject jsonObject = null;
+			
+			sql = "select mlat, mlng from market where mno = ?";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mno);
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					MarketDO marketDO = new MarketDO();
+
+	                marketDO.setMlat(rs.getString("mlat"));	
+	                marketDO.setMlng(rs.getString("mlng"));
+
+	                marketList.add(marketDO);
+		            }
+				
+					for(MarketDO market : marketList) {
+						jsonObject = new JSONObject(); // jsonObject 초기화
+					
+						jsonObject.put("mlat", market.getMlat());
+						jsonObject.put("mlng", market.getMlng());
+						
+						jsonArray.add(jsonObject);
+					}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			} finally {
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return jsonArray.toJSONString();
+		}
+		
+		
+		
+		
+		
+		
 	
 	// ㄴ.카데고리 유입 시장리스트 조회
 	public String getMarketListByItem(int cateno) {

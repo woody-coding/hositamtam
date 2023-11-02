@@ -30,6 +30,9 @@
 	else if(command != null && command.equals("getStoreInMarket")) {
 		out.println(storeDAO.getStoreInMarket((Integer.parseInt(mno))));
 	}
+	else if(command != null && command.equals("getMarketLatLng")) {
+		out.println(marketDAO.getMarketLatLng((Integer.parseInt(mno))));
+	}
 //	else if(command != null && command.equals("insertStore")) {
 //		out.println(storeDAO.getStoreInMarket((Integer.parseInt(mno))));
 //	}

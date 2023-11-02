@@ -6,7 +6,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -21,18 +21,19 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
-    <link rel="stylesheet" href="/finalProject/css/footer.css" />
-    <link rel="stylesheet" href="/finalProject/css/myPage.css" />
+    <link rel="stylesheet" href="../css/loginHeader.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/myPage.css" />
 
     <!-- JavaScript -->
-    <script src="/finalProject/js/myPage.js" charset="UTF-8"></script>>
+    <script defer src="../js/myPageUpdate.js"></script>
+    <script defer src="../js/anchor.js"></script>
   </head>
   <body>
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">
@@ -70,12 +71,12 @@
       <!-- Level -->
       <div class="mylevel">
         <section class="mylevel__info">
-          <div class="mylevel__picture" style="color: #e6007e">
-            <i class="fa-solid fa-user"></i>
+          <div class="mylevel__picture">
+            <img src="../images/icons8-병아리-60.png" />
           </div>
           <div class="mylevel__name">
-            회원님의 등급 <br />
-            시장 햇병아리🐤
+            <div class="mylevel__grade">회원님의 등급</div>
+            <div>시장 햇병아리</div>
           </div>
         </section>
         <div id="mylevel__gage">
@@ -108,18 +109,30 @@
 
         <section class="myprofile__activity">
           <div class="myprofile__activity__contents">
-            <a href="#myStore">✔️ 16 <br />내가 등록한 점포</a>
+            <a href="#myStore">
+              <i class="fa-solid fa-store myStore__icon"></i> 16 <br />
+              내가 등록한 점포
+            </a>
           </div>
           <div class="myprofile__activity__contents">
-            <a href="#myPost">✍️ 1 <br />내가 작성한 글</a>
+            <a href="#myPost">
+              <i class="fa-regular fa-pen-to-square myPost__icon"></i> 1 <br />
+              내가 작성한 글
+            </a>
           </div>
         </section>
         <section class="myprofile__activity2">
           <div class="myprofile__activity__contents">
-            <a href="#myStoreLike">❤️ 5 <br />내가 찜한 점포</a>
+            <a href="#myStoreLike">
+              <i class="fa-solid fa-heart myStoreLike__icon"></i> 5 <br />
+              내가 찜한 점포
+            </a>
           </div>
           <div class="myprofile__activity__contents">
-            <a href="#myReview">📝 1 <br />내가 작성한 리뷰</a>
+            <a href="#myReview">
+              <i class="fa-regular fa-comment-dots myReview__icon"></i> 1 <br />
+              내가 작성한 리뷰
+            </a>
           </div>
         </section>
       </div>
@@ -129,132 +142,227 @@
     <section id="myActivity" class="max-container">
       <div class="myActivity">
         <div class="myStore">
-          <h2 id="myStore" class="myPage__h2">✔️ 내가 등록한 점포</h2>
+          <h2 id="myStore" class="myPage__h2">
+            <i class="fa-solid fa-store myStore__icon"></i>
+            &nbsp;내가 등록한 점포
+          </h2>
           <button class="myStore__more">더보기</button>
         </div>
         <table class="myPage__table">
           <tr>
-            <th class="myPage__th">점포명</th>
-            <th class="myPage__th">점포 형태</th>
-            <th class="myPage__th">결제 방식</th>
-            <th class="myPage__th">취급 품목</th>
+            <th class="myStore__th">점포명</th>
+            <th class="myStore__th">점포 형태</th>
+            <th class="myStore__th">결제 방식</th>
+            <th class="myStore__th">취급 품목</th>
           </tr>
           <tr>
-            <td class="myPage__td">괘법르네시떼 거인통닭</td>
-            <td class="myPage__td">매장</td>
-            <td class="myPage__td">현금 카드 계좌이체</td>
-            <td class="myPage__td">음식점</td>
+            <td class="myStore__td">괘법르네시떼 거인통닭</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">음식점</td>
+          </tr>
+          <tr>
+            <td class="myStore__td">은하갈비</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드</td>
+            <td class="myStore__td">음식점</td>
+          </tr>
+          <tr>
+            <td class="myStore__td">기장농산</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 계좌이체</td>
+            <td class="myStore__td">농산물</td>
+          </tr>
+          <tr>
+            <td class="myStore__td">망미축산도매센타</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">축산물</td>
+          </tr>
+          <tr>
+            <td class="myStore__td">안동상회 앞 잡화점</td>
+            <td class="myStore__td">좌판</td>
+            <td class="myStore__td">현금 &nbsp; 계좌이체</td>
+            <td class="myStore__td">기타</td>
+          </tr>
+          <tr>
+            <td class="myStore__td">명가 장충동 족발</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">음식점</td>
           </tr>
         </table>
       </div>
 
       <div class="myActivity">
         <div class="myPost">
-          <h2 id="myPost" class="myPage__h2">✍️ 내가 작성한 글</h2>
+          <h2 id="myPost" class="myPage__h2">
+            <i class="fa-regular fa-pen-to-square myPost__icon"></i>
+            &nbsp;내가 작성한 글
+          </h2>
           <button class="myPost__more">더보기</button>
         </div>
         <table class="myPage__table">
           <tr>
-            <th class="myPage__th">제목</th>
-            <th class="myPage__th">카테고리</th>
-            <th class="myPage__th">좋아요</th>
-            <th class="myPage__th">작성일</th>
+            <th class="myPost__th__title">제목</th>
+            <th class="myPost__th">카테고리</th>
+            <th class="myPost__th">좋아요</th>
+            <th class="myPost__th">댓글</th>
+            <th class="myPost__th">작성일</th>
           </tr>
           <tr>
-            <td class="myPage__td">거인통닭의 실체</td>
-            <td class="myPage__td">일상</td>
-            <td class="myPage__td">👍 3</td>
-            <td class="myPage__td">2023-10-04</td>
+            <td class="myPost__td__title">거인통닭의 실체</td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr>
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
           </tr>
         </table>
       </div>
 
       <div class="myActivity">
         <div class="myReview">
-          <h2 id="myReview" class="myPage__h2">📝 내가 작성한 리뷰</h2>
+          <h2 id="myReview" class="myPage__h2">
+            <i class="fa-regular fa-comment-dots myReview__icon"></i>
+            &nbsp;내가 작성한 리뷰
+          </h2>
           <button class="myReview__more">더보기</button>
         </div>
         <table class="myPage__table">
           <tr>
-            <th class="myPage__th">점포명</th>
-            <th class="myPage__th">평점</th>
-            <th class="myPage__th">리뷰내용</th>
-            <th class="myPage__th">작성일</th>
+            <th class="myReview__th__name">점포명</th>
+            <th class="myReview__th__star">평점</th>
+            <th class="myReview__th__contents">내용</th>
+            <th class="myReview__th">작성일</th>
           </tr>
           <tr>
-            <td class="myPage__td">거인통닭</td>
-            <td class="myPage__td">⭐ 4.5</td>
-            <td class="myPage__td">
+            <td class="myReview__td__name">괘법르네시떼 거인통닭</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
               이렇게 맛있는 치킨은 제 인생 처음이에요 !
             </td>
-            <td class="myPage__td">2023-10-04</td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr>
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myReview__td">2023-10-04</td>
           </tr>
         </table>
       </div>
 
       <div class="myActivity">
         <div class="myStoreLike">
-          <h2 id="myStoreLike" class="myPage__h2">❤️ 내가 찜한 점포</h2>
+          <h2 id="myStoreLike" class="myPage__h2">
+            <i class="fa-solid fa-heart myStoreLike__icon"></i>
+            &nbsp;내가 찜한 점포
+          </h2>
           <button class="myStoreLike__more">더보기</button>
         </div>
         <table class="myPage__table">
           <tr>
-            <th class="myPage__th">점포명</th>
-            <th class="myPage__th">점포 형태</th>
-            <th class="myPage__th">결제 방식</th>
-            <th class="myPage__th">취급 품목</th>
+            <th class="myStoreLike__th">점포명</th>
+            <th class="myStoreLike__th">점포 형태</th>
+            <th class="myStoreLike__th">결제 방식</th>
+            <th class="myStoreLike__th">취급 품목</th>
           </tr>
           <tr>
-            <td class="myPage__td">괘법르네시떼 거인통닭</td>
-            <td class="myPage__td">매장</td>
-            <td class="myPage__td">현금 카드 계좌이체</td>
-            <td class="myPage__td">음식점</td>
+            <td class="myStoreLike__td">괘법르네시떼 거인통닭</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStoreLike__td">음식점</td>
           </tr>
           <tr>
-            <td class="myPage__td">순희닭강정</td>
-            <td class="myPage__td">매장</td>
-            <td class="myPage__td">현금 카드 계좌이체</td>
-            <td class="myPage__td">음식점</td>
+            <td class="myStoreLike__td">순희닭강정</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStoreLike__td">음식점</td>
+          </tr>
+          <tr>
+            <td class="myStoreLike__td">은하갈비</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드</td>
+            <td class="myStoreLike__td">음식점</td>
+          </tr>
+          <tr>
+            <td class="myStoreLike__td">망미청과</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStoreLike__td">농산물</td>
+          </tr>
+          <tr>
+            <td class="myStoreLike__td">초읍만두</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStoreLike__td">음식점</td>
           </tr>
         </table>
       </div>
     </section>
 
-    <!-- <section id="myActivity" class="max-container">
-      <h1 class="myActivity__title">나의 활동 내역</h1>
-      <div class="myActivity">
-        <h2 id="myStore">✔️ 내가 등록한 점포</h2>
-        <div class="myStore">
-          <span class="myStore__contents"> 괘법르네시떼 거인통닭 </span>
-          <button class="myStore__more">더보기</button>
-        </div>
-        <hr class="myPage__hr" />
-      </div>
-      <div class="myActivity">
-        <h2 id="myPost">✍️ 내가 작성한 글</h2>
-        <div class="myPost">
-          <span class="myPost__contents"> 거인통닭 사실 포장만 됨 </span>
-          <button class="myPost__more">더보기</button>
-        </div>
-        <hr class="myPage__hr" />
-      </div>
-      <div class="myActivity">
-        <h2 id="myReview">📝 내가 작성한 리뷰</h2>
-        <div class="myReview">
-          <span class="myReview__contents"> 백종원 나와서 이제 못 먹음 </span>
-          <button class="myReview__more">더보기</button>
-        </div>
-        <hr class="myPage__hr" />
-      </div>
-      <div class="myActivity">
-        <h2 id="myStoreLike">❤️ 내가 찜한 점포</h2>
-        <div class="myStoreLike">
-          <span class="myStoreLike__contents"> 거인통닭 / 순희닭강정 </span>
-          <button class="myStoreLike__more">더보기</button>
-        </div>
-        <hr class="myPage__hr" />
-      </div>
-    </section> -->
+    <!-- Anchor -->
+    <aside>
+      <section>
+        <a class="myPage__store" href="#myStore" title="back to store">
+          <div class="store__icon">
+            <i class="fa-solid fa-store myStore__menu"></i>
+          </div>
+        </a>
+        <div class="myPage__store__info">내가 등록한 점포 보기</div>
+      </section>
+      <section>
+        <a class="myPage__post" href="#myPost" title="back to post">
+          <div class="store__icon">
+            <i class="fa-regular fa-pen-to-square myPost__menu"></i>
+          </div>
+        </a>
+        <div class="myPage__post__info">내가 작성한 글 보기</div>
+      </section>
+      <section>
+        <a class="myPage__review" href="#myReview" title="back to review">
+          <div class="store__icon">
+            <i class="fa-regular fa-comment-dots myReview__menu"></i>
+          </div>
+        </a>
+        <div class="myPage__review__info">내가 작성한 리뷰 보기</div>
+      </section>
+      <section>
+        <a class="myPage__storeLike" href="#myStoreLike" title="back to like">
+          <div class="store__icon">
+            <i class="fa-solid fa-heart myStoreLike__menu"></i>
+          </div>
+        </a>
+        <div class="myPage__storeLike__info">내가 찜한 점포 보기</div>
+      </section>
+      <section>
+        <a class="myPage__arrow-up" href="#myinfo" title="back to top">
+          <div class="store__icon">
+            <i class="fa-solid fa-arrow-up arrowUp__menu"></i>
+          </div>
+        </a>
+        <div class="myPage__arrow-up__info">맨 위로 가기</div>
+      </section>
+    </aside>
 
     <!-- Footer -->
     <footer id="information" class="section">

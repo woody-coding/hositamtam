@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +85,7 @@
         <div class="close"></div>
         <div class="listCategoryContent">
 
-          <form method="get" action="form-action.html">
+          <form method="POST" action="/finalProject/views/marketCategory">
             
             <p>어떤 시장이 궁금한가요?</p>
             <div class="goCategory">
@@ -89,23 +93,29 @@
             </div>
             <div class="goCategory">
               수산물
-            </div><div class="goCategory">
+            </div>
+            <div class="goCategory">
               축산물
-            </div><div class="goCategory">
+            </div>
+            <div class="goCategory">
               가공식품
-            </div><div class="goCategory">
+            </div>
+            <div class="goCategory">
               음식점
-            </div><div class="goCategory">
+            </div>
+            <div class="goCategory">
               가정용품
-            </div><div class="goCategory">
+            </div>
+            <div class="goCategory">
               의류
-            </div><div class="goCategory">
+            </div>
+            <div class="goCategory">
               신발
-            </div><div class="goCategory">
+            </div>
+            <div class="goCategory">
               기타
             </div>
       
-            <!-- <p><input type="submit" value="이동하기" id="submit"></p> -->
           </form>
         </div>  
       </div> 
@@ -224,8 +234,7 @@
               </ul>
             </div>
             <a href="#top"><i class="bi bi-arrow-up-circle-fill"></i></a>
-            <!-- <a target="_blank" href="https://icons8.com/icon/eKTNqgVxGqcN/%EB%B3%91%EC%95%84%EB%A6%AC">병아리</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
-          <!-- 관련사이트 드롭다운 부산광역시/ 2030부산엑스포 / 멀티캠퍼스 / 부산관광공사-->
+        
           </div>
         </div>
       </div>
