@@ -2,27 +2,45 @@ let xhr = new XMLHttpRequest();
 let xhr2 = new XMLHttpRequest();
 
 let locations = [];
+let mapOptions;
+let map;
+let markers = [];
 
-// 위도, 경도 초기 값을 설정할 변수
-let mlat;
-let mlng;
 
 
-// 지도 생성 (+ 일반, 위성 지도 선택할 수 있도록 토글 버튼 생성)
-var mapOptions = {
-    center: new naver.maps.LatLng(mlat, mlng), // 초기 좌표 설정
-    zoom: 16,
-    mapTypeControl: true, // 위성 지도 토글 버튼을 표시
-    mapTypeControlOptions: {
-        style: naver.maps.MapTypeControlStyle.BUTTON,
-        position: naver.maps.Position.TOP_RIGHT
+
+
+
+function latLngAjaxHandler() {
+	if (xhr2.readyState === 4 && xhr2.status === 200) {
+		
+		const latLng = JSON.parse(xhr2.responseText);
+		
+		mlat = latLng[0].mlat;
+		mlng = latLng[0].mlng;
+		
+		
+		// 페이지가 로드되자마자 mlat, mlng 값으로 지도 중심을 설정
+        //map.setCenter(new naver.maps.LatLng(mlat, mlng));
+        
+        
+        // 지도 생성 (+ 일반, 위성 지도 선택할 수 있도록 토글 버튼 생성)
+		mapOptions = {
+		    center: new naver.maps.LatLng(mlat, mlng), // 초기 좌표 설정
+		    zoom: 16,
+		    mapTypeControl: true, // 위성 지도 토글 버튼을 표시
+		    mapTypeControlOptions: {
+		        style: naver.maps.MapTypeControlStyle.BUTTON,
+		        position: naver.maps.Position.TOP_RIGHT
+		    }
+		};
+		
+		map = new naver.maps.Map('map', mapOptions);
+
+		markers = [];
+        
     }
-};
-
-var map = new naver.maps.Map('map', mapOptions);
-
-var markers = [];
-
+}
 
 
 
@@ -32,58 +50,80 @@ var markers = [];
 function init() {
 	
         let currentMno = location.search.substring(5).trim();
-		xhr.onreadystatechange = latLngAjaxHandler;
-		xhr2.onreadystatechange = storeAjaxHandler;
-		
-		
-        let param = '?command=getMarketLatLng&mno=' + currentMno;
-        xhr.open('GET', 'toAjaxController.jsp' + param, true);
-        xhr.send();
-		
-		
-        let param2 = '?command=getStoreInMarket&mno=' + currentMno;
-        xhr2.open('GET', 'toAjaxController.jsp' + param2, true);
-        xhr2.send();
-    
-	
-}
-	
-	
-	
-
-function latLngAjaxHandler() {
-	    if (xhr.readyState === 4 && xhr.status === 200) {
-
-        const latLng = JSON.parse(xhr.responseText);
-	
-		
-
-		mlat = parseFloat(latLng.mlat);
-		mlng = parseFloat(latLng.mlng);
-        }	
-        // mlat과 mlng 값을 업데이트하고 지도의 초기 좌표를 설정
-        map.setCenter(new naver.maps.LatLng(mlat, mlng));
-}
-
-
-	
-/*
-    const marketMno = window.localStorage.getItem('marketMno');
-
-    if (marketMno) {
-        const marketmno = JSON.parse(marketMno);
-        console.log('mno:', marketmno.mno);
-        let currentMno = marketmno.mno;
 		xhr.onreadystatechange = storeAjaxHandler;
+		xhr2.onreadystatechange = latLngAjaxHandler;
 		
         let param = '?command=getStoreInMarket&mno=' + currentMno;
         xhr.open('GET', 'toAjaxController.jsp' + param, true);
         xhr.send();
+    
+	
+	
+	    let param2 = '?command=getMarketLatLng&mno=' + currentMno;
+        xhr2.open('GET', 'toAjaxController.jsp' + param2, true);
+        xhr2.send();
+        
+        
+        
+        
+        
+        
+        
+        
+        document.querySelector('#manyReview').addEventListener('click', function(){
+			xhr.onreadystatechange = storeAjaxHandler;
+			
+			let param = '?command=getManyReview&mno=' + currentMno;
+	        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	        xhr.send();
+		});
+		
+		
+        document.querySelector('#manyRating').addEventListener('click', function(){
+			xhr.onreadystatechange = storeAjaxHandler;
+			
+		    let param = '?command=getManyRating&mno=' + currentMno;
+	        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	        xhr.send();
+		});
+		
+		
+        document.querySelector('#manyStoreLike').addEventListener('click', function(){
+			xhr.onreadystatechange = storeAjaxHandler;
+			
+		    let param = '?command=getManyStoreLike&mno=' + currentMno;
+	        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	        xhr.send();
+		});
+        
+        
+/*
+	    const marketMno = window.localStorage.getItem('marketMno');
+	
+	    if (marketMno) {
+	        const marketmno = JSON.parse(marketMno);
+	        console.log('mno:', marketmno.mno);
+	        let currentMno = marketmno.mno;
+			xhr.onreadystatechange = storeAjaxHandler;
+			
+	        let param = '?command=getStoreInMarket&mno=' + currentMno;
+	        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	        xhr.send();
+	
+	        // 로컬 스토리지에서 cateno 값 삭제
+	        window.localStorage.removeItem('marketMno');
+	    }
 
-        // 로컬 스토리지에서 cateno 값 삭제
-        window.localStorage.removeItem('marketMno');
-    }
 */    
+
+
+        
+}
+	
+	
+	
+	
+
 
 
 
@@ -153,6 +193,14 @@ function insertStoreHandler() {
     clickEventListener = naver.maps.Event.addListener(map, 'click', handleMapClick);
 }
 
+
+
+
+
+
+
+
+
 function storeAjaxHandler() {
     if (xhr.readyState === 4 && xhr.status === 200) {
         // 기존 마커들을 모두 제거
@@ -160,9 +208,29 @@ function storeAjaxHandler() {
 
         const allStoreList = JSON.parse(xhr.responseText);
 
+
+        let storeContents ='';
+        
+        
+        if (allStoreList.length === 0) {
+            storeContents = '점포 정보가 없습니다!';
+        } 
+        
+        
+		for(let i=0; i < allStoreList.length; i++) {
+			storeContents += '<div id="'+ allStoreList[i].sno +'" class="personalScontent">평균별점' + allStoreList[i].savgrating + '('+ allStoreList[i].sreviewcount + ')' +', 점포명: ' + allStoreList[i].sname + ', 취급품목: ' + allStoreList[i].scategory + ', 점포형태: ' + allStoreList[i].stype + ', 찜수: ' + allStoreList[i].sfavoritecount + 
+            ', 이미지: ' + allStoreList[i].sphoto + '</div>';
+		}
+		
+		document.querySelector('#storeContent').innerHTML = storeContents;
+
+
+
+
+
         for (let i in allStoreList) {
-            mlat = parseFloat(allStoreList[i].mlat);
-            mlng = parseFloat(allStoreList[i].mlng);
+			const savgrating = parseFloat(allStoreList[i].savgrating);
+			const sreviewcount = parseFloat(allStoreList[i].sreviewcount);
             const sno = parseFloat(allStoreList[i].sno);
             const sname = allStoreList[i].sname;
             const slat = parseFloat(allStoreList[i].slat);
@@ -173,9 +241,9 @@ function storeAjaxHandler() {
             const scategory = allStoreList[i].scategory;
             const nickname = allStoreList[i].nickname;
 
-            const location = {
-                mlat: mlat,
-                mlng: mlng,
+            const slocation = {
+				savgrating: savgrating,
+				sreviewcount: sreviewcount,
                 sno: sno,
                 sname: sname,
                 slat: slat,
@@ -186,19 +254,22 @@ function storeAjaxHandler() {
                 scategory: scategory,
                 nickname: nickname
             };
-            
-            locations.push(location);
+
+            locations.push(slocation);
         }
-
-		//console.log(locations.length > 0 ? locations[0].mlat : "locations 배열이 비어 있습니다.");
-		
-        // mlat과 mlng 값을 업데이트하고 지도의 초기 좌표를 설정
-        //map.setCenter(new naver.maps.LatLng(mlat, mlng));
-
+        
         // 마커를 다시 생성하고 표시
         showMarkers();
     }
 }
+
+
+
+
+
+
+
+
 
 // GPS 기능 구현
 {
@@ -210,7 +281,7 @@ function storeAjaxHandler() {
         position: new naver.maps.LatLng(latitude, longitude),
         map: map,
         icon: {
-            content: '<div style="background-color: red; width: 20px; height: 20px; border-radius: 50%;"></div>',
+            content: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>',
             anchor: new naver.maps.Point(15, 15)
         }
     });
@@ -237,16 +308,24 @@ function storeAjaxHandler() {
     setInterval(updateLocation, 2000); // 2초마다 업데이트
 }
 
+
+
+
+
 // 지도 위에 마커를 표시하는 함수
 function showMarkers() {
+	
     for (var i = 0; i < locations.length; i++) {
         var marker = new naver.maps.Marker({
             map: map,
             position: new naver.maps.LatLng(locations[i].slat, locations[i].slng)
         });
 
-        var infowindow = new naver.maps.InfoWindow({
-            content: '<div>' + locations[i].sname + '</div><a href="/finalModel/toAjaxController.jsp?command=getStoreInMarket&mno=' + locations[i].mno + '">이동하기!</a>'
+        var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
+            content: '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">평균별점' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', 찜수: ' + locations[i].sfavoritecount + 
+            ', 이미지: ' + locations[i].sphoto + '</div>' + 
+            '<a href="/finalModel/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+            '<a href="/finalModel/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/>'
         });
 
         (function (marker, infowindow) {
@@ -262,6 +341,10 @@ function showMarkers() {
         markers.push(marker);
     }
 }
+
+
+
+
 
 // 지도 위에 표시되고 있는 마커를 모두 제거하는 함수
 function removeMarker() {

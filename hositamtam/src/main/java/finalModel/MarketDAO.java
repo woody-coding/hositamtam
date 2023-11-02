@@ -31,9 +31,8 @@ public class MarketDAO {
 			e.printStackTrace();
 		}
 	}
-	// ㄱ. 전체 시장 조회
-	// ㄴ. 카데고리 유입 시장리스트 조회
-	// ㄷ. 검색어 유입 시장리스트 조회
+
+	
 	
 	// ㄱ. 전체 시장 조회
 		public String getMarketList() {
@@ -151,6 +150,13 @@ public class MarketDAO {
 		
 		
 		
+
+		
+		
+		
+		
+		
+		
 		
 		
 	
@@ -261,22 +267,32 @@ public class MarketDAO {
             marketList.add(marketDO);
             }
 		
-			for(MarketDO market : marketList) {
-				jsonObject = new JSONObject(); // jsonObject 초기화
-				
-				jsonObject.put("mno", market.getMno());
-				jsonObject.put("mname", market.getMname());
-				jsonObject.put("mtype", market.getMtype());
-				jsonObject.put("maddr", market.getMaddr());
-				jsonObject.put("mlat", market.getMlat());
-				jsonObject.put("mlng", market.getMlng());
-				jsonObject.put("mtoilet", market.getMtoilet());
-				jsonObject.put("mparking", market.getMparking());
-				jsonObject.put("mtel", market.getMtel());
-				jsonObject.put("mupdateday", market.getMupdateday());
-				
-				jsonArray.add(jsonObject);
-			}
+		
+		
+		if (marketList.isEmpty()) {
+            jsonObject = new JSONObject();
+            jsonObject.put("marketErrorMsg", "등록된 시장이 없습니다!");
+            jsonArray.add(jsonObject);
+        }
+		
+		
+		
+		for(MarketDO market : marketList) {
+			jsonObject = new JSONObject(); // jsonObject 초기화
+			
+			jsonObject.put("mno", market.getMno());
+			jsonObject.put("mname", market.getMname());
+			jsonObject.put("mtype", market.getMtype());
+			jsonObject.put("maddr", market.getMaddr());
+			jsonObject.put("mlat", market.getMlat());
+			jsonObject.put("mlng", market.getMlng());
+			jsonObject.put("mtoilet", market.getMtoilet());
+			jsonObject.put("mparking", market.getMparking());
+			jsonObject.put("mtel", market.getMtel());
+			jsonObject.put("mupdateday", market.getMupdateday());
+			
+			jsonArray.add(jsonObject);
+		}
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -291,5 +307,5 @@ public class MarketDAO {
 		}
 	}
 	return jsonArray.toJSONString();
-}
+	}
 }
