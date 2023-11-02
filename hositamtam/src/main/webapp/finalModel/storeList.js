@@ -1,20 +1,19 @@
 let xhr = new XMLHttpRequest();
-let xhr2 = new XMLHttpRequest();
 
 let locations = [];
 let mapOptions;
 let map;
 let markers = [];
 
-
+let currentMno = location.search.substring(5);
 
 
 
 
 function latLngAjaxHandler() {
-	if (xhr2.readyState === 4 && xhr2.status === 200) {
+	if (xhr.readyState === 4 && xhr.status === 200) {
 		
-		const latLng = JSON.parse(xhr2.responseText);
+		const latLng = JSON.parse(xhr.responseText);
 		
 		mlat = latLng[0].mlat;
 		mlng = latLng[0].mlng;
@@ -39,7 +38,20 @@ function latLngAjaxHandler() {
 
 		markers = [];
         
+        getStoreInfo();
     }
+}
+
+
+
+
+// mno로 점포 정보들 요청하는 함수
+function getStoreInfo() {
+	xhr.onreadystatechange = storeAjaxHandler;
+	
+    let param = '?command=getStoreInMarket&mno=' + currentMno;
+    xhr.open('GET', 'toAjaxController.jsp' + param, true);
+    xhr.send();
 }
 
 
@@ -47,21 +59,15 @@ function latLngAjaxHandler() {
 
 
 
+
+
 function init() {
-	
-        let currentMno = location.search.substring(5).trim();
-		xhr.onreadystatechange = storeAjaxHandler;
-		xhr2.onreadystatechange = latLngAjaxHandler;
-		
-        let param = '?command=getStoreInMarket&mno=' + currentMno;
-        xhr.open('GET', 'toAjaxController.jsp' + param, true);
-        xhr.send();
-    
-	
-	
+
+		xhr.onreadystatechange = latLngAjaxHandler;
+
 	    let param2 = '?command=getMarketLatLng&mno=' + currentMno;
-        xhr2.open('GET', 'toAjaxController.jsp' + param2, true);
-        xhr2.send();
+        xhr.open('GET', 'toAjaxController.jsp' + param2, true);
+        xhr.send();
         
         
         

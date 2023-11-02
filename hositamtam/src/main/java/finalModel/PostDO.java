@@ -1,7 +1,5 @@
 package finalModel;
 
-import java.util.Date;
-
 public class PostDO {
 
 	private int pno;
