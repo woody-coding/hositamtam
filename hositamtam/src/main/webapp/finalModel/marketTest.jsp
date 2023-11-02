@@ -15,6 +15,8 @@
 
 	<div id="map" style="width: 1100px; height: 700px;"></div>
 
+	<div id="howGetMarket"></div><br/>
+	<div id="marketErrorMsg"></div>
 	<div id="marketContent"></div>
 	
 	<script charset="UTF-8" src="marketList.js"></script>

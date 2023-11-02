@@ -29,6 +29,7 @@
 				window.localStorage.removeItem('memberInfo');
 			}
 	
+		    
 		}
 		
 	    window.addEventListener('load', init);
@@ -41,7 +42,6 @@
 
 <div id="map" style="width:1100px; height:700px;"></div>
 <button id="insertStore">새 점포 등록</button><br/>
-
 
 <button id="manyReview">리뷰 많은 순</button>
 <button id="manyRating">별점 높은 순</button>
