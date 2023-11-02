@@ -469,46 +469,109 @@ public class StoreDAO {
 		}
 		return storeReviewList;
 	}
-// ==
-	
-	public ArrayList<ReviewDO> getStoreReview2(int sno) {
-	    ArrayList<ReviewDO> storeReviewList = new ArrayList<ReviewDO>();
 
-	    try {
-	        // 특정 sno에 대한 id목록 저장
-	        String idSql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
-	        PreparedStatement idPstmt = conn.prepareStatement(idSql);
-	        idPstmt.setInt(1, sno);
-	        ResultSet idRs = idPstmt.executeQuery();
-
-	        // 결과셋 처리
-	        while (idRs.next()) {
-	            ReviewDO reviewDO = new ReviewDO();
-	            String id = idRs.getString("id");
-	            
-	            // 특정 id에 대한 리뷰 정보 반환
-	            String reviewSql = "SELECT COUNT(id) AS reviewcount, AVG(rating) AS avgrating, MAX(regdate) AS recent_regdate FROM review WHERE id = ?";
-	            PreparedStatement reviewPstmt = conn.prepareStatement(reviewSql);
-	            reviewPstmt.setString(1, id);
-	            ResultSet reviewRs = reviewPstmt.executeQuery();
-
-	            if (reviewRs.next()) {
-	                reviewDO.setNickname(id);
-	                reviewDO.setReviewcount(reviewRs.getInt("reviewcount"));
-	                reviewDO.setRrating(reviewRs.getDouble("avgrating"));
-	                reviewDO.setRregdate(reviewRs.getString("recent_regdate"));
-	                
-	                storeReviewList.add(reviewDO);
-	            }
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        // 예외 처리
-	    }
+	// 특정 sno에 대한 id목록 저장
+	public ArrayList<ReviewDO> getIdList(int sno) {
+	    ArrayList<ReviewDO> idList = new ArrayList<ReviewDO>();
 	    
-	    return storeReviewList;
+	    try {
+	        sql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
+	        
+	     			PreparedStatement pstmt = conn.prepareStatement(sql);
+	     			pstmt.setInt(1, sno); // sno 매개변수 사용
+	     			ResultSet rs = pstmt.executeQuery();
+
+	     			// 결과셋 처리
+	     			while (rs.next()) {
+	     				ReviewDO reviewDO = new ReviewDO();
+	     				reviewDO.setId(rs.getString("id")); 
+
+	     				idList.add(reviewDO);
+	     			}
+	     		} catch (SQLException e) {
+	     			e.printStackTrace();
+	     		} finally {
+	     			try {
+	     				if (pstmt != null)
+	     					pstmt.close();
+	     			} catch (SQLException e) {
+	     				e.printStackTrace();
+	     			}
+	     		}
+	     		return idList;
+	     	}
+	
+	// == 2
+	public ArrayList<ReviewDO> getStoreReviewById(ReviewDO idList, int sno) {
+		ArrayList<ReviewDO> storeReviewList = new ArrayList<ReviewDO>();
+
+		try {
+			String Sql = "SELECT COUNT(id), AVG(rating), regdate FROM review WHERE id = ? AND sno = ? ORDER BY regdate";
+
+			// SQL 문장을 실행하는 PreparedStatement 생성
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, sno); // sno 매개변수 사용
+			ResultSet rs = pstmt.executeQuery();
+
+			// 결과셋 처리
+			while (rs.next()) {
+				ReviewDO reviewDO = new ReviewDO();
+				reviewDO.setNickname(rs.getString("nickname")); 
+				reviewDO.setReviewcount(rs.getInt("reviewcount"));
+				reviewDO.setRrating(rs.getDouble("rating"));
+				reviewDO.setRregdate(rs.getString("regdate"));
+
+				storeReviewList.add(reviewDO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return storeReviewList;
 	}
-	// == 
+	
+//	    try {
+//	        // 특정 sno에 대한 id목록 저장
+//	        String idSql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
+//	        PreparedStatement idPstmt = conn.prepareStatement(idSql);
+//	        idPstmt.setInt(1, sno);
+//	        ResultSet idRs = idPstmt.executeQuery();
+//
+//	        // 결과셋 처리
+//	        while (idRs.next()) {
+//	            ReviewDO reviewDO = new ReviewDO();
+//	            String id = idRs.getString("id");
+//	            
+//	            // 특정 id에 대한 리뷰 정보 반환
+//	            String reviewSql = "SELECT COUNT(id), AVG(rating), regdate FROM review WHERE id = ? AND sno = ? ORDER BY regdate";
+//	            PreparedStatement reviewPstmt = conn.prepareStatement(reviewSql);
+//	            reviewPstmt.setString(1, id);
+//	            ResultSet reviewRs = reviewPstmt.executeQuery();
+//
+//	            if (reviewRs.next()) {
+//	                reviewDO.setNickname(id);
+//	                reviewDO.setReviewcount(reviewRs.getInt("reviewcount"));
+//	                reviewDO.setRrating(reviewRs.getDouble("avgrating"));
+//	                reviewDO.setRregdate(reviewRs.getString("recent_regdate"));
+//	                
+//	                storeReviewList.add(reviewDO);
+//	            }
+//	        }
+//	    } catch (SQLException e) {
+//	        e.printStackTrace();
+//	        // 예외 처리
+//	    }
+//	    
+//	    return storeReviewList;
+//	}	    
+	    
+	// ==
 	// ㅁ.점포 등록
 	public int insertStore(StoreDO storeDO) {
 		int rowCount = 0;
