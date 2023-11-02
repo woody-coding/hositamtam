@@ -65,16 +65,11 @@ function init() {
 
 		xhr.onreadystatechange = latLngAjaxHandler;
 
-	    let param2 = '?command=getMarketLatLng&mno=' + currentMno;
-        xhr.open('GET', 'toAjaxController.jsp' + param2, true);
+	    let param = '?command=getMarketLatLng&mno=' + currentMno;
+        xhr.open('GET', 'toAjaxController.jsp' + param, true);
         xhr.send();
         
-        
-        
-        
-        
-        
-        
+
         
         document.querySelector('#manyReview').addEventListener('click', function(){
 			xhr.onreadystatechange = storeAjaxHandler;
@@ -101,7 +96,7 @@ function init() {
 	        xhr.open('GET', 'toAjaxController.jsp' + param, true);
 	        xhr.send();
 		});
-        
+
         
 /*
 	    const marketMno = window.localStorage.getItem('marketMno');

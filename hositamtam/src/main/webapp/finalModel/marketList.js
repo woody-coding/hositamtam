@@ -4,9 +4,9 @@ let locations = [];
 
 
 // 지도 생성
-var mapOptions = {
-    center: new naver.maps.LatLng(35.21003, 129.0689),
-    zoom: 11,
+var mapOptions = {  			//35.21003 129.0689
+    center: new naver.maps.LatLng(35.17132, 129.0666),
+    zoom: 12,
     mapTypeControl: true,
     mapTypeControlOptions: {
         style: naver.maps.MapTypeControlStyle.BUTTON,
@@ -53,9 +53,11 @@ function init() {
     const catenoParam = searchParams.get('cateno');
 
     if (keywordParam) {
+
         let currentKeyword = decodeURIComponent(keywordParam);
         
-        //alert(decodeURIComponent(keywordParam));
+        document.querySelector('#howGetMarket').innerHTML = "'"+ currentKeyword + "' (으)로 검색된 결과입니다.";	
+        
         
         xhr.onreadystatechange = marketAjaxHandler;
         
@@ -63,10 +65,37 @@ function init() {
         xhr.open('GET', 'toAjaxController.jsp' + param, true);
         xhr.send();
     }
+    
     else if(catenoParam) {
 		// 카테고리(취급품목) 클릭했을 때 해당 시장 정보들 비동기 요청
 		//alert(location.search.substring(8).trim());
 		let currentCateno = catenoParam;
+		let currentCate = '';
+		
+		if(currentCateno === '1') {
+			currentCate = '농산물';
+		} else if(currentCateno === '2') {
+			currentCate = '음식점';
+		} else if(currentCateno === '3') {
+			currentCate = '가공식품';
+		} else if(currentCateno === '4') {
+			currentCate = '수산물';
+		} else if(currentCateno === '5') {
+			currentCate = '축산물';
+		} else if(currentCateno === '6') {
+			currentCate = '가정용품';
+		} else if(currentCateno === '7') {
+			currentCate = '의류';
+		} else if(currentCateno === '8') {
+			currentCate = '신발';
+		} else if(currentCateno === '9') {
+			currentCate = '기타';
+		}
+		
+		document.querySelector('#howGetMarket').innerHTML = "취급품목 '"+ currentCate + "'에 특화된 전통시장 목록 입니다.";
+		
+		
+		
 		xhr.onreadystatechange = marketAjaxHandler;
 		
 	    let param = '?command=getMarketListByItem&cateno=' + currentCateno;
@@ -131,6 +160,29 @@ function marketAjaxHandler() {
         
         
         
+        // marketErrorMsg 값(내용)을 가져옵니다.
+        const marketErrorMsg = allMarketList[0].marketErrorMsg;
+        
+        // 에러 메시지가 있는지 확인하고 화면에 표시
+        if (marketErrorMsg) {
+			
+			// 기존 jsp에 있던 div 태그들 숨기기
+			document.getElementById("map").style.display = "none";
+            document.getElementById("marketContent").style.display = "none";
+			
+            // 에러 메시지를 표시할 엘리먼트를 선택
+            const errorMsgElement = document.getElementById("marketErrorMsg");
+            
+            // 에러 메시지를 해당 엘리먼트의 내용으로 설정
+            errorMsgElement.innerHTML = marketErrorMsg;
+            
+            // 마커 및 기존 컨텐츠를 지우기
+            removeMarker();
+        }
+        
+        
+
+        
         let marketContents ='';
         
         
@@ -167,7 +219,6 @@ function marketAjaxHandler() {
         
         
         for (let i in allMarketList) {
-			const marketErrorMsg = allMarketList[i].marketErrorMsg;
             const mno = parseFloat(allMarketList[i].mno);
             const mname = allMarketList[i].mname;
             const mtype = allMarketList[i].mtype;
@@ -180,7 +231,6 @@ function marketAjaxHandler() {
             const mlng = parseFloat(allMarketList[i].mlng);
 
             const mlocation = {
-				marketErrorMsg: marketErrorMsg,
                 mno: mno,
                 mname: mname,
                 mtype: mtype,
