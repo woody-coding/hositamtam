@@ -74,7 +74,6 @@ function checkNicknameDuplicate() {
 */
 
 function submitHandler(event) {
-    event.preventDefault();
 
     let id = document.querySelector('#id').value;
     let nickname = document.querySelector('#nickname').value;
@@ -82,30 +81,9 @@ function submitHandler(event) {
     let repasswd = document.querySelector('#repasswd').value;
     let msgDiv = document.querySelector('#msg');
 
-    if (id && nickname && passwd && repasswd) {
-        let formData = new FormData();
-        formData.append("id", id);
-        formData.append("nickname", nickname);
-        formData.append("passwd", passwd);
-
-        fetch("/views/joinMember", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // 서버에서 회원가입이 성공적으로 처리됨
-                msgDiv.innerHTML = '회원가입이 성공적으로 완료되었습니다.';
-            } else {
-                // 서버에서 오류 또는 회원가입 실패를 반환한 경우
-                msgDiv.innerHTML = '회원가입에 실패했습니다. 다시 시도하세요.';
-            }
-        })
-        .catch(error => {
-            // 네트워크 오류 등의 예외 처리
-            msgDiv.innerHTML = '서버와 통신 중 오류가 발생했습니다.';
-        });
+    if (!id || !nickname || !passwd || !repasswd) {
+    	event.preventDefault();
+    	msgDiv.innerHTML = ""
     }
 }
 
