@@ -19,6 +19,7 @@ public class StoreDO {
     private String mname;
     private int review;
     private Double rating;
+    private String content;
     
 	public int getSno() {
 		return sno;
@@ -126,6 +127,15 @@ public class StoreDO {
 		return rating;
 	}
 	public void setRating(double rating) {
+		this.rating = rating;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 }

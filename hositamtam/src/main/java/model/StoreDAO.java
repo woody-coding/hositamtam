@@ -337,7 +337,7 @@ public class StoreDAO {
 	// ㄹ.점포 상세페이지
 	// 등록자의 닉네임 (where = id),  
 
-	// 점포 기본정보 반환
+	// ㄹ-1.점포 기본정보 반환
 	public StoreDO[] getStoreDetail(int sno) {
 	    StoreDO[] storeDetail = new StoreDO[7]; // 원하는 배열 크기를 지정
 
@@ -383,7 +383,7 @@ public class StoreDAO {
 		return storeDetail;
 	}
 
-	// 점포의 결제방식 반환 (현금, 카드, 계좌이체)
+	// ㄹ-2.점포의 결제방식 반환 (현금, 카드, 계좌이체)
 	public StoreDO[] getStorePaytype(int sno) {
 		StoreDO[] storePaytype = new StoreDO[3]; // 배열 크기 3
 
@@ -423,14 +423,19 @@ public class StoreDAO {
 		return storePaytype;
 	}
 	
-	// 점포 하단의 후기 이력 반환 (닉네임, 리뷰 수, 평점, 작성일)
-	public ArrayList<StoreDO> getStoreReview(int sno) {
-		ArrayList<StoreDO> storeReviewList = new ArrayList<StoreDO>();
+	// ㄹ-3.점포 상세페이지의 하단에, 후기이력 반환 (닉네임, 리뷰 수, 평점, 작성일)
+	
+	
+	// 3-1. id목록을 저장하고, 
+	// 3-2. 해당 id의 순서대로 review table에서 COUNT(id), AVG(rating), regdate를 반환하는 메서드
+	// 닉네임
+	public ArrayList<ReviewDO> getStoreReview(int sno) {
+		ArrayList<ReviewDO> storeReviewList = new ArrayList<ReviewDO>();
 
 		try {
-			// [가장 최근에 점포를 등록한 두 사람의 닉네임 가져오기]
-			sql = "SELECT nickname FROM member WHERE id = (SELECT id FROM member"
-					+ "WHERE mno = ? and sno = ? ORDER BY rregdate DESC) AND ROWNUM <= 2;";
+			// [점포를 등록한 사람의 ID를 최근순으로 반환]
+			sql = "SELECT id FROM review ORDER BY rregdate DESC WHERE sno = ?";
+					
 
 			// [해당 점포에 가장 최근에 리뷰를 남긴 2명의 닉네임과 '등록한 리뷰의 평점, 리뷰를 작성한 총횟수, 최근 작성일자'를 각각 출력]
 			sql = "SELECT m1.nickname, AVG(r.rrating), COUNT(r.rdate), MAX(r.rdate) FROM member m1 JOIN review r ON m1.id = r.id"
@@ -444,13 +449,13 @@ public class StoreDAO {
 
 			// 결과셋 처리
 			while (rs.next()) {
-				StoreDO storeDO = new StoreDO();
-				storeDO.setSname(rs.getString("sname")); // 필드가 StoreDO 객체에 추가되었다고 가정
-				storeDO.setStype(rs.getString("stype"));
-				storeDO.setScategory(rs.getString("sphoto"));
-				storeDO.setSphoto(rs.getString("sphoto"));
+				ReviewDO reviewDO = new ReviewDO();
+				reviewDO.setNickname(rs.getString("nickname")); 
+				reviewDO.setReviewcount(rs.getInt("reviewcount"));
+				reviewDO.setRrating(rs.getDouble("rating"));
+				reviewDO.setRregdate(rs.getString("regdate"));
 
-				storeReviewList.add(storeDO);
+				storeReviewList.add(reviewDO);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -464,7 +469,46 @@ public class StoreDAO {
 		}
 		return storeReviewList;
 	}
+// ==
+	
+	public ArrayList<ReviewDO> getStoreReview2(int sno) {
+	    ArrayList<ReviewDO> storeReviewList = new ArrayList<ReviewDO>();
 
+	    try {
+	        // 특정 sno에 대한 id목록 저장
+	        String idSql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
+	        PreparedStatement idPstmt = conn.prepareStatement(idSql);
+	        idPstmt.setInt(1, sno);
+	        ResultSet idRs = idPstmt.executeQuery();
+
+	        // 결과셋 처리
+	        while (idRs.next()) {
+	            ReviewDO reviewDO = new ReviewDO();
+	            String id = idRs.getString("id");
+	            
+	            // 특정 id에 대한 리뷰 정보 반환
+	            String reviewSql = "SELECT COUNT(id) AS reviewcount, AVG(rating) AS avgrating, MAX(regdate) AS recent_regdate FROM review WHERE id = ?";
+	            PreparedStatement reviewPstmt = conn.prepareStatement(reviewSql);
+	            reviewPstmt.setString(1, id);
+	            ResultSet reviewRs = reviewPstmt.executeQuery();
+
+	            if (reviewRs.next()) {
+	                reviewDO.setNickname(id);
+	                reviewDO.setReviewcount(reviewRs.getInt("reviewcount"));
+	                reviewDO.setRrating(reviewRs.getDouble("avgrating"));
+	                reviewDO.setRregdate(reviewRs.getString("recent_regdate"));
+	                
+	                storeReviewList.add(reviewDO);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        // 예외 처리
+	    }
+	    
+	    return storeReviewList;
+	}
+	// == 
 	// ㅁ.점포 등록
 	public int insertStore(StoreDO storeDO) {
 		int rowCount = 0;
