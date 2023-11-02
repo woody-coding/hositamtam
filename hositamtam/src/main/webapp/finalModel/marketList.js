@@ -50,6 +50,7 @@ function init() {
     // URL에서 검색어 파라미터 추출
     const searchParams = new URLSearchParams(location.search);
     const keywordParam = searchParams.get('query');
+    const catenoParam = searchParams.get('cateno');
 
     if (keywordParam) {
         let currentKeyword = decodeURIComponent(keywordParam);
@@ -62,9 +63,20 @@ function init() {
         xhr.open('GET', 'toAjaxController.jsp' + param, true);
         xhr.send();
     }
+    else if(catenoParam) {
+		// 카테고리(취급품목) 클릭했을 때 해당 시장 정보들 비동기 요청
+		//alert(location.search.substring(8).trim());
+		let currentCateno = catenoParam;
+		xhr.onreadystatechange = marketAjaxHandler;
+		
+	    let param = '?command=getMarketListByItem&cateno=' + currentCateno;
+	    xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	    xhr.send();
+	}
 
 	
-
+	
+	
 
 
 
@@ -114,7 +126,48 @@ function marketAjaxHandler() {
         removeMarker();
 
         const allMarketList = JSON.parse(xhr.responseText);
+        
+        
+        
+        
+        
+        let marketContents ='';
+        
+        
+        if (allMarketList.length === 0) {
+            marketContents = '시장 정보가 없습니다!';
+        } 
+        
+        
+		for(let i=0; i < allMarketList.length; i++) {
+			
+			if(allMarketList[i].mtel === null) {
+				allMarketList[i].mtel = '';
+			}
+			
+			//marketContents += '<div id="'+ allMarketList[i].mno +'" class="personalMcontent">' + allMarketList[i].mname + '|' + allMarketList[i].mtype + 
+			//'|' + allMarketList[i].maddr + '| 화장실 여부: ' + allMarketList[i].mtoilet + '| 주차가능 여부: ' + allMarketList[i].mparking + '|' + allMarketList[i].mtel + '</div>';
+			
+			marketContents += '<div id="'+ allMarketList[i].mno +'" class="personalMcontent">' +
+					            '<div class="col-9">' +
+					                '<p id="mkName">' + allMarketList[i].mname + '</p>' +
+					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
+					                '<span>화장실 ' + allMarketList[i].mtoilet + '</span>주차장 ' + allMarketList[i].mparking + '</span>' +
+					            '</div>' +
+					        '</div>'
+		}
+
+		
+		
+		document.querySelector('#marketContent').innerHTML = marketContents;
+        
+        
+        
+        
+        
+        
         for (let i in allMarketList) {
+			const marketErrorMsg = allMarketList[i].marketErrorMsg;
             const mno = parseFloat(allMarketList[i].mno);
             const mname = allMarketList[i].mname;
             const mtype = allMarketList[i].mtype;
@@ -126,7 +179,8 @@ function marketAjaxHandler() {
             const mlat = parseFloat(allMarketList[i].mlat);
             const mlng = parseFloat(allMarketList[i].mlng);
 
-            const location = {
+            const mlocation = {
+				marketErrorMsg: marketErrorMsg,
                 mno: mno,
                 mname: mname,
                 mtype: mtype,
@@ -139,7 +193,7 @@ function marketAjaxHandler() {
                 mupdateday: mupdateday
             };
 
-            locations.push(location);
+            locations.push(mlocation);
         }
 
         // 마커를 다시 생성하고 표시
