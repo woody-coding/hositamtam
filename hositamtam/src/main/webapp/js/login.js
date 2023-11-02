@@ -12,9 +12,16 @@ function submitHandler(event) {
     }
 }
 
+function joinHandler(){
+	window.location.href = "/finalProject/views/join";
+}
+
 function init() {
     let join__form = document.querySelector('#login__form');
     join__form.addEventListener('submit', submitHandler);
+    
+    let signup_button = document.querySelector('#signup-button');
+    signup_button.addEventListener('click', joinHandler);
 }
 
 window.addEventListener('load', init);

@@ -63,13 +63,13 @@ public class MemberController {
 	    // 사용자 정보를 세션에서 가져옴
 	    MemberDO user = (MemberDO) session.getAttribute("user");
 
-	    if (userId != null && user != null) {
+	    if(userId != null ) {
 	        // 로그인 상태라면 사용자 정보를 모델에 추가하여 뷰에서 사용 가능
 	        model.addAttribute("userId", userId);
 	        model.addAttribute("user", user); // 사용자 정보를 모델에 추가
 
 	        return "main"; // main.jsp와 같은 뷰로 이동
-	    } else {
+	    }else {
 	        // 로그인하지 않은 경우 처리
 	        return "redirect:/views/login"; // 로그인 페이지로 리다이렉트
 	    }
@@ -154,17 +154,21 @@ public class MemberController {
 	public String login(@RequestParam String id, @RequestParam String passwd, HttpSession session, Model model) throws Exception {
 	    
 		try {
-//			System.out.println(id + passwd);
+			System.out.println(id + passwd);
 
 		    // 로그인 처리 성공 유무에 따른 화면 출력
 		    if (memberDAO.loginMember(id, passwd)) {
 		        session.setAttribute("userId", id);
-//		        System.out.println(session.getAttribute("userId"));
+		        System.out.println(session.getAttribute("userId"));
 		        return "redirect:/views/main"; // 로그인 성공 시 메인 페이지로 이동
+		        
 		    } else {
+		    	System.out.println("로그인 실패");
 		        return "redirect:/views/login"; // 로그인 실패 시 다시 로그인 페이지로
 		    }
 		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("예외 확인");
 			return "redirect:/views/login";
 		}
 		
