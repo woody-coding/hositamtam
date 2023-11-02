@@ -212,83 +212,6 @@ public class StoreDAO {
 		return storeList;
 	}
 	
-
-	// ㄴ.점포 상세페이지 조회
-
-//	public ArrayList<StoreDO> getStoreDetail(int mno, int sno) {
-//		ArrayList<StoreDO> storeList = new ArrayList<StoreDO>();
-//
-//		
-//		// [가장 최근에 점포를 등록한 두 사람의 닉네임 가져오기]
-//		sql = "SELECT nickname FROM member WHERE id = (SELECT id FROM member"
-//				+ "WHERE sno = ? ORDER BY rregdate DESC) AND ROWNUM <= 2;";
-//		
-//		// [최근 날짜 순서로 2명의 nickname, 해당 nickname의 평균 rating, date 횟수, 최근 date를 출력]
-//		sql = "SELECT m1.nickname, AVG(r.rrating), COUNT(r.rdate), MAX(r.rdate) FROM member m1 JOIN review r ON m1.id = r.id"
-//				+ "WHERE r.sno = n AND m1.id IN (SELECT id FROM (SELECT id, ROW_NUMBER() OVER (ORDER BY date DESC) AS row_num"
-//				+ "FROM review WHERE sno = n) WHERE row_num <= 2) GROUP BY m1.nickname";
-//			
-//		try {
-//			stmt = conn.createStatement();
-//			rs = stmt.executeQuery(sql);
-//
-//			while (rs.next()) {
-//				StoreDO storeDO = new StoreDO();
-//
-//				storeDO.setSname(rs.getString("name"));
-//				storeDO.setStype(rs.getString("stype"));
-//				storeDO.setSphoto(rs.getString("sphoto"));
-//
-//				storeList.add(storeDO);
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//
-//		} finally {
-//			if (stmt != null) {
-//				try {
-//					stmt.close();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//		return storeList;
-//	}
-//	
-//	==
-	// ㄷ.점포 팝업
-//	public ArrayList<StoreDO> StorePopup(int mno, int sno) {
-//	    ArrayList<StoreDO> storeList = new ArrayList<StoreDO>();
-//
-//	    try {
-//	        sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno) AS review, AVG(r.rrating) AS rating, COUNT(f.sno) AS favoritecount "
-//	                + "FROM store s "
-//	                + "LEFT JOIN review r ON s.sno = r.sno "
-//	                + "LEFT JOIN member_store_favorite f ON s.sno = f.sno "
-//	                + "WHERE s.mno = ? AND s.sno = ? "
-//	                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto "
-//	                + "ORDER BY COUNT(r.sno) DESC";
-//
-//	        PreparedStatement pstmt = conn.prepareStatement(sql);
-//	        pstmt.setInt(1, mno);
-//	        pstmt.setInt(2, sno);
-//	        ResultSet rs = pstmt.executeQuery();
-//
-//	        while (rs.next()) {
-//	            StoreDO storeDO = new StoreDO();
-//	            storeDO.setSname(rs.getString("sname"));                   // 점포명
-//	            storeDO.setStype(rs.getString("stype"));                   // 점포타입 (좌판/매장)
-//	            storeDO.setSphoto(rs.getString("sphoto"));                 // 사진
-//	            storeDO.setScategory(rs.getString("scategory"));           // 카테고리
-//	            storeDO.setReview(rs.getInt("review"));                   // 리뷰 수
-//	            storeDO.setRating(rs.getDouble("rating"));                 // 가게평점
-//	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));    // 찜한 갯수
-//
-//	            storeList.add(storeDO);
-//	        }
-	        
 	// ㄷ.점포 팝업
 	public StoreDO[] StorePopup(int sno) {
 	    StoreDO[] storeList = new StoreDO[7]; // 원하는 배열 크기를 지정
@@ -334,244 +257,251 @@ public class StoreDAO {
 		return storeList;
 	}
 	
+	
 	// ㄹ.점포 상세페이지
-	// 등록자의 닉네임 (where = id),  
 
-	// ㄹ-1.점포 기본정보 반환
-	public StoreDO[] getStoreDetail(int sno) {
-	    StoreDO[] storeDetail = new StoreDO[7]; // 원하는 배열 크기를 지정
+	// ㄹ-1.점포의 기본정보를 반환	(ㄹ-1의 a,b를 합침)
+	public StoreDO[] getStoreInfo(int sno) {
+	    StoreDO[] storeDetails = new StoreDO[10]; 
 
 	    try {
-        sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno) AS review, AVG(r.rrating) AS rating, COUNT(f.sno) AS favoritecount "
-                + "FROM store s "
-                + "LEFT JOIN review r ON s.sno = r.sno "
-                + "LEFT JOIN member_store_favorite f ON s.sno = f.sno "
-                + "WHERE s.mno = ? AND s.sno = ? "
-                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto "
-                + "ORDER BY COUNT(r.sno) DESC";
+	        String sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno) AS review, AVG(r.rrating) AS rating, COUNT(f.sno) AS favoritecount, p.paytype "
+	                + "FROM store s "
+	                + "LEFT JOIN review r ON s.sno = r.sno "
+	                + "LEFT JOIN member_store_favorite f ON s.sno = f.sno "
+	                + "LEFT JOIN store_payment sp ON s.sno = sp.sno "
+	                + "LEFT JOIN payment p ON sp.payno = p.payno "
+	                + "WHERE s.mno = ? AND s.sno = ? "
+	                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto, p.paytype "
+	                + "ORDER BY COUNT(r.sno) DESC";
 
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, sno);
-        ResultSet rs = pstmt.executeQuery();
+	        PreparedStatement pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, sno);
+	        pstmt.setInt(2, sno);
+	        ResultSet rs = pstmt.executeQuery();
 
 	        int index = 0;
-	        while (rs.next()) {
+	        while (rs.next() && index < storeDetails.length) {
 	            StoreDO storeDO = new StoreDO();
-	            storeDO.setNickname(rs.getString("nickname"));             // 닉네임
-	            storeDO.setSname(rs.getString("sname"));                   // 점포명
-	            storeDO.setStype(rs.getString("stype"));                   // 점포타입 (좌판/매장)
-	            storeDO.setSphoto(rs.getString("sphoto"));                 // 사진
-	            storeDO.setScategory(rs.getString("scategory"));           // 카테고리
-	            storeDO.setReview(rs.getInt("review"));                    // 리뷰 수
-	            storeDO.setRating(rs.getDouble("rating"));                 // 가게평점
-	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));     // 찜한 갯수
+	            storeDO.setNickname(rs.getString("nickname"));
+	            storeDO.setSname(rs.getString("sname"));
+	            storeDO.setStype(rs.getString("stype"));
+	            storeDO.setSphoto(rs.getString("sphoto"));
+	            storeDO.setScategory(rs.getString("scategory"));
+	            storeDO.setReview(rs.getInt("review"));
+	            storeDO.setRating(rs.getDouble("rating"));
+	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));
+	            storeDO.setPaytype(rs.getString("paytype"));
 
-	            storeDetail[index] = storeDO;
+	            storeDetails[index] = storeDO;
 	            index++;
 	        }
-	        
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return storeDetail;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null)
+	                pstmt.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return storeDetails;
 	}
 
-	// ㄹ-2.점포의 결제방식 반환 (현금, 카드, 계좌이체)
-	public StoreDO[] getStorePaytype(int sno) {
-		StoreDO[] storePaytype = new StoreDO[3]; // 배열 크기 3
-
-		try {
-			sql = "SELECT p.paytype FROM store_payment sp JOIN payment p ON sp.payno = p.payno WHERE p.sno = ?";
-
-		        PreparedStatement pstmt = conn.prepareStatement(sql);
-		        pstmt.setInt(1, sno);
-		        ResultSet rs = pstmt.executeQuery();
-
-			        int index = 0;
-			        while (rs.next()) {
-			            StoreDO storeDO = new StoreDO();
-			            storeDO.setNickname(rs.getString("nickname"));             // 닉네임
-			            storeDO.setSname(rs.getString("sname"));                   // 점포명
-			            storeDO.setStype(rs.getString("stype"));                   // 점포타입 (좌판/매장)
-			            storeDO.setSphoto(rs.getString("sphoto"));                 // 사진
-			            storeDO.setScategory(rs.getString("scategory"));           // 카테고리
-			            storeDO.setReview(rs.getInt("review"));                    // 리뷰 수
-			            storeDO.setRating(rs.getDouble("rating"));                 // 가게평점
-			            storeDO.setSfavoritecount(rs.getInt("favoritecount"));     // 찜한 갯수
-
-			            storePaytype[index] = storeDO;
-			            index++;
-			        }	
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return storePaytype;
-	}
 	
-	// ㄹ-3.점포 상세페이지의 하단에, 후기이력 반환 (닉네임, 리뷰 수, 평점, 작성일)
-	
-	
-	// 3-1. id목록을 저장하고, 
-	// 3-2. 해당 id의 순서대로 review table에서 COUNT(id), AVG(rating), regdate를 반환하는 메서드
-	// 닉네임
-	public ArrayList<ReviewDO> getStoreReview(int sno) {
-		ArrayList<ReviewDO> storeReviewList = new ArrayList<ReviewDO>();
-
-		try {
-			// [점포를 등록한 사람의 ID를 최근순으로 반환]
-			sql = "SELECT id FROM review ORDER BY rregdate DESC WHERE sno = ?";
-					
-
-			// [해당 점포에 가장 최근에 리뷰를 남긴 2명의 닉네임과 '등록한 리뷰의 평점, 리뷰를 작성한 총횟수, 최근 작성일자'를 각각 출력]
-			sql = "SELECT m1.nickname, AVG(r.rrating), COUNT(r.rdate), MAX(r.rdate) FROM member m1 JOIN review r ON m1.id = r.id"
-					+ "WHERE r.sno = n AND m1.id IN (SELECT id FROM (SELECT id, ROW_NUMBER() OVER (ORDER BY date DESC) AS row_num"
-					+ "FROM review WHERE mno = ? and sno = ?) WHERE row_num <= 2)";
-
-			// SQL 문장을 실행하는 PreparedStatement 생성
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, sno); // sno 매개변수 사용
-			ResultSet rs = pstmt.executeQuery();
-
-			// 결과셋 처리
-			while (rs.next()) {
-				ReviewDO reviewDO = new ReviewDO();
-				reviewDO.setNickname(rs.getString("nickname")); 
-				reviewDO.setReviewcount(rs.getInt("reviewcount"));
-				reviewDO.setRrating(rs.getDouble("rating"));
-				reviewDO.setRregdate(rs.getString("regdate"));
-
-				storeReviewList.add(reviewDO);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return storeReviewList;
-	}
-
-	// 특정 sno에 대한 id목록 저장
-	public ArrayList<ReviewDO> getIdList(int sno) {
-	    ArrayList<ReviewDO> idList = new ArrayList<ReviewDO>();
-	    
-	    try {
-	        sql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
-	        
-	     			PreparedStatement pstmt = conn.prepareStatement(sql);
-	     			pstmt.setInt(1, sno); // sno 매개변수 사용
-	     			ResultSet rs = pstmt.executeQuery();
-
-	     			// 결과셋 처리
-	     			while (rs.next()) {
-	     				ReviewDO reviewDO = new ReviewDO();
-	     				reviewDO.setId(rs.getString("id")); 
-
-	     				idList.add(reviewDO);
-	     			}
-	     		} catch (SQLException e) {
-	     			e.printStackTrace();
-	     		} finally {
-	     			try {
-	     				if (pstmt != null)
-	     					pstmt.close();
-	     			} catch (SQLException e) {
-	     				e.printStackTrace();
-	     			}
-	     		}
-	     		return idList;
-	     	}
-	
-	// == 2
-	public ArrayList<ReviewDO> getStoreReviewById(ReviewDO idList, int sno) {
-		ArrayList<ReviewDO> storeReviewList = new ArrayList<ReviewDO>();
-
-		try {
-			String Sql = "SELECT COUNT(id), AVG(rating), regdate FROM review WHERE id = ? AND sno = ? ORDER BY regdate";
-
-			// SQL 문장을 실행하는 PreparedStatement 생성
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, sno); // sno 매개변수 사용
-			ResultSet rs = pstmt.executeQuery();
-
-			// 결과셋 처리
-			while (rs.next()) {
-				ReviewDO reviewDO = new ReviewDO();
-				reviewDO.setNickname(rs.getString("nickname")); 
-				reviewDO.setReviewcount(rs.getInt("reviewcount"));
-				reviewDO.setRrating(rs.getDouble("rating"));
-				reviewDO.setRregdate(rs.getString("regdate"));
-
-				storeReviewList.add(reviewDO);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return storeReviewList;
-	}
-	
+//	// ㄹ-1-a.점포 기본정보 반환
+//	
+//	public StoreDO[] getStoreInfo(int sno) {
+//	    StoreDO[] storeDetail = new StoreDO[7]; // 원하는 배열 크기를 지정
+//
 //	    try {
-//	        // 특정 sno에 대한 id목록 저장
-//	        String idSql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
-//	        PreparedStatement idPstmt = conn.prepareStatement(idSql);
-//	        idPstmt.setInt(1, sno);
-//	        ResultSet idRs = idPstmt.executeQuery();
+//        sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno) AS review, AVG(r.rrating) AS rating, COUNT(f.sno) AS favoritecount "
+//                + "FROM store s "
+//                + "LEFT JOIN review r ON s.sno = r.sno "
+//                + "LEFT JOIN member_store_favorite f ON s.sno = f.sno "
+//                + "WHERE s.mno = ? AND s.sno = ? "
+//                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto "
+//                + "ORDER BY COUNT(r.sno) DESC";
 //
-//	        // 결과셋 처리
-//	        while (idRs.next()) {
-//	            ReviewDO reviewDO = new ReviewDO();
-//	            String id = idRs.getString("id");
-//	            
-//	            // 특정 id에 대한 리뷰 정보 반환
-//	            String reviewSql = "SELECT COUNT(id), AVG(rating), regdate FROM review WHERE id = ? AND sno = ? ORDER BY regdate";
-//	            PreparedStatement reviewPstmt = conn.prepareStatement(reviewSql);
-//	            reviewPstmt.setString(1, id);
-//	            ResultSet reviewRs = reviewPstmt.executeQuery();
+//        PreparedStatement pstmt = conn.prepareStatement(sql);
+//        pstmt.setInt(1, sno);
+//        ResultSet rs = pstmt.executeQuery();
 //
-//	            if (reviewRs.next()) {
-//	                reviewDO.setNickname(id);
-//	                reviewDO.setReviewcount(reviewRs.getInt("reviewcount"));
-//	                reviewDO.setRrating(reviewRs.getDouble("avgrating"));
-//	                reviewDO.setRregdate(reviewRs.getString("recent_regdate"));
-//	                
+//	        int index = 0;
+//	        while (rs.next()) {
+//	            StoreDO storeDO = new StoreDO();
+//	            storeDO.setNickname(rs.getString("nickname"));             // 닉네임
+//	            storeDO.setSname(rs.getString("sname"));                   // 점포명
+//	            storeDO.setStype(rs.getString("stype"));                   // 점포타입 (좌판/매장)
+//	            storeDO.setSphoto(rs.getString("sphoto"));                 // 사진
+//	            storeDO.setScategory(rs.getString("scategory"));           // 카테고리
+//	            storeDO.setReview(rs.getInt("review"));                    // 리뷰 수
+//	            storeDO.setRating(rs.getDouble("rating"));                 // 가게평점
+//	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));     // 찜한 갯수
+//
+//	            storeDetail[index] = storeDO;
+//	            index++;
+//	        }
+//	        
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (pstmt != null)
+//					pstmt.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return storeDetail;
+//	}
+//
+//	
+//	// ㄹ-1-b.점포의 결제방식 반환 (현금, 카드, 계좌이체)
+//	public StoreDO[] getStorePaytype(int sno) {
+//		StoreDO[] storePaytype = new StoreDO[3]; // 배열 크기 3
+//
+//		try {
+//			sql = "SELECT p.paytype FROM store_payment sp JOIN payment p ON sp.payno = p.payno WHERE p.sno = ?";
+//
+//		        PreparedStatement pstmt = conn.prepareStatement(sql);
+//		        pstmt.setInt(1, sno);
+//		        ResultSet rs = pstmt.executeQuery();
+//
+//			        int index = 0;
+//			        while (rs.next()) {
+//			            StoreDO storeDO = new StoreDO();
+//			            storeDO.setPaytype(rs.getString("paytype"));   // 결제방식
+//
+//			            storePaytype[index] = storeDO;
+//			            index++;
+//			        }	
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (pstmt != null)
+//					pstmt.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return storePaytype;
+//	}
+//	
+	
+	// ㄹ-2.점포 상세페이지의 하단에, 후기이력 반환 (닉네임, 리뷰 수, 평점, 작성일)
+	
+	public ArrayList<ReviewDO> getStoreReviewBySno(int sno) {
+	    ArrayList<ReviewDO> storeReviewList = new ArrayList<>();
+
+	    try {
+	        String idSql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
+	        PreparedStatement idPstmt = conn.prepareStatement(idSql);
+	        idPstmt.setInt(1, sno);
+	        ResultSet idRs = idPstmt.executeQuery();
+
+	        String reviewSql = "SELECT COUNT(id) AS reviewcount, AVG(rating) AS rating_avg, MAX(regdate) AS last_review_date FROM review WHERE id = ? AND sno = ?";
+	        PreparedStatement reviewPstmt = conn.prepareStatement(reviewSql);
+
+	        while (idRs.next()) {
+	            String id = idRs.getString("id");
+	            reviewPstmt.setString(1, id);
+	            reviewPstmt.setInt(2, sno);
+	            
+	            ResultSet reviewRs = reviewPstmt.executeQuery();
+	            ReviewDO reviewDO = new ReviewDO();
+	            reviewDO.setNickname(id);
+
+	            while (reviewRs.next()) {
+	                reviewDO.setReviewcount(reviewRs.getInt("reviewcount"));
+	                reviewDO.setRrating(reviewRs.getDouble("rating_avg"));
+	                reviewDO.setRregdate(reviewRs.getString("last_review_date"));
+	            }
+
+	            storeReviewList.add(reviewDO);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return storeReviewList;
+	}
+	
+//	// ㄹ-2-a. 특정 sno에 대한 id목록 저장
+//	public ArrayList<ReviewDO> getIdList(int sno) {
+//	    ArrayList<ReviewDO> idList = new ArrayList<ReviewDO>();
+//	    
+//	    try {
+//	        sql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
+//	        
+//	     			PreparedStatement pstmt = conn.prepareStatement(sql);
+//	     			pstmt.setInt(1, sno); // sno 매개변수 사용
+//	     			ResultSet rs = pstmt.executeQuery();
+//
+//	     			// 결과셋 처리
+//	     			while (rs.next()) {
+//	     				ReviewDO reviewDO = new ReviewDO();
+//	     				reviewDO.setId(rs.getString("id")); 
+//
+//	     				idList.add(reviewDO);
+//	     			}
+//	     		} catch (SQLException e) {
+//	     			e.printStackTrace();
+//	     		} finally {
+//	     			try {
+//	     				if (pstmt != null)
+//	     					pstmt.close();
+//	     			} catch (SQLException e) {
+//	     				e.printStackTrace();
+//	     			}
+//	     		}
+//	     		return idList;
+//	     	}
+//	
+//	// ㄹ-2-b. 리스트에 있는 모든 ID에 대한 리뷰정보 검색
+//	public ArrayList<ReviewDO> getStoreReviewById(ArrayList<String> idList, int sno) {
+//	    ArrayList<ReviewDO> storeReviewList = new ArrayList<>();
+//
+//	    try {
+//	        String sql = "SELECT COUNT(id) AS reviewcount, AVG(rating) AS rating_avg, MAX(regdate) AS last_review_date FROM review WHERE id = ? AND sno = ?";
+//	        PreparedStatement pstmt = conn.prepareStatement(sql);
+//
+//	        for (String id : idList) {
+//	            pstmt.setString(1, id); // id 리스트 요소 사용
+//	            pstmt.setInt(2, sno); // sno 매개변수 사용
+//
+//	            ResultSet rs = pstmt.executeQuery();
+//
+//	            // 결과셋 처리
+//	            while (rs.next()) {
+//	                ReviewDO reviewDO = new ReviewDO();
+//	                reviewDO.setNickname(id); // 리뷰를 작성한 ID
+//
+//	                // 리뷰 수, 평균 평점, 최근 리뷰 작성일 설정
+//	                reviewDO.setReviewcount(rs.getInt("reviewcount"));
+//	                reviewDO.setRrating(rs.getDouble("rating_avg"));
+//	                reviewDO.setRregdate(rs.getString("last_review_date"));
+//
 //	                storeReviewList.add(reviewDO);
 //	            }
 //	        }
 //	    } catch (SQLException e) {
 //	        e.printStackTrace();
-//	        // 예외 처리
+//	    } finally {
+//	        try {
+//	            if (pstmt != null)
+//	                pstmt.close();
+//	        } catch (SQLException e) {
+//	            e.printStackTrace();
+//	        }
 //	    }
-//	    
 //	    return storeReviewList;
-//	}	    
-	    
-	// ==
+//	}
+
 	// ㅁ.점포 등록
 	public int insertStore(StoreDO storeDO) {
 		int rowCount = 0;
