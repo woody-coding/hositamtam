@@ -291,7 +291,7 @@ public class StoreDAO {
 	            storeDO.setReview(rs.getInt("review"));
 	            storeDO.setRating(rs.getDouble("rating"));
 	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));
-	            storeDO.setPaytype(rs.getString("paytype"));
+//	            storeDO.setPaytype(rs.getString("paytype"));
 
 	            storeDetails[index] = storeDO;
 	            index++;
