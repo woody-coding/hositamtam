@@ -1,121 +1,137 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    ​<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    
-    <!-- Favicon -->
-     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+​
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
 
-     <!-- G-Market Fonts -->
-     <link
-       href="https://webfontworld.github.io/gmarket/GmarketSans.css"
-       rel="stylesheet"
-     />
- 
-     <!-- Font Awesome -->
-     <script
-       src="https://kit.fontawesome.com/89490613c7.js"
-       crossorigin="anonymous"
-     ></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/postMain.css" />
+<!-- Favicon -->
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
-    <title>post</title>
-    <script defer src="../js/postMain.js"></script>
+<!-- G-Market Fonts -->
+<link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
+	rel="stylesheet" />
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/89490613c7.js"
+	crossorigin="anonymous"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/footer.css" />
+<link rel="stylesheet" href="../css/postMain.css" />
+
+<title>post</title>
+<script defer src="../js/postMain.js"></script>
 </head>
 
 <body>
-   <%@ include file="navi.jsp" %>
-      
-  <div  class="section" id="section1">
-        
-      <div class="black-bg">
-        <div class="white-bg container mt-5">
+	<%@ include file="navi.jsp"%>
+
+	<div class="section" id="section1">
+
+		<div class="black-bg">
+			<div class="white-bg container mt-5">
 
 
-          <form action="">
-            <div class="postCategory row">
-                <h4>카테고리</h4>
-              
-              <div class="left">
-                <label><input type="checkbox" name="" value="">시장질문</label>
-                <label><input type="checkbox" name="" value="">사건사고</label>
-                <label><input type="checkbox" name="" value="">일상</label>
-                <label><input type="checkbox" name="" value="">실종/분실</label>
+				<form action="">
+					<div class="postCategory row">
+						<h4>카테고리</h4>
 
-              </div>
-          
-            </div>
-            <div class="postHead row"><input type="text" placeholder="시끌시끌 제목을 입력하세요."></div>
-            <div class="postPicture row">
-              <h4>사진</h4>
-              <div class="postPictureArea"></div>
-            <button class="btn btn-secondary" id="submit">파일선택</button>
+						<div class="left">
+							<label><input type="checkbox" name="" value="">시장질문</label>
+							<label><input type="checkbox" name="" value="">사건사고</label>
+							<label><input type="checkbox" name="" value="">일상</label>
+							<label><input type="checkbox" name="" value="">실종/분실</label>
+
+						</div>
+
+					</div>
+					<div class="postHead row">
+						<input type="text" placeholder="시끌시끌 제목을 입력하세요.">
+					</div>
+					<div class="postPicture row">
+						<h4>사진</h4>
+						<div class="postPictureArea"></div>
+						<button class="btn btn-secondary" id="submit">파일선택</button>
+
+					</div>
+					<div class="submitBox">
+						<button class="btn btn-primary" id="submit">등록하기</button>
+						<button class="btn btn-secondary" id="close">닫기</button>
+
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<div class="black-bg-modify">
+			<div class="white-bg container mt-5">
+				<form action="">
+					<div class="postCategory row">
+						<h4>카테고리</h4>
+
+						<div class="left">
+							<label><input type="checkbox" name="" value="">시장질문</label>
+							<label><input type="checkbox" name="" value="">사건사고</label>
+							<label><input type="checkbox" name="" value="">일상</label>
+							<label><input type="checkbox" name="" value="">실종/분실</label>
+
+						</div>
+
+					</div>
+					<div class="postHead row">
+						<input type="text" placeholder="시끌시끌 제목을 입력하세요.">
+					</div>
+					<div class="postPicture row">
+						<h4>사진</h4>
+						<div class="postPictureArea"></div>
+						<button class="btn btn-secondary" id="submit">파일선택</button>
+
+					</div>
+					<div class="submitBox">
+						<button class="btn btn-primary" id="submit">수정하기</button>
+						<button class="btn btn-secondary" id="close">닫기</button>
+
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<div class="container mt-5">
+			<span id="mkName">시장번호 ${post.ptitle}의 페이지 입니다</span>
+			<div id="btnPost">
+                <button id="writePost"><i class="bi bi-pencil-square"></i>글쓰기</button>
 
             </div>
-            <div class="submitBox">
-              <button class="btn btn-primary" id="submit">등록하기</button>
-            <button class="btn btn-secondary" id="close">닫기</button>
-             
-            </div>
-          </form>
-          
-        </div>
-      </div>  
-      <div class="black-bg-modify">
-        <div class="white-bg container mt-5">
-          <form action="">
-            <div class="postCategory row">
-                <h4>카테고리</h4>
-              
-              <div class="left">
-                <label><input type="checkbox" name="" value="">시장질문</label>
-                <label><input type="checkbox" name="" value="">사건사고</label>
-                <label><input type="checkbox" name="" value="">일상</label>
-                <label><input type="checkbox" name="" value="">실종/분실</label>
-
-              </div>
-          
-            </div>
-            <div class="postHead row"><input type="text" placeholder="시끌시끌 제목을 입력하세요."></div>
-            <div class="postPicture row">
-              <h4>사진</h4>
-              <div class="postPictureArea"></div>
-            <button class="btn btn-secondary" id="submit">파일선택</button>
-
-            </div>
-            <div class="submitBox">
-              <button class="btn btn-primary" id="submit">수정하기</button>
-            <button class="btn btn-secondary" id="close">닫기</button>
-             
-            </div>
-          </form>
-          
-        </div>
-      </div>    
-      <div class="container mt-5">
-      <span id="mkName">시장번호 ${post.ptitle}의 페이지 입니다</span>
-      <button id="whatMarket">시장 선택하기</button>
-	<hr/>
-	<div id="markets"></div>
-	<hr/>
-        <%-- <div id="mkNameBox">
+			<button id="whatMarket">시장 선택하기</button>
+			<hr />
+			<div id="markets"></div>
+			<hr />
+			<%-- <div id="mkNameBox">
              
             <button id="btnDown"><i class="bi bi-chevron-down"></i></button>
             <button id="btnUp"><i class="bi bi-chevron-up"></i></button>
@@ -143,20 +159,34 @@
             </div>
             
         </div> --%>
-        <!-- <ul class="list"> -->
-    
-         <!--  <li class="tab-button" data-id="5" style="display: none;"></li> -->
+			<!-- <ul class="list"> -->
+
+			<!--  <li class="tab-button" data-id="5" style="display: none;"></li> -->
+
+			<!-- </ul> -->
+			<div class="list">
+			<form method="GET" action="/finalProject/views/postCatrgoryList">
+				<label for="pCategory"></label>
+				<button id="pCategory" name="pCategory" value="hot">인기글</button>
+				<button id="pCategory" name="pCategory" value="que">시장질문</button>
+				<button id="pCategory" name="pCategory" value="acc">사건사고</button>
+				<button id="pCategory" name="pCategory" value="day">일상</button>
+				<button id="pCategory" name="pCategory" value="lost">실종/분실</button>
+				
+			</form>
+			</div>
+			
+       		
+			<!-- <ul class="list">
+          <li class="tab-button" data-id="0">인기글</li>
+          <li class="tab-button " data-id="1">시장질문</li>
+          <li class="tab-button" data-id="2">사건사고</li>
+          <li class="tab-button " data-id="3">일상</li>
+          <li class="tab-button" data-id="4">실종/분실</li>
+          <li class="tab-button" data-id="5" style="display: none;"></li>
           
-        <!-- </ul> -->
-                 <form  method="GET" action="/finalProject/views/postCatrgoryList">
-	<label for="pCategory"></label>
-	<button id="pCategory" name="pCategory" value="hot">인기글</button>
-	<button id="pCategory" name="pCategory" value="que">시장질문</button>
-	<button id="pCategory" name="pCategory" value="acc">사건사고</button>
-	<button id="pCategory" name="pCategory" value="day">일상</button>
-	<button id="pCategory" name="pCategory" value="lost">실종/분실</button>
-	</form>
-   <table id="postlistTable">
+        </ul> -->
+			<!-- <table id="postlistTable">
 		<tr>
 			<th>번호:</th>
 			<th>제목:</th>
@@ -167,9 +197,9 @@
 			<th>작성자:</th>
 			<th>댓글 수:</th>
 			<th>카테고리:</th>
-		</tr>
-	<c:forEach items="${postList}" var="post" varStatus="status">
-		<tr>
+		</tr> -->
+			<%-- <c:forEach items="${postList}" var="post" varStatus="status"> --%>
+			<%-- <tr>
 			<td>${status.count}</td>
 			<td>${post.ptitle}</td>
 			<td>${post.pcontent}</td>
@@ -179,11 +209,30 @@
 			<td>${post.nickname}</td>
 			<td>${post.countcomments}</td>
 			<td>${post.pcategory}</td>
-		</tr>
-	</c:forEach>
-        <!-- <div class="tab-content">
+		</tr> --%>
+			<%-- </c:forEach> --%>
+			<c:forEach items="${postList}" var="post" varStatus="status">
+				<div id="tab-contentBox" class="row">
+
+					<div id="textBox" class="col-8">
+						<p id="tabCategory">${post.pcategory}</p>
+						<!-- <button class="moreContents">더보기</button> -->
+						<p>${post.ptitle}</p>
+						<p>${post.pcontent}</p>
+
+					</div>
+					<div id="imgBox" class="col-4">
+						<img src="${post.pphoto}" >
+						<div id="likeComment">
+							<i class="bi bi-hand-thumbs-up">${post.plikecount}</i>
+							 <i	class="bi bi-chat-left-dots">${post.countcomments}</i>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+			<!-- <div class="tab-content">
             <div id="tab-contentBox">
-                <p id="tabCategory">인기글</p>
+                <p id="tabCategory">${post.pcategory}</p>
                 <p>꽃순이네 어디있나요?</p>
                 <p>아는사람 댓글로 알려주세요</p>
             </div>
@@ -317,17 +366,12 @@
         </div>
   
     </div> -->
-  
- <!-- Footer -->
-  
 
-	</div>
-<%--  <%@ include file="footer.jsp" %> --%>
-  
+			<!-- Footer -->
 
 
 
-
+			<%@ include file="footer.jsp"%>
 </body>
 
 </html>

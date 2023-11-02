@@ -42,43 +42,11 @@
     
 </head>
 <body>
-  
+  <%@ include file="navi.jsp" %>
     <div  class="section" id="section1">
      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
 
-      <header class="mainHeader">
-      <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
-      </div>
-
-      <form id="searchForm" method="get" action="SearchController">
-        <div class="market__search">
-          <input
-            type="text"
-            class="market__searchInput"
-            name="market"
-            id="searchInput"
-            placeholder="   궁금한 시장 이름을 입력하세요. Ex.부평깡통시장"
-          />
-          <button
-            class="market__searchButton"
-            type="submit"
-            name="action"
-            value="search"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </form>
-
-      <nav class="mainHeader__nav">
-        <ul class="mainHeader__menu">
-          <li><a class="mainHeader__menu__item">서비스안내</a></li>
-          <li><a class="mainHeader__menu__item">시끌시끌</a></li>
-          <li><a class="mainHeader__menu__item" id="category">카테고리</a></li>
-        </ul>
-      </nav>
-    </header>
+      
       <!-- header 끝 -->
 
       <div class="listCategory" >
@@ -89,31 +57,32 @@
             
             <p>어떤 시장이 궁금한가요?</p>
             <div class="goCategory">
-              농산물
+              <button id="cateno" name="cateno" value="1">농산물</button>
+	
+            </div>	
+            <div class="goCategory">
+             <button id="cateno" name="cateno" value="2">음식점</button>
             </div>
             <div class="goCategory">
-              수산물
+              <button id="cateno" name="cateno" value="3">가공식품</button>
             </div>
             <div class="goCategory">
-              축산물
+              <button id="cateno" name="cateno" value="4">수산물</button>
             </div>
             <div class="goCategory">
-              가공식품
+              <button id="cateno" name="cateno" value="5">축산물</button>
             </div>
             <div class="goCategory">
-              음식점
+              <button id="cateno" name="cateno" value="6">가정용품</button>
             </div>
             <div class="goCategory">
-              가정용품
+              <button id="cateno" name="cateno" value="7">의류</button>
             </div>
             <div class="goCategory">
-              의류
+              <button id="cateno" name="cateno" value="8">신발</button>
             </div>
             <div class="goCategory">
-              신발
-            </div>
-            <div class="goCategory">
-              기타
+             <button id="cateno" name="cateno" value="9">기타</button>
             </div>
       
           </form>
@@ -124,7 +93,8 @@
       <div id="btnGroup">
         
           <button id="mkList" class="category"><i class="bi bi-basket-fill"></i><br> 시장 리스트 </button>
-          <button id="category" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
+          <!-- <button id="category" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button> -->
+          <a id="category" class="category" href="/finalProject/views/post" class="mainHeader__menu__item"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</a>
           <button id="category" class="category"><i class="bi bi-info-circle-fill"></i><br><a href="#section2">서비스 안내</a></button>
          <!-- 서비스안내 조정 -->
       </div>
