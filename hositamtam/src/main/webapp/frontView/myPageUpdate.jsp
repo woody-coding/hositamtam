@@ -9,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -35,7 +35,7 @@
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">
@@ -75,7 +75,7 @@
           <form id="mypage__update__form">
             <div class="mypage__update__form">
               <label for="new-username" class="mypage__update__id">
-                tmi****
+                ${memberDO.id}
               </label>
 
               <label for="change-nickname" class="mypage__update__label">
@@ -109,7 +109,7 @@
             </div>
 
             <div class="mypage__update__error">
-              비밀번호가 일치하지 않습니다.
+              ${msg}
             </div>
 
             <button class="mypage__update__button" type="submit">

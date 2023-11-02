@@ -38,6 +38,38 @@ public class PostDAO {
 			}
 		}
 	}
+	// 시장 목록
+	public ArrayList<MarketDO> getAllMarket() {
+		ArrayList<MarketDO> marketNameList = new ArrayList<MarketDO>();
+		
+		sql = "select mno, mname from market order by mname asc";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				MarketDO marketDO = new MarketDO();
+				
+				marketDO.setMno(rs.getInt("mno"));
+				marketDO.setMname(rs.getString("mname"));
+				
+				
+				marketNameList.add(marketDO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return marketNameList;
+	}
 	// 전체 글 조회 (최신순)
 	public ArrayList<PostDO> getAllPost(int mno) {
 		ArrayList<PostDO> postList = new ArrayList<PostDO>();
@@ -84,44 +116,6 @@ public class PostDAO {
 		return postList;
 	}
 
-	
-	// 시장 목록 자음별 분류
-	public ArrayList<MarketDO> getAllMarket() {
-		ArrayList<MarketDO> marketNameList = new ArrayList<MarketDO>();
-		
-		sql = "select mno, mname from market";
-
-		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				MarketDO marketDO = new MarketDO();
-
-				marketDO.setMno(rs.getInt("mno"));
-				marketDO.setMname(rs.getString("mname"));
-
-				
-				marketNameList.add(marketDO);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return marketNameList;
-	}
-
-
-	
-	
-	
 	// 해당 시장의 '인기글' 조회
 	public ArrayList<PostDO> getPostHot(int mno) {
 		ArrayList<PostDO> postList = new ArrayList<PostDO>();
@@ -129,7 +123,7 @@ public class PostDAO {
 		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 				+ "(select nickname from member where post.id = member.id) as nickname "
 				+ "FROM post "
-				+ "WHERE mno = ? AND plikecount >= 130"
+				+ "WHERE mno = ?"
 				+ "ORDER BY plikecount DESC";
 
 		try {
@@ -170,19 +164,20 @@ public class PostDAO {
 	
 	
 	
-	// 해당 시장의 '시장질문' 글 조회
-		public ArrayList<PostDO> getPostQue(int mno) {
+	// 카테고리별 글 조회
+		public ArrayList<PostDO> getPostCategory(int mno, String pCategory) {
 			ArrayList<PostDO> postList = new ArrayList<PostDO>();
 			
 			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 					+ "(select nickname from member where post.id = member.id) as nickname "
 					+ "from post "
-					+ "where mno = ? and pcategory = '시장질문' "
+					+ "where mno = ? and pcategory = ? "
 					+ "order by pregdate desc";
 
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, mno);
+				pstmt.setString(2, pCategory);
 				rs = pstmt.executeQuery();
 
 				while (rs.next()) {
@@ -215,146 +210,34 @@ public class PostDAO {
 			}
 			return postList;
 		}
-		
-		
-		
-		
-		// 해당 시장의 '사건사고' 글 조회
-		public ArrayList<PostDO> getPostAcc(int mno) {
-			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+		// 글쓰기 페이지에 시장 이름
+		public String getMarketName(int mno) {
+			String mName = "";
+			sql = "select mname from market where mno = ?";
 			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
-					+ "(select nickname from member where post.id = member.id) as nickname "
-					+ "from post "
-					+ "where mno = ? and pcategory = '사건사고' "
-					+ "order by pregdate desc";
-
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, mno);
 				rs = pstmt.executeQuery();
-
+				
 				while (rs.next()) {
-					PostDO postDO = new PostDO(); // PostDO 객체 생성
-
-					// PostDO 객체의 속성을 설정
-					postDO.setPno(rs.getInt("pno"));
-					postDO.setPtitle(rs.getString("ptitle"));
-					postDO.setPcontent(rs.getString("pcontent"));
-					postDO.setPregdate(rs.getString("pregdate"));
-					postDO.setPphoto(rs.getString("pphoto"));
-					postDO.setPlikecount(rs.getInt("plikecount"));
-					postDO.setNickname(rs.getString("nickname"));
-					postDO.setCountcomments(rs.getInt("countcomments"));
-					postDO.setPcategory(rs.getString("pcategory"));
-
-					// 수정된 PostDO 객체를 리스트에 추가
-					postList.add(postDO);
+					MarketDO marketDO = new MarketDO();
+					
+					marketDO.setMname(rs.getString("mname"));
+					mName = marketDO.getMname();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				if (pstmt != null) {
+				if (stmt != null) {
 					try {
-						pstmt.close();
+						stmt.close();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			}
-			return postList;
-		}
-		
-		// 해당 시장의 '일상' 글 조회
-		public ArrayList<PostDO> getPostDay(int mno) {
-			ArrayList<PostDO> postList = new ArrayList<PostDO>();
-			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
-					+ "(select nickname from member where post.id = member.id) as nickname "
-					+ "from post "
-					+ "where mno = ? and pcategory = '일상' "
-					+ "order by pregdate desc";
-
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, mno);
-				rs = pstmt.executeQuery();
-
-				while (rs.next()) {
-					PostDO postDO = new PostDO(); // PostDO 객체 생성
-
-					// PostDO 객체의 속성을 설정
-					postDO.setPno(rs.getInt("pno"));
-					postDO.setPtitle(rs.getString("ptitle"));
-					postDO.setPcontent(rs.getString("pcontent"));
-					postDO.setPregdate(rs.getString("pregdate"));
-					postDO.setPphoto(rs.getString("pphoto"));
-					postDO.setPlikecount(rs.getInt("plikecount"));
-					postDO.setNickname(rs.getString("nickname"));
-					postDO.setCountcomments(rs.getInt("countcomments"));
-					postDO.setPcategory(rs.getString("pcategory"));
-
-					// 수정된 PostDO 객체를 리스트에 추가
-					postList.add(postDO);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (pstmt != null) {
-					try {
-						pstmt.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			return postList;
-		}
-		
-		// 해당 시장의 '실종/분실' 글 조회
-		public ArrayList<PostDO> getPostLost(int mno) {
-			ArrayList<PostDO> postList = new ArrayList<PostDO>();
-			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
-					+ "(select nickname from member where post.id = member.id) as nickname "
-					+ "from post "
-					+ "where mno = ? and pcategory = '실종/분실' "
-					+ "order by pregdate desc";
-
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, mno);
-				rs = pstmt.executeQuery();
-
-				while (rs.next()) {
-					PostDO postDO = new PostDO(); // PostDO 객체 생성
-
-					// PostDO 객체의 속성을 설정
-					postDO.setPno(rs.getInt("pno"));
-					postDO.setPtitle(rs.getString("ptitle"));
-					postDO.setPcontent(rs.getString("pcontent"));
-					postDO.setPregdate(rs.getString("pregdate"));
-					postDO.setPphoto(rs.getString("pphoto"));
-					postDO.setPlikecount(rs.getInt("plikecount"));
-					postDO.setNickname(rs.getString("nickname"));
-					postDO.setCountcomments(rs.getInt("countcomments"));
-					postDO.setPcategory(rs.getString("pcategory"));
-
-					// 수정된 PostDO 객체를 리스트에 추가
-					postList.add(postDO);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (pstmt != null) {
-					try {
-						pstmt.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			return postList;
+			return mName;
 		}
 		// 해당 pno에 해당되는 글의 모든 정보 가져오기
 		public ArrayList<PostDO> getPcontent(int pno) {

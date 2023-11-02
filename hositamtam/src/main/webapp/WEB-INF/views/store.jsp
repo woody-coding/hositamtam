@@ -174,5 +174,24 @@
       </footer> 
          
 
+	<%-- <form method="GET" action="/finalProject/views/storeDetail">
+		<table>
+			<tr>
+				<th>점포번호:</th>
+				<td>${store.sno}</td>
+			</tr>
+			<tr>
+				<th>점포명:</th>
+				<td>${store.sname}</td>
+			</tr>
+			<tr>
+				<td>
+				<button>상세페이지로</button>
+				<input type="hidden" id="name" name="name" value="${testModel.storeName}">
+				</td>
+			</tr>
+		</table>
+	</form> --%>
+
 </body>
 </html>
