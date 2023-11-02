@@ -21,13 +21,13 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/loginHeader.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/storeDetail.css" />
+    <link rel="stylesheet" href="../css/loginHeader.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/storeDetail.css" />
 
     <!-- JavaScript -->
-    <script type="module" src="src/storeDetailReview.js" defer></script>
-    <script type="module" src="src/anchor.js" defer></script>
+    <script defer src="../js/storeDetailReview.js"></script>
+    <script defer src="../js/anchor.js"></script>
   </head>
   <body>
     <!-- Header -->
@@ -76,7 +76,11 @@
         <button class="storeDetail__modify">점포 수정</button>
       </div>
       <div class="storeDetail__star__name">
-        <span><h4 class="storeDetail__h4 storeDetail__star">⭐ 4.0</h4></span>
+        <span>
+          <h4 class="storeDetail__h4 storeDetail__star">
+            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; 4.0
+          </h4>
+        </span>
         <span>
           <h4 class="storeDetail__h4 storeDetail__name">
             신발원 옆 러시아 음식점
@@ -147,7 +151,12 @@
     <!-- Review Contents -->
     <section id="review__contents" class="max-container">
       <div class="review__contents__total">
-        <span class="review__contents__star">⭐ 4.0</span><span>📝 12</span>
+        <span class="review__contents__star">
+          <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;4.0
+        </span>
+        <span>
+          <i class="fa-regular fa-comment-dots storeDetail__review"></i>&nbsp;12
+        </span>
       </div>
       <hr class="storeDetail__hr" />
       <div class="review__contents__list">
@@ -210,7 +219,9 @@
     <!-- Anchor -->
     <aside>
       <a class="storeDetail__arrow-up" href="#storeDetail" title="back to top">
-        <div class="arrow-up__icon">🔝</div>
+        <div class="arrow-up__icon">
+          <i class="fa-solid fa-arrow-up arrowUp__menu"></i>
+        </div>
       </a>
     </aside>
 
