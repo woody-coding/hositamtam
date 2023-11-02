@@ -16,6 +16,9 @@ public class StoreDO {
     private String mlat;
     private String mlng;
     private int payno;
+    private String mname;
+    private int review;
+    private Double rating;
     
 	public int getSno() {
 		return sno;
@@ -107,5 +110,22 @@ public class StoreDO {
 	public void setPayno(int payno) {
 		this.payno = payno;
 	}
-
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+	public int getReview() {
+		return review;
+	}
+	public void setReview(int review) {
+		this.review = review;
+	}
+	public double getRating() {
+		return rating;
+	}
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
 }
