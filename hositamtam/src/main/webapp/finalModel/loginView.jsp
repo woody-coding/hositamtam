@@ -5,11 +5,37 @@
 
 <html>
 <head>
-    <title>로그인</title>
+    <title>로그인과 검색</title>
     <meta charset="UTF-8" />
+    <script>
+    
+		function init() {
+	        // 검색어 입력 필드에서 Enter 키를 눌렀을 때 검색 실행
+	        document.getElementById("searchInput").addEventListener("keyup", function (event) {
+	            if (event.key === "Enter") { // Enter 키가 눌렸을 때
+	            
+	                const searchInput = document.getElementById("searchInput").value;
+	                const encodedSearchInput = encodeURIComponent(searchInput);
+	                const newURL = "marketTest.jsp?command=search&query=" + encodedSearchInput;
+	                window.location.href = newURL;
+	            }
+	        });
+		}
+	
+		window.addEventListener('load', init);
+		
+    </script>
 </head>
 
 <body>
+
+	<form id="searchBox" action="marketTest.jsp">
+	    <input type="hidden" name="command" value="search" />
+	    <input type="text" id="searchInput" name="query" placeholder="시장 이름을 입력해주세요. ex) 부평깡통시장" />
+	</form>
+
+
+
     <div class="loginform">
         <h1>로그인</h1><br>
         
@@ -29,6 +55,11 @@
 			</c:choose>
         </form>
     </div>
+    
+    
+    
+    
+    <a href="login.jsp?command=logout">${sessionScope.nickname}님/로그아웃</a>
     
 </body>
 </html>

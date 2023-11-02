@@ -537,6 +537,7 @@ public class StoreDAO {
 	            paymentPstmt.executeUpdate();
 	        }
 
+
 	        // 모든 작업이 완료되면 커밋을 수행합니다.
 	        conn.commit();
 	    } catch (SQLException e) {

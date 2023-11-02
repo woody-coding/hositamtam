@@ -16,8 +16,17 @@
 	//	
 	//}
 	if(command != null && command.equals("getStoreInMarket")) {
-		response.sendRedirect("/finalProject/finalModel/storeList.html");
+		pageContext.forward("storeList.jsp");
 	}
+	else if (command != null && command.equals("insertStore")) {
+    	
+        String slat = request.getParameter("slat");
+        String slng = request.getParameter("slng");
+        String param = "?command=insertStorePage&slat=" + slat + "&slng=" +slng";
+        
+		pageContext.forward("marketList.html" + param);
+        // 추출된 값 출력 또는 필요한 작업 수행
+    }
 	
 		
 	

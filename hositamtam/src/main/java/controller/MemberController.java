@@ -56,9 +56,25 @@ public class MemberController {
 	
 	// 헤더
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
-	public String toMain(TestModel testModel) {
-		return "main";
+	public String toMain(HttpSession session, Model model) {
+		// 세션에서 userId 값을 불러옴
+	    String userId = (String) session.getAttribute("userId");
+
+	    // 사용자 정보를 세션에서 가져옴
+	    MemberDO user = (MemberDO) session.getAttribute("user");
+
+	    if (userId != null && user != null) {
+	        // 로그인 상태라면 사용자 정보를 모델에 추가하여 뷰에서 사용 가능
+	        model.addAttribute("userId", userId);
+	        model.addAttribute("user", user); // 사용자 정보를 모델에 추가
+
+	        return "main"; // main.jsp와 같은 뷰로 이동
+	    } else {
+	        // 로그인하지 않은 경우 처리
+	        return "redirect:/views/login"; // 로그인 페이지로 리다이렉트
+	    }
 	}
+	
 	@GetMapping("/views/login")
 	public String toLogin() {
 		return "login";
@@ -69,12 +85,10 @@ public class MemberController {
 	}
 	@GetMapping("/views/post")
 	public String toPost() {
-		int mno = 100;
-		return "redirect:/views/postMain?mno=" + mno;
+		return "redirect:/views/postForMarketList";
 	}
 
 	// marketAndStoreController로 이동
-
 	@GetMapping("/views/market")
 	public String toMarket() {
 		return "redirect:/views/marketList";
@@ -89,43 +103,74 @@ public class MemberController {
 		return "redirect:/views/marketBySearch?keyword=" + keyword;
 	}
 	
-	//회원가입 화면
+
+	// 회원가입 화면
 	@PostMapping("/views/joinMember")
-	public String insert(@ModelAttribute MemberDO command, Model model) {
+	public String insert(@ModelAttribute MemberDO command, Model model) throws Exception {
+	    
+
+//	    String idDuplicateMessage = memberDAO.isIdDuplicate(command);
+//	    String nicknameDuplicateMessage = memberDAO.isNicknameDuplicate(command);
+//
+//	    if (!idDuplicateMessage.isEmpty()) {
+//	        // 아이디 중복 메시지가 비어있지 않으면 중복
+//	        model.addAttribute("msg", idDuplicateMessage);
+//	        viewName = "join";
+//	        
+//	    } else if (!nicknameDuplicateMessage.isEmpty()) {
+//	        // 닉네임 중복 메시지가 비어있지 않으면 중복
+//	        model.addAttribute("msg", nicknameDuplicateMessage);
+//	        viewName = "join";
+//	        
+//	    } else {
+//	        // 중복이 없을 경우 회원 등록
+//	        try {
+//	            memberDAO.joinMember(command);
+//	            viewName = "redirect:/views/joinMember";
+//	        } catch (Exception e) {
+//	            model.addAttribute("msg", e.getMessage());
+//	            model.addAttribute("join", memberDAO.getMember(command.getId()));
+//	            viewName = "join";
+//	        }
+//	    }
+	    
 		String viewName = "";
 		
-		try {
-			memberDAO.joinMember(command);
-			viewName = "redirect:/views/joinMember";
-			
-		}catch(Exception e) {
-			model.addAttribute("msg", e.getMessage());
-			model.addAttribute("join", memberDAO.getMember(command.getId()));
-			
-			viewName = "join";
-		}
-		
-		return viewName;
+	    try {
+            memberDAO.joinMember(command);
+            viewName = "redirect:/views/join";
+        } catch (Exception e) {
+            model.addAttribute("msg", e.getMessage());
+            model.addAttribute("join", memberDAO.getMember(command.getId()));
+            viewName = "join";
+        }
+
+	    return viewName;
 	}
 	
 	
 	//로그인 화면
 	@PostMapping("/views/loginMember")
-	public String loginMember(@ModelAttribute MemberDO command, Model model) {
-		String viewName = "";
-		
+	public String login(@RequestParam String id, @RequestParam String passwd, HttpSession session, Model model) throws Exception {
+	    
 		try {
-//			memberDAO.checkLogin(command);
-			viewName = "redirect:/main";
-			
+//			System.out.println(id + passwd);
+
+		    // 로그인 처리 성공 유무에 따른 화면 출력
+		    if (memberDAO.loginMember(id, passwd)) {
+		        session.setAttribute("userId", id);
+//		        System.out.println(session.getAttribute("userId"));
+		        return "redirect:/views/main"; // 로그인 성공 시 메인 페이지로 이동
+		    } else {
+		        return "redirect:/views/login"; // 로그인 실패 시 다시 로그인 페이지로
+		    }
 		}catch(Exception e) {
-			model.addAttribute("msg", e.getMessage());
-			
-			viewName = "login";
+			return "redirect:/views/login";
 		}
-		return viewName;
+		
 	}
-	
+
+
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
 	public void toMyPage(@RequestParam("id") String id) {

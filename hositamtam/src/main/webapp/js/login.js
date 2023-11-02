@@ -1,34 +1,20 @@
+function submitHandler(event) {
+    let id = document.querySelector('#id').value;
+    let passwd = document.querySelector('#passwd').value;
+    let msgDiv = document.querySelector('#msg'); // 에러 메시지를 표시할 요소
+
+    if (!id || !passwd) {
+        event.preventDefault();
+        msgDiv.innerHTML = '아이디와 비밀번호를 모두 입력해야 합니다.';
+        // 폼 제출을 중단하고 에러 메시지를 표시
+    } else {
+        msgDiv.innerHTML = ''; // 에러 메시지를 지웁니다.
+    }
+}
+
 function init() {
-  let username = document.querySelector('#id');
-  let password = document.querySelector('#passwd');
-  let loginForm = document.querySelector('#login__form');
-  let errorMsg = document.querySelector('.login__error');
-
-  loginForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // 폼 제출을 막습니다.
-
-    let usernameValue = username.value;
-    let passwordValue = password.value;
-
-    // 여기에 유효성 검사 로직을 추가합니다.
-    if (usernameValue.length === 0 || passwordValue.length === 0) {
-      errorMsg.innerHTML = '아이디와 비밀번호를 입력하세요.';
-      return;
-    }else if(){
-		
-		
-	}else if(){
-		
-		
-	}else{
-		
-		
-	}
-
-    // 유효성 검사를 통과하면 로그인 처리를 수행할 수 있습니다.
-    // 여기에서 실제 로그인 처리를 수행합니다.
-    // 로그인이 성공하면 리디렉션 또는 다른 작업을 수행할 수 있습니다.
-  });
+    let join__form = document.querySelector('#login__form');
+    join__form.addEventListener('submit', submitHandler);
 }
 
 window.addEventListener('load', init);

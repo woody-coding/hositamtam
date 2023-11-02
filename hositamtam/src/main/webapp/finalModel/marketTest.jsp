@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,14 +17,37 @@
 		
 			//const storedData = window.localStorage.getItem('marketCategory');
 			//console.log(storedData);
- 			const keyword = '용호';
-		    const marketKeyword = { keyword: keyword };
-		    const marketSearchKeyword = JSON.stringify(marketKeyword);
-		    window.localStorage.setItem('marketSearchKeyword', marketSearchKeyword);
+			
+			
+			//window.localStorage.removeItem('marketSearchKeyword');
+			
+ 			//const keyword = '용호';
+		   // const marketKeyword = { keyword: keyword };
+		   // const marketSearchKeyword = JSON.stringify(marketKeyword);
+		  //  window.localStorage.setItem('marketSearchKeyword', marketSearchKeyword);
 		   // const marketSearchData = window.localStorage.getItem('marketSearchKeyword');
 			//console.log(marketSearchData);
 			
+		// JavaScript를 사용하여 세션에서 정보를 가져와 로컬 스토리지에 저장
+	    
+		function init() {
+			
+			const id = "${id}";
+		    const nickname = "${nickname}";
+			
+			if(id !== null && window.localStorage.getItem("memberInfo") === null) {
 
+			    const member = { id: id, nickname: nickname };
+			    const memberInfo = JSON.stringify(member);
+			    window.localStorage.setItem('memberInfo', memberInfo);
+			}
+			else if(id === null && window.localStorage.getItem("memberInfo") !== null) {
+				window.localStorage.removeItem('memberInfo');
+			}
+
+		}
+		
+	    window.addEventListener('load', init);
 			
 	</script>
 	
