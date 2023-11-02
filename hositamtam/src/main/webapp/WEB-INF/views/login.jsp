@@ -107,7 +107,7 @@
               <label for="password" class="login__label">
                 <input
                   class="login__input"
-                  type="passwd"
+                  type="password"
                   id="passwd"
                   placeholder="비밀번호"
                 />

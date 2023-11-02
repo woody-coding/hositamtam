@@ -1,11 +1,10 @@
-package model;
+package finalModel;
 
 public class StoreDO {
     private int sno;
     private int mno;
     private String id;
-    private int spno;
-    private int sono;
+    private String nickname;
     private String sname;
     private String slat;
     private String slng;
@@ -13,7 +12,9 @@ public class StoreDO {
     private String sphoto;
     private int sclosecount;
     private int sfavoritecount;
-    private int payno;
+    private String scategory;
+    private String mlat;
+    private String mlng;
     
 	public int getSno() {
 		return sno;
@@ -32,18 +33,6 @@ public class StoreDO {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public int getSpno() {
-		return spno;
-	}
-	public void setSpno(int spno) {
-		this.spno = spno;
-	}
-	public int getSono() {
-		return sono;
-	}
-	public void setSono(int sono) {
-		this.sono = sono;
 	}
 	public String getSname() {
 		return sname;
@@ -87,10 +76,28 @@ public class StoreDO {
 	public void setSfavoritecount(int sfavoritecount) {
 		this.sfavoritecount = sfavoritecount;
 	}
-	public int getPayno() {
-		return payno;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setPayno(int payno) {
-		this.payno = payno;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getScategory() {
+		return scategory;
+	}
+	public void setScategory(String scategory) {
+		this.scategory = scategory;
+	}
+	public String getMlat() {
+		return mlat;
+	}
+	public void setMlat(String mlat) {
+		this.mlat = mlat;
+	}
+	public String getMlng() {
+		return mlng;
+	}
+	public void setMlng(String mlng) {
+		this.mlng = mlng;
 	}
 }

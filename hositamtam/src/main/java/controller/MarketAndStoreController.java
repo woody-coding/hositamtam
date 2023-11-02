@@ -48,11 +48,17 @@ public class MarketAndStoreController {
 		model.addAttribute("marketList", marketDAO.getMarketListByItem(name));
 		return "storeDetail";
 	}
+	@GetMapping("/views/storeInsert")
+	public String StoreInsert(@RequestParam String name , Model model) {
+		//수정예정
+		model.addAttribute("marketList", marketDAO.getMarketListByItem(name	));
+		return "storeInsert";
+	}
 	@GetMapping("/views/storeUpdate")
 	public String StoreUpdate(@RequestParam String name , Model model) {
 		//수정예정
 		model.addAttribute("marketList", marketDAO.getMarketListByItem(name	));
-		return "store";
+		return "storeUpdate";
 	}
 	
 

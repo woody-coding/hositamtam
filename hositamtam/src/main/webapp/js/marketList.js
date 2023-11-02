@@ -47,7 +47,18 @@
                 
         
                 var infowindow = new naver.maps.InfoWindow({
-                    content: '<div>' + locations[i].place + '</div><a href="/apiTest/naverMapApi.html">이동하기!</a>'
+                    content: '<div class="goMarket"><div class="up">' + locations[i].place + '</div><div class="down"><a href="/apiTest/naverMapApi.html">이동하기!</a></div></div>', 
+                    // content: '<div class="goMarket"><div class="up">이름이나나나나나나나긴시장</div><div class="down"><a href="/apiTest/naverMapApi.html">이동하기!</a></div></div>', 
+                    maxWidth: 300,
+                    // backgroundColor: "#eee",
+                    // borderColor: "#2db400",
+                    borderWidth: 0,
+                    disableAnchor: true, 
+                    //정보창 꼬리 제거 
+                    // anchorSize: new naver.maps.Size(30, 30),
+                    // anchorSkew: true,
+                    // anchorColor: "#eee",
+                    // pixelOffset: new naver.maps.Point(20, -20)
                 });
         
         
@@ -315,9 +326,9 @@
         
         
         
-        function init() {
+        /*function init() {
         
         }
         
         
-        window.addEventListener('load', init);
+        window.addEventListener('load', init);*/
