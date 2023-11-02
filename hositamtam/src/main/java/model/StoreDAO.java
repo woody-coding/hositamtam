@@ -503,75 +503,124 @@ public class StoreDAO {
 //	}
 
 	// ㅁ.점포 등록
-	public int insertStore(StoreDO storeDO) {
-		int rowCount = 0;
+	public int insertStore(StoreDO storeDO, String[] paytype) {
+	    int rowCount = 0;
+	    PreparedStatement storePstmt = null;
+	    PreparedStatement paymentPstmt = null;
 
-		sql = "INSERT INTO store (sno, mno, id, sname, slat, slng, stype, sphoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	    try {
+	        // store 테이블에 정보 입력
+	        String storeSql = "INSERT INTO store (sno, mno, id, sname, slat, slng, stype, sphoto, payno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	        storePstmt = conn.prepareStatement(storeSql);
 
-		sql = "INSERT INTO store_payment (sno, payno) VALUES (?, ?)";
+	        // store 테이블에 값 설정
+	        storePstmt.setInt(1, storeDO.getSno());
+	        storePstmt.setInt(2, storeDO.getMno());
+	        storePstmt.setString(3, storeDO.getId());
+	        storePstmt.setString(4, storeDO.getSname());
+	        storePstmt.setString(5, storeDO.getSlat());
+	        storePstmt.setString(6, storeDO.getSlng());
+	        storePstmt.setString(7, storeDO.getStype());
+	        storePstmt.setString(8, storeDO.getSphoto());
+	        storePstmt.setInt(9, storeDO.getPayno());
 
-		try {
-			pstmt = conn.prepareStatement(sql);
+	        rowCount = storePstmt.executeUpdate();
 
-			pstmt.setInt(1, storeDO.getSno());
-			pstmt.setInt(2, storeDO.getMno());
-			pstmt.setString(3, storeDO.getId());
-			pstmt.setString(4, storeDO.getSname());
-			pstmt.setString(5, storeDO.getSlat());
-			pstmt.setString(6, storeDO.getSlng());
-			pstmt.setString(7, storeDO.getStype());
-			pstmt.setString(8, storeDO.getSphoto());
-			pstmt.setInt(9, storeDO.getPayno());
+	        // store_payment 테이블에 정보 입력
+	        String paymentSql = "INSERT INTO store_payment (payno, paytype) VALUES (?, ?)";
+	        paymentPstmt = conn.prepareStatement(paymentSql);
 
-			rowCount = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return rowCount;
+	        // paytype는 최대 3개까지 입력 가능
+	        for (String pay : paytype) {
+	            paymentPstmt.setInt(1, storeDO.getPayno());
+	            paymentPstmt.setString(2, pay);
+	            paymentPstmt.executeUpdate();
+	        }
+
+	        // 모든 작업이 완료되면 커밋을 수행합니다.
+	        conn.commit();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        // 에러가 발생했을 경우 롤백을 수행합니다.
+	        try {
+	            if (conn != null) {
+	                conn.rollback();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    } finally {
+	        // PreparedStatement 및 연결을 닫습니다.
+	        try {
+	            if (storePstmt != null) {
+	                storePstmt.close();
+	            }
+	            if (paymentPstmt != null) {
+	                paymentPstmt.close();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+
+	    return rowCount;
 	}
 
 	// ㅂ.점포 수정
 	public int updateStore(StoreDO storeDO) {
-		int rowCount = 0;
+	    int rowCount = 0;
 
-		// 점포를 불러오기
-		String sql = "UPDATE INTO store (sno, mno, id, sname, slat, slng, stype, sphoto)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	    String selectSql = "SELECT * FROM store WHERE sno = ?";
+	    PreparedStatement selectPstmt = null;
+	    PreparedStatement updatePstmt = null;
 
-		try {
-			pstmt = conn.prepareStatement(sql);
+	    try {
+	        selectPstmt = conn.prepareStatement(selectSql);
+	        selectPstmt.setInt(1, storeDO.getSno());
+	        ResultSet resultSet = selectPstmt.executeQuery();
 
-			pstmt.setInt(1, storeDO.getSno());
-			pstmt.setInt(2, storeDO.getMno());
-			pstmt.setString(3, storeDO.getId());
-			pstmt.setString(4, storeDO.getSname());
-			pstmt.setString(5, storeDO.getSlat());
-			pstmt.setString(6, storeDO.getSlng());
-			pstmt.setString(7, storeDO.getStype());
-			pstmt.setString(8, storeDO.getSphoto());
-			pstmt.setInt(9, storeDO.getPayno());
+	        if (resultSet.next()) {
+	            int existingSno = resultSet.getInt("sno");
+	            int existingMno = resultSet.getInt("mno");
+	            String existingId = resultSet.getString("id");
+	            String existingSname = resultSet.getString("sname");
+	            String existingSlat = resultSet.getString("slat");
+	            String existingSlng = resultSet.getString("slng");
+	            String existingStype = resultSet.getString("stype");
+	            String existingSphoto = resultSet.getString("sphoto");
 
-			rowCount = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return rowCount;
+	            String updateSql = "UPDATE store SET mno = ?, id = ?, sname = ?, slat = ?, slng = ?, stype = ?, sphoto = ? WHERE sno = ?";
+	            updatePstmt = conn.prepareStatement(updateSql);
+
+	            updatePstmt.setInt(1, storeDO.getMno());
+	            updatePstmt.setString(2, storeDO.getId());
+	            updatePstmt.setString(3, storeDO.getSname());
+	            updatePstmt.setString(4, storeDO.getSlat());
+	            updatePstmt.setString(5, storeDO.getSlng());
+	            updatePstmt.setString(6, storeDO.getStype());
+	            updatePstmt.setString(7, storeDO.getSphoto());
+	            updatePstmt.setInt(8, storeDO.getSno());
+
+	            rowCount = updatePstmt.executeUpdate();
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (updatePstmt != null) {
+	                updatePstmt.close();
+	            }
+	            if (selectPstmt != null) {
+	                selectPstmt.close();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+
+	    return rowCount;
 	}
-
+	
 	// ㅅ.폐업 제보
 	public int closeStore(StoreDO storeDO) {
 		int rowCount = 0;
