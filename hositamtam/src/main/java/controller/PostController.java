@@ -25,6 +25,7 @@ public class PostController {
 		model.addAttribute("marketList", postDAO.getAllMarket());
 		return "postForMarketList";
 	}
+<<<<<<< Updated upstream
 
 	// 전체글 조회
 	@GetMapping("/views/postMain")
@@ -61,5 +62,11 @@ public class PostController {
 		model.addAttribute("mName", postDAO.getMarketName(mno));
 		
 		return "postList";
+=======
+	@GetMapping("/views/postCatrgoryList")
+	public String MarketList(@RequestParam String pCategory, Model model) {
+//		model.addAttribute("postList", postDAO.getAllPost(pCategory));
+		return "post";
+>>>>>>> Stashed changes
 	}
 }
