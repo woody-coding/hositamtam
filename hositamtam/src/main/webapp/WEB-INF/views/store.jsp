@@ -17,11 +17,11 @@
 		<table>
 			<tr>
 				<th>점포번호:</th>
-				<td>${testModel.no}</td>
+				<td>${store.sno}</td>
 			</tr>
 			<tr>
 				<th>점포명:</th>
-				<td>${testModel.storeName}</td>
+				<td>${store.sname}</td>
 			</tr>
 			<tr>
 				<td>
