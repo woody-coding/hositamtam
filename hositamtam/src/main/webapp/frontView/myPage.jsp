@@ -164,7 +164,7 @@
 	            <td class="myStore__td">${storeDO.sname}</td>
 	            <td class="myStore__td">${storeDO.stype}</td>
 	            <td class="myStore__td">${storeDO.payno}</td>
-	            <td class="myStore__td">음식점</td>
+	            <td class="myStore__td">${storeDO.scategory}</td>
 	          </tr>
           </c:forEach> --%>
           <tr>
@@ -301,7 +301,7 @@
 	            <td class="myStoreLike__td">${storeDO.sname}</td>
 	            <td class="myStoreLike__td">${storeDO.stype}</td>
 	            <td class="myStoreLike__td">${storeDO.payno}</td>
-	            <td class="myStoreLike__td">음식점</td>
+	            <td class="myStoreLike__td">${storeDO.scategory}</td>
 	          </tr>
           </c:forEach> --%>
           <tr>
