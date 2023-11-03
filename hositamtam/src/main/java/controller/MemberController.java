@@ -61,7 +61,7 @@ public class MemberController {
 	}
 	@GetMapping("/views/login")
 	public String toLogin(HttpSession session, Model model) {
-		session.setAttribute("userId", "test");
+		session.setAttribute("userId", "longlee");
 		model.addAttribute("userId", session.getAttribute("userId"));
 		return "login";
 	}
