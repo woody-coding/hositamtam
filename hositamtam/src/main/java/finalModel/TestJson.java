@@ -7,10 +7,10 @@ public class TestJson {
 		PostDAO postDAO = new PostDAO();
 	//	System.out.println(postDAO.getAllPost(100));
 	//	System.out.println(postDAO.getComments(1));
-		System.out.println(postDAO.updateLike(1, "longlee"));
+	//	System.out.println(postDAO.updateLike(1, "longlee"));
 		
 		MarketDAO marketDAO = new MarketDAO();
-	//	System.out.println(marketDAO.getMarketListBySearch("용호"));
+	//	System.out.println(marketDAO.getMarketListBySearch("ㄴㅇㄹㄴㅇ"));
 	//	System.out.println(marketDAO.getMarketListByItem(1));
 		
 		StoreDAO storeDAO = new StoreDAO();

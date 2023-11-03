@@ -115,7 +115,6 @@ public class PostDAO {
 		}
 		return postList;
 	}
-
 	// 해당 시장의 '인기글' 조회
 	public ArrayList<PostDO> getPostHot(int mno) {
 		ArrayList<PostDO> postList = new ArrayList<PostDO>();
@@ -161,9 +160,6 @@ public class PostDAO {
 		}
 		return postList;
 	}
-	
-	
-	
 	// 카테고리별 글 조회
 		public ArrayList<PostDO> getPostCategory(int mno, String pCategory) {
 			ArrayList<PostDO> postList = new ArrayList<PostDO>();
@@ -210,10 +206,11 @@ public class PostDAO {
 			}
 			return postList;
 		}
-		// 글쓰기 페이지에 시장 이름
-		public String getMarketName(int mno) {
-			String mName = "";
-			sql = "select mname from market where mno = ?";
+		// 시장 번호로 시장 이름 가져오기
+		public MarketDO getSelectedMarket(int mno) {
+			MarketDO marketDO = new MarketDO();
+
+			sql = "select mname, mno from market where mno = ?";
 			
 <<<<<<< Updated upstream
 =======
@@ -230,10 +227,9 @@ public class PostDAO {
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()) {
-					MarketDO marketDO = new MarketDO();
 					
 					marketDO.setMname(rs.getString("mname"));
-					mName = marketDO.getMname();
+					marketDO.setMno(rs.getInt("mno"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -246,10 +242,46 @@ public class PostDAO {
 					}
 				}
 			}
-			return mName;
+			return marketDO;
 		}
-		// 해당 pno에 해당되는 글의 모든 정보 가져오기
-		public ArrayList<PostDO> getPcontent(int pno) {
+		// 글등록 기능
+		public int insertPost(PostDO post) {
+			int rowCount = 0;
+			this.sql = "insert into post (pno, mno, id, pregdate, pTitle, pContent, pphoto, plikecount, pcategory)"
+						+ "values (seq_pno.nextval, ?, ?, sysdate, ?, ?, ?, 0, ?) ";
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, post.getMno());
+				pstmt.setString(2, post.getId());
+				pstmt.setString(3, post.getPtitle());
+				pstmt.setString(4, post.getPcontent());
+				pstmt.setString(5, post.getPphoto());
+				pstmt.setString(6, post.getPcategory());
+				
+				System.out.println(post.getMno());
+				System.out.println(post.getId());
+				System.out.println(post.getPtitle());
+				System.out.println(post.getPcontent());
+				System.out.println(post.getPphoto());
+				System.out.println(post.getPcategory());
+				rowCount = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+					try {
+						if(!pstmt.isClosed()) {
+							pstmt.close();
+						}
+					}
+					catch(Exception e) {
+						e.printStackTrace();
+					}
+			}
+			return rowCount;
+		}
+		// pno에 해당되는 글의 모든 정보 가져오기
+		public ArrayList<PostDO> getAllPostInfo(int pno) {
 			ArrayList<PostDO> postList = new ArrayList<PostDO>();
 			
 			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
@@ -263,9 +295,8 @@ public class PostDAO {
 				rs = pstmt.executeQuery();
 
 				while (rs.next()) {
-					PostDO postDO = new PostDO(); // PostDO 객체 생성
-
-					// PostDO 객체의 속성을 설정
+					PostDO postDO = new PostDO(); 
+					
 					postDO.setPno(rs.getInt("pno"));
 					postDO.setPtitle(rs.getString("ptitle"));
 					postDO.setPcontent(rs.getString("pcontent"));
@@ -276,7 +307,6 @@ public class PostDAO {
 					postDO.setCountcomments(rs.getInt("countcomments"));
 					postDO.setPcategory(rs.getString("pcategory"));
 
-					// 수정된 PostDO 객체를 리스트에 추가
 					postList.add(postDO);
 				}
 			} catch (Exception e) {
@@ -292,7 +322,7 @@ public class PostDAO {
 			}
 			return postList;
 		}
-		
+		/*
 		// 해당 pno에 해당되는 글의 모든 댓글 정보 최신순으로 가져오기
 		public ArrayList<PostDO> getComments(int pno) {
 			ArrayList<PostDO> postList = new ArrayList<PostDO>();
@@ -333,6 +363,7 @@ public class PostDAO {
 			}
 			return postList;
 		}
+		*/
 		/*
 		// 해당 pno의 글에 id값을 받아서 좋아요 수 업데이트
 		public String updateLike(int pno, String id) {

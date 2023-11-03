@@ -6,7 +6,7 @@ import java.util.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import model.MemberDO;
+//import model.MemberDO;
 
 public class PostDAO {
 

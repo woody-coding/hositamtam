@@ -57,24 +57,3 @@
     </header>
 </body>
 </html>
-
-
-<%--  로그인 되있으면 바꾸기 
-<c:choose>
-<c:when test="${sessionScope.nickname != null}">
-	<a href="main.jsp?command=logout">${sessionScope.nickname}님/로그아웃</a>&nbsp;&nbsp;
-	</c:when>
-	<c:otherwise>
-		
-		<li><a href="/finalProject/views/login" class="mainHeader__menu__item" id="category">로그인</a></li> 
-       <li><a href="/finalProject/views/join" class="mainHeader__menu__item" id="category">회원가입</a></li>
-	</c:otherwise>
-</c:choose> --%>
-
-
-
-
-
-
-
-
