@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	
+	<h2><% session.getAttribute("userId"); %> 세션에 저장된 아이디</h2>
 	<a href="/finalProject/views/main">메인</a>
 	<a href="/finalProject/views/login">로그인</a>
 	<a href="/finalProject/views/join">회원가입</a>

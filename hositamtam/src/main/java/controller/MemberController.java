@@ -54,13 +54,15 @@ public class MemberController {
 		this.memberDAO = memberDAO;
 	}
 	
-	// 헤더
+	// 헤더	
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
-	public String toMain(TestModel testModel) {
+	public String toMain() {
 		return "main";
 	}
 	@GetMapping("/views/login")
-	public String toLogin() {
+	public String toLogin(HttpSession session, Model model) {
+		session.setAttribute("userId", "test");
+		model.addAttribute("userId", session.getAttribute("userId"));
 		return "login";
 	}
 	@GetMapping("/views/join")
