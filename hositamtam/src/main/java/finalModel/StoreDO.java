@@ -15,6 +15,10 @@ public class StoreDO {
     private String scategory;
     private String mlat;
     private String mlng;
+    private double savgrating;
+    private int sreviewcount;
+    
+    
     
 	public int getSno() {
 		return sno;
@@ -99,5 +103,17 @@ public class StoreDO {
 	}
 	public void setMlng(String mlng) {
 		this.mlng = mlng;
+	}
+	public double getSavgrating() {
+		return savgrating;
+	}
+	public void setSavgrating(double savgrating) {
+		this.savgrating = savgrating;
+	}
+	public int getSreviewcount() {
+		return sreviewcount;
+	}
+	public void setSreviewcount(int sreviewcount) {
+		this.sreviewcount = sreviewcount;
 	}
 }

@@ -1,7 +1,5 @@
 package finalModel;
 
-import java.util.Date;
-
 public class MemberDO {
     private String id;
     private String nickname;

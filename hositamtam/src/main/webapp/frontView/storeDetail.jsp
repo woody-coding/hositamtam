@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +10,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -21,19 +25,19 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/storeDetail.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/storeDetail.css" />
 
     <!-- JavaScript -->
-    <script defer src="../js/storeDetailReview.js"></script>
-    <script defer src="../js/anchor.js"></script>
+    <script defer src="/finalProject/js/storeDetailReview.js"></script>
+    <script defer src="/finalProject/js/anchor.js"></script>
   </head>
   <body>
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">
@@ -72,7 +76,7 @@
         <button class="storeDetail__like">
           <i class="fa-solid fa-heart"></i>
         </button>
-        탐탐 님이 등록한 점포입니다.
+        ${memberDO.nickname} 님이 등록한 점포입니다.
         <button class="storeDetail__modify">점포 수정</button>
       </div>
       <div class="storeDetail__star__name">
@@ -83,30 +87,30 @@
         </span>
         <span>
           <h4 class="storeDetail__h4 storeDetail__name">
-            신발원 옆 러시아 음식점
+            ${storeDO.sname}
           </h4>
         </span>
       </div>
       <div class="storeDetail__storeType">
-        <span class="storeDetail__storeType__title"
-          ><h4 class="storeDetail__h4">점포 형태</h4></span
-        >
-        <span>매장</span>
+        <span class="storeDetail__storeType__title">
+          <h4 class="storeDetail__h4">점포 형태</h4>
+        </span>
+        <span>${storeDO.stype}</span>
       </div>
       <div class="storeDetail__payment">
-        <span class="storeDetail__payment__title"
-          ><h4 class="storeDetail__h4">결제 방식</h4></span
-        >
-        <span>현금 &nbsp;&nbsp;&nbsp; 카드 &nbsp;&nbsp;&nbsp; 계좌이체</span>
+        <span class="storeDetail__payment__title">
+          <h4 class="storeDetail__h4">결제 방식</h4>
+        </span>
+        <span>${storeDO.payno}</span>
       </div>
       <div class="storeDetail__category">
-        <span class="storeDetail__category__title"
-          ><h4 class="storeDetail__h4">취급 품목</h4></span
-        >
-        <span>음식점</span>
+        <span class="storeDetail__category__title">
+          <h4 class="storeDetail__h4">취급 품목</h4>
+        </span>
+        <span>${storeDO.scategory}</span>
       </div>
       <div class="storeDetail__photo">
-        <!-- 등록된 점포 사진 -->
+        ${sphoto}
       </div>
     </section>
 
@@ -116,9 +120,9 @@
           <img src="images/icons8-병아리-60.png" class="review__level__photo" />
         </span> -->
       <div class="review__info">
-        <img src="../images/icons8-병아리-60.png" class="review__level__photo" />
+        <img src="/finalProject/images/icons8-병아리-60.png" class="review__level__photo" />
         <span class="review__ask">
-          탐탐 님 해당 점포에 리뷰를 남겨주세요.
+          ${memberDO.nickname} 님 해당 점포에 리뷰를 남겨주세요.
         </span>
         <span class="review__star">
           <i class="fa-solid fa-star"></i>
@@ -160,14 +164,17 @@
       </div>
       <hr class="storeDetail__hr" />
       <div class="review__contents__list">
-        <section class="review__contents__photo" style="color: #0188cc">
+        <section class="review__contents__photo">
           <img
-            src="../images/icons8-caveman-64.png"
+            src="/finalProject/images/icons8-caveman-64.png"
             class="review__contents__img"
           />
         </section>
         <section class="review__contents__main">
-          <div class="review__contents__name">호탐시탐짱입니당</div>
+          <div class="review__contents__name">
+          	${memberDO.nickname}<br /><br />
+            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;5.0
+          </div>
           <div class="review__contents__ownerInfo">
             리뷰 15 &nbsp; 별점평균 4.5 &nbsp; | &nbsp; 23.10.15
           </div>
@@ -181,14 +188,17 @@
       </div>
       <hr class="storeDetail__hr" />
       <div class="review__contents__list">
-        <section class="review__contents__photo" style="color: #662583">
+        <section class="review__contents__photo">
           <img
-            src="../images/icons8-explorer-60.png"
+            src="/finalProject/images/icons8-explorer-60.png"
             class="review__contents__img"
           />
         </section>
         <section class="review__contents__main">
-          <div class="review__contents__name">쩝쩝박사</div>
+          <div class="review__contents__name">
+          	${memberDO.nickname}<br /><br />
+            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;4.0
+          </div>
           <div class="review__contents__ownerInfo">
             리뷰 20 &nbsp; 별점평균 4.0 &nbsp; | &nbsp; 23.10.10
           </div>
@@ -197,14 +207,17 @@
       </div>
       <hr class="storeDetail__hr" />
       <div class="review__contents__list">
-        <section class="review__contents__photo" style="color: #0e4194">
+        <section class="review__contents__photo">
           <img
-            src="../images/icons8-spaceman-66.png"
+            src="/finalProject/images/icons8-spaceman-66.png"
             class="review__contents__img"
           />
         </section>
         <section class="review__contents__main">
-          <div class="review__contents__name">시장지박령유망주</div>
+          <div class="review__contents__name">
+          ${memberDO.nickname}<br /><br />
+            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;5.0
+          </div>
           <div class="review__contents__ownerInfo">
             리뷰 245 &nbsp; 별점평균 4.5 &nbsp; | &nbsp; 23.10.04
           </div>

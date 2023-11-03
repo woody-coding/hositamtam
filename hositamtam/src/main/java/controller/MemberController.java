@@ -54,15 +54,42 @@ public class MemberController {
 		this.memberDAO = memberDAO;
 	}
 	
-	// 헤더
+	// 헤더	
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
-	public String toMain(TestModel testModel) {
+	public String toMain(HttpSession session, Model model) {
+		
+		// 세션에서 사용자 아이디와 사용자 정보 가져오기
+	    String userId = (String) session.getAttribute("userId");
+	    MemberDO memberInfo = (MemberDO) session.getAttribute("memberInfo");
+
+	    if(userId != null && memberInfo != null) {
+	        // 사용자 정보가 세션에 저장되어 있으면 이 정보를 모델에 추가
+	        model.addAttribute("userId", userId);
+	        model.addAttribute("memberInfo", memberInfo);
+	        
+		}else{
+		    // 로그인된 사용자 정보가 세션에 없음 (로그아웃 상태)
+			
+		    // 처리할 로직 추가
+		}
+		
 		return "main";
 	}
+	
 	@GetMapping("/views/login")
-	public String toLogin() {
+	public String toLogin(Model model) {
 		return "login";
 	}
+	
+	@GetMapping("/views/logout")
+	public String logout(HttpSession session) {
+        // 로그아웃 처리
+		session.removeAttribute("memberInfo"); // 세션에서 사용자 정보 삭제
+	    session.removeAttribute("userId"); // 사용자 아이디도 삭제
+        session.invalidate(); // 세션 초기화
+        return "redirect:/views/main"; // 로그아웃 후 메인 페이지로 리다이렉트
+    }
+	
 	@GetMapping("/views/join")
 	public String toJoin() {
 		return "join";
@@ -122,7 +149,7 @@ public class MemberController {
 		
 	    try {
             memberDAO.joinMember(command);
-            viewName = "redirect:/views/joinMember";
+            viewName = "redirect:/views/login";
         } catch (Exception e) {
             model.addAttribute("msg", e.getMessage());
             model.addAttribute("join", memberDAO.getMember(command.getId()));
@@ -135,26 +162,57 @@ public class MemberController {
 	
 	//로그인 화면
 	@PostMapping("/views/loginMember")
-	public String loginMember(@ModelAttribute MemberDO command, Model model) {
-		String viewName = "";
-		
+	public String login(@RequestParam String id, @RequestParam String passwd, HttpSession session, Model model) throws Exception {
+	    
 		try {
-//			memberDAO.checkLogin(command);
-			viewName = "redirect:/main";
-			
+			System.out.println(id + passwd);
+
+			System.out.println(memberDAO.loginMember(id, passwd));
+		    // 로그인 처리 성공 유무에 따른 화면 출력
+		    if(memberDAO.loginMember(id, passwd)) {
+		        session.setAttribute("userId", id);
+		        model.addAttribute("userId", session.getAttribute("userId"));
+		        
+		        MemberDO memberInfo = memberDAO.getMember(id);
+		        session.setAttribute("memberInfo", memberInfo);
+		        model.addAttribute("memberInfo", memberInfo);
+		        System.out.println("memberInfo");
+		        
+		        return "redirect:/views/main"; // 로그인 성공 시 메인 페이지로 이동
+		        
+		    }else{
+		    	System.out.println("로그인 실패");
+		        return "redirect:/views/login"; // 로그인 실패 시 다시 로그인 페이지로
+		    }
 		}catch(Exception e) {
-			model.addAttribute("msg", e.getMessage());
-			
-			viewName = "login";
+			e.printStackTrace();
+			System.out.println("예외 확인");
+			return "redirect:/views/login";
 		}
-		return viewName;
+		
 	}
+
 
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
-	public void toMyPage(@RequestParam("id") String id) {
-		
+	public String myPage(HttpSession session, Model model) {
+	    String userId = (String) session.getAttribute("userId");
+	    
+	    // 사용자 정보를 가져와서 memberList로 모델에 추가
+	    MemberDO user = memberDAO.getMember(userId);
+	    model.addAttribute("memberList", user);
+
+	    if (userId != null) {
+	        // userId를 모델에 추가하여 마이페이지에서 사용 가능
+	        model.addAttribute("userId", userId);
+
+	        return "myPage"; // 마이페이지 뷰로 이동
+	    } else {
+	        // 로그인하지 않은 경우 처리
+	        return "redirect:/views/login"; // 로그인 페이지로 리다이렉트
+	    }
 	}
+
 	
 	@GetMapping("/views/myPageUpdate")
 	public void toMyPageUpdate(@RequestParam("id") String id) {

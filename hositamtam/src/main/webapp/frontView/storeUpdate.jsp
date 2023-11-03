@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -21,18 +24,18 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/storeInsertAndUpdate.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/storeInsertAndUpdate.css" />
 
     <!-- JavaScript -->
-    <script defer src="../js/storeInsertAndUpdate.js"></script>
+    <script defer src="/finalProject/js/storeInsertAndUpdate.js"></script>
   </head>
   <body>
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">

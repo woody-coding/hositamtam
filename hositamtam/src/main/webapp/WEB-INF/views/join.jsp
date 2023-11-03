@@ -72,7 +72,7 @@
     <section id="join" class="section">
       <div class="max-container">
         <div class="join">
-          <form method="POST" id="join__form">
+          <form method="POST" id="join__form" action="/finalProject/views/joinMember">
             <div class="join__form">
               <label for="id" class="join__label">
                 <input
@@ -80,7 +80,7 @@
                   type="text"
                   id="id"
                   name="id"
-                  placeholder="아이디"
+                  placeholder="아이디" required
                 />
                 <button type="button" class="duplication__check" id="id_check" onclick="checkIdDuplicate()">중복확인</button>
               </label>
@@ -91,7 +91,7 @@
                   type="text"
                   id="nickname"
                   name="nickname"
-                  placeholder="닉네임"
+                  placeholder="닉네임" required
                 />
                 <button type="button" class="duplication__check" id="nickname_check" onclick="checkNicknameDuplicate()">중복확인</button>
               </label>
@@ -102,7 +102,7 @@
                   type="password"
                   id="passwd"
                   name="passwd"
-                  placeholder="비밀번호"
+                  placeholder="비밀번호" required
                 />
               </label>
 
@@ -112,7 +112,7 @@
                   type="password"
                   id="repasswd"
                   name="repasswd"
-                  placeholder="비밀번호 확인"
+                  placeholder="비밀번호 확인" required
                 />
               </label>
 
@@ -122,13 +122,13 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                  placeholder="생년월일"
+                  placeholder="생년월일" required
                 />
               </label>
 
               <label for="gender" class="join__label">
-                <input type="radio"  id="genderm" name="gender" value="men" checked/>남
-                <input type="radio" id="genderw" name="gender" value="women" />여
+                <input type="radio"  id="genderm" name="gender" value="남" checked/>남
+                <input type="radio" id="genderw" name="gender" value="여" />여
               </label>
             </div>
 
@@ -139,7 +139,7 @@
         </div>
       </div>
     </section>
-s
+
     <!-- Footer -->
     <footer id="information" class="section">
       <div class="information__located">

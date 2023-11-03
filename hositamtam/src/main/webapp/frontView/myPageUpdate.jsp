@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -21,17 +24,18 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/myPageUpdate.css" />
 
     <!-- JavaScript -->
+    <script src="/finalProject/js/myPageUpdate.js" charset="UTF-8"></script>
   </head>
   <body>
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">
@@ -56,68 +60,61 @@
 
       <nav class="mainHeader__nav">
         <ul class="mainHeader__menu">
-          <li><a class="mainHeader__menu__item">서비스안내</a></li>
-          <li><a class="mainHeader__menu__item">시끌시끌</a></li>
-          <li><a class="mainHeader__menu__item" id="category">카테고리</a></li>
+          <li><a class="mainHeader__menu__item" href="#">서비스안내</a></li>
+          <li><a class="mainHeader__menu__item" href="#">시끌시끌</a></li>
+          <li><a class="mainHeader__menu__item" href="#">카테고리</a></li>
         </ul>
       </nav>
     </header>
 
     <!-- Main -->
-    <!-- Category -->
-    <!-- <section class="category">
-      <div class="category__menu">
-        <ul class="category__list">
-          <li><a class="category__contents">농산물</a></li>
-          <li><a class="category__contents">가공식품</a></li>
-          <li><a class="category__contents">축산물</a></li>
-          <li><a class="category__contents">의류</a></li>
-          <li><a class="category__contents">신발</a></li>
-        </ul>
-        <ul class="category__list">
-          <li><a class="category__contents">음식점</a></li>
-          <li><a class="category__contents">수산물</a></li>
-          <li><a class="category__contents">가정용품</a></li>
-          <li><a class="category__contents">기타</a></li>
-        </ul>
-      </div>
-    </section> -->
-
-    <!-- Login -->
-    <section id="login" class="section">
+    <!-- My Page Update -->
+    <section id="mypage__update" class="section">
       <div class="max-container">
-        <div class="login">
-          <form id="login__form">
-            <div class="login__form">
-              <label for="username" class="login__label">
+        <div class="mypage__update">
+          <form id="mypage__update__form">
+            <div class="mypage__update__form">
+              <label for="new-username" class="mypage__update__id">
+                ${memberDO.id}
+              </label>
+
+              <label for="change-nickname" class="mypage__update__label">
                 <input
-                  class="login__input"
+                  class="mypage__update__input"
                   type="text"
-                  id="username"
-                  placeholder="아이디"
+                  id="change-nickname"
+                  placeholder="닉네임"
                 />
-                <br />
+                <button class="duplication__check">중복확인</button>
               </label>
 
-              <label for="password" class="login__label">
+              <label for="change-password" class="mypage__update__label">
                 <input
-                  class="login__input"
+                  class="mypage__update__input"
                   type="password"
-                  id="password"
-                  placeholder="비밀번호"
+                  id="change-password"
+                  placeholder="변경할 비밀번호"
                 />
-                <br />
+                <button class="duplication__check">중복확인</button>
               </label>
 
-              <div class="login__error">아이디 혹은 패스워드가 틀렸습니다.</div>
-
-              <div class="login__signup__button">
-                <button class="login__button" type="submit">로그인</button>
-                <button class="signup__button" id="signup-button">
-                  회원가입
-                </button>
-              </div>
+              <label for="confirm-password" class="mypage__update__label">
+                <input
+                  class="mypage__update__input"
+                  type="password"
+                  id="confirm__password"
+                  placeholder="변경할 비밀번호 확인"
+                />
+              </label>
             </div>
+
+            <div class="mypage__update__error">
+              ${msg}
+            </div>
+
+            <button class="mypage__update__button" type="submit">
+              수정하기
+            </button>
           </form>
         </div>
       </div>

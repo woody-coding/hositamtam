@@ -15,6 +15,12 @@
   --color-purple: #662583;
   --color-gray: #a6a6a6;
   --color-lightgray: #d9d9d9;
+  --color-storeIcon: #635994;
+  --color-postIcon: #f95725;
+  --color-reviewIcon: #d4cfd8;
+  --color-storeLikeIcon: #f8312f;
+  --color-thumbsUp: #0866ff;
+  --color-starIcon: #fcd53f;
 
   /* Size */
   --size-max-width: 1200px;
@@ -79,6 +85,7 @@ a {
 
 .mylevel__grade {
   font-size: 1rem;
+  padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
@@ -175,6 +182,22 @@ a {
   margin: 0 0.5rem;
 }
 
+.myStore__icon {
+  color: var(--color-storeIcon);
+}
+
+.myPost__icon {
+  color: var(--color-postIcon);
+}
+
+.myReview__icon {
+  color: var(--color-reviewIcon);
+}
+
+.myStoreLike__icon {
+  color: var(--color-storeLikeIcon);
+}
+
 /* My Activity */
 #myActivity {
   width: 100%;
@@ -243,6 +266,10 @@ a {
   width: 40%;
 }
 
+.myPost__thumbsUp {
+  color: var(--color-thumbsUp);
+}
+
 .myReview__th__name,
 .myReview__td__name {
   width: 25%;
@@ -251,6 +278,10 @@ a {
 .myReview__th__star,
 .myReview__td__star {
   width: 10%;
+}
+
+.myReview__star {
+  color: var(--color-starIcon);
 }
 
 .myReview__th__contents,
@@ -319,7 +350,23 @@ a {
 
 .store__icon,
 .arrow-up__icon {
-  padding: 0.4rem;
+  padding: 0.7rem 0;
+}
+
+.myStore__menu {
+  color: var(--color-storeIcon);
+}
+
+.myPost__menu {
+  color: var(--color-postIcon);
+}
+
+.myReview__menu {
+  color: var(--color-reviewIcon);
+}
+
+.myStoreLike__menu {
+  color: var(--color-storeLikeIcon);
 }
 
 .myPage__store__info,
@@ -360,15 +407,6 @@ a {
   width: 3.5rem;
   height: 3.5rem;
 }
-
-/* .myPage__store:hover .store__icon,
-.myPage__post:hover .store__icon,
-.myPage__review:hover .store__icon,
-.myPage__storeLike:hover .store__icon,
-.myPage__arrow-up:hover .store__icon {
-  padding: 0.7rem;
-  transition: all 200ms ease-in;
-} */
 
 .myPage__store:hover ~ .myPage__store__info,
 .myPage__post:hover ~ .myPage__post__info,

@@ -59,7 +59,18 @@
     
     
     
-    <a href="login.jsp?command=logout">${sessionScope.nickname}님/로그아웃</a>
+    <a href="login.jsp?command=logout">${sessionScope.nickname}님/로그아웃</a><br/>
+    
+    
+    <a href="marketTest.jsp?cateno=1">농산물</a><br/>
+    <a href="marketTest.jsp?cateno=2">음식점</a><br/>
+    <a href="marketTest.jsp?cateno=3">가공식품</a><br/>
+    <a href="marketTest.jsp?cateno=4">수산물</a><br/>
+    <a href="marketTest.jsp?cateno=5">축산물</a><br/>
+    <a href="marketTest.jsp?cateno=6">가정용품</a><br/>
+    <a href="marketTest.jsp?cateno=7">의류</a><br/>
+    <a href="marketTest.jsp?cateno=8">신발</a><br/>
+    <a href="marketTest.jsp?cateno=9">기타</a>
     
 </body>
 </html>
