@@ -649,29 +649,96 @@ public class StoreDAO {
 	}
 
 	// ㅇ.찜하기
-	public int favoriteStore(StoreDO storeDO) {
-		int rowCount = 0;
+	// postDAO를 수정한 것
 
-		sql = "INSERT INTO member_store_favorite (sono, id) VALUES (?, ?)";
+	public String updateLike(int pno, String id) {
+	    JSONArray jsonArray = new JSONArray();
+	    JSONObject jsonObject = new JSONObject();
 
-		try {
-			pstmt = conn.prepareStatement(sql);
+	    try {
+	        // 좋아요 상태 확인
+	        String sqlCheck = "SELECT 1 FROM member_post_like WHERE pno = ? AND id = ?";
+	        Connection conn = null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
 
-			pstmt.setInt(1, storeDO.getSno());
-			pstmt.setInt(2, storeDO.getMno());
+	        try {
+	            conn = getConnection(); // getConnection()은 연결을 가져오는 메서드입니다.
 
-			rowCount = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return rowCount;
+	            pstmt = conn.prepareStatement(sqlCheck);
+	            pstmt.setInt(1, pno);
+	            pstmt.setString(2, id);
+	            rs = pstmt.executeQuery();
+
+	            if (rs.next()) {
+	                // 이미 좋아요를 클릭한 경우: 좋아요 취소
+	                // 좋아요 수 감소 쿼리 실행
+	                String sqlUpdate = "UPDATE post SET plikecount = plikecount - 1 WHERE pno = ?";
+	                pstmt = conn.prepareStatement(sqlUpdate);
+	                pstmt.setInt(1, pno);
+	                pstmt.executeUpdate();
+
+	                // 좋아요 정보 삭제 쿼리 실행
+	                String sqlDelete = "DELETE FROM member_post_like WHERE pno = ? AND id = ?";
+	                pstmt = conn.prepareStatement(sqlDelete);
+	                pstmt.setInt(1, pno);
+	                pstmt.setString(2, id);
+	                pstmt.executeUpdate();
+	            } else {
+	                // 좋아요가 없는 경우 또는 취소된 경우: 좋아요 추가
+	                // 좋아요 수 증가 쿼리 실행
+	                String sqlUpdate = "UPDATE post SET plikecount = plikecount + 1 WHERE pno = ?";
+	                pstmt = conn.prepareStatement(sqlUpdate);
+	                pstmt.setInt(1, pno);
+	                pstmt.executeUpdate();
+
+	                // 좋아요 정보 추가 쿼리 실행
+	                String sqlInsert = "INSERT INTO member_post_like VALUES (?, ?)";
+	                pstmt = conn.prepareStatement(sqlInsert);
+	                pstmt.setInt(1, pno);
+	                pstmt.setString(2, id);
+	                pstmt.executeUpdate();
+	            }
+
+	            // 결과 JSON 객체 생성
+	            jsonObject.put("pno", pno);
+	            jsonObject.put("id", id);
+
+	            // 좋아요 수 조회
+	            String sqlCount = "SELECT plikecount FROM post WHERE pno = ?";
+	            pstmt = conn.prepareStatement(sqlCount);
+	            pstmt.setInt(1, pno);
+	            rs = pstmt.executeQuery();
+
+	            if (rs.next()) {
+	                int plikecount = rs.getInt("plikecount");
+	                jsonObject.put("plikecount", plikecount);
+	            }
+
+	            jsonArray.add(jsonObject);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                if (rs != null) {
+	                    rs.close();
+	                }
+	                if (pstmt != null) {
+	                    pstmt.close();
+	                }
+	                if (conn != null) {
+	                    conn.close();
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return jsonArray.toJSONString();
 	}
 
 	// ㅈ.점포 삭제
