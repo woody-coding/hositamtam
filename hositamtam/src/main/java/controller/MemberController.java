@@ -141,13 +141,18 @@ public class MemberController {
 		try {
 			System.out.println(id + passwd);
 
+			System.out.println(memberDAO.loginMember(id, passwd));
 		    // 로그인 처리 성공 유무에 따른 화면 출력
-		    if (memberDAO.loginMember(id, passwd)) {
+		    if(memberDAO.loginMember(id, passwd)) {
 		        session.setAttribute("userId", id);
 		        model.addAttribute("userId", session.getAttribute("userId"));
+		        MemberDO memberInfo = memberDAO.getMember(id);
+		        model.addAttribute("memberInfo", memberInfo);
+		        System.out.println("memberInfo");
+		        
 		        return "redirect:/views/main"; // 로그인 성공 시 메인 페이지로 이동
 		        
-		    } else {
+		    }else{
 		    	System.out.println("로그인 실패");
 		        return "redirect:/views/login"; // 로그인 실패 시 다시 로그인 페이지로
 		    }
@@ -162,9 +167,24 @@ public class MemberController {
 
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
-	public void toMyPage(@RequestParam("id") String id) {
-		
+	public String myPage(HttpSession session, Model model) {
+	    String userId = (String) session.getAttribute("userId");
+	    
+	    // 사용자 정보를 가져와서 memberList로 모델에 추가
+	    MemberDO user = memberDAO.getMember(userId);
+	    model.addAttribute("memberList", user);
+
+	    if (userId != null) {
+	        // userId를 모델에 추가하여 마이페이지에서 사용 가능
+	        model.addAttribute("userId", userId);
+
+	        return "mypage"; // 마이페이지 뷰로 이동
+	    } else {
+	        // 로그인하지 않은 경우 처리
+	        return "redirect:/views/login"; // 로그인 페이지로 리다이렉트
+	    }
 	}
+
 	
 	@GetMapping("/views/myPageUpdate")
 	public void toMyPageUpdate(@RequestParam("id") String id) {

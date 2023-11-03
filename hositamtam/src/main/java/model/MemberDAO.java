@@ -43,9 +43,9 @@ public class MemberDAO {
 		try {
 			this.pstmt = conn.prepareStatement(sql);
 			this.pstmt.setString(1, id);
-			rs = this.pstmt.executeQuery();
+			this.rs = pstmt.executeQuery();
 			
-			while (rs.next()) {
+			while(rs.next()) {
 				memberDO = new MemberDO(); // MemberDO 객체 생성
 
 				memberDO.setId(rs.getString("id"));
