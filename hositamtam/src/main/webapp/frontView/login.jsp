@@ -91,7 +91,7 @@
     <section id="login" class="section">
       <div class="max-container">
         <div class="login">
-          <form id="login__form">
+          <form method="POST" id="login__form" action="/finalProject/views/loginMember">
             <div class="login__form">
               <label for="id" class="login__label">
                 <input
@@ -104,23 +104,22 @@
                 <br />
               </label>
 
-              <label for="password" class="login__label">
+              <label for="passwd" class="login__label">
                 <input
                   class="login__input"
                   type="password"
                   id="passwd"
+                  name="passwd"
                   placeholder="비밀번호"
                 />
                 <br />
               </label>
 
-              <div class="login__error">${msg}</div>
+              <div class="login__error" id="msg">${error }</div>
 
               <div class="login__signup__button">
-                <button class="login__button" type="submit">로그인</button>
-                <button class="signup__button" id="signup-button">
-                  회원가입
-                </button>
+                <button class="login__button" type="submit" id="login_button">로그인</button>
+                <button class="signup__button" id="signup-button">회원가입</button>
               </div>
             </div>
           </form>

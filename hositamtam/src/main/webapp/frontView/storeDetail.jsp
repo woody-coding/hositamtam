@@ -107,10 +107,10 @@
         <span class="storeDetail__category__title">
           <h4 class="storeDetail__h4">취급 품목</h4>
         </span>
-        <span>음식점</span>
+        <span>${storeDO.scategory}</span>
       </div>
       <div class="storeDetail__photo">
-        <!-- 등록된 점포 사진 -->
+        ${sphoto}
       </div>
     </section>
 
