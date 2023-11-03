@@ -212,15 +212,6 @@ public class PostDAO {
 
 			sql = "select mname, mno from market where mno = ?";
 			
-<<<<<<< Updated upstream
-=======
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
-					+ "(sele	ct nickname from member where post.id = member.id) as nickname "
-					+ "from post "
-					+ "where mno = ? and pcategory = '사건사고' "
-					+ "order by pregdate desc";
-
->>>>>>> Stashed changes
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, mno);
