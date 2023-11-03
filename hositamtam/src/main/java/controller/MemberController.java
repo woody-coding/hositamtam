@@ -144,7 +144,7 @@ public class MemberController {
 		    // 로그인 처리 성공 유무에 따른 화면 출력
 		    if (memberDAO.loginMember(id, passwd)) {
 		        session.setAttribute("userId", id);
-		        System.out.println(session.getAttribute("userId"));
+		        model.addAttribute("userId", session.getAttribute("userId"));
 		        return "redirect:/views/main"; // 로그인 성공 시 메인 페이지로 이동
 		        
 		    } else {
