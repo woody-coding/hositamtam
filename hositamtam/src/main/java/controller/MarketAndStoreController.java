@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.MarketDAO;
+import model.StoreDAO;
+import model.StoreDO;
 
 
 @Controller
 public class MarketAndStoreController {
 
 	private MarketDAO marketDAO = new MarketDAO();
+	private StoreDAO storeDAO = new StoreDAO();
 	
 	public MarketAndStoreController() {
 	}
@@ -37,28 +40,28 @@ public class MarketAndStoreController {
 	}
 	// 점포 조회
 	@GetMapping("/views/store")
-	public String StoreList(@RequestParam String name , Model model) {
+	public String StoreList(@RequestParam int mno, Model model) {
 		//수정예정
-		model.addAttribute("marketList", marketDAO.getMarketListByItem(name));
-		return "store";
+		model.addAttribute("storeList", storeDAO.getStoreList(mno));
+		return "storeList";
 	}
 	@GetMapping("/views/storeDetail")
-	public String StoreDetail(@RequestParam String name , Model model) {
+	public String StoreDetail(@RequestParam int sno, int mno, Model model) {
 		//수정예정
-		model.addAttribute("marketList", marketDAO.getMarketListByItem(name));
-		return "storeDetail";
+		model.addAttribute("storeList", storeDAO.getStoreDetail(mno, sno));
+		return "storeList";
 	}
 	@GetMapping("/views/storeInsert")
-	public String StoreInsert(@RequestParam String name , Model model) {
+	public String StoreInsert(@RequestParam StoreDO storeDO, Model model) {
 		//수정예정
-		model.addAttribute("marketList", marketDAO.getMarketListByItem(name	));
-		return "storeInsert";
+		model.addAttribute("storeList", storeDAO.insertStore(storeDO));
+		return "storeList";
 	}
 	@GetMapping("/views/storeUpdate")
-	public String StoreUpdate(@RequestParam String name , Model model) {
+	public String StoreUpdate(@RequestParam StoreDO storeDO, Model model) {
 		//수정예정
-		model.addAttribute("marketList", marketDAO.getMarketListByItem(name	));
-		return "storeUpdate";
+		model.addAttribute("storeList", storeDAO.updateStore(storeDO));
+		return "storeList";
 	}
 	
 

@@ -42,10 +42,11 @@
     
 </head>
 <body>
+  <%@ include file="navi.jsp" %>
     <div  class="section" id="section1">
      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
 
-      <%@ include file="navi.jsp" %>
+      
       <!-- header 끝 -->
 
       <div class="listCategory" >
@@ -92,12 +93,8 @@
       <div id="btnGroup">
         
           <button id="mkList" class="category"><i class="bi bi-basket-fill"></i><br> 시장 리스트 </button>
-          <button id="goPost" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
-         <!--  <button class="category">
-          <a class="category" href="/finalProject/views/post" ><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</a>
-          
-          </button> -->
-          
+          <!-- <button id="category" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button> -->
+          <a id="category" class="category" href="/finalProject/views/post" class="mainHeader__menu__item"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</a>
           <button id="category" class="category"><i class="bi bi-info-circle-fill"></i><br><a href="#section2">서비스 안내</a></button>
          <!-- 서비스안내 조정 -->
       </div>
@@ -124,7 +121,7 @@
             
           </div>
           <!-- If we need pagination -->
-          <!-- <div class="swiper-pagination"></div> -->
+          <div class="swiper-pagination"></div>
         
           <!-- If we need navigation buttons -->
           <div class="swiper-button-prev"></div>
@@ -212,5 +209,6 @@
         </div>
       </div>
     </footer> 
+    
 </body>
 </html>

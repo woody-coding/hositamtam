@@ -9,65 +9,31 @@
     <title>시장 내 점포 리스트 지도로 뿌리기</title>
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
     <script>
-		/*
-			const mno = 2;
-		    const marketmno = { mno: mno };
-		    const marketMno = JSON.stringify(marketmno);
-		    window.localStorage.setItem('marketMno', marketMno);
-		    
-		  const marketMnoData = window.localStorage.getItem('marketMno');
-			console.log(marketMnoData);
-		*/
-		
-		
-/*		
-
-
-function init() {
-	
-		const memberInfo = window.localStorage.getItem('memberInfo');
-   
-		if (memberInfo) {
-		    const member = JSON.parse(memberInfo);
-		    //console.log('id:', member.id);
-		    //console.log('nickname:', member.nickname);
-		    
-		    currentId = member.id;
-		    currentNickname = member.nickname;
-		} else {
-		    console.log('로컬 스토리지에 멤버 정보가 없습니다.');
-		}
-	
-
-
-
-
-		document.querySelector('#부모 html 태그의 id 값').addEventListener.('click', function(event) {
-       		if (event.target.className === '좋아요 버튼 클래스 값') {
+    
+		// JavaScript를 사용하여 세션에서 정보를 가져와 로컬 스토리지에 저장
+	    
+		function init() {
 			
-	            let currentPno = event.target.getAttribute('id');
-				xhr.onreadystatechange = postLikeAjaxHandler;
-				
-		        let param = '?command=updateLike&pno=' + currentPno + '&id=' + currentId;
-		        xhr.open('GET', 'toAjaxController.jsp' + param, true);
-		        xhr.send();
-	        }
-		});
-
-}
-
-	    document.addEventListener('click', function (event) {
-	        if (event.target.className === '좋아요 버튼 클래스 값') {
-	            const pno = event.target.getAttribute('id');
-	            const marketmno = { pno: pno };
-	            const marketMno = JSON.stringify(marketmno);
-	            window.localStorage.setItem('marketMno', marketMno);
-	            
-	            const marketMnoData = window.localStorage.getItem('marketMno');
-	            console.log(marketMnoData);
-	        }
-	    });
-*/	    
+			const id = "${id}";
+		    const nickname = "${nickname}";
+			
+		    
+		    // 세션 값 o, 로컬 x		=> 로컬에 저장하기		||		세션 값 x, 로컬 o		=> 로컬에서 삭제하기
+			if(id !== null && window.localStorage.getItem("memberInfo") === null) {
+	
+			    const member = { id: id, nickname: nickname };
+			    const memberInfo = JSON.stringify(member);
+			    window.localStorage.setItem('memberInfo', memberInfo);
+			}
+			else if(id === null && window.localStorage.getItem("memberInfo") !== null) {
+				window.localStorage.removeItem('memberInfo');
+			}
+	
+		    
+		}
+		
+	    window.addEventListener('load', init);
+		
 	</script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 </head>
@@ -75,7 +41,14 @@ function init() {
 
 
 <div id="map" style="width:1100px; height:700px;"></div>
-<button id="insertStore">새 점포 등록</button>
+<button id="insertStore">새 점포 등록</button><br/>
+
+<button id="manyReview">리뷰 많은 순</button>
+<button id="manyRating">별점 높은 순</button>
+<button id="manyStoreLike">찜 많은 순</button>
+
+<div id="storeContent"></div>
+
 <script charset="UTF-8" src="storeList.js"></script>
 
 </body>

@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -21,17 +24,18 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/login.css" />
 
     <!-- JavaScript -->
+    <script src="/finalProject/js/login.js" charset="UTF-8"></script>
   </head>
   <body>
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">
@@ -89,11 +93,12 @@
         <div class="login">
           <form id="login__form">
             <div class="login__form">
-              <label for="username" class="login__label">
+              <label for="id" class="login__label">
                 <input
                   class="login__input"
                   type="text"
-                  id="username"
+                  id="id"
+                  name="id"
                   placeholder="아이디"
                 />
                 <br />
@@ -103,13 +108,13 @@
                 <input
                   class="login__input"
                   type="password"
-                  id="password"
+                  id="passwd"
                   placeholder="비밀번호"
                 />
                 <br />
               </label>
 
-              <div class="login__error">아이디 혹은 패스워드가 틀렸습니다.</div>
+              <div class="login__error">${msg}</div>
 
               <div class="login__signup__button">
                 <button class="login__button" type="submit">로그인</button>

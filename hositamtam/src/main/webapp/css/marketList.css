@@ -5,17 +5,17 @@
 	position: relative;
 }
 body{
-	overflow: hidden;
+	overflow: auto;
 }
 #map {
 	width: 70%;
-	height: 1027px;
+	height: 100%;
 	float: left;
 }
 
 #mkListResult {
 	width: 30%;
-	height: 1027px;
+	height: 100%;
 	overflow: auto;
 	/* background-color: #eeeeee; */
 }

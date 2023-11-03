@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -21,19 +24,20 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/myPage.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/myPage.css" />
 
     <!-- JavaScript -->
-    <script defer src="../js/myPageUpdate.js"></script>
-    <script defer src="../js/anchor.js"></script>
+    <script src="/finalProject/js/myPage.js" charset="UTF-8"></script>
+    <script defer src="/finalProject/js/myPageUpdate.js"></script>
+    <script defer src="/finalProject/js/anchor.js"></script>
   </head>
   <body>
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">
@@ -72,20 +76,20 @@
       <div class="mylevel">
         <section class="mylevel__info">
           <div class="mylevel__picture">
-            <img src="../images/icons8-병아리-60.png" />
+            <img src="/finalProject/images/icons8-병아리-60.png" />
           </div>
           <div class="mylevel__name">
-            <div class="mylevel__grade">회원님의 등급</div>
-            <div>시장 햇병아리</div>
+            <div class="mylevel__grade">${memberDO.nickname}님의 등급</div>
+            <div>${memberDO.grade}</div>
           </div>
         </section>
         <div id="mylevel__gage">
           <section class="mylevel__gage">
             <div
               class="mylevel__gage__value"
-              style="width: 35%; background-color: #e6007e"
+              style="width: ${memberDO.exp}%; background-color: #e6007e"
             >
-              35%
+              ${memberDO.exp}%
             </div>
           </section>
         </div>
@@ -101,7 +105,7 @@
 
       <!-- Profile -->
       <div class="myprofile">
-        <div class="myprofile__name">탐탐 님 (tmi****)</div>
+        <div class="myprofile__name">${memberDO.nickname} 님 (${memberDO.id})</div>
         <div class="modify__delete__button">
           <button class="myprofile__modify__button">정보수정</button>
           <button class="myprofile__delete__button">회원탈퇴</button>
@@ -155,12 +159,14 @@
             <th class="myStore__th">결제 방식</th>
             <th class="myStore__th">취급 품목</th>
           </tr>
-          <tr>
-            <td class="myStore__td">괘법르네시떼 거인통닭</td>
-            <td class="myStore__td">매장</td>
-            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
-            <td class="myStore__td">음식점</td>
-          </tr>
+          <%-- <c:forEach >
+	          <tr>
+	            <td class="myStore__td">${storeDO.sname}</td>
+	            <td class="myStore__td">${storeDO.stype}</td>
+	            <td class="myStore__td">${storeDO.payno}</td>
+	            <td class="myStore__td">음식점</td>
+	          </tr>
+          </c:forEach> --%>
           <tr>
             <td class="myStore__td">은하갈비</td>
             <td class="myStore__td">매장</td>
@@ -210,15 +216,17 @@
             <th class="myPost__th">댓글</th>
             <th class="myPost__th">작성일</th>
           </tr>
-          <tr>
-            <td class="myPost__td__title">거인통닭의 실체</td>
-            <td class="myPost__td">일상</td>
-            <td class="myPost__td">
-              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
-            </td>
-            <td class="myPost__td">0</td>
-            <td class="myPost__td">2023-10-04</td>
-          </tr>
+          <%-- <c:forEach >
+	          <tr>
+	            <td class="myPost__td__title">${postDO.ptitle}</td>
+	            <td class="myPost__td">${postDO.pcategory}</td>
+	            <td class="myPost__td">
+	              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;${postDO.plikecount}
+	            </td>
+	            <td class="myPost__td">${postDO.countcomments}</td>
+	            <td class="myPost__td">${postDO.pregdate}</td>
+	          </tr>
+          </c:forEach> --%>
           <tr>
             <td class="myPost__td__title">
               핫둘셋넷다여일여아열핫둘셋넷다여일여아열
@@ -248,16 +256,18 @@
             <th class="myReview__th__contents">내용</th>
             <th class="myReview__th">작성일</th>
           </tr>
-          <tr>
-            <td class="myReview__td__name">괘법르네시떼 거인통닭</td>
-            <td class="myReview__td__star">
-              <i class="fa-solid fa-star myReview__star"></i> 5.0
-            </td>
-            <td class="myReview__td__contents">
-              이렇게 맛있는 치킨은 제 인생 처음이에요 !
-            </td>
-            <td class="myReview__td">2023-10-04</td>
-          </tr>
+          <%-- <c:forEach >
+	          <tr>
+	            <td class="myReview__td__name">${storeDO.sname}</td>
+	            <td class="myReview__td__star">
+	              <i class="fa-solid fa-star myReview__star"></i> 5.0
+	            </td>
+	            <td class="myReview__td__contents">
+	              이렇게 맛있는 치킨은 제 인생 처음이에요 !
+	            </td>
+	            <td class="myReview__td">2023-10-04</td>
+	          </tr>
+          </c:forEach> --%>
           <tr>
             <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
             <td class="myReview__td__star">
@@ -286,12 +296,14 @@
             <th class="myStoreLike__th">결제 방식</th>
             <th class="myStoreLike__th">취급 품목</th>
           </tr>
-          <tr>
-            <td class="myStoreLike__td">괘법르네시떼 거인통닭</td>
-            <td class="myStoreLike__td">매장</td>
-            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
-            <td class="myStoreLike__td">음식점</td>
-          </tr>
+          <%-- <c:forEach >
+	          <tr>
+	            <td class="myStoreLike__td">${storeDO.sname}</td>
+	            <td class="myStoreLike__td">${storeDO.stype}</td>
+	            <td class="myStoreLike__td">${storeDO.payno}</td>
+	            <td class="myStoreLike__td">음식점</td>
+	          </tr>
+          </c:forEach> --%>
           <tr>
             <td class="myStoreLike__td">순희닭강정</td>
             <td class="myStoreLike__td">매장</td>
