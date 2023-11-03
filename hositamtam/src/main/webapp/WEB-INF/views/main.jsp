@@ -42,7 +42,6 @@
     
 </head>
 <body>
-  
     <div  class="section" id="section1">
      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
 
@@ -213,6 +212,5 @@
         </div>
       </div>
     </footer> 
-    
 </body>
 </html>

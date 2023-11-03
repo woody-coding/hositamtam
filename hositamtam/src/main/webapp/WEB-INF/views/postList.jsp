@@ -5,29 +5,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
 <title>postList.jsp</title>
 </head>
 <body>
-	<h3>호심탐탐의 시끌시끌 페이지 입니다</h3>
+	<h3>호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</h3>
 	<button id="whatMarket">시장 선택하기</button>
 	<br/>
 	<form method="GET" action="/finalProject/views/toPostUpdate">
 	<label for="mno"></label>
 	<button>글 등록</button>
-	<input type="hidden" id="mno" name="mno" value="${mno}">
+	<input type="hidden" id="mno" name="mno" value="${market.mno}">
 	</form>
 	<hr/>
 	<form method="GET" action="/finalProject/views/postMain">
 	<label for="mno"></label>
 	<button>전체글</button>
-	<input type="hidden" id="mno" name="mno" value="${mno}">
+	<input type="hidden" id="mno" name="mno" value="${market.mno}">
 	</form>
 	<br/>
 	<form method="GET" action="/finalProject/views/postHot">
 	<label for="mno"></label>
 	<button>인기글</button>
-	<input type="hidden" id="mno" name="mno" value="${mno}">
+	<input type="hidden" id="mno" name="mno" value="${market.mno}">
 	</form>
 	<br/>
 	<form  method="GET" action="/finalProject/views/postCategory">
@@ -36,7 +35,7 @@
 	<button id="pCategory" name="pCategory" value="도와주세요">도와주세요</button>
 	<button id="pCategory" name="pCategory" value="소통해요">소통해요</button>
 	<button id="pCategory" name="pCategory" value="시장소식">시장소식</button>
-	<input type="hidden" id="mno" name="mno" value="${mno}">
+	<input type="hidden" id="mno" name="mno" value="${market.mno}">
 	</form>
 	
 	

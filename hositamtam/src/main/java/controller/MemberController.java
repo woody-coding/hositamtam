@@ -54,8 +54,9 @@ public class MemberController {
 		this.memberDAO = memberDAO;
 	}
 	
-	// 헤더
+	// 헤더	
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
+
 	public String toMain(HttpSession session, Model model) {
 		// 세션에서 userId 값을 불러옴
 	    String userId = (String) session.getAttribute("userId");
@@ -73,10 +74,13 @@ public class MemberController {
 	        // 로그인하지 않은 경우 처리
 	        return "redirect:/views/login"; // 로그인 페이지로 리다이렉트
 	    }
+
 	}
 	
 	@GetMapping("/views/login")
-	public String toLogin() {
+	public String toLogin(HttpSession session, Model model) {
+		session.setAttribute("userId", "longlee");
+		model.addAttribute("userId", session.getAttribute("userId"));
 		return "login";
 	}
 	@GetMapping("/views/join")
