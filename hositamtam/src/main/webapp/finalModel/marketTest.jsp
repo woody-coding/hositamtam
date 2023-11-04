@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,6 @@
     <title>간단한 지도 표시하기</title>
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="market.css">
 </head>
 <body>
 
