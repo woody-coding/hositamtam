@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="navi.jsp" %>
 
+
+
+
+
+
+
+
+
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

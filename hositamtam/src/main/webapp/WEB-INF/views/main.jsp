@@ -42,11 +42,12 @@
     
 </head>
 <body>
+	<%@ include file="navi.jsp" %>
+
     <div  class="section" id="section1">
      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
 
-      <%@ include file="navi.jsp" %>
-      <!-- header 끝 -->
+      
 
       <div class="listCategory" >
         <div class="close"></div>
