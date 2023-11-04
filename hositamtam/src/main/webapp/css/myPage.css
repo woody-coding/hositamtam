@@ -60,7 +60,7 @@ a {
   display: block;
   align-items: center;
   text-align: center;
-  margin: 9rem 0 4rem 5rem;
+  margin: 9rem 0 0rem 5rem;
   padding: 40px;
   width: 500px;
   border: 3px solid var(--color-accent);
@@ -117,7 +117,7 @@ a {
   display: block;
   align-items: center;
   text-align: center;
-  margin: 9rem 5rem 4rem 0;
+  margin: 9rem 5rem 0rem 0;
   padding: 40px;
   width: 500px;
   border: 3px solid var(--color-accent);
@@ -210,7 +210,7 @@ a {
 }
 
 .myActivity {
-  margin: 0 5rem 4rem;
+  margin: 0 5rem 5rem;
 }
 
 .myStore,
@@ -219,6 +219,7 @@ a {
 .myStoreLike {
   display: flex;
   justify-content: space-between;
+  margin-top: 5rem;
   margin-bottom: 1rem;
 }
 
@@ -298,10 +299,8 @@ a {
   margin-top: 0.3rem;
   border: none;
   border-bottom: 1px solid var(--color-gray);
-  /* border-radius: 4px; */
   color: var(--color-gray);
   background-color: var(--color-background);
-  /* background-color: var(--color-accent); */
 }
 
 /* Anchor */
@@ -324,27 +323,22 @@ a {
 }
 
 .myPage__store {
-  /* bottom: 19rem; */
   bottom: 44.25rem;
 }
 
 .myPage__post {
-  /* bottom: 15rem; */
   bottom: 40.25rem;
 }
 
 .myPage__review {
-  /* bottom: 11rem; */
   bottom: 36.25rem;
 }
 
 .myPage__storeLike {
-  /* bottom: 7rem; */
   bottom: 32.25rem;
 }
 
 .myPage__arrow-up {
-  /* bottom: 3rem; */
   bottom: 28.25rem;
 }
 
