@@ -271,7 +271,7 @@ public class StoreDAO {
 	                + "LEFT JOIN member_store_favorite f ON s.sno = f.sno "
 	                + "LEFT JOIN store_payment sp ON s.sno = sp.sno "
 	                + "LEFT JOIN payment p ON sp.payno = p.payno "
-	                + "WHERE s.mno = ? AND s.sno = ? "
+	                + "WHERE s.sno = ? "
 	                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto, p.paytype "
 	                + "ORDER BY COUNT(r.sno) DESC";
 
@@ -310,6 +310,9 @@ public class StoreDAO {
 	    return storeDetails;
 	}
 
+	
+	// 점포의 결제타입을 반환
+	
 	
 //	// ㄹ-1-a.점포 기본정보 반환
 //	
@@ -393,114 +396,8 @@ public class StoreDAO {
 //	}
 //	
 	
-	// ㄹ-2.점포 상세페이지의 하단에, 후기이력 반환 (닉네임, 리뷰 수, 평점, 작성일)
 	
-	public ArrayList<ReviewDO> getStoreReviewBySno(int sno) {
-	    ArrayList<ReviewDO> storeReviewList = new ArrayList<>();
 
-	    try {
-	        String idSql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
-	        PreparedStatement idPstmt = conn.prepareStatement(idSql);
-	        idPstmt.setInt(1, sno);
-	        ResultSet idRs = idPstmt.executeQuery();
-
-	        String reviewSql = "SELECT COUNT(id) AS reviewcount, AVG(rating) AS rating_avg, MAX(regdate) AS last_review_date FROM review WHERE id = ? AND sno = ?";
-	        PreparedStatement reviewPstmt = conn.prepareStatement(reviewSql);
-
-	        while (idRs.next()) {
-	            String id = idRs.getString("id");
-	            reviewPstmt.setString(1, id);
-	            reviewPstmt.setInt(2, sno);
-	            
-	            ResultSet reviewRs = reviewPstmt.executeQuery();
-	            ReviewDO reviewDO = new ReviewDO();
-	            reviewDO.setNickname(id);
-
-	            while (reviewRs.next()) {
-	                reviewDO.setReviewcount(reviewRs.getInt("reviewcount"));
-	                reviewDO.setRrating(reviewRs.getDouble("rating_avg"));
-	                reviewDO.setRregdate(reviewRs.getString("last_review_date"));
-	            }
-
-	            storeReviewList.add(reviewDO);
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-
-	    return storeReviewList;
-	}
-	
-//	// ㄹ-2-a. 특정 sno에 대한 id목록 저장
-//	public ArrayList<ReviewDO> getIdList(int sno) {
-//	    ArrayList<ReviewDO> idList = new ArrayList<ReviewDO>();
-//	    
-//	    try {
-//	        sql = "SELECT id FROM review WHERE sno = ? ORDER BY rregdate DESC";
-//	        
-//	     			PreparedStatement pstmt = conn.prepareStatement(sql);
-//	     			pstmt.setInt(1, sno); // sno 매개변수 사용
-//	     			ResultSet rs = pstmt.executeQuery();
-//
-//	     			// 결과셋 처리
-//	     			while (rs.next()) {
-//	     				ReviewDO reviewDO = new ReviewDO();
-//	     				reviewDO.setId(rs.getString("id")); 
-//
-//	     				idList.add(reviewDO);
-//	     			}
-//	     		} catch (SQLException e) {
-//	     			e.printStackTrace();
-//	     		} finally {
-//	     			try {
-//	     				if (pstmt != null)
-//	     					pstmt.close();
-//	     			} catch (SQLException e) {
-//	     				e.printStackTrace();
-//	     			}
-//	     		}
-//	     		return idList;
-//	     	}
-//	
-//	// ㄹ-2-b. 리스트에 있는 모든 ID에 대한 리뷰정보 검색
-//	public ArrayList<ReviewDO> getStoreReviewById(ArrayList<String> idList, int sno) {
-//	    ArrayList<ReviewDO> storeReviewList = new ArrayList<>();
-//
-//	    try {
-//	        String sql = "SELECT COUNT(id) AS reviewcount, AVG(rating) AS rating_avg, MAX(regdate) AS last_review_date FROM review WHERE id = ? AND sno = ?";
-//	        PreparedStatement pstmt = conn.prepareStatement(sql);
-//
-//	        for (String id : idList) {
-//	            pstmt.setString(1, id); // id 리스트 요소 사용
-//	            pstmt.setInt(2, sno); // sno 매개변수 사용
-//
-//	            ResultSet rs = pstmt.executeQuery();
-//
-//	            // 결과셋 처리
-//	            while (rs.next()) {
-//	                ReviewDO reviewDO = new ReviewDO();
-//	                reviewDO.setNickname(id); // 리뷰를 작성한 ID
-//
-//	                // 리뷰 수, 평균 평점, 최근 리뷰 작성일 설정
-//	                reviewDO.setReviewcount(rs.getInt("reviewcount"));
-//	                reviewDO.setRrating(rs.getDouble("rating_avg"));
-//	                reviewDO.setRregdate(rs.getString("last_review_date"));
-//
-//	                storeReviewList.add(reviewDO);
-//	            }
-//	        }
-//	    } catch (SQLException e) {
-//	        e.printStackTrace();
-//	    } finally {
-//	        try {
-//	            if (pstmt != null)
-//	                pstmt.close();
-//	        } catch (SQLException e) {
-//	            e.printStackTrace();
-//	        }
-//	    }
-//	    return storeReviewList;
-//	}
 
 	// ㅁ.점포 등록
 	public int insertStore(StoreDO storeDO, String[] paytype) {
@@ -651,7 +548,7 @@ public class StoreDAO {
 	// ㅇ.찜하기
 	// postDAO를 수정한 것
 
-	public String updateLike(int pno, String id) {
+	public String updateLike(int sno, String id) {
 	    JSONArray jsonArray = new JSONArray();
 	    JSONObject jsonObject = new JSONObject();
 
@@ -693,52 +590,7 @@ public class StoreDAO {
 	                pstmt.executeUpdate();
 
 	                // 좋아요 정보 추가 쿼리 실행
-	                String sqlInsert = "INSERT INTO member_post_like VALUES (?, ?)";
-	                pstmt = conn.prepareStatement(sqlInsert);
-	                pstmt.setInt(1, pno);
-	                pstmt.setString(2, id);
-	                pstmt.executeUpdate();
-	            }
-
-	            // 결과 JSON 객체 생성
-	            jsonObject.put("pno", pno);
-	            jsonObject.put("id", id);
-
-	            // 좋아요 수 조회
-	            String sqlCount = "SELECT plikecount FROM post WHERE pno = ?";
-	            pstmt = conn.prepareStatement(sqlCount);
-	            pstmt.setInt(1, pno);
-	            rs = pstmt.executeQuery();
-
-	            if (rs.next()) {
-	                int plikecount = rs.getInt("plikecount");
-	                jsonObject.put("plikecount", plikecount);
-	            }
-
-	            jsonArray.add(jsonObject);
-
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            try {
-	                if (rs != null) {
-	                    rs.close();
-	                }
-	                if (pstmt != null) {
-	                    pstmt.close();
-	                }
-	                if (conn != null) {
-	                    conn.close();
-	                }
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-
-	    return jsonArray.toJSONString();
+	           
 	}
 
 	// ㅈ.점포 삭제

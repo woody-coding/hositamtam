@@ -18,7 +18,7 @@ public class StoreDO {
     private int payno;
     private String mname;
     private int review;
-    private Double rating;
+    private double rating;
     private String content;
     private String[] paytype;
     
