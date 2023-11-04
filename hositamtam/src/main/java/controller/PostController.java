@@ -1,5 +1,6 @@
 package controller;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import model.PostDAO;
 public class PostController {
 	
 	private PostDAO postDAO = new PostDAO();
-	
 	public PostController() {
 	}
 	
@@ -59,12 +59,23 @@ public class PostController {
 	// 글 등록 기능
 	@PostMapping("/views/postUpdate")
 	public String PostUpdate(@ModelAttribute PostDO command, Model model) {
-		System.out.println("맵핑 성공");
 		postDAO.insertPost(command);
 		model.addAttribute("postList", postDAO.getAllPost(command.getMno()));
-		model.addAttribute("market", postDAO.getSelectedMarket(command.getMno()));
-		System.out.println("뷰 처리");
 		return "postList";
+	}
+	// 게시글 상세 페이지 이동
+	@GetMapping("/views/toPostDetail")
+	public String toPostDetail(@RequestParam int pno, Model model) {
+		model.addAttribute("post", postDAO.getAllPostInfo(pno));
+		model.addAttribute("market", postDAO.getMarketNameByPno(pno));
+		model.addAttribute("commentList", postDAO.getComment(pno));
+		return "postDetail";
+	}
+	// 댓글 등록 시 
+	@PostMapping("/views/InsertComment")
+	public String InsertComment(@ModelAttribute PostDO command, Model model) {
+		postDAO.InsertComment(command);
+		return "redirect:/views/toPostDetail?pno=" + command.getPno();	
 	}
 		
 	@GetMapping("/views/postCatrgoryList")
