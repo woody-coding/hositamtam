@@ -357,7 +357,6 @@ public class MemberDAO {
 	// 5. 회원 정보 삭제
 	public int deleteMember(String id) {
 		int rowCount = 0;
-		
 		this.sql = "delete from member where id = ?";
 		
 		try {
@@ -365,10 +364,8 @@ public class MemberDAO {
 			pstmt.setString(1, id);
 			
 			rowCount = pstmt.executeUpdate();
-			
 		}catch(Exception e) {
 			e.printStackTrace();
-			
 		}finally{
 			try {
 				if(!pstmt.isClosed()) {
@@ -381,6 +378,7 @@ public class MemberDAO {
 		
 		return rowCount;
 	}
+	
 	
 	public void closeConn() {
 		try {
