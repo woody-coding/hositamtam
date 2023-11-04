@@ -56,31 +56,12 @@ public class MemberController {
 	
 	// 헤더	
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
-
-	public String toMain(HttpSession session, Model model) {
-		// 세션에서 userId 값을 불러옴
-	    String userId = (String) session.getAttribute("userId");
-
-	    // 사용자 정보를 세션에서 가져옴
-	    MemberDO user = (MemberDO) session.getAttribute("user");
-
-	    if(userId != null ) {
-	        // 로그인 상태라면 사용자 정보를 모델에 추가하여 뷰에서 사용 가능
-	        model.addAttribute("userId", userId);
-	        model.addAttribute("user", user); // 사용자 정보를 모델에 추가
-
-	        return "main"; // main.jsp와 같은 뷰로 이동
-	    }else {
-	        // 로그인하지 않은 경우 처리
-	        return "redirect:/views/login"; // 로그인 페이지로 리다이렉트
-	    }
-
+	public String toMain(Model model) {
+		return "main";
 	}
 	
 	@GetMapping("/views/login")
-	public String toLogin(HttpSession session, Model model) {
-		session.setAttribute("userId", "longlee");
-		model.addAttribute("userId", session.getAttribute("userId"));
+	public String toLogin(Model model) {
 		return "login";
 	}
 	@GetMapping("/views/join")
@@ -163,7 +144,7 @@ public class MemberController {
 		    // 로그인 처리 성공 유무에 따른 화면 출력
 		    if (memberDAO.loginMember(id, passwd)) {
 		        session.setAttribute("userId", id);
-		        System.out.println(session.getAttribute("userId"));
+		        model.addAttribute("userId", session.getAttribute("userId"));
 		        return "redirect:/views/main"; // 로그인 성공 시 메인 페이지로 이동
 		        
 		    } else {

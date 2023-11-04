@@ -66,4 +66,10 @@ public class PostController {
 		System.out.println("뷰 처리");
 		return "postList";
 	}
+		
+	@GetMapping("/views/postCatrgoryList")
+	public String MarketList(@RequestParam String pCategory, Model model) {
+//		model.addAttribute("postList", postDAO.getAllPost(pCategory));
+		return "post";
+	}
 }

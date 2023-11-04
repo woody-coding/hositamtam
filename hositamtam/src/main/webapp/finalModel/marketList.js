@@ -56,7 +56,7 @@ function init() {
 
         let currentKeyword = decodeURIComponent(keywordParam);
         
-        document.querySelector('#howGetMarket').innerHTML = "'"+ currentKeyword + "' (으)로 검색된 결과입니다.";	
+        document.querySelector('#mkSearchName').innerHTML = "'"+ currentKeyword + "' (으)로 검색된 결과입니다.";	
         
         
         xhr.onreadystatechange = marketAjaxHandler;
@@ -201,16 +201,15 @@ function marketAjaxHandler() {
 			//'|' + allMarketList[i].maddr + '| 화장실 여부: ' + allMarketList[i].mtoilet + '| 주차가능 여부: ' + allMarketList[i].mparking + '|' + allMarketList[i].mtel + '</div>';
 			
 			marketContents += '<div id="'+ allMarketList[i].mno +'" class="personalMcontent">' +
+					            '<div class="mkcontainer" class="row">' +
 					            '<div class="col-9">' +
 					                '<p id="mkName">' + allMarketList[i].mname + '</p>' +
 					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
 					                '<span>화장실 ' + allMarketList[i].mtoilet + '</span>주차장 ' + allMarketList[i].mparking + '</span>' +
 					            '</div>' +
-					        '</div>'
+					        '</div></div>'
 		}
 
-		
-		
 		document.querySelector('#marketContent').innerHTML = marketContents;
         
         
@@ -263,13 +262,18 @@ function showMarkers() {
         });
 
         var infowindow = new naver.maps.InfoWindow({
-            content: '<div>' + locations[i].mname + '</div><a href="storeList.jsp?mno=' + locations[i].mno + '">이동하기!</a>'
+ content: '<div class="goMarket"><div class="up">' + locations[i].place + '</div><div class="down"><a href="/apiTest/naverMapApi.html">이동하기!</a></div></div>', 
+                      maxWidth: 300,
+                    // backgroundColor: "#eee",
+                    // borderColor: "#2db400",
+                    borderWidth: 0,
+                    disableAnchor: true, 
+                    //정보창 꼬리 제거 
+                    // anchorSize: new naver.maps.Size(30, 30),
+                    // anchorSkew: true,
+                    // anchorColor: "#eee",
+                    // pixelOffset: new naver.maps.Point(20, -20)
         });
-
-
-
-
-
 
 
 
