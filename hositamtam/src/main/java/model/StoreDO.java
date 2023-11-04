@@ -20,9 +20,9 @@ public class StoreDO {
     private int payno;
     private String mname;
     private int review;
-    private Double rating;
+    private double rating;
     private String content;
-    private String[] paytype;
+    private String paytype;
     
     public StoreDO() {
     	
@@ -145,11 +145,11 @@ public class StoreDO {
 	public void setRating(Double rating) {
 		this.rating = rating;
 	}
-	public String[] getPaytype() {
+	public String getPaytype() {
 		return paytype;
 	}
-	public void setPaytype(String[] paytype) {
-		this.paytype = paytype;
+	public void setPaytype(String string) {
+		this.paytype = string;
 	}
 	public double getSavgrating() {
 		return savgrating;
@@ -163,5 +163,6 @@ public class StoreDO {
 	public void setSreviewcount(int sreviewcount) {
 		this.sreviewcount = sreviewcount;
 	}
+
 	
 }

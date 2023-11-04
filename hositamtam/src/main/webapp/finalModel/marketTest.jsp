@@ -11,6 +11,10 @@
     <title>간단한 지도 표시하기</title>
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	
+	<link rel="stylesheet" href="market.css"/>
+	<script src="marketList.js"></script>
+
 </head>
 <body>
 
@@ -19,8 +23,6 @@
 	<div id="howGetMarket"></div><br/>
 	<div id="marketErrorMsg"></div>
 	<div id="marketContent"></div>
-	
-	<script charset="UTF-8" src="marketList.js"></script>
 
 </body>
 </html>

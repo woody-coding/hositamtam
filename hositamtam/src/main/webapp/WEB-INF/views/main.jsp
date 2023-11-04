@@ -27,11 +27,11 @@
     <link rel="stylesheet" href="../css/main.css" />
 
     <!-- JavaScript -->
-   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  
     ​<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link
     rel="stylesheet"
@@ -42,20 +42,21 @@
     
 </head>
 <body>
+	<%@ include file="navi.jsp" %>
+
     <div  class="section" id="section1">
      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
 
-      <%@ include file="navi.jsp" %>
-      <!-- header 끝 -->
+      
 
-      <div class="listCategory" >
+     <!--  <div class="listCategory" >
         <div class="close"></div>
         <div class="listCategoryContent">
 
           <form method="POST" action="/finalProject/views/marketCategory">
-            
+      -->       
             <p>어떤 시장이 궁금한가요?</p>
-            <div class="goCategory">
+            <!-- <div class="goCategory">
               <button id="cateno" name="cateno" value="1">농산물</button>
 	
             </div>	
@@ -82,11 +83,38 @@
             </div>
             <div class="goCategory">
              <button id="cateno" name="cateno" value="9">기타</button>
-            </div>
-      
+            </div> -->
+      <!-- <div class="goCategory">
+						<a href="market.jsp?cateno=1">농산물</a>
+						
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=2">음식점</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=3">가공식품</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=4">수산물</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=5">축산물</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=6">가정용품</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=7">의류</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=8">신발</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=9">기타</a>
+					</div>
           </form>
         </div>  
-      </div> 
+      </div>  -->
      
       
       <div id="btnGroup">
@@ -196,11 +224,13 @@
             </p>
             <p class="information__title">
               <p>저희 호시탐탐은 2030 부산세계박람회 개최를 응원합니다!</p>
-              <a href="https://github.com/wlstjd3398/TMI.git" target="blank"><i class="fa-brands fa-github"></i></a>
+              <a href="https://github.com/wlstjd3398/hositamtam" target="blank"><i class="fa-brands fa-github"></i></a>
             </p>
-            <div class="dropdown">
-              <div class="btnDrop">관련사이트<i class="bi bi-chevron-down"></i>  </div>
-              <ul class="dropDownMenu">
+             <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                관련사이트 
+              </button>
+              <ul class="dropdown-menu">
                 <li><a class="dropdown-item" target="_blank" href="https://www.busan.go.kr/index">부산광역시</a></li>
                 <li><a class="dropdown-item" target="_blank"  href="https://www.expo2030busan.kr/kor/index.do">2030 부산세계박람회</a></li>
                 <li><a class="dropdown-item" target="_blank"  href="https://www.multicampus.com/main">멀티캠퍼스</a></li>
