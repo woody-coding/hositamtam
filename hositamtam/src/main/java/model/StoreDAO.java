@@ -263,41 +263,90 @@ public class StoreDAO {
 	
 	// ㄹ.점포 상세페이지
 
-	// ㄹ-1.점포의 기본정보를 반환	(ㄹ-1의 a,b를 합침)
-	public StoreDO[] getStoreInfo(int sno) {
-	    StoreDO[] storeDetails = new StoreDO[10]; 
+//	// ㄹ-1.점포의 기본정보를 반환	(ㄹ-1의 a,b를 합침)
+//	public StoreDO[] getStoreInfo(int sno) {
+//	    StoreDO[] storeDetails = new StoreDO[10]; 
+//
+//	    try {
+//	        String sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno) AS review, AVG(r.rrating) AS rating, COUNT(f.sno) AS favoritecount, p.paytype "
+//	                + "FROM store s "
+//	                + "LEFT JOIN review r ON s.sno = r.sno "
+//	                + "LEFT JOIN member_store_favorite f ON s.sno = f.sno "
+//	                + "LEFT JOIN store_payment sp ON s.sno = sp.sno "
+//	                + "LEFT JOIN payment p ON sp.payno = p.payno "
+//	                + "WHERE s.sno = ? "
+//	                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto, p.paytype "
+//	                + "ORDER BY COUNT(r.sno) DESC";
+//
+//	        PreparedStatement pstmt = conn.prepareStatement(sql);
+//	        pstmt.setInt(1, sno);
+//	        pstmt.setInt(2, sno);
+//	        ResultSet rs = pstmt.executeQuery();
+//
+//	        int index = 0;
+//	        while (rs.next() && index < storeDetails.length) {
+//	            StoreDO storeDO = new StoreDO();
+//	            storeDO.setNickname(rs.getString("nickname"));
+//	            storeDO.setSname(rs.getString("sname"));
+//	            storeDO.setStype(rs.getString("stype"));
+//	            storeDO.setSphoto(rs.getString("sphoto"));
+//	            storeDO.setScategory(rs.getString("scategory"));
+//	            storeDO.setReview(rs.getInt("review"));
+//	            storeDO.setRating(rs.getDouble("rating"));
+//	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));
+////	            storeDO.setPaytype(rs.getString("paytype"));
+//
+//	            storeDetails[index] = storeDO;
+//	            index++;
+//	        }
+//
+//	    } catch (SQLException e) {
+//	        e.printStackTrace();
+//	    } finally {
+//	        try {
+//	            if (pstmt != null)
+//	                pstmt.close();
+//	        } catch (SQLException e) {
+//	            e.printStackTrace();
+//	        }
+//	    }
+//	    return storeDetails;
+//	}
+
+	
+	// 점포의 결제타입을 반환
+	
+	
+	// ㄹ-1-a.점포 기본정보 반환
+	
+	public ArrayList<StoreDO> getStoreInfo(int sno) {
+	    ArrayList<StoreDO> storeDetailList = new ArrayList<>(); // ArrayList 인스턴스 생성
 
 	    try {
-	        String sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno) AS review, AVG(r.rrating) AS rating, COUNT(f.sno) AS favoritecount, p.paytype "
+	        String sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno) AS review, AVG(r.rrating) AS rating, COUNT(f.sno) AS favoritecount "
 	                + "FROM store s "
 	                + "LEFT JOIN review r ON s.sno = r.sno "
 	                + "LEFT JOIN member_store_favorite f ON s.sno = f.sno "
-	                + "LEFT JOIN store_payment sp ON s.sno = sp.sno "
-	                + "LEFT JOIN payment p ON sp.payno = p.payno "
-	                + "WHERE s.sno = ? "
-	                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto, p.paytype "
+	                + "WHERE s.mno = ? AND s.sno = ? "
+	                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto "
 	                + "ORDER BY COUNT(r.sno) DESC";
 
 	        PreparedStatement pstmt = conn.prepareStatement(sql);
 	        pstmt.setInt(1, sno);
-	        pstmt.setInt(2, sno);
 	        ResultSet rs = pstmt.executeQuery();
 
-	        int index = 0;
-	        while (rs.next() && index < storeDetails.length) {
+	        while (rs.next()) {
 	            StoreDO storeDO = new StoreDO();
-	            storeDO.setNickname(rs.getString("nickname"));
-	            storeDO.setSname(rs.getString("sname"));
-	            storeDO.setStype(rs.getString("stype"));
-	            storeDO.setSphoto(rs.getString("sphoto"));
-	            storeDO.setScategory(rs.getString("scategory"));
-	            storeDO.setReview(rs.getInt("review"));
-	            storeDO.setRating(rs.getDouble("rating"));
-	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));
-//	            storeDO.setPaytype(rs.getString("paytype"));
+	            storeDO.setNickname(rs.getString("nickname"));             // 닉네임
+	            storeDO.setSname(rs.getString("sname"));                   // 점포명
+	            storeDO.setStype(rs.getString("stype"));                   // 점포타입 (좌판/매장)
+	            storeDO.setSphoto(rs.getString("sphoto"));                 // 사진
+	            storeDO.setScategory(rs.getString("scategory"));           // 카테고리
+	            storeDO.setReview(rs.getInt("review"));                    // 리뷰 수
+	            storeDO.setRating(rs.getDouble("rating"));                 // 가게평점
+	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));     // 찜한 갯수
 
-	            storeDetails[index] = storeDO;
-	            index++;
+	            storeDetailList.add(storeDO); // ArrayList에 StoreDO 추가
 	        }
 
 	    } catch (SQLException e) {
@@ -310,97 +359,39 @@ public class StoreDAO {
 	            e.printStackTrace();
 	        }
 	    }
-	    return storeDetails;
+	    return storeDetailList;
 	}
 
 	
-	// 점포의 결제타입을 반환
-	
-	
-//	// ㄹ-1-a.점포 기본정보 반환
-//	
-//	public StoreDO[] getStoreInfo(int sno) {
-//	    StoreDO[] storeDetail = new StoreDO[7]; // 원하는 배열 크기를 지정
-//
-//	    try {
-//        sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno) AS review, AVG(r.rrating) AS rating, COUNT(f.sno) AS favoritecount "
-//                + "FROM store s "
-//                + "LEFT JOIN review r ON s.sno = r.sno "
-//                + "LEFT JOIN member_store_favorite f ON s.sno = f.sno "
-//                + "WHERE s.mno = ? AND s.sno = ? "
-//                + "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto "
-//                + "ORDER BY COUNT(r.sno) DESC";
-//
-//        PreparedStatement pstmt = conn.prepareStatement(sql);
-//        pstmt.setInt(1, sno);
-//        ResultSet rs = pstmt.executeQuery();
-//
-//	        int index = 0;
-//	        while (rs.next()) {
-//	            StoreDO storeDO = new StoreDO();
-//	            storeDO.setNickname(rs.getString("nickname"));             // 닉네임
-//	            storeDO.setSname(rs.getString("sname"));                   // 점포명
-//	            storeDO.setStype(rs.getString("stype"));                   // 점포타입 (좌판/매장)
-//	            storeDO.setSphoto(rs.getString("sphoto"));                 // 사진
-//	            storeDO.setScategory(rs.getString("scategory"));           // 카테고리
-//	            storeDO.setReview(rs.getInt("review"));                    // 리뷰 수
-//	            storeDO.setRating(rs.getDouble("rating"));                 // 가게평점
-//	            storeDO.setSfavoritecount(rs.getInt("favoritecount"));     // 찜한 갯수
-//
-//	            storeDetail[index] = storeDO;
-//	            index++;
-//	        }
-//	        
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (pstmt != null)
-//					pstmt.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return storeDetail;
-//	}
-//
-//	
-//	// ㄹ-1-b.점포의 결제방식 반환 (현금, 카드, 계좌이체)
-//	public StoreDO[] getStorePaytype(int sno) {
-//		StoreDO[] storePaytype = new StoreDO[3]; // 배열 크기 3
-//
-//		try {
-//			sql = "SELECT p.paytype FROM store_payment sp JOIN payment p ON sp.payno = p.payno WHERE p.sno = ?";
-//
-//		        PreparedStatement pstmt = conn.prepareStatement(sql);
-//		        pstmt.setInt(1, sno);
-//		        ResultSet rs = pstmt.executeQuery();
-//
-//			        int index = 0;
-//			        while (rs.next()) {
-//			            StoreDO storeDO = new StoreDO();
-//			            storeDO.setPaytype(rs.getString("paytype"));   // 결제방식
-//
-//			            storePaytype[index] = storeDO;
-//			            index++;
-//			        }	
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (pstmt != null)
-//					pstmt.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return storePaytype;
-//	}
-//	
-	
-	
+	// ㄹ-1-b.점포의 결제방식 반환 (현금, 카드, 계좌이체)
+	public ArrayList<StoreDO> getStorePaytype(int sno) {
+	    ArrayList<StoreDO> storePaytypeList = new ArrayList<>(); // ArrayList 초기화
 
+	    try {
+	        String sql = "SELECT p.paytype FROM store_payment sp JOIN payment p ON sp.payno = p.payno WHERE p.sno = ?";
+	        PreparedStatement pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, sno);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            StoreDO storeDO = new StoreDO();
+	            storeDO.setPaytype(rs.getString("paytype")); // 결제 방식
+
+	            storePaytypeList.add(storeDO); // ArrayList에 추가
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null)
+	                pstmt.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return storePaytypeList;
+	}
 
 	// ㅁ.점포 등록
 	public int insertStore(StoreDO storeDO, String[] paytype) {
