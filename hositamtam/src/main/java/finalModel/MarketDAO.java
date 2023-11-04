@@ -100,14 +100,14 @@ public class MarketDAO {
 		
 		
 		
-		// ㄴ. 해당 시장의 위, 경도 값 가져오기
+		// ㄴ. 해당 시장의 이름, 위, 경도 값 가져오기
 		public String getMarketLatLng(int mno) {
 			ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
 			
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jsonObject = null;
 			
-			sql = "select mlat, mlng from market where mno = ?";
+			sql = "select mname, mlat, mlng from market where mno = ?";
 
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -117,6 +117,7 @@ public class MarketDAO {
 				while (rs.next()) {
 					MarketDO marketDO = new MarketDO();
 
+					marketDO.setMname(rs.getString("mname"));	
 	                marketDO.setMlat(rs.getString("mlat"));	
 	                marketDO.setMlng(rs.getString("mlng"));
 
@@ -126,6 +127,7 @@ public class MarketDAO {
 					for(MarketDO market : marketList) {
 						jsonObject = new JSONObject(); // jsonObject 초기화
 					
+						jsonObject.put("mname", market.getMname());
 						jsonObject.put("mlat", market.getMlat());
 						jsonObject.put("mlng", market.getMlng());
 						
