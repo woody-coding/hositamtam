@@ -169,7 +169,8 @@ public class MemberController {
 
 			System.out.println(memberDAO.loginMember(id, passwd));
 		    // 로그인 처리 성공 유무에 따른 화면 출력
-		    if(memberDAO.loginMember(id, passwd)) {
+		    if (memberDAO.loginMember(id, passwd)) {		
+
 		        session.setAttribute("userId", id);
 		        model.addAttribute("userId", session.getAttribute("userId"));
 		        

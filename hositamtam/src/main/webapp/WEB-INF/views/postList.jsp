@@ -47,7 +47,6 @@
 			<th>제목:</th>
 			<th>내용:</th>
 			<th>작성일자:</th>
-			<th>사진:</th>
 			<th>좋아요 수:</th>
 			<th>작성자:</th>
 			<th>댓글 수:</th>
@@ -56,10 +55,9 @@
 	<c:forEach items="${postList}" var="post" varStatus="status">
 		<tr>
 			<td>${status.count}</td>
-			<td>${post.ptitle}</td>
+			<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
 			<td>${post.pcontent}</td>
 			<td>${post.pregdate}</td>
-			<td>${post.pphoto}</td>
 			<td>${post.plikecount}</td>
 			<td>${post.nickname}</td>
 			<td>${post.countcomments}</td>
