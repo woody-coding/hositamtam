@@ -3,6 +3,9 @@ package model;
 import java.sql.*;
 import java.util.*;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class PostDAO {
 
 	// ㄱ. 전체글 조회 : 인기순, 제목 출력
@@ -408,10 +411,9 @@ public class PostDAO {
 			}
 			return rowCount;
 		}
-		
-		
-		/*
-		// 해당 pno의 글에 id값을 받아서 좋아요 수 업데이트
+	
+		// 경인 - JSON DAO - 해당 pno의 글에 id값을 받아서 좋아요 수 업데이트
+
 		public String updateLike(int pno, String id) {
 		    JSONArray jsonArray = new JSONArray();
 		    JSONObject jsonObject = new JSONObject();
@@ -484,6 +486,16 @@ public class PostDAO {
 		        }
 		    }
 		    return jsonArray.toJSONString();
-		}*/
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 }

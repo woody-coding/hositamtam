@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" import="model.MemberDO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,31 +51,20 @@
           <li><a class="mainHeader__menu__item">서비스안내</a></li>
           <li><a href="/finalProject/views/post" class="mainHeader__menu__item">시끌시끌</a></li>
           <li><a class="mainHeader__menu__item" id="category">카테고리</a></li>
-          <li><a href="/finalProject/views/login" class="mainHeader__menu__item" id="category">로그인</a></li> 
-          <li><a href="/finalProject/views/join" class="mainHeader__menu__item" id="category">회원가입</a></li>
+          
+          <!-- 로그인 되있으면 바꾸기  -->
+			<c:choose>
+				<c:when test="${not empty sessionScope.memberInfo}">
+					<a href="/finalProject/views/logout">${memberInfo.nickname}님 / 로그아웃</a>&nbsp;&nbsp;
+			        <li><a href="/finalProject/views/myPage" class="mainHeader__menu__item" id="category">마이페이지</a></li>&nbsp;&nbsp;
+				</c:when>
+				<c:otherwise>
+					<li><a href="/finalProject/views/login" class="mainHeader__menu__item" id="category">로그인</a></li> 
+			      	<li><a href="/finalProject/views/join" class="mainHeader__menu__item" id="category">회원가입</a></li>
+				</c:otherwise>
+			</c:choose>
         </ul>
       </nav>
     </header>
 </body>
 </html>
-
-
-<%--  로그인 되있으면 바꾸기 
-<c:choose>
-<c:when test="${sessionScope.nickname != null}">
-	<a href="main.jsp?command=logout">${sessionScope.nickname}님/로그아웃</a>&nbsp;&nbsp;
-	</c:when>
-	<c:otherwise>
-		
-		<li><a href="/finalProject/views/login" class="mainHeader__menu__item" id="category">로그인</a></li> 
-       <li><a href="/finalProject/views/join" class="mainHeader__menu__item" id="category">회원가입</a></li>
-	</c:otherwise>
-</c:choose> --%>
-
-
-
-
-
-
-
-
