@@ -14,7 +14,7 @@
 		if(memberDAO.loginCheck(memberDO)) {
 			session.setAttribute("id", memberDO.getId());
 			session.setAttribute("nickname", memberDO.getNickname());
-		    response.sendRedirect("marketTest.jsp");
+			pageContext.forward("loginView.jsp");
 		}
 		
 		// 로그인 실패할 때 -> 로그인 페이지를 재로드 시키기
@@ -23,7 +23,7 @@
 			pageContext.forward("loginView.jsp");
 		}
 	}
-	else if(command != null && command.equals("logout")) {
+	else if(request.getMethod().equals("GET") && command != null && command.equals("logout")) {
 		session.invalidate();
 		response.sendRedirect("loginView.jsp");
 		return;

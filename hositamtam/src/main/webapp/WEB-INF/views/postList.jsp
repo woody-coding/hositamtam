@@ -8,6 +8,8 @@
 <title>postList.jsp</title>
 </head>
 <body>
+	<%@ include file="navi.jsp" %>
+	
 	<h3>호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</h3>
 	<button id="whatMarket">시장 선택하기</button>
 	<br/>
@@ -47,7 +49,6 @@
 			<th>제목:</th>
 			<th>내용:</th>
 			<th>작성일자:</th>
-			<th>사진:</th>
 			<th>좋아요 수:</th>
 			<th>작성자:</th>
 			<th>댓글 수:</th>
@@ -56,10 +57,9 @@
 	<c:forEach items="${postList}" var="post" varStatus="status">
 		<tr>
 			<td>${status.count}</td>
-			<td>${post.ptitle}</td>
+			<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
 			<td>${post.pcontent}</td>
 			<td>${post.pregdate}</td>
-			<td>${post.pphoto}</td>
 			<td>${post.plikecount}</td>
 			<td>${post.nickname}</td>
 			<td>${post.countcomments}</td>
@@ -67,5 +67,8 @@
 		</tr>
 	</c:forEach>
 	</table>
+	
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

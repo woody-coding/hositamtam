@@ -6,7 +6,23 @@ let map;
 let markers = [];
 
 let currentMno = location.search.substring(5);
+let currentId = null;
+let currentNickname = null;
+let mname;
 
+
+
+	// 로그인되어 있는지 아닌지 로컬스토리지 존재 유무로 판단하기
+	const memberIdNickname = window.localStorage.getItem('memberIdNickname');
+	const member = JSON.parse(memberIdNickname);
+   
+	if (member) {
+	    currentId = member.id;
+	    currentNickname = member.nickname;
+	}
+	else {
+	    console.log('로컬 스토리지에 멤버 정보가 없습니다.');
+	}
 
 
 
@@ -17,7 +33,7 @@ function latLngAjaxHandler() {
 		
 		mlat = latLng[0].mlat;
 		mlng = latLng[0].mlng;
-		
+		mname = latLng[0].mname;
 		
 		// 페이지가 로드되자마자 mlat, mlng 값으로 지도 중심을 설정
         //map.setCenter(new naver.maps.LatLng(mlat, mlng));
@@ -38,6 +54,9 @@ function latLngAjaxHandler() {
 
 		markers = [];
         
+        // 지도 생성 후, 해당 시장명 + 해당 시장 커뮤니티 버튼 생성
+        document.querySelector('#marketName').innerHTML = mname + '  <a href="컨트롤러.jsp?command=커멘드&mno='+ currentMno +'">시끌시끌</a>';
+        
         getStoreInfo();
     }
 }
@@ -45,7 +64,7 @@ function latLngAjaxHandler() {
 
 
 
-// mno로 점포 정보들 요청하는 함수
+// mno로 점포 정보들을 요청하는 함수
 function getStoreInfo() {
 	xhr.onreadystatechange = storeAjaxHandler;
 	
@@ -97,101 +116,91 @@ function init() {
 	        xhr.send();
 		});
 
-        
-/*
-	    const marketMno = window.localStorage.getItem('marketMno');
-	
-	    if (marketMno) {
-	        const marketmno = JSON.parse(marketMno);
-	        console.log('mno:', marketmno.mno);
-	        let currentMno = marketmno.mno;
-			xhr.onreadystatechange = storeAjaxHandler;
-			
-	        let param = '?command=getStoreInMarket&mno=' + currentMno;
-	        xhr.open('GET', 'toAjaxController.jsp' + param, true);
-	        xhr.send();
-	
-	        // 로컬 스토리지에서 cateno 값 삭제
-	        window.localStorage.removeItem('marketMno');
-	    }
-
-*/    
 
 
-        
+
+		// '새 점포 등록' 버튼 클릭 이벤트
+		document.querySelector('#insertStore').addEventListener('click', insertStoreHandler);
+  
 }
 	
 	
-	
-	
 
 
 
 
 
-
-
-
-// '새 점포 등록' 버튼 클릭 이벤트
-let insertStore = document.querySelector('#insertStore');
-insertStore.addEventListener('click', insertStoreHandler);
 
 // '새 점포 등록' 버튼 클릭 시
 function insertStoreHandler() {
-    //마커 생성
-    var marker = new naver.maps.Marker({
-        position: new naver.maps.LatLng(37.3595894, 127.105399),
-        map: map,
-    });
+	
+	// 회원이라면 새 점포 등록 버튼 이용 가능
+	if(currentId !== null) {
+		
 
-    var marker; // 클릭 이벤트로 생성한 마커를 저장할 변수
-    var infowindow; // 인포윈도우 컨텐츠를 저장할 변수
-    var prevClickCoord; // 이전 클릭한 위치를 저장할 변수
-    var clickEventListener; // 클릭 이벤트 리스너
-
-    // 클릭 이벤트 핸들러
-    function handleMapClick(e) {
-        if (marker) {
-            marker.setMap(null); // 이전 마커 삭제
-            if (infowindow) {
-                infowindow.close(); // 이전 인포윈도우 닫기
-            }
-        }
-        marker = new naver.maps.Marker({
-            position: e.coord,
-            map: map
-        });
-        prevClickCoord = e.coord;
-
-        // 마커를 클릭했을 때 인포윈도우를 생성하고 표시(위도, 경도 값 a태그 파라미터로 넣어주기)
-        var latitude = e.coord.lat();
-        var longitude = e.coord.lng();
-        var iwContent = '<div class="iwContent" style="padding:5px;">' +
-            '<a href="/toAjaxController.jsp?command=insertStore&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
-        infowindow = new naver.maps.InfoWindow({
-            content: iwContent
-        });
-        infowindow.open(map, marker);
-    }
-
-    // 마우스 우클릭 이벤트 처리
-    naver.maps.Event.addListener(map, 'rightclick', function (e) {
-        if (clickEventListener) {
-            // 클릭 이벤트 리스너가 존재하면 삭제
-            naver.maps.Event.removeListener(clickEventListener);
-            clickEventListener = null;
-        }
-        if (marker) {
-            marker.setMap(null); // 클릭 이벤트로 생성한 마커 삭제
-            if (infowindow) {
-                infowindow.close(); // 인포윈도우 닫기
-            }
-            marker = null;
-        }
-    });
-
-    // 클릭 이벤트 리스너 등록
-    clickEventListener = naver.maps.Event.addListener(map, 'click', handleMapClick);
+	    //마커 생성
+	    var marker = new naver.maps.Marker({
+	        position: new naver.maps.LatLng(37.3595894, 127.105399),
+	        map: map,
+	    });
+	
+	    var marker; // 클릭 이벤트로 생성한 마커를 저장할 변수
+	    var infowindow; // 인포윈도우 컨텐츠를 저장할 변수
+	    var prevClickCoord; // 이전 클릭한 위치를 저장할 변수
+	    var clickEventListener; // 클릭 이벤트 리스너
+	
+	    // 클릭 이벤트 핸들러
+	    function handleMapClick(e) {
+	        if (marker) {
+	            marker.setMap(null); // 이전 마커 삭제
+	            if (infowindow) {
+	                infowindow.close(); // 이전 인포윈도우 닫기
+	            }
+	        }
+	        marker = new naver.maps.Marker({
+	            position: e.coord,
+	            map: map
+	        });
+	        prevClickCoord = e.coord;
+	
+	        // 마커를 클릭했을 때 인포윈도우를 생성하고 표시(위도, 경도 값 a태그 파라미터로 넣어주기)
+	        var latitude = e.coord.lat();
+	        var longitude = e.coord.lng();
+	        var iwContent = '<div class="iwContent" style="padding:5px;">' +
+	            '<a href="/toAjaxController.jsp?command=insertStore&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
+	        infowindow = new naver.maps.InfoWindow({
+	            content: iwContent
+	        });
+	        infowindow.open(map, marker);
+	    }
+	
+	    // 마우스 우클릭 이벤트 처리
+	    naver.maps.Event.addListener(map, 'rightclick', function (e) {
+	        if (clickEventListener) {
+	            // 클릭 이벤트 리스너가 존재하면 삭제
+	            naver.maps.Event.removeListener(clickEventListener);
+	            clickEventListener = null;
+	        }
+	        if (marker) {
+	            marker.setMap(null); // 클릭 이벤트로 생성한 마커 삭제
+	            if (infowindow) {
+	                infowindow.close(); // 인포윈도우 닫기
+	            }
+	            marker = null;
+	        }
+	    });
+	
+	    // 클릭 이벤트 리스너 등록
+	    clickEventListener = naver.maps.Event.addListener(map, 'click', handleMapClick);
+	
+	
+	    
+    } 
+    // 비회원이라면 새 점포 등록 버튼 이용 못하고 로그인 페이지로 리디렉션
+    else {
+		alert('로그인 하시면 새 점포 등록이 가능합니다!');
+		window.location.href = 'realLoginView.jsp';
+	}
 }
 
 

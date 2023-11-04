@@ -9,10 +9,7 @@
 </head>
 <body>
 
-	<a href="/finalProject/views/main">메인</a>
-	<a href="/finalProject/views/login">로그인</a>
-	<a href="/finalProject/views/join">회원가입</a>
-	<a href="/finalProject/views/post">시끌시끌</a>
+	<%@ include file="navi.jsp" %>
 
 	<h2>호시탐탐의 점포 상세 페이지입니다</h2>
 
@@ -55,5 +52,8 @@
 				</td>
 			</tr>
 		</table>
+		
+		
+		<%@ include file="footer.jsp" %>
 </body>
 </html>

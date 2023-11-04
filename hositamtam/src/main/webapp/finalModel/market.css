@@ -2,3 +2,8 @@
 	border: 2px solid gray;
 	border-collapse: collapse;
 }
+
+#map {
+	width: 1100px; 
+	height: 700px;
+}

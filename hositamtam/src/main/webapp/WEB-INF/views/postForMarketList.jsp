@@ -9,6 +9,8 @@
 <title>postForMarketList.jsp</title>
 </head>
 <body>
+	<%@ include file="navi.jsp" %>
+	
 	<h3>호심탐탐의 시끌시끌 페이지 입니다(시장 선택 안되었을 때)</h3>
 	<button id="whatMarket">시장 선택하기</button>
 	<hr/>
@@ -22,5 +24,7 @@
 	<hr>
 	<h4>시장을 선택해주세요!</h4>
 	
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

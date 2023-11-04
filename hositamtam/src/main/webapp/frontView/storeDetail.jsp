@@ -32,9 +32,30 @@
     <!-- JavaScript -->
     <script defer src="/finalProject/js/storeDetailReview.js"></script>
     <script defer src="/finalProject/js/anchor.js"></script>
+    <script>
+    
+	    // 검색어 입력 필드에서 Enter 키를 눌렀을 때 검색 실행
+	    document.getElementById("searchInput").addEventListener("keyup", function (event) {
+	        if (event.key === "Enter") { // Enter 키가 눌렸을 때
+	        
+	            const searchInput = document.querySelector("#searchInput").value;
+	            const encodedSearchInput = encodeURIComponent(searchInput);
+	            const newURL = "market.jsp?command=search&query=" + encodedSearchInput;
+	            window.location.href = newURL;
+	        }
+	  	  });
+		}
+
+		window.addEventListener('load', init);
+    
+    </script>
   </head>
   <body>
-    <!-- Header -->
+  
+      <%@ include file="navi.jsp" %>
+  
+  
+<!-- 기존의 동영님 코드  네비바? 
     <header class="mainHeader">
       <div class="mainHeader__logo">
         <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
@@ -68,6 +89,7 @@
         </ul>
       </nav>
     </header>
+ -->
 
     <!-- Main -->
     <!-- Store Detail -->
@@ -107,10 +129,10 @@
         <span class="storeDetail__category__title">
           <h4 class="storeDetail__h4">취급 품목</h4>
         </span>
-        <span>음식점</span>
+        <span>${storeDO.scategory}</span>
       </div>
       <div class="storeDetail__photo">
-        <!-- 등록된 점포 사진 -->
+        ${sphoto}
       </div>
     </section>
 
@@ -125,11 +147,11 @@
           ${memberDO.nickname} 님 해당 점포에 리뷰를 남겨주세요.
         </span>
         <span class="review__star">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star review__star1"></i>
+          <i class="fa-solid fa-star review__star2"></i>
+          <i class="fa-solid fa-star review__star3"></i>
+          <i class="fa-solid fa-star review__star4"></i>
+          <i class="fa-solid fa-star review__star5"></i>
         </span>
       </div>
 
@@ -238,25 +260,7 @@
       </a>
     </aside>
 
-    <!-- Footer -->
-    <footer id="information" class="section">
-      <div class="information__located">
-        <div class="max-container">
-          <h2 class="information__title">&copy; TMI - All rights reserved</h2>
-          <div class="information__contents">
-            <p class="information__title">
-              Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
-              팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
-              팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
-            </p>
-            <p class="information__title">
-              <br />
-              <i class="fa-brands fa-github"></i>
-              https://github.com/wlstjd3398/TMI.git
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+
+	<%@ include file="footer.jsp" %>
   </body>
 </html>

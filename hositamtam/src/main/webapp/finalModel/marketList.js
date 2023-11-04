@@ -2,7 +2,6 @@ let xhr = new XMLHttpRequest();
 let locations = [];
 
 
-
 // 지도 생성
 var mapOptions = {  			//35.21003 129.0689
     center: new naver.maps.LatLng(35.17132, 129.0666),
@@ -147,7 +146,6 @@ function init() {
 
 
 
-
 // marketAjaxHandler 함수
 function marketAjaxHandler() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -167,20 +165,39 @@ function marketAjaxHandler() {
         if (marketErrorMsg) {
 			
 			// 기존 jsp에 있던 div 태그들 숨기기
-			document.getElementById("map").style.display = "none";
-            document.getElementById("marketContent").style.display = "none";
+			document.querySelector("#map").style.display = "none";
+            document.querySelector("#marketContent").style.display = "none";
 			
-            // 에러 메시지를 표시할 엘리먼트를 선택
-            const errorMsgElement = document.getElementById("marketErrorMsg");
-            
-            // 에러 메시지를 해당 엘리먼트의 내용으로 설정
-            errorMsgElement.innerHTML = marketErrorMsg;
+            // 에러 메시지를 표시할 요소 선택
+            document.querySelector("#marketErrorMsg").innerHTML = marketErrorMsg;
             
             // 마커 및 기존 컨텐츠를 지우기
             removeMarker();
         }
         
         
+        
+        
+        
+        
+        
+		// 지도 생성
+		mapOptions = {  			//35.21003 129.0689
+		    center: new naver.maps.LatLng(35.17132, 129.0666),
+		    zoom: 12,
+		    mapTypeControl: true,
+		    mapTypeControlOptions: {
+		        style: naver.maps.MapTypeControlStyle.BUTTON,
+		        position: naver.maps.Position.TOP_RIGHT
+		    }
+		};
+		
+		
+		map = new naver.maps.Map('map', mapOptions);
+
+
+
+
 
         
         let marketContents ='';
@@ -253,6 +270,99 @@ function marketAjaxHandler() {
 
 
 
+
+
+
+
+	// 현재 페이지에 접속한 사용자가 로그인되어 있는지 아닌지
+	const memberIdNick = window.localStorage.getItem('memberIdNickname');
+   
+	if (memberIdNick) {
+	    const member = JSON.parse(memberIdNick);
+	    console.log('id:', member.id);
+	    console.log('nickname:', member.nickname);
+	} 
+	else {
+	    console.log('로컬 스토리지에 멤버 정보가 없습니다.');
+	}
+
+
+
+
+
+
+
+
+
+// 초기화 함수
+function init() {
+
+    // URL에서 검색어 파라미터 추출
+    const searchParams = new URLSearchParams(location.search);
+    const keywordParam = searchParams.get('query');
+    const catenoParam = searchParams.get('cateno');
+
+    if (keywordParam) {
+
+        let currentKeyword = decodeURIComponent(keywordParam);
+        
+        document.querySelector('#howGetMarket').innerHTML = "'"+ currentKeyword + "' (으)로 검색된 결과입니다.";	
+        
+        
+        xhr.onreadystatechange = marketAjaxHandler;
+        
+        let param = '?command=getMarketListBySearch&keyword=' + currentKeyword;
+        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+        xhr.send();
+    }
+    
+    else if(catenoParam) {
+		// 카테고리(취급품목) 클릭했을 때 해당 시장 정보들 비동기 요청
+		//alert(location.search.substring(8).trim());
+		let currentCateno = catenoParam;
+		let currentCate = '';
+		
+		if(currentCateno === '1') {
+			currentCate = '농산물';
+		} else if(currentCateno === '2') {
+			currentCate = '음식점';
+		} else if(currentCateno === '3') {
+			currentCate = '가공식품';
+		} else if(currentCateno === '4') {
+			currentCate = '수산물';
+		} else if(currentCateno === '5') {
+			currentCate = '축산물';
+		} else if(currentCateno === '6') {
+			currentCate = '가정용품';
+		} else if(currentCateno === '7') {
+			currentCate = '의류';
+		} else if(currentCateno === '8') {
+			currentCate = '신발';
+		} else if(currentCateno === '9') {
+			currentCate = '기타';
+		}
+		
+		document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'에 특화된 전통시장 목록 입니다.";
+		
+		
+		
+		xhr.onreadystatechange = marketAjaxHandler;
+		
+	    let param = '?command=getMarketListByItem&cateno=' + currentCateno;
+	    xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	    xhr.send();
+	}
+
+}
+
+
+
+
+
+
+
+
+
 // 지도 위에 마커를 표시하는 함수
 function showMarkers() {
     for (var i = 0; i < locations.length; i++) {
@@ -274,8 +384,6 @@ function showMarkers() {
                     // anchorColor: "#eee",
                     // pixelOffset: new naver.maps.Point(20, -20)
         });
-
-
 
         (function (marker, infowindow) {
             naver.maps.Event.addListener(marker, "click", function (e) {
@@ -305,5 +413,4 @@ function removeMarker() {
 
 
 
-// 페이지 로딩 시 초기화 함수 호출
 window.addEventListener('load', init);

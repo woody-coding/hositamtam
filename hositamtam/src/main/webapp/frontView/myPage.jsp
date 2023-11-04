@@ -32,9 +32,29 @@
     <script src="/finalProject/js/myPage.js" charset="UTF-8"></script>
     <script defer src="/finalProject/js/myPageUpdate.js"></script>
     <script defer src="/finalProject/js/anchor.js"></script>
+    <script>
+    
+	    // 검색어 입력 필드에서 Enter 키를 눌렀을 때 검색 실행
+	    document.getElementById("searchInput").addEventListener("keyup", function (event) {
+	        if (event.key === "Enter") { // Enter 키가 눌렸을 때
+	        
+	            const searchInput = document.querySelector("#searchInput").value;
+	            const encodedSearchInput = encodeURIComponent(searchInput);
+	            const newURL = "market.jsp?command=search&query=" + encodedSearchInput;
+	            window.location.href = newURL;
+	        }
+	  	  });
+		}
+
+		window.addEventListener('load', init);
+    
+    </script>
   </head>
   <body>
-    <!-- Header -->
+  <%@ include file="navi.jsp" %>
+  
+  
+<!-- 기존의 동영님 코드  네비바? 
     <header class="mainHeader">
       <div class="mainHeader__logo">
         <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
@@ -68,6 +88,7 @@
         </ul>
       </nav>
     </header>
+ -->
 
     <!-- Main -->
     <!-- My Information -->
@@ -164,7 +185,7 @@
 	            <td class="myStore__td">${storeDO.sname}</td>
 	            <td class="myStore__td">${storeDO.stype}</td>
 	            <td class="myStore__td">${storeDO.payno}</td>
-	            <td class="myStore__td">음식점</td>
+	            <td class="myStore__td">${storeDO.scategory}</td>
 	          </tr>
           </c:forEach> --%>
           <tr>
@@ -301,7 +322,7 @@
 	            <td class="myStoreLike__td">${storeDO.sname}</td>
 	            <td class="myStoreLike__td">${storeDO.stype}</td>
 	            <td class="myStoreLike__td">${storeDO.payno}</td>
-	            <td class="myStoreLike__td">음식점</td>
+	            <td class="myStoreLike__td">${storeDO.scategory}</td>
 	          </tr>
           </c:forEach> --%>
           <tr>
@@ -376,25 +397,7 @@
       </section>
     </aside>
 
-    <!-- Footer -->
-    <footer id="information" class="section">
-      <div class="information__located">
-        <div class="max-container">
-          <h2 class="information__title">&copy; TMI - All rights reserved</h2>
-          <div class="information__contents">
-            <p class="information__title">
-              Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
-              팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
-              팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
-            </p>
-            <p class="information__title">
-              <br />
-              <i class="fa-brands fa-github"></i>
-              https://github.com/wlstjd3398/TMI.git
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    
+	<%@ include file="footer.jsp" %>
   </body>
 </html>

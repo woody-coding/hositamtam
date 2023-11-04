@@ -113,21 +113,65 @@
 					<p id="mkaddr">${market.maddr}</p>
 					<span>화장실 <span id="isToilet">${market.mtoilet}, </span>주차장
 						<span id="isParking">${market.mparking} </span></span>
+				</div>
+			</div>
+			
+		</c:forEach></div>
+		<!--  <div id="mkSearchName">부평으로 검색된 결과입니다.</div> -->
 
-				</div> --%>
+		<!-- <table id="listTable">
+		<tr>
+			<th>시장번호:</th>
+			<th>시장명:</th>
+			<th>구분:</th>
+			<th>주소:</th>
+			<th>위도:</th>
+			<th>경도:</th>
+			<th>화장실 유무:</th>
+			<th>주차 가능 유무:</th>
+			<th>전화번호:</th>
+			<th>업데이트 일자:</th>
+		</tr>
+		</table> -->
+		
+<%-- <tr>
+			<td>${status.count}</td>
+			<td>${market.mname}</td>
+			<td>${market.mtype}</td>
+			<td>${market.maddr}</td>
+			<td>${market.mlat}</td>
+			<td>${market.mlng}</td>
+			<td>${market.mtoilet}</td>
+			<td>${market.mparking}</td>
+			<td>${market.mtel}</td>
+			<td>${market.mupdateday}</td>
+		</tr> --%>
 
-			<!--  <div id="mkSearchName">부평으로 검색된 결과입니다.</div> -->
+		<!-- <div class="mkcontainer" class="row">
 
+            <div id="markerImg" class="col-3">
+                <img src="../images/마커.png" width="80px">
+            </div>
+            <div class="col-9">
+                <p id="mkName">${market.mname}</p>
+                <p id="mkaddr">${market.maddr}</p>
+                <span>화장실 <span id="isToilet">${market.mtoilet}, </span>주차장 <span id="isParking"></td>
+			<td> </span></span>
+            </div>
+        </div>
+        <div class="mkcontainer" class="row">
 
-			<!-- <div class="mkcontainer" class="row">
+            <div id="markerImg" class="col-3">
+                <img src="../images/마커.png" width="80px">
+            </div>
+            <div class="col-9">
+                <p id="mkName">자갈치시장</p>
+                <p id="mkaddr">자갈치해안로 52</p>
+                <span>화장실 <span id="isToilet">O, </span>주차장 <span id="isParking">O </span></span>
+            </div>
+        </div> -->
+	</div>
 
-		</div>
-
--->
-	
-
-	<%-- <%@ include file="footer.jsp"%> --%>
-	<script defer src="../js/marketList.js"></script>
-	
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

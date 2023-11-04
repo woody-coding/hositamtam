@@ -7,6 +7,8 @@
 <title>postUpdate.jsp</title>
 </head>
 <body>
+	<%@ include file="navi.jsp" %>
+
 	<h2>${market.mname}의 게시글 등록 페이지입니다.</h2>
 	<form method="POST" action="/finalProject/views/postUpdate">
 	<label for="pcategory">카테고리</label> 	
@@ -30,5 +32,8 @@
 	<input type="hidden" name="id" value="${userId}"/>
 	<input type="submit" value="등록하기">
 	</form>
+	
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>
