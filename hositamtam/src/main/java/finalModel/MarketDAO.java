@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import finalModel.MarketDO;
+//import finalModel.MarketDO;
 
 public class MarketDAO {
 
@@ -31,11 +31,10 @@ public class MarketDAO {
 			e.printStackTrace();
 		}
 	}
-	// ㄱ. 전체 시장 조회
-	// ㄴ. 카데고리 유입 시장리스트 조회
-	// ㄷ. 검색어 유입 시장리스트 조회
+
 	
-	// ㄱ. 전체 시장 조회
+	
+	// 1. 전체 시장 조회
 		public String getMarketList() {
 			ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
 
@@ -101,14 +100,14 @@ public class MarketDAO {
 		
 		
 		
-		// ㄴ. 해당 시장의 위, 경도 값 가져오기
+		// ㄴ. 해당 시장의 이름, 위, 경도 값 가져오기
 		public String getMarketLatLng(int mno) {
 			ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
 			
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jsonObject = null;
 			
-			sql = "select mlat, mlng from market where mno = ?";
+			sql = "select mname, mlat, mlng from market where mno = ?";
 
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -118,6 +117,7 @@ public class MarketDAO {
 				while (rs.next()) {
 					MarketDO marketDO = new MarketDO();
 
+					marketDO.setMname(rs.getString("mname"));	
 	                marketDO.setMlat(rs.getString("mlat"));	
 	                marketDO.setMlng(rs.getString("mlng"));
 
@@ -127,6 +127,7 @@ public class MarketDAO {
 					for(MarketDO market : marketList) {
 						jsonObject = new JSONObject(); // jsonObject 초기화
 					
+						jsonObject.put("mname", market.getMname());
 						jsonObject.put("mlat", market.getMlat());
 						jsonObject.put("mlng", market.getMlng());
 						
@@ -151,10 +152,17 @@ public class MarketDAO {
 		
 		
 		
+
+		
+		
+		
+		
+		
+		
 		
 		
 	
-	// ㄴ.카데고리 유입 시장리스트 조회
+	// 2.카데고리 유입 시장리스트 조회
 	public String getMarketListByItem(int cateno) {
 		ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
 		
@@ -225,7 +233,7 @@ public class MarketDAO {
 	
 	
 	
-	// ㄷ. 검색어 유입 시장리스트 조회
+	// 3. 검색어 유입 시장리스트 조회
 	public String getMarketListBySearch(String keyword) {
 		ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
 
@@ -261,22 +269,32 @@ public class MarketDAO {
             marketList.add(marketDO);
             }
 		
-			for(MarketDO market : marketList) {
-				jsonObject = new JSONObject(); // jsonObject 초기화
-				
-				jsonObject.put("mno", market.getMno());
-				jsonObject.put("mname", market.getMname());
-				jsonObject.put("mtype", market.getMtype());
-				jsonObject.put("maddr", market.getMaddr());
-				jsonObject.put("mlat", market.getMlat());
-				jsonObject.put("mlng", market.getMlng());
-				jsonObject.put("mtoilet", market.getMtoilet());
-				jsonObject.put("mparking", market.getMparking());
-				jsonObject.put("mtel", market.getMtel());
-				jsonObject.put("mupdateday", market.getMupdateday());
-				
-				jsonArray.add(jsonObject);
-			}
+		
+		
+		if (marketList.isEmpty()) {
+            jsonObject = new JSONObject();
+            jsonObject.put("marketErrorMsg", "등록된 시장이 없습니다!");
+            jsonArray.add(jsonObject);
+        }
+		
+		
+		
+		for(MarketDO market : marketList) {
+			jsonObject = new JSONObject(); // jsonObject 초기화
+			
+			jsonObject.put("mno", market.getMno());
+			jsonObject.put("mname", market.getMname());
+			jsonObject.put("mtype", market.getMtype());
+			jsonObject.put("maddr", market.getMaddr());
+			jsonObject.put("mlat", market.getMlat());
+			jsonObject.put("mlng", market.getMlng());
+			jsonObject.put("mtoilet", market.getMtoilet());
+			jsonObject.put("mparking", market.getMparking());
+			jsonObject.put("mtel", market.getMtel());
+			jsonObject.put("mupdateday", market.getMupdateday());
+			
+			jsonArray.add(jsonObject);
+		}
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -291,5 +309,5 @@ public class MarketDAO {
 		}
 	}
 	return jsonArray.toJSONString();
-}
+	}
 }

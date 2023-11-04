@@ -1,18 +1,21 @@
 package controller;
 
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import model.PostDO;
 import model.PostDAO;
-import oracle.net.aso.p;
 @Controller
 public class PostController {
 	
 	private PostDAO postDAO = new PostDAO();
-	
 	public PostController() {
 	}
 	
@@ -30,36 +33,54 @@ public class PostController {
 	@GetMapping("/views/postMain")
 	public String postMain(@RequestParam int mno, Model model) {
 		model.addAttribute("postList", postDAO.getAllPost(mno));
-		model.addAttribute("mno", mno);
+		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
 	// 인기글
 	@GetMapping("/views/postHot")
 	public String postHot(@RequestParam int mno, Model model) {
 		model.addAttribute("postList", postDAO.getPostHot(mno));
-		model.addAttribute("mno", mno);
+		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
 	// 카테고리별
 	@GetMapping("/views/postCategory")
 	public String postCategory(@RequestParam int mno,@RequestParam String pCategory, Model model) {
 		model.addAttribute("postList", postDAO.getPostCategory(mno, pCategory));
-		model.addAttribute("mno", mno);
+		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
-	// 글 등록 및 수정로 이동
+	// 글 등록 이동
 	@GetMapping("/views/toPostUpdate")
-	public String toPostUpdate(@RequestParam int mno, Model model) {
-		System.out.println("맵핑성공" + mno);
-		model.addAttribute("mname", postDAO.getMarketName(mno));
-		System.out.println("뷰 처리" + mno);
+	public String toPostUpdate(@RequestParam int mno, Model model, HttpSession session) {
+		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postUpdate";
 	}
-	// 글 등록 및 수정 기능
-	@GetMapping("/views/PostUpdate")
-	public String PostUpdate(@RequestParam int mno, Model model) {
-		model.addAttribute("mName", postDAO.getMarketName(mno));
-		
+	// 글 등록 기능
+	@PostMapping("/views/postUpdate")
+	public String PostUpdate(@ModelAttribute PostDO command, Model model) {
+		postDAO.insertPost(command);
+		model.addAttribute("postList", postDAO.getAllPost(command.getMno()));
 		return "postList";
+	}
+	// 게시글 상세 페이지 이동
+	@GetMapping("/views/toPostDetail")
+	public String toPostDetail(@RequestParam int pno, Model model) {
+		model.addAttribute("post", postDAO.getAllPostInfo(pno));
+		model.addAttribute("market", postDAO.getMarketNameByPno(pno));
+		model.addAttribute("commentList", postDAO.getComment(pno));
+		return "postDetail";
+	}
+	// 댓글 등록 시 
+	@PostMapping("/views/InsertComment")
+	public String InsertComment(@ModelAttribute PostDO command, Model model) {
+		postDAO.InsertComment(command);
+		return "redirect:/views/toPostDetail?pno=" + command.getPno();	
+	}
+		
+	@GetMapping("/views/postCatrgoryList")
+	public String MarketList(@RequestParam String pCategory, Model model) {
+//		model.addAttribute("postList", postDAO.getAllPost(pCategory));
+		return "post";
 	}
 }

@@ -52,14 +52,7 @@ insert into store values (seq_sno.nextval, 99, 'longlee', '지게골역 출구 �
 insert into store values (seq_sno.nextval, 2, 'shortlee', '문현역 5번 출구 앞', '35.16046', '129.0562', '매장', 'testphoto2.jpeg', 2, 79, '과일 가게');
 insert into store values (seq_sno.nextval, 2, 'longlee', '서면역 출구 앞 5m', '35.16638', '129.0712', '좌판', 'testphoto3.jpg', 2, 39, '떡볶이 가게');
 insert into store values (seq_sno.nextval, 99, 'king123', '지게골역 출구 5m', '35.14459', '129.0285', '좌판', 'testphoto22.png', 2, 199, '잡화점');
-
-
-
-
-
-
-
-
+insert into store values (seq_sno.nextval, 152, 'king123', '역 7번 출구 앞 10m', '35.13933', '129.1051', '좌판', 'testphoto.png', 1, 0, '떡볶이집');
 
 
 --6.	POST (글 테이블)
@@ -80,18 +73,42 @@ pno 		number(5)
 , constraint 	post_title_ck 		check (length(ptitle) between 5 and 20)
 , constraint 	post_content_ck 		check (length(pcontent) between 5 and 500)
 , constraint 	post_photo_ck 		check (substr(pphoto, -3) in ('png', 'jpg') or substr(pphoto, -4) = 'jpeg')
-, constraint 	post_pcategory_ck 		check (pcategory in ('시장질문', '사건사고', '일상', '실종/분실'))
+, constraint 	post_pcategory_ck 	check (pcategory in ('궁금해요','도와주세요','소통해요','시장소식'))
 );
 
 
 
 --* 더미 데이터)
-insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '와 이거 실화냐?', '진짜 좀 심하네요 너무 맛없는데 요기 왜옴?? ㄹㅇ이해안되네', 'testphoto.jpeg', 777, '일상');
-insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '사건사고');
-insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서...', '시장완전 개판이네 진짜 무야!!!!', 'marketphoto.jpeg', 11, '사건사고');
-insert into post values (seq_pno.nextval, 100, 'shortlee', sysdate, '대박터짐요!!', '저 오늘 너무 기분 좋아요~~ㅎㅎ', 'marketphoto1.png', 12, '일상');
-insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '제발 읽어주세요.', 'ㅋㅋㅋㅋㅋ이걸 낚이죠?', 'marketphoto11.jpg', 177, '일상');
-insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '사건사고');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '와 이거 실화냐?', '진짜 좀 심하네요 너무 맛없는데 요기 왜옴?? ㄹㅇ이해안되네', 'testphoto.jpeg', 777, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서...', '시장완전 개판이네 진짜 무야!!!!', 'marketphoto.jpeg', 11, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'shortlee', sysdate, '대박터짐요!!', '저 오늘 너무 기분 좋아요~~ㅎㅎ', 'marketphoto1.png', 12, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '제발 읽어주세요.', 'ㅋㅋㅋㅋㅋ이걸 낚이죠?', 'marketphoto11.jpg', 177, '소통해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '오늘 날씨 너무 좋아요', '집에만 있기에 심심해서 산책 겸 나왔는데 좋아요~!!', 'testphoto.jpeg', 777, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '드디어 붕세권이다!', '수미식당 옆 좌판에 붕어빵 기계 들어왔네요! 이제 우리 동네 시장도 붕세권입니당ㅎㅎ.', 'marketphoto.jpg', 120, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '남천해변시장 산책 모임 구해용', '남천해변시장 남쪽 입구에 걷기 좋은 코스가 있어서 혹시 같이 걸으실 분 있으면 댓글 남겨주세요ㅎㅎ', 'marketphoto.jpeg', 11, '소통해요');
+insert into post values (seq_pno.nextval, 101, 'shortlee', sysdate, '벌써 일년....', '2023년 시작한 지 엊그제 같은데 벌써 11월이라뇨?!?!?', 'marketphoto1.png', 12, '소통해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '단풍으로 물드니 더욱 운치가 있네욯ㅎㅎ.', '매주 시장에서 장보는데 단풍이 이쁘게 물들어서 사진으로 남겨봐요!', 'marketphoto11.jpg', 177, '소통해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '지난 주에는 춥더니 이번 주는 왤케 덥나유ㅠㅠ', '오락가락하는 날씨네요ㅠㅠ', 'marketphoto.jpg', 120, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '혹시 오늘 수미네 반찬 가게 열었나요??', '지난 주에 보니까 수요일에 휴무였던 거 같은데, 혹시 아시는 분 있으면 댓글 부탁해용!', 'testphoto.jpeg', 777, '궁금해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '남천해변시장 당근 제일 싼 곳', '담주에 당근 많이 사야하는데 제일 싼 곳 추천좀여ㅠ', 'marketphoto.jpg', 120, '궁금해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 남천해변시장 처음왔는데, 화장실 어디있나여??', '진짜 죽을 거 같아여 제발 빨리 좀 알려주세요', 'marketphoto.jpeg', 11, '궁금해요');
+insert into post values (seq_pno.nextval, 101, 'shortlee', sysdate, '혹시 시장 대표 전화번호 아시는 분??', '혹시 시장 대표 전화번호 아시는 분??', 'marketphoto1.png', 12, '궁금해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '산책로 어디로 가면 있나여??.', '해변길 산책하러 가려고 하는데 어디로 가야하는지 몰겟네요ㅠ', 'marketphoto11.jpg', 177, '궁금해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '붕어빵 기계 좌표 좀요ㅠㅠ', '날씨가 쌀쌀해서 붕어빵 각이네요 위치 공유해주세요.', 'marketphoto.jpg', 120, '궁금해요');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '와 이거 실화냐?', '진짜 좀 심하네요 너무 맛없는데 요기 왜옴?? ㄹㅇ이해안되네', 'testphoto.jpeg', 777, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서...', '시장완전 개판이네 진짜 무야!!!!', 'marketphoto.jpeg', 11, '시장소식');
+insert into post values (seq_pno.nextval, 101, 'shortlee', sysdate, '대박터짐요!!', '저 오늘 너무 기분 좋아요~~ㅎㅎ', 'marketphoto1.png', 12, '시장소식');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '제발 읽어주세요.', 'ㅋㅋㅋㅋㅋ이걸 낚이죠?', 'marketphoto11.jpg', 177, '시장소식');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '빨간 모자 쓴 7세 아동을 찾습니다.', '남천해변시장 1번 화장실 쪽에서 길을 잃은 것으로 보입니다. 혹시 보신 분은 010-0000-0000으로 연락주세요', 'testphoto.jpeg', 777, '도와주세요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '에어팟 프로 왼쪽 찾아주실 분ㅠ', '해변로 쪽 CU 앞에서 잃어버린 것 같아요 찾아주신 분은 제 오른 쪽 귀가 감사의 인사를 드릴게요ㅠ.', 'marketphoto.jpg', 120, '도와주세요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '찬미네 잡화점 앞에서 갈색 지갑 분실 하신 분 남천1동 파출소에 맡겨놨습니다!', '10/29일 오후 3시경 주웠고, 빨리 가져가시길 바랍니당!', 'marketphoto.jpeg', 11, '도와주세요');
+insert into post values (seq_pno.nextval, 101, 'shortlee', sysdate, '우리 해피 찾아주세요ㅠ', '검정 치와와 입니다ㅠㅠ 꽃무늬 옷 입고 있어요. 찾아주신 분 꼭 사례할게요', 'marketphoto1.png', 12, '도와주세요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '에어팟 프로 오른쪽 잃어버렸습니다.', '해변로 쪽 GS 앞에서 잃버린 것 같네요. 혹시 보신 분 있으신가여???', 'marketphoto11.jpg', 177, '도와주세요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '흰색 말티즈가 시장 안을 며칠째 떠돌고 있습니다.', '목걸이 있는 거 보니까 집에서 키우는 댕댕이 같은데, 혹시 견주분 보시면 연락주세요!.', 'marketphoto.jpg', 120, '도와주세요');
 
 --7.	COMMENTS (댓글 테이블)
 

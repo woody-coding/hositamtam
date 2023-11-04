@@ -6,10 +6,12 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>post.jsp</title>
+<title>postForMarketList.jsp</title>
 </head>
 <body>
-	<h3>호심탐탐의 시끌시끌 페이지 입니다</h3>
+	<%@ include file="navi.jsp" %>
+	
+	<h3>호심탐탐의 시끌시끌 페이지 입니다(시장 선택 안되었을 때)</h3>
 	<button id="whatMarket">시장 선택하기</button>
 	<hr/>
 	
@@ -19,22 +21,10 @@
 	<button id="mno" name="mno" value="${market.mno}">"${market.mname}"</button>
 	</c:forEach>
 	</form>
-	<br/>
-	<br/>
-
-	<form method="GET" action="/finalProject/views/postHot">
-	<label for="pCategory"></label>
-	<button id="pCategory" name="pCategory" value="">인기글</button>
-	</form>
+	<hr>
+	<h4>시장을 선택해주세요!</h4>
 	
-	<form  method="GET" action="/finalProject/views/postCategory">
-	<label for="pCategory"></label>
-	<button id="pCategory" name="pCategory" value="궁금해요">궁금해요</button>
-	<button id="pCategory" name="pCategory" value="도와주세요">도와주세요</button>
-	<button id="pCategory" name="pCategory" value="소통해요">소통해요</button>
-	<button id="pCategory" name="pCategory" value="시장소식">시장소식</button>
-	</form>
-	<hr/>
 	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

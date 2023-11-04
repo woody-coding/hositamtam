@@ -3,6 +3,9 @@ package model;
 import java.sql.*;
 import java.util.*;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class PostDAO {
 
 	// ㄱ. 전체글 조회 : 인기순, 제목 출력
@@ -115,7 +118,6 @@ public class PostDAO {
 		}
 		return postList;
 	}
-
 	// 해당 시장의 '인기글' 조회
 	public ArrayList<PostDO> getPostHot(int mno) {
 		ArrayList<PostDO> postList = new ArrayList<PostDO>();
@@ -161,9 +163,6 @@ public class PostDAO {
 		}
 		return postList;
 	}
-	
-	
-	
 	// 카테고리별 글 조회
 		public ArrayList<PostDO> getPostCategory(int mno, String pCategory) {
 			ArrayList<PostDO> postList = new ArrayList<PostDO>();
@@ -210,10 +209,56 @@ public class PostDAO {
 			}
 			return postList;
 		}
-		// 글쓰기 페이지에 시장 이름
-		public String getMarketName(int mno) {
-			String mName = "";
-			sql = "select mname from market where mno = ?";
+		// 시장 번호로 시장 이름 가져오기
+		
+		// pno에 해당되는 글의 모든 정보 가져오기
+		public ArrayList<PostDO> getAllPostInfo(int pno) {
+			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+			
+			sql = "select id, pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+					+ "(select nickname from member where post.id = member.id) as nickname "
+					+ "from post "
+					+ "where pno = ?";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, pno);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					PostDO postDO = new PostDO(); 
+					
+					postDO.setId(rs.getString("id"));
+					postDO.setPno(rs.getInt("pno"));
+					postDO.setPtitle(rs.getString("ptitle"));
+					postDO.setPcontent(rs.getString("pcontent"));
+					postDO.setPregdate(rs.getString("pregdate"));
+					postDO.setPphoto(rs.getString("pphoto"));
+					postDO.setPlikecount(rs.getInt("plikecount"));
+					postDO.setNickname(rs.getString("nickname"));
+					postDO.setCountcomments(rs.getInt("countcomments"));
+					postDO.setPcategory(rs.getString("pcategory"));
+
+					postList.add(postDO);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return postList;
+		}
+		// mno로 mname 불러오기
+		public MarketDO getSelectedMarket(int mno) {
+			MarketDO marketDO = new MarketDO();
+
+			sql = "select mname, mno from market where mno = ?";
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -221,10 +266,9 @@ public class PostDAO {
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()) {
-					MarketDO marketDO = new MarketDO();
 					
 					marketDO.setMname(rs.getString("mname"));
-					mName = marketDO.getMname();
+					marketDO.setMno(rs.getInt("mno"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -237,67 +281,83 @@ public class PostDAO {
 					}
 				}
 			}
-			return mName;
+			return marketDO;
 		}
-		// 해당 pno에 해당되는 글의 모든 정보 가져오기
-		public ArrayList<PostDO> getPcontent(int pno) {
-			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+		// pno로 mname 불러오기
+				public MarketDO getMarketNameByPno(int pno) {
+					MarketDO marketDO = new MarketDO();
+					sql = "SELECT m.mname "
+						    + "FROM market m "
+						    + "INNER JOIN post p ON m.mno = p.mno "
+						    + "WHERE p.pno = ?";
+					try {
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, pno);
+						rs = pstmt.executeQuery();
+						
+						while (rs.next()) {
+							
+							marketDO.setMname(rs.getString("mname"));
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						if (stmt != null) {
+							try {
+								stmt.close();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					}
+					return marketDO;
+				}
+		// 글등록 기능
+		public int insertPost(PostDO post) {
+			int rowCount = 0;
+			this.sql = "insert into post (pno, mno, id, pregdate, pTitle, pContent, pphoto, plikecount, pcategory)"
+						+ "values (seq_pno.nextval, ?, ?, sysdate, ?, ?, ?, 0, ?) ";
 			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
-					+ "(select nickname from member where post.id = member.id) as nickname "
-					+ "from post "
-					+ "where pno = ?";
-
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, pno);
-				rs = pstmt.executeQuery();
-
-				while (rs.next()) {
-					PostDO postDO = new PostDO(); // PostDO 객체 생성
-
-					// PostDO 객체의 속성을 설정
-					postDO.setPno(rs.getInt("pno"));
-					postDO.setPtitle(rs.getString("ptitle"));
-					postDO.setPcontent(rs.getString("pcontent"));
-					postDO.setPregdate(rs.getString("pregdate"));
-					postDO.setPphoto(rs.getString("pphoto"));
-					postDO.setPlikecount(rs.getInt("plikecount"));
-					postDO.setNickname(rs.getString("nickname"));
-					postDO.setCountcomments(rs.getInt("countcomments"));
-					postDO.setPcategory(rs.getString("pcategory"));
-
-					// 수정된 PostDO 객체를 리스트에 추가
-					postList.add(postDO);
-				}
+				pstmt.setInt(1, post.getMno());
+				pstmt.setString(2, post.getId());
+				pstmt.setString(3, post.getPtitle());
+				pstmt.setString(4, post.getPcontent());
+				pstmt.setString(5, post.getPphoto());
+				pstmt.setString(6, post.getPcategory());
+				
+				rowCount = pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				if (pstmt != null) {
 					try {
-						pstmt.close();
-					} catch (Exception e) {
+						if(!pstmt.isClosed()) {
+							pstmt.close();
+						}
+					}
+					catch(Exception e) {
 						e.printStackTrace();
 					}
-				}
 			}
-			return postList;
+			return rowCount;
 		}
 		
 		// 해당 pno에 해당되는 글의 모든 댓글 정보 최신순으로 가져오기
-		public ArrayList<PostDO> getComments(int pno) {
-			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+		public ArrayList<PostDO> getComment(int pno) {
+			ArrayList<PostDO> commentList = new ArrayList<PostDO>();
 			
 			sql = "SELECT pno, cno, (SELECT nickname FROM member WHERE comments.id = member.id) AS cnickname, ccontent, cregdate "
 					+ "FROM comments "
 					+ "WHERE pno = ? "
 					+ "ORDER BY cregdate DESC";
-
 			try {
+
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, pno);
 				rs = pstmt.executeQuery();
 
+				System.out.println();
 				while (rs.next()) {
 					PostDO postDO = new PostDO(); // PostDO 객체 생성
 
@@ -307,25 +367,53 @@ public class PostDAO {
 					postDO.setCcontent(rs.getString("ccontent"));
 					postDO.setCregdate(rs.getString("cregdate"));
 					postDO.setCnickname(rs.getString("cnickname"));
-
 					// 수정된 PostDO 객체를 리스트에 추가
-					postList.add(postDO);
+					commentList.add(postDO);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				if (pstmt != null) {
 					try {
-						pstmt.close();
-					} catch (Exception e) {
+						if(!pstmt.isClosed()) {
+							pstmt.close();
+						}
+					}
+					catch(Exception e) {
 						e.printStackTrace();
 					}
-				}
 			}
-			return postList;
+			return commentList;
 		}
-		/*
-		// 해당 pno의 글에 id값을 받아서 좋아요 수 업데이트
+		// 댓글 등록시 insert
+		public int InsertComment(PostDO post) {
+			int rowCount = 0;
+			this.sql = "insert into comments (cNo, pNo, id, cContent, cRegdate)"
+						+ "values (seq_pno.nextval, ?, ?, ?, sysdate) ";
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, post.getPno());
+				pstmt.setString(2, post.getId());
+				pstmt.setString(3, post.getCcontent());
+				
+				rowCount = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+					try {
+						if(!pstmt.isClosed()) {
+							pstmt.close();
+						}
+					}
+					catch(Exception e) {
+						e.printStackTrace();
+					}
+			}
+			return rowCount;
+		}
+	
+		// 경인 - JSON DAO - 해당 pno의 글에 id값을 받아서 좋아요 수 업데이트
+
 		public String updateLike(int pno, String id) {
 		    JSONArray jsonArray = new JSONArray();
 		    JSONObject jsonObject = new JSONObject();
@@ -398,6 +486,16 @@ public class PostDAO {
 		        }
 		    }
 		    return jsonArray.toJSONString();
-		}*/
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 }

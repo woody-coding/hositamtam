@@ -46,7 +46,6 @@
 <body>
 	<%@ include file="navi.jsp"%>
 
-	<!--  -->
 	<div class="section">
 
 
@@ -121,27 +120,6 @@
                 <span>화장실 <span id="isToilet">O, </span>주차장 <span id="isParking">O </span></span>
             </div>
         </div> -->
-	</div>
-
-	<!--  <footer id="information" class="section">
-        <div class="information__located">
-          <div class="max-container">
-            <h2 class="information__title">&copy; TMI - All rights reserved</h2>
-            <div class="information__contents">
-              <p class="information__title">
-                Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
-                팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
-                팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
-              </p>
-              <p class="information__title">
-                <br />
-                <i class="fa-brands fa-github"></i>
-                https://github.com/wlstjd3398/TMI.git
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer> -->
 	</div>
 
 	<%@ include file="footer.jsp"%>

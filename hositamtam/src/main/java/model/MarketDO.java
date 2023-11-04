@@ -11,6 +11,12 @@ public class MarketDO {
     private String mparking;
     private String mtel;
     private String mupdateday;
+    private int cateno;
+    
+    
+    public MarketDO() {
+    	
+    }
     
 	public int getMno() {
 		return mno;
@@ -27,10 +33,9 @@ public class MarketDO {
 	public String getMtype() {
 		return mtype;
 	}
-	public void setMtype(String mType) {
-		this.mtype = mType;
+	public void setMtype(String mtype) {
+		this.mtype = mtype;
 	}
-
 	public String getMaddr() {
 		return maddr;
 	}
@@ -48,7 +53,6 @@ public class MarketDO {
 	}
 	public void setMlng(String mlng) {
 		this.mlng = mlng;
-
 	}
 	public String getMtoilet() {
 		return mtoilet;
@@ -73,5 +77,11 @@ public class MarketDO {
 	}
 	public void setMupdateday(String mupdateday) {
 		this.mupdateday = mupdateday;
+	}
+	public int getCateno() {
+		return cateno;
+	}
+	public void setCateno(int cateno) {
+		this.cateno = cateno;
 	}
 }
