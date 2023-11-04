@@ -8,6 +8,8 @@
 <title>postList.jsp</title>
 </head>
 <body>
+	<%@ include file="navi.jsp" %>
+	
 	<h3>호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</h3>
 	<button id="whatMarket">시장 선택하기</button>
 	<br/>
@@ -65,5 +67,8 @@
 		</tr>
 	</c:forEach>
 	</table>
+	
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

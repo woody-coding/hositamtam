@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>	
+
+	<%@ include file="navi.jsp" %>
+	
 	<c:forEach items="${post}" var="post">	
 	<div>${post.pno}</div>
 	<div>${post.id}</div>
@@ -51,5 +54,7 @@
 	<hr/>
 	</c:forEach>
 	</c:forEach>
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>
