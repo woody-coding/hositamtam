@@ -56,6 +56,7 @@ public class MemberController {
 	
 	// 헤더	
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
+
 	public String toMain(HttpSession session, Model model) {
 		
 		// 세션에서 사용자 아이디와 사용자 정보 가져오기
@@ -73,6 +74,7 @@ public class MemberController {
 		    // 처리할 로직 추가
 		}
 		
+
 		return "main";
 	}
 	
@@ -173,12 +175,14 @@ public class MemberController {
 
 		        session.setAttribute("userId", id);
 		        model.addAttribute("userId", session.getAttribute("userId"));
+
 		        
 		        MemberDO memberInfo = memberDAO.getMember(id);
 		        session.setAttribute("memberInfo", memberInfo);
 		        model.addAttribute("memberInfo", memberInfo);
 		        System.out.println("memberInfo");
 		        
+
 		        return "redirect:/views/main"; // 로그인 성공 시 메인 페이지로 이동
 		        
 		    }else{

@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ --%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,18 +21,9 @@
 <script src="https://kit.fontawesome.com/89490613c7.js"
 	crossorigin="anonymous"></script>
 
-<!-- CSS -->
-<link rel="stylesheet" href="../css/loginHeader.css" />
-<!-- <link rel="stylesheet" href="../css/login.css" /> -->
-<link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/marketList.css" />
-
 
 <!-- JavaScript -->
-<!-- 경인키 51l0xj0874 -->
-<!-- 동영키 e9fw481dyk 5502 동작-->
-<script type="text/javascript"
-	src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link
@@ -40,29 +31,88 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<script defer src="../js/marketList.js"></script>
+	<script type="text/javascript"
+	src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
+	
+
+<!-- CSS -->
+<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/footer.css" />
+<link rel="stylesheet" href="../css/marketList.css" />
+
+
 </head>
 
 <body>
-	<%@ include file="navi.jsp"%>
+	 <%@ include file="navi.jsp"%>
+ 
+	<!--  -->
+	<!-- <div id="map" style=></div> -->
+	
+	<div id="map" style="width: 70%; height: 90%;"></div>
+	<div id="howGetMarket"></div><br/>
+	<div id="marketErrorMsg"></div>
+	<div id="marketContent"></div>
+	
+	<!-- <div class="section">
+		<div class="listCategory">
+			<div class="close"></div>
+			<div class="listCategoryContent">
 
-	<div class="section">
+				<form method="POST" action="/finalProject/views/marketCategory">
+
+					<p>어떤 시장이 궁금한가요?</p>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=1">농산물</a>
+						marketTest.jsp? 경로 바꿔야됨
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=2">음식점</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=3">가공식품</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=4">수산물</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=5">축산물</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=6">가정용품</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=7">의류</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=8">신발</a>
+					</div>
+					<div class="goCategory">
+						<a href="market.jsp?cateno=9">기타</a>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+		
+		<div id="mkSearchName"></div>
+		<div id="marketErrorMsg"></div>
+		<div id="marketContent"></div>
+
+		<div id="mkListResult" class="row"></div>
+			
+			
+			
+	</div> -->
+<%-- <div class="mkcontainer" class="row">
 
 
-		<div id="map"></div>
-		<div id="mkListResult" class="row">
-		<c:forEach items="${marketList}" var="market" varStatus="status">
-			<div class="mkcontainer" class="row">
-
-				<div id="markerImg" class="col-3">
-					<img src="../images/마커.png" width="80px">
-				</div>
 				<div class="col-9">
 					<p id="mkName">${market.mname}</p>
 					<p id="mkaddr">${market.maddr}</p>
 					<span>화장실 <span id="isToilet">${market.mtoilet}, </span>주차장
 						<span id="isParking">${market.mparking} </span></span>
-
 				</div>
 			</div>
 			

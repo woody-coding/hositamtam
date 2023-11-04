@@ -14,6 +14,7 @@
 	
 	<link rel="stylesheet" href="market.css"/>
 	<script src="marketList.js"></script>
+
 </head>
 <body>
 
@@ -22,8 +23,6 @@
 	<div id="howGetMarket"></div><br/>
 	<div id="marketErrorMsg"></div>
 	<div id="marketContent"></div>
-	
-	
 
 </body>
 </html>
