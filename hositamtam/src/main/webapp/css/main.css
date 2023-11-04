@@ -128,7 +128,7 @@ ul {
 
 }
 /*옆에서 나오는 카테고리 */
-/*.listCategory{
+.listCategory{
   display: flex;
   justify-content: flex-end;
   padding-right: 20px;
@@ -168,7 +168,7 @@ ul {
 .listCategoryContent{
   font-size: 2.5rem;
   
-}*/
+}
 
 /*옆에서 나오는 카테고리 */
 /* Footer */
