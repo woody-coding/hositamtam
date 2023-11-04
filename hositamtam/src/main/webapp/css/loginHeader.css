@@ -33,7 +33,7 @@ ul {
   padding: 0;
 }
 
-a {
+.mainHeader__nav a {
   text-decoration: none;
   color: black;
 }
@@ -113,70 +113,4 @@ a {
   border-radius: 4px;
 }
 
-/*옆에서 나오는 카테고리*/
-.listCategory{
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
-        width: 550px; 
-       /* margin-top: 45px;*/
-        height: 100vh; 
-        background: #0E4194; 
-        position: fixed; 
-        z-index: 5;
-        color: white;
-        right: 0;
-        /*bottom: 0;*/
-        text-align: right;
-      /*  애니메이션시작화면 */
-        transition : all 0.5s;
-        transform: translateX(550px);
-}
-.goCategory{
-  line-height: 80px;
-  
-  padding: 10px;
-}
-.goCategory a{
-  border: 0;
-  background-color: transparent;
-  color: white;
-}
-.goCategory:hover{
-  transform: translateX(-50px);
 
-}
-
-.show-list{
-  transition : all 0.5s;
-  transform: translateX(0px);
-}
-.listCategoryContent{
-  font-size: 2.5rem;
-  
-}
-/*닫기 버튼*/
-.close {
-  width: 50px;
-  height: 50px;
-  opacity: 1;
-}
-
-.close:before, .close:after {
-  position: absolute;
-  left: 15px;
-  content: ' ';
-  height: 40px;
-  width: 5px;
-  background-color: #ffffff;
-}
-.close:before {
-  transform: rotate(45deg);
-}
-.close:after {
-  transform: rotate(-45deg);
-}
-.show-list{
-  transition : all 0.5s;
-  transform: translateX(0px);
-}
