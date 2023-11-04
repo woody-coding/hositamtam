@@ -42,6 +42,7 @@
           </button>
           </div>
 		</form>
+
       <nav class="mainHeader__nav">
         <ul class="mainHeader__menu">
           <li><a class="mainHeader__menu__item">서비스안내</a></li>
