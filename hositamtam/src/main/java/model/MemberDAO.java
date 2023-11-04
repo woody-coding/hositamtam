@@ -3,7 +3,7 @@ package model;
 import java.sql.*;
 import java.util.*;
 
-import javax.servlet.http.HttpSession;
+import model.MemberDO;
 
 public class MemberDAO {
 
@@ -392,4 +392,58 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
+
+	
+	
+	/** 경인 - 유저의 로그인 성공 여부를 boolean값으로 반환하는 메서드 
+	 *	로그인 성공시 매개변수로 들어간 MemberDO에 id와 nickname 값을 set */
+	public boolean loginCheck(MemberDO memberDO) {
+		boolean result = false;
+		
+		sql = "select id, passwd, nickname from member where id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberDO.getId().toLowerCase());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String passwd = rs.getString("passwd");
+				
+				if(passwd.equals(memberDO.getPasswd())) {
+					result = true;
+					memberDO.setId(rs.getString("id"));
+					memberDO.setNickname(rs.getString("nickname"));
+				}
+			}
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(pstmt != null){
+				try{
+					pstmt.close();
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+
+	
+	
 }

@@ -34,7 +34,7 @@ public class MarketDAO {
 
 	
 	
-	// ㄱ. 전체 시장 조회
+	// 1. 전체 시장 조회
 		public String getMarketList() {
 			ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
 
@@ -162,7 +162,7 @@ public class MarketDAO {
 		
 		
 	
-	// ㄴ.카데고리 유입 시장리스트 조회
+	// 2.카데고리 유입 시장리스트 조회
 	public String getMarketListByItem(int cateno) {
 		ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
 		
@@ -233,7 +233,7 @@ public class MarketDAO {
 	
 	
 	
-	// ㄷ. 검색어 유입 시장리스트 조회
+	// 3. 검색어 유입 시장리스트 조회
 	public String getMarketListBySearch(String keyword) {
 		ArrayList<MarketDO> marketList = new ArrayList<MarketDO>();
 
