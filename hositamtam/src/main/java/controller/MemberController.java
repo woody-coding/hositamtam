@@ -71,7 +71,6 @@ public class MemberController {
 		}else{
 		    // 로그인된 사용자 정보가 세션에 없음 (로그아웃 상태)
 			
-		    // 처리할 로직 추가
 		}
 		
 
@@ -87,7 +86,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
         // 로그아웃 처리
 		session.removeAttribute("memberInfo"); // 세션에서 사용자 정보 삭제
-	    session.removeAttribute("userId"); // 사용자 아이디도 삭제
+	    session.removeAttribute("userId"); // 세션에서 사용자 아이디도 삭제
         session.invalidate(); // 세션 초기화
         return "redirect:/views/main"; // 로그아웃 후 메인 페이지로 리다이렉트
     }
@@ -239,7 +238,7 @@ public class MemberController {
 	
 	@PostMapping("/views/myPage/deleteMember")
 	public String deleteMember(@RequestParam("id") String id) {
-//		memberDAO.deleteMember(id);
+		memberDAO.deleteMember(id);
 		
 		return "redirect:/main";
 	}
