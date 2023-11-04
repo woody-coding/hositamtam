@@ -39,7 +39,55 @@
   />
   
     <script defer src="../js/main.js"></script>
+    <script>
     
+    
+    	// 로그인에 성공하면 컨트롤러에서 무조건 main.jsp로 보내야 밑에 코드가 잘 실행됨! - 경인
+	    let id = '<%= session.getAttribute("id") %>';
+	    let nickname = '<%= session.getAttribute("nickname") %>';
+	
+	    
+	    id = (id === 'null') ? null : id;
+	    nickname = (nickname === 'null') ? null : nickname;
+	    
+	    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
+	    
+	    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+	    const localStorageData = window.localStorage.getItem("memberIdNickname");
+	    const localStorageMember = JSON.parse(localStorageData);
+	
+	    
+	    if(id !== null) {
+	    	if (localStorageMember !== null && localStorageMember.id !== id) {
+	    		window.localStorage.removeItem('memberIdNickname');
+	    	}
+	    	
+	        const member = { id: id, nickname: nickname };
+	        const memberIdNickname = JSON.stringify(member);
+	        window.localStorage.setItem('memberIdNickname', memberIdNickname);
+	    }
+	    else if(id === null && localStorageMember !== null) {
+	    	window.localStorage.removeItem('memberIdNickname');
+	    }
+    
+    
+    
+    
+	    // 검색어 입력 필드에서 Enter 키를 눌렀을 때 검색 실행
+	    document.getElementById("searchInput").addEventListener("keyup", function (event) {
+	        if (event.key === "Enter") { // Enter 키가 눌렸을 때
+	        
+	            const searchInput = document.querySelector("#searchInput").value;
+	            const encodedSearchInput = encodeURIComponent(searchInput);
+	            const newURL = "market.jsp?command=search&query=" + encodedSearchInput;
+	            window.location.href = newURL;
+	        }
+	  	  });
+		}
+
+		window.addEventListener('load', init);
+    
+    </script>
 </head>
 <body>
   <%@ include file="navi.jsp" %>
