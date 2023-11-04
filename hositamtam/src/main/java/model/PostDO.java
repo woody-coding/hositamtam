@@ -18,6 +18,10 @@ public class PostDO {
 	private String ccontent;
 	private String cregdate;
 	
+	public PostDO() {
+		
+	}
+	
 	public int getPno() {
 		return pno;
 	}
