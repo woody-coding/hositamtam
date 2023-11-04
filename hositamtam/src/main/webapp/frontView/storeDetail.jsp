@@ -125,11 +125,11 @@
           ${memberDO.nickname} 님 해당 점포에 리뷰를 남겨주세요.
         </span>
         <span class="review__star">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star review__star1"></i>
+          <i class="fa-solid fa-star review__star2"></i>
+          <i class="fa-solid fa-star review__star3"></i>
+          <i class="fa-solid fa-star review__star4"></i>
+          <i class="fa-solid fa-star review__star5"></i>
         </span>
       </div>
 
