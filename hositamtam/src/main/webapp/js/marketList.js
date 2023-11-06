@@ -25,6 +25,7 @@ function marketAjaxHandler() {
 			
 			// 기존 jsp에 있던 div 태그들 숨기기
 			document.querySelector("#map").style.display = "none";
+            document.querySelector("#howGetMarket").style.display = "none";
             document.querySelector("#marketContent").style.display = "none";
 			
             // 에러 메시지를 표시할 요소 선택
@@ -131,55 +132,30 @@ function marketAjaxHandler() {
 
 
 
-
-
-
-	// 현재 페이지에 접속한 사용자가 로그인되어 있는지 아닌지
-	const memberIdNick = window.localStorage.getItem('memberIdNickname');
-   
-	if (memberIdNick) {
-	    const member = JSON.parse(memberIdNick);
-	    console.log('id:', member.id);
-	    console.log('nickname:', member.nickname);
-	} 
-	else {
-	    console.log('로컬 스토리지에 멤버 정보가 없습니다.');
-	}
-
-
-
-
-
-
-
-
-
 // 초기화 함수
 function init() {
 
-    // URL에서 검색어 파라미터 추출
-    const searchParams = new URLSearchParams(location.search);
-    const keywordParam = searchParams.get('query');
-    const catenoParam = searchParams.get('cateno');
+	const keyCate = window.localStorage.getItem('KeywordAndCateno');
+	const KeywordAndCateno = JSON.parse(keyCate);
 
-    if (keywordParam) {
+    if (KeywordAndCateno.keyword) {
 
-        let currentKeyword = decodeURIComponent(keywordParam);
+        let currentKeyword = KeywordAndCateno.keyword;
         
         document.querySelector('#howGetMarket').innerHTML = "'"+ currentKeyword + "' (으)로 검색된 결과입니다.";	
         
         
         xhr.onreadystatechange = marketAjaxHandler;
         
-        let param = '/finalProject/ajaxController/toAjaxController.jsp?command=getMarketListBySearch&keyword=' + currentKeyword;
-        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+        let param = '?command=getMarketListBySearch&keyword=' + currentKeyword;
+        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
         xhr.send();
     }
     
-    else if(catenoParam) {
+    else if(KeywordAndCateno.cateno) {
 		// 카테고리(취급품목) 클릭했을 때 해당 시장 정보들 비동기 요청
 		//alert(location.search.substring(8).trim());
-		let currentCateno = catenoParam;
+		let currentCateno = KeywordAndCateno.cateno;
 		let currentCate = '';
 		
 		if(currentCateno === '1') {
@@ -202,14 +178,15 @@ function init() {
 			currentCate = '기타';
 		}
 		
-		document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'에 특화된 전통시장 목록 입니다.";
 		
+		document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'에 특화된 전통시장 목록 입니다.";
+
 		
 		
 		xhr.onreadystatechange = marketAjaxHandler;
 		
-	    let param = '/finalProject/ajaxController/toAjaxController.jsp?command=getMarketListByItem&cateno=' + currentCateno;
-	    xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	    let param = '?command=getMarketListByItem&cateno=' + currentCateno;
+	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
 	    xhr.send();
 	}
 
@@ -232,7 +209,7 @@ function showMarkers() {
         });
 
         var infowindow = new naver.maps.InfoWindow({
-            content: '<div>' + locations[i].mname + '</div><a href="storeList.jsp?mno=' + locations[i].mno + '">이동하기!</a>'
+            content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
         });
 
         (function (marker, infowindow) {

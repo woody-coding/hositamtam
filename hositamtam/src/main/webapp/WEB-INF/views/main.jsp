@@ -42,6 +42,7 @@
     
 </head>
 <body>
+
 	<%@ include file="navi.jsp" %>
 
     <div  class="section" id="section1">
@@ -91,7 +92,6 @@
      
       
       <div id="btnGroup">
-        
           <button id="mkList" class="category"><i class="bi bi-basket-fill"></i><br> 시장 리스트 </button>
           <button id="goPost" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
          <!--  <button class="category">

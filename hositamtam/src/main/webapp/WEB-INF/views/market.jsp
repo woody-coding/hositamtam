@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,87 +39,47 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<script defer src="../js/marketList.js"></script>
+<script>
+
+	function init() {
+		
+		// 로컬 스토리지를 활용해서 파라미터 keyword 혹은 cateno값 읽어오기
+	    let keyword = '<%= request.getAttribute("keyword") %>';
+	    let cateno = '<%= request.getAttribute("cateno") %>';
+	
+	    
+	    keyword = (keyword === 'null') ? null : keyword;
+	    cateno = (cateno === 'null') ? null : cateno;
+	    
+	    console.log('keyword : ' + keyword + '    /    typeof : ' + typeof(keyword));
+	    console.log('cateno : ' + cateno + '    /    typeof : ' + typeof(cateno));
+	
+	    // 기존의 로컬은 무조건 삭제 후, 다시 등록
+		window.localStorage.removeItem('KeywordAndCateno');
+	    	
+	    const keyCateno = { keyword: keyword, cateno: cateno };
+	    const KeywordAndCateno = JSON.stringify(keyCateno);
+	    window.localStorage.setItem('KeywordAndCateno', KeywordAndCateno);
+	
+	
+	}
+	
+	window.addEventListener('load', init);
+
+</script>
+<script src="/finalProject/js/marketList.js"></script>
 </head>
 
 <body>
-	<%@ include file="navi.jsp"%>
+	
 
-	<div class="section">
+	
+	<div id="map" style="width: 1100px; height: 700px;"></div>
 
+	<div id="howGetMarket"></div><br/>
+	<div id="marketErrorMsg"></div>
+	<div id="marketContent"></div>
 
-		<div id="map"></div>
-		<div id="mkListResult" class="row">
-		<c:forEach items="${marketList}" var="market" varStatus="status">
-			<div class="mkcontainer" class="row">
-
-				<div id="markerImg" class="col-3">
-					<img src="../images/마커.png" width="80px">
-				</div>
-				<div class="col-9">
-					<p id="mkName">${market.mname}</p>
-					<p id="mkaddr">${market.maddr}</p>
-					<span>화장실 <span id="isToilet">${market.mtoilet}, </span>주차장
-						<span id="isParking">${market.mparking} </span></span>
-
-				</div>
-			</div>
-			
-		</c:forEach></div>
-		<!--  <div id="mkSearchName">부평으로 검색된 결과입니다.</div> -->
-
-		<!-- <table id="listTable">
-		<tr>
-			<th>시장번호:</th>
-			<th>시장명:</th>
-			<th>구분:</th>
-			<th>주소:</th>
-			<th>위도:</th>
-			<th>경도:</th>
-			<th>화장실 유무:</th>
-			<th>주차 가능 유무:</th>
-			<th>전화번호:</th>
-			<th>업데이트 일자:</th>
-		</tr>
-		</table> -->
-		
-<%-- <tr>
-			<td>${status.count}</td>
-			<td>${market.mname}</td>
-			<td>${market.mtype}</td>
-			<td>${market.maddr}</td>
-			<td>${market.mlat}</td>
-			<td>${market.mlng}</td>
-			<td>${market.mtoilet}</td>
-			<td>${market.mparking}</td>
-			<td>${market.mtel}</td>
-			<td>${market.mupdateday}</td>
-		</tr> --%>
-
-		<!-- <div class="mkcontainer" class="row">
-
-            <div id="markerImg" class="col-3">
-                <img src="../images/마커.png" width="80px">
-            </div>
-            <div class="col-9">
-                <p id="mkName">${market.mname}</p>
-                <p id="mkaddr">${market.maddr}</p>
-                <span>화장실 <span id="isToilet">${market.mtoilet}, </span>주차장 <span id="isParking"></td>
-			<td> </span></span>
-            </div>
-        </div>
-        <div class="mkcontainer" class="row">
-
-            <div id="markerImg" class="col-3">
-                <img src="../images/마커.png" width="80px">
-            </div>
-            <div class="col-9">
-                <p id="mkName">자갈치시장</p>
-                <p id="mkaddr">자갈치해안로 52</p>
-                <span>화장실 <span id="isToilet">O, </span>주차장 <span id="isParking">O </span></span>
-            </div>
-        </div> -->
-	</div>
 
 	<%@ include file="footer.jsp"%>
 </body>
