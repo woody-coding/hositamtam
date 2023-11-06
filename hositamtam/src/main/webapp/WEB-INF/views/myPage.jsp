@@ -46,16 +46,16 @@
           </div>
           <div class="mylevel__name">
             ${memberInfo.nickname}의 등급 <br />
-            시장 햇병아리🐤
+            ${gradeName}
           </div>
         </section>
         <div id="mylevel__gage">
           <section class="mylevel__gage">
             <div
               class="mylevel__gage__value"
-              style="width: 35%; background-color: #e6007e"
+              style="width: ${memberInfo.exp}%; background-color: #e6007e;"
             >
-              35%
+              ${memberInfo.exp}
             </div>
           </section>
         </div>
@@ -73,8 +73,16 @@
       <div class="myprofile">
         <div class="myprofile__name">${memberInfo.nickname} (${userId})</div>
         <div class="modify__delete__button">
-          <button class="myprofile__modify__button" id="mypageedit_button" >정보수정</button>
-          <button class="myprofile__delete__button" id="delete_button" >회원탈퇴</button>
+        
+          <form id="updateForm" action="/finalProject/views/myPageUpdate" method="POST">
+          	<input type="hidden" name="id" value="${userId}" />
+          	<button class="myprofile__modify__button" id="mypageedit_button" >정보수정</button>
+          </form>
+          
+          <form id="deleteForm" action="/finalProject/views/myPage/deleteMember" method="POST">
+            <input type="hidden" name="id" value="${userId}" />
+            <button class="myprofile__delete__button" id="delete_button" >회원탈퇴</button>
+          </form>
         </div>
 
         <section class="myprofile__activity">

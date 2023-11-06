@@ -13,37 +13,26 @@ function maskUserId(userId) {
 }
 
 function editHandler(event) {
-    let id = document.querySelector('#id').value;
-    let passwd = document.querySelector('#passwd').value;
-    let msgDiv = document.querySelector('#msg'); // 에러 메시지를 표시할 요소
-
-    if (!id || !passwd) {
-        event.preventDefault();
-        msgDiv.innerHTML = '아이디와 비밀번호를 모두 입력해야 합니다.';
-        // 폼 제출을 중단하고 에러 메시지를 표시
-    } else {
-        msgDiv.innerHTML = ''; // 에러 메시지를 지웁니다.
-    }
+     
 }
 
-function deleteHandler(){
+function deleteHandler(event){
 	if(confirm('현재 회원을 정말 삭제하시겠습니까?')){
+		 document.getElementById('deleteForm').submit();
 		
-		
-	// window.location.href = "/finalProject/views/main";
 	}else{
 		
-		
+		event.preventDefault();
 	}
 }
 
 
 function init() {
-    let join__form = document.querySelector('#mypageedit_button');
-    join__form.addEventListener('click', editHandler);
+    let mypageedit_button = document.querySelector('#mypageedit_button');
+    mypageedit_button.addEventListener('click', editHandler);
     
-    let signup_button = document.querySelector('#delete_button');
-    signup_button.addEventListener('click', deleteHandler);
+    let delete_button = document.querySelector('#delete_button');
+    delete_button.addEventListener('click', deleteHandler);
     
 	// userId 변수를 maskUserId 함수에 전달하여 마스킹
     var maskedUserId = maskUserId(userId);

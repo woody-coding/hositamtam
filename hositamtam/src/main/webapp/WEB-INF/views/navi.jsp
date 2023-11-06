@@ -46,7 +46,7 @@
 
            </ul>
            </li>
-          
+
           <!-- 로그인 되있으면 바꾸기  -->
 			<c:choose>
 				<c:when test="${not empty sessionScope.memberInfo}">
