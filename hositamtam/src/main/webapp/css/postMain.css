@@ -34,26 +34,17 @@
 a{
     text-decoration: none;
 }
-/*ul.list {
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid #0188CC;
+button {
+	display: inline-block;
 }
-ul.list::after {
-    content: '';
-    display: block;
-    clear: both;
-}*/
+
 .list {
     display: flex;
     justify-content: space-between;
-    list-style-type: none;
+   
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid #0188CC;
+    border-bottom: 2px solid #0188CC;
 }
 .list::after {
     content: '';
@@ -64,10 +55,13 @@ ul.list::after {
 	 display: block;
     padding: 10px 20px 10px 20px;
     float: left;
-    margin-right: -1px;
-    margin-bottom: -1px;
+   margin-bottom: 2px;
+    margin-left: 2px;
     color: grey;
     text-decoration: none;
+    border: 0px;
+    font-weight: bold;
+    
 }
 #pCategory:hover{
     background-color: #0188CC;
@@ -311,8 +305,7 @@ border-bottom: 1px solid #0188CC;
 }
 
 .show-mkNameList{
-  transition : all 1s;
-
+  
     visibility: visible;
     opacity: 1;
     
@@ -346,4 +339,37 @@ border-bottom: 1px solid #0188CC;
 }
 .btn-primary{
     background-color: #0e4194;
+}
+#mno {
+	border-radius: 2px;
+	background-color: gray;
+	color: white;
+	border: 0px;
+	padding: 2px;
+	font-size: 1.05rem;
+	text-align: left;
+	margin-bottom: 2px;
+}
+#mno:hover {
+	background-color: #0e4194;
+}
+#whatMarket{
+	border-radius: 2px;
+	background-color: #0e4194;
+	color: white;
+	border: 0px;
+	padding: 1px;
+	font-size: 1.05rem;
+}
+th {
+    min-width: 100px; 
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid #0e4194;     
+    }
+.pcontent {
+	 padding: 5px;
+	text-align: center;
+	min-width: 600px; 
+    
 }
