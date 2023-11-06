@@ -104,8 +104,6 @@
             </div>
 
             <div class="join__error" id="msg">${msg}</div>
-
-            <button class="join__button" type="submit" id="join_button">회원가입</button>
           </form>
         </div>
       </div>
