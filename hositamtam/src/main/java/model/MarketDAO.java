@@ -197,22 +197,31 @@ public class MarketDAO {
                 marketList.add(marketDO);
 	            }
 			
-				for(MarketDO market : marketList) {
-					jsonObject = new JSONObject(); // jsonObject 초기화
-					
-					jsonObject.put("mno", market.getMno());
-					jsonObject.put("mname", market.getMname());
-					jsonObject.put("mtype", market.getMtype());
-					jsonObject.put("maddr", market.getMaddr());
-					jsonObject.put("mlat", market.getMlat());
-					jsonObject.put("mlng", market.getMlng());
-					jsonObject.put("mtoilet", market.getMtoilet());
-					jsonObject.put("mparking", market.getMparking());
-					jsonObject.put("mtel", market.getMtel());
-					jsonObject.put("mupdateday", market.getMupdateday());
-					
-					jsonArray.add(jsonObject);
-				}
+			
+			if (marketList.isEmpty()) {
+	            jsonObject = new JSONObject();
+	            jsonObject.put("marketErrorMsg", "잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!");
+	            jsonArray.add(jsonObject);
+	        }
+			
+			
+			
+			for(MarketDO market : marketList) {
+				jsonObject = new JSONObject(); // jsonObject 초기화
+				
+				jsonObject.put("mno", market.getMno());
+				jsonObject.put("mname", market.getMname());
+				jsonObject.put("mtype", market.getMtype());
+				jsonObject.put("maddr", market.getMaddr());
+				jsonObject.put("mlat", market.getMlat());
+				jsonObject.put("mlng", market.getMlng());
+				jsonObject.put("mtoilet", market.getMtoilet());
+				jsonObject.put("mparking", market.getMparking());
+				jsonObject.put("mtel", market.getMtel());
+				jsonObject.put("mupdateday", market.getMupdateday());
+				
+				jsonArray.add(jsonObject);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
