@@ -8,7 +8,6 @@
       </div>
 
 		<form id="searchBox" action="/finalProject/views/marketList">
-		    <input type="hidden" name="command" value="search" />
 		    <input type="text" id="searchInput" name="keyword" placeholder="시장 이름을 입력해주세요. ex) 부평깡통시장" />
 		</form>
 
