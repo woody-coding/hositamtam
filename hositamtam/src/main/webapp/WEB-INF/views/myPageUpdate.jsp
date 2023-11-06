@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" import="model.MemberDO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -40,12 +40,13 @@
     <section id="mypage__update" class="section">
       <div class="max-container">
         <div class="mypage__update">
-          <form id="mypage__update__form">
+          
             <div class="mypage__update__form">
               <label for="new-username" class="mypage__update__id">
-                tmi****
+                ${userId}
               </label>
-
+              
+			<form id="mypage__update__nickname" action="/finalProject/views/myPageUpdate" method="POST">
               <label for="change-nickname" class="mypage__update__label">
                 <input
                   class="mypage__update__input"
@@ -53,9 +54,11 @@
                   id="change-nickname"
                   placeholder="닉네임"
                 />
-                <button class="duplication__check">중복확인</button>
+                <button class="duplication__check" id="nickname_check">중복확인</button>
               </label>
+            </form>
 
+			<form id="mypage__update__passwd" action="/finalProject/views/myPageUpdate" method="POST">
               <label for="change-password" class="mypage__update__label">
                 <input
                   class="mypage__update__input"
@@ -63,8 +66,9 @@
                   id="change-password"
                   placeholder="변경할 비밀번호"
                 />
-                <button class="duplication__check">중복확인</button>
+                <button class="duplication__check" id="passwd_check">중복확인</button>
               </label>
+            </form>
 
               <label for="confirm-password" class="mypage__update__label">
                 <input
@@ -80,10 +84,11 @@
               비밀번호가 일치하지 않습니다.
             </div>
 
-            <button class="mypage__update__button" type="submit">
-              수정하기
-            </button>
-          </form>
+			<form id="mypage__update__form" >
+	            <button class="mypage__update__button" type="submit" id="update_button">
+	              수정하기
+	            </button>
+         	</form>
         </div>
       </div>
     </section>

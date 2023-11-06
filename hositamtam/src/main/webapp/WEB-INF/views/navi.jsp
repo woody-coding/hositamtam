@@ -64,13 +64,9 @@
            </ul>
            </li>
            <!-- <a href="#" class="mainHeader__menu__item" id="categoryOpen">카테고리</a> -->
-          <li><a href="/finalProject/views/login" class="mainHeader__menu__item" id="category">로그인</a></li>
-          <li><a href="/finalProject/views/join" class="mainHeader__menu__item" id="category">회원가입</a></li>
-        </ul>
-      </nav>
-    </header>
- <!-- 로그인 되있으면 바꾸기  -->
-			<%-- <c:choose>
+           
+          	<!-- 로그인 되있으면 바꾸기  -->
+          	<c:choose>
 				<c:when test="${not empty sessionScope.memberInfo}">
 					<a href="/finalProject/views/logout">${memberInfo.nickname}님 / 로그아웃</a>&nbsp;&nbsp;
 			        <li><a href="/finalProject/views/myPage" class="mainHeader__menu__item" id="category">마이페이지</a></li>&nbsp;&nbsp;
@@ -82,4 +78,7 @@
 			</c:choose>
         </ul>
       </nav>
-    </header> --%>
+    </header>
+    
+
+			

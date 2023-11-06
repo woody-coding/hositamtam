@@ -1,56 +1,36 @@
-document.addEventListener("DOMContentLoaded", function () {
-  var deleteButton = document.querySelector(".myprofile__delete__button");
-
-  deleteButton.addEventListener("click", function () {
-    var confirmDelete = confirm("정말 회원 탈퇴를 진행하시겠습니까?");
-
-    if (confirmDelete) {
-      // '예'를 눌렀을 때 처리 방식
-    }
-  });
-});
-
-
-function changePasswdHandler(){
-	let hiddenForm = document.querySelector('#hiddenForm');
-	let passwd = document.querySelector('#passwd');
-	let newInputPasswd = document.querySelector('#newInputPasswd');
-	let newPasswd = document.querySelector('#newPasswd');
-	let msg = document.querySelector('#msg');
-	
-	if(newInputPasswd.value.length < 4 || passwd.value === newInputPasswd.value){
-		msg.innerHTML = "새로운 비밀번호는 4글자 이상이고, 기존 비밀번호와 달라야합니다.";
-		return;
-	}
-	
-	newPasswd.value = newInputPasswd.value;
-	hiddenForm.setAttribute('action', '/finalProject/js/changePasswd');
-	hiddenForm.submit();
+// 닉네임 수정을 요청하는 JavaScript 함수
+function changeNicknameHandler(event) {
+    
+    
+    
 }
 
-function changeGradeHandler(){
-	let hiddenForm = document.querySelector('#hiddenForm');
-	let newInputGrade = document.querySelector('#newInputGrade');
-	let grade = document.querySelector('#grade');
+
+// 비밀번호 수정을 요청하는 JavaScript 함수
+function changePasswdHandler(event) {
+    
+    
+    
+}
+
+// 최종 수정하기 요청하는 JavaScript 함수
+function updateHandler(event){
 	
-	grade.value = newInputGrade.value;
-	hiddenForm.setAttribute('action', '/myProject/step2/changeGrade');
-	hiddenForm.submit();
+	
 }
 
-function deleteMemberHandler(){
-	if(confirm('현재 회원을 정말 삭제하시겠습니까?')){
-		let hiddenForm = document.querySelector('#hiddenForm');
-		
-		hiddenForm.setAttribute('action', '/myProject/step2/deleteMember');
-		hiddenForm.submit();
-	}
-}
 
-function init(){
-	document.querySelector('#changePasswd').addEventListener('click', changePasswdHandler);
-	document.querySelector('#changeGrade').addEventListener('click', changeGradeHandler);
-	document.querySelector('#deleteMember').addEventListener('click', deleteMemberHandler);
+
+function init() {
+    // 닉네임 수정 버튼 클릭 시
+    document.querySelector('#nickname_check').addEventListener('click', changeNicknameHandler);
+    
+    // 비밀번호 수정 버튼 클릭 시
+    document.querySelector('#passwd_check').addEventListener('click', changePasswdHandler);
+    
+    // 수정하기 버튼 클릭 시
+    document.querySelector('#update_button').addEventListener('click', updateHandler);
+    
 }
 
 window.addEventListener('load', init);
