@@ -63,6 +63,7 @@ public class PostController {
 		model.addAttribute("postList", postDAO.getAllPost(command.getMno()));
 		return "postList";
 	}
+
 	// 게시글 상세 페이지 이동
 	@GetMapping("/views/toPostDetail")
 	public String toPostDetail(@RequestParam int pno, Model model) {
@@ -77,6 +78,7 @@ public class PostController {
 		postDAO.InsertComment(command);
 		return "redirect:/views/toPostDetail?pno=" + command.getPno();	
 	}
+
 		
 	@GetMapping("/views/postCatrgoryList")
 	public String MarketList(@RequestParam String pCategory, Model model) {

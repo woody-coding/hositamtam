@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" import="model.MemberDO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -45,7 +45,7 @@
             <i class="fa-solid fa-user"></i>
           </div>
           <div class="mylevel__name">
-            회원님의 등급 <br />
+            ${memberInfo.nickname}의 등급 <br />
             시장 햇병아리🐤
           </div>
         </section>
@@ -71,10 +71,10 @@
 
       <!-- Profile -->
       <div class="myprofile">
-        <div class="myprofile__name">탐탐 님 (tmi****)</div>
+        <div class="myprofile__name">${memberInfo.nickname} (${userId})</div>
         <div class="modify__delete__button">
-          <button class="myprofile__modify__button">정보수정</button>
-          <button class="myprofile__delete__button">회원탈퇴</button>
+          <button class="myprofile__modify__button" id="mypageedit_button" >정보수정</button>
+          <button class="myprofile__delete__button" id="delete_button" >회원탈퇴</button>
         </div>
 
         <section class="myprofile__activity">

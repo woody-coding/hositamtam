@@ -89,14 +89,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-document.querySelector("#goPost").addEventListener("click", function() {
+/*document.querySelector("#goPost").addEventListener("click", function() {
   // 리디렉션할 URL 설정
   var redirectURL = "/finalProject/views/post"; // 원하는 경로로 변경
 
   // 페이지 리디렉션
   window.location.href = redirectURL;
 });
-
+*/
 
    function init() {
 document.querySelector('#mkList').addEventListener("click", displayHandler);

@@ -127,6 +127,7 @@ ul {
     
 
 }
+/*옆에서 나오는 카테고리 */
 .listCategory{
   display: flex;
   justify-content: flex-end;
@@ -139,7 +140,7 @@ ul {
         color: white;
         right: 0;
         text-align: right;
-      /*  애니메이션시작화면 */
+        애니메이션시작화면 
         transition : all 0.5s;
         transform: translateX(550px);
 }
@@ -169,6 +170,7 @@ ul {
   
 }
 
+/*옆에서 나오는 카테고리 */
 /* Footer */
 #information {
   position: relative;
@@ -304,29 +306,21 @@ ul {
 
 /*========================= section2===================================== */
 
-.dropdown{
-  width: 280px;
+ .dropdown{
   margin: 0 auto;
-  cursor: pointer;
-}
-.btnDrop{
-  border: 1px solid white;
-  padding: 4px;
+} 
+.fa-github{
   color: white;
-  background-color: #333333;
-  opacity: 0.9;
 }
-.dropDownMenu{
-  text-align: left;
-  font-size: 1.5rem;
-  visibility:  hidden;
+.bi-arrow-up-circle-fill{
+  color: white;
+
 }
+
 .dropDownMenu a{
   color: #333333;
 }
-.show-dropDown{
-  visibility:  visible;
-}
+
 .swiper {
   width: 100%;
   height: 600px;

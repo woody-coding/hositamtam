@@ -38,59 +38,58 @@
 		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 		crossorigin="anonymous">
     <script>
+        function init() {
 
-		function init() {
-			
-			// 1. 파라미터 mno 값 읽어오기
-		    let mno = '<%= request.getAttribute("mno") %>';
-		
-		    mno = (mno === 'null') ? null : mno;
-		    
-		    console.log('mno : ' + mno + '    /    typeof : ' + typeof(mno));
-		
-		    // 기존의 로컬은 무조건 삭제 후, 다시 등록
-			window.localStorage.removeItem('mnoToStore');
-		    	
-		    const whatMno = { mno: mno };
-		    const mnoToStore = JSON.stringify(whatMno);
-		    window.localStorage.setItem('mnoToStore', mnoToStore);
-		
-		    
-		    
-		    
-		    // 2. 현재 접속한 사용자가 회원인지 비회원인지 판단하기
-		    let id = '<%= session.getAttribute("userId") %>';
-		
-		    
-		    id = (id === 'null') ? null : id;
-		    
-		    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
-		    
-		    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
-		    const localStorageData = window.localStorage.getItem("memberId");
-		    const localStorageMember = JSON.parse(localStorageData);
-		
-            
-		    if(id !== null) {
-            	if (localStorageMember !== null && localStorageMember.id !== id) {
-            		window.localStorage.removeItem('memberId');
-            	}
-            	
-                const member = { id: id };
-                const memberId = JSON.stringify(member);
-                window.localStorage.setItem('memberId', memberId);
-            }
-            else if(id === null && localStorageMember !== null) {
-            	window.localStorage.removeItem('memberId');
-            }
-		    
-		    
-		
-		}
-		
-		window.addEventListener('load', init);
+        // 1. 파라미터 mno 값 읽어오기
+          let mno = '<%= request.getAttribute("mno") %>';
 
-	</script>
+          mno = (mno === 'null') ? null : mno;
+
+          console.log('mno : ' + mno + '    /    typeof : ' + typeof(mno));
+
+          // 기존의 로컬은 무조건 삭제 후, 다시 등록
+        window.localStorage.removeItem('mnoToStore');
+
+          const whatMno = { mno: mno };
+          const mnoToStore = JSON.stringify(whatMno);
+          window.localStorage.setItem('mnoToStore', mnoToStore);
+
+
+
+
+          // 2. 현재 접속한 사용자가 회원인지 비회원인지 판단하기
+          let id = '<%= session.getAttribute("userId") %>';
+
+
+          id = (id === 'null') ? null : id;
+
+          console.log('id : ' + id + '    /    typeof : ' + typeof(id));
+
+          // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+          const localStorageData = window.localStorage.getItem("memberId");
+          const localStorageMember = JSON.parse(localStorageData);
+
+
+          if(id !== null) {
+                if (localStorageMember !== null && localStorageMember.id !== id) {
+                  window.localStorage.removeItem('memberId');
+                }
+
+                  const member = { id: id };
+                  const memberId = JSON.stringify(member);
+                  window.localStorage.setItem('memberId', memberId);
+              }
+              else if(id === null && localStorageMember !== null) {
+                window.localStorage.removeItem('memberId');
+              }
+
+
+
+      }
+
+      window.addEventListener('load', init);
+
+	  </script>
     <script src="/finalProject/js/storeList.js"></script>
 </head>
 <body>
