@@ -42,7 +42,8 @@
 <body>	
 
 	<%@ include file="navi.jsp" %>
-	
+	<div  class="section" id="section1">
+	<div class="container mt-5">
 	<c:forEach items="${post}" var="post">	
 	<div>${post.pno}</div>
 	<div>${post.id}</div>
@@ -86,7 +87,8 @@
 	<hr/>
 	</c:forEach>
 	</c:forEach>
-	
+	</div>
+	</div>
 	<%@ include file="footer.jsp" %>
 </body>
 </html>
