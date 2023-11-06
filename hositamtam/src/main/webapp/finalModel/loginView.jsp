@@ -10,11 +10,45 @@
     <script>
     
 		function init() {
+			
+			
+		    let id = '<%= session.getAttribute("id") %>';
+		    let nickname = '<%= session.getAttribute("nickname") %>';
+		
+		    
+		    id = (id === 'null') ? null : id;
+		    nickname = (nickname === 'null') ? null : nickname;
+		    
+		    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
+		    
+		    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+		    const localStorageData = window.localStorage.getItem("memberIdNickname");
+		    const localStorageMember = JSON.parse(localStorageData);
+		
+            
+		    if(id !== null) {
+            	if (localStorageMember !== null && localStorageMember.id !== id) {
+            		window.localStorage.removeItem('memberIdNickname');
+            	}
+            	
+                const member = { id: id, nickname: nickname };
+                const memberIdNickname = JSON.stringify(member);
+                window.localStorage.setItem('memberIdNickname', memberIdNickname);
+            }
+            else if(id === null && localStorageMember !== null) {
+            	window.localStorage.removeItem('memberIdNickname');
+            }
+
+            
+			
+			
+			
+			
 	        // 검색어 입력 필드에서 Enter 키를 눌렀을 때 검색 실행
 	        document.getElementById("searchInput").addEventListener("keyup", function (event) {
 	            if (event.key === "Enter") { // Enter 키가 눌렸을 때
 	            
-	                const searchInput = document.getElementById("searchInput").value;
+	                const searchInput = document.querySelector("#searchInput").value;
 	                const encodedSearchInput = encodeURIComponent(searchInput);
 	                const newURL = "marketTest.jsp?command=search&query=" + encodedSearchInput;
 	                window.location.href = newURL;
@@ -33,35 +67,20 @@
 	    <input type="hidden" name="command" value="search" />
 	    <input type="text" id="searchInput" name="query" placeholder="시장 이름을 입력해주세요. ex) 부평깡통시장" />
 	</form>
+	<br/><br/>
 
-
-
-    <div class="loginform">
-        <h1>로그인</h1><br>
-        
-        <form action="login.jsp?command=login" method="POST" id="loginForm">
-            <li>
-                <label for="id">아이디</label><br>
-                <input type="text" id="id" name="id" minlength="5" maxlength="20" required/>
-            </li>
-            <li>
-                <label for="passwd">패스워드</label><br>
-                <input type="password" id="passwd" name="passwd" minlength="5" maxlength="20" required/>
-            </li>
-            <button type="submit" id="submit" name="command" value="login">로그인</button>
-            <p class="fail">${errorMsg}</p>
-            <c:choose>
-				<c:when test="${requestScope.loginAgainMsg != null}"><p class="fail">${requestScope.loginAgainMsg}</p></c:when>
-			</c:choose>
-        </form>
-    </div>
     
     
+	<c:choose>
+		<c:when test="${sessionScope.nickname != null}">
+			<a href="login.jsp?command=logout">${sessionScope.nickname}님/로그아웃</a>&nbsp;&nbsp;
+		</c:when>
+		<c:otherwise>
+			<a href="realLoginView.jsp" target="_self">로그인/회원가입</a>
+		</c:otherwise>
+	</c:choose>
     
-    
-    <a href="login.jsp?command=logout">${sessionScope.nickname}님/로그아웃</a><br/>
-    
-    
+    <br/><br/>
     <a href="marketTest.jsp?cateno=1">농산물</a><br/>
     <a href="marketTest.jsp?cateno=2">음식점</a><br/>
     <a href="marketTest.jsp?cateno=3">가공식품</a><br/>

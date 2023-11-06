@@ -106,3 +106,70 @@ body{
   .goMarket:hover .down {
     top: 0; /* hover 상태에서 down을 아래로 이동하여 표시 */
   }	
+  
+  .personalMcontent {
+	border: 2px solid gray;
+	border-collapse: collapse;
+}
+
+
+
+.listCategory{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+        width: 550px; 
+        height: 100vh; 
+        background: #0E4194; 
+        position: fixed; 
+        z-index: 5;
+        color: white;
+        right: 0;
+        text-align: right;
+      /*  애니메이션시작화면 */
+        transition : all 0.5s;
+        transform: translateX(550px);
+}
+.goCategory{
+  line-height: 80px;
+  
+  padding: 10px;
+}
+.goCategory a{
+  border: 0;
+  background-color: transparent;
+  color: white;
+}
+.goCategory:hover{
+  transform: translateX(-50px);
+
+}
+
+.show-list{
+  transition : all 0.5s;
+  transform: translateX(0px);
+}
+.listCategoryContent{
+  font-size: 2.5rem;
+  
+}
+.close {
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+}
+
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 40px;
+  width: 5px;
+  background-color: #ffffff;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}

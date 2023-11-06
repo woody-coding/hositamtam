@@ -32,42 +32,30 @@
     <!-- JavaScript -->
     <script defer src="/finalProject/js/storeDetailReview.js"></script>
     <script defer src="/finalProject/js/anchor.js"></script>
+    <script>
+    
+	    // 검색어 입력 필드에서 Enter 키를 눌렀을 때 검색 실행
+	    document.getElementById("searchInput").addEventListener("keyup", function (event) {
+	        if (event.key === "Enter") { // Enter 키가 눌렸을 때
+	        
+	            const searchInput = document.querySelector("#searchInput").value;
+	            const encodedSearchInput = encodeURIComponent(searchInput);
+	            const newURL = "market.jsp?command=search&query=" + encodedSearchInput;
+	            window.location.href = newURL;
+	        }
+	  	  });
+		}
+
+		window.addEventListener('load', init);
+    
+    </script>
   </head>
   <body>
-    <!-- Header -->
-    <header class="mainHeader">
-      <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="/finalProject/images/logo.ico" alt="logo" />
-      </div>
+  
+      <%@ include file="navi.jsp" %>
+  
+  
 
-      <form id="searchForm" method="get" action="SearchController">
-        <div class="market__search">
-          <input
-            type="text"
-            class="market__searchInput"
-            name="market"
-            id="searchInput"
-            placeholder="   궁금한 시장 이름을 입력하세요. Ex.부평깡통시장"
-          />
-          <button
-            class="market__searchButton"
-            type="submit"
-            name="action"
-            value="search"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </form>
-
-      <nav class="mainHeader__nav">
-        <ul class="mainHeader__menu">
-          <li><a class="mainHeader__menu__item" href="#">서비스안내</a></li>
-          <li><a class="mainHeader__menu__item" href="#">시끌시끌</a></li>
-          <li><a class="mainHeader__menu__item" href="#">카테고리</a></li>
-        </ul>
-      </nav>
-    </header>
 
     <!-- Main -->
     <!-- Store Detail -->
@@ -125,11 +113,11 @@
           ${memberDO.nickname} 님 해당 점포에 리뷰를 남겨주세요.
         </span>
         <span class="review__star">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star review__star1"></i>
+          <i class="fa-solid fa-star review__star2"></i>
+          <i class="fa-solid fa-star review__star3"></i>
+          <i class="fa-solid fa-star review__star4"></i>
+          <i class="fa-solid fa-star review__star5"></i>
         </span>
       </div>
 
@@ -238,25 +226,7 @@
       </a>
     </aside>
 
-    <!-- Footer -->
-    <footer id="information" class="section">
-      <div class="information__located">
-        <div class="max-container">
-          <h2 class="information__title">&copy; TMI - All rights reserved</h2>
-          <div class="information__contents">
-            <p class="information__title">
-              Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
-              팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
-              팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
-            </p>
-            <p class="information__title">
-              <br />
-              <i class="fa-brands fa-github"></i>
-              https://github.com/wlstjd3398/TMI.git
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+
+	<%@ include file="footer.jsp" %>
   </body>
 </html>

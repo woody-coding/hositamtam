@@ -15,12 +15,18 @@ public class StoreDO {
     private String scategory;
     private String mlat;
     private String mlng;
+    private double savgrating;
+    private int sreviewcount;
     private int payno;
     private String mname;
     private int review;
-    private Double rating;
+    private double rating;
     private String content;
-    private String[] paytype;
+    private String paytype;
+    
+    public StoreDO() {
+    	
+    }
     
 	public int getSno() {
 		return sno;
@@ -139,11 +145,24 @@ public class StoreDO {
 	public void setRating(Double rating) {
 		this.rating = rating;
 	}
-	public String[] getPaytype() {
+	public String getPaytype() {
 		return paytype;
 	}
-	public void setPaytype(String[] paytype) {
-		this.paytype = paytype;
+	public void setPaytype(String string) {
+		this.paytype = string;
 	}
+	public double getSavgrating() {
+		return savgrating;
+	}
+	public void setSavgrating(double savgrating) {
+		this.savgrating = savgrating;
+	}
+	public int getSreviewcount() {
+		return sreviewcount;
+	}
+	public void setSreviewcount(int sreviewcount) {
+		this.sreviewcount = sreviewcount;
+	}
+
 	
 }

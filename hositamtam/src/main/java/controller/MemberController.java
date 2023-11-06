@@ -56,6 +56,7 @@ public class MemberController {
 	
 	// 헤더	
 	@GetMapping("/views/main") // http://localhost:8080/finalProject/views/main
+
 	public String toMain(HttpSession session, Model model) {
 		
 		// 세션에서 사용자 아이디와 사용자 정보 가져오기
@@ -70,9 +71,9 @@ public class MemberController {
 		}else{
 		    // 로그인된 사용자 정보가 세션에 없음 (로그아웃 상태)
 			
-		    // 처리할 로직 추가
 		}
 		
+
 		return "main";
 	}
 	
@@ -85,7 +86,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
         // 로그아웃 처리
 		session.removeAttribute("memberInfo"); // 세션에서 사용자 정보 삭제
-	    session.removeAttribute("userId"); // 사용자 아이디도 삭제
+	    session.removeAttribute("userId"); // 세션에서 사용자 아이디도 삭제
         session.invalidate(); // 세션 초기화
         return "redirect:/views/main"; // 로그아웃 후 메인 페이지로 리다이렉트
     }
@@ -169,15 +170,18 @@ public class MemberController {
 
 			System.out.println(memberDAO.loginMember(id, passwd));
 		    // 로그인 처리 성공 유무에 따른 화면 출력
-		    if(memberDAO.loginMember(id, passwd)) {
+		    if (memberDAO.loginMember(id, passwd)) {		
+
 		        session.setAttribute("userId", id);
 		        model.addAttribute("userId", session.getAttribute("userId"));
+
 		        
 		        MemberDO memberInfo = memberDAO.getMember(id);
 		        session.setAttribute("memberInfo", memberInfo);
 		        model.addAttribute("memberInfo", memberInfo);
 		        System.out.println("memberInfo");
 		        
+
 		        return "redirect:/views/main"; // 로그인 성공 시 메인 페이지로 이동
 		        
 		    }else{
@@ -234,7 +238,7 @@ public class MemberController {
 	
 	@PostMapping("/views/myPage/deleteMember")
 	public String deleteMember(@RequestParam("id") String id) {
-//		memberDAO.deleteMember(id);
+		memberDAO.deleteMember(id);
 		
 		return "redirect:/main";
 	}

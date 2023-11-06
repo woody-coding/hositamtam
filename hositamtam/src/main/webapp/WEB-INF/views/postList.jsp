@@ -6,8 +6,42 @@
 <html>
 <head>
 <title>postList.jsp</title>
+<!-- Favicon -->
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<!-- G-Market Fonts -->
+<link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
+	rel="stylesheet" />
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/89490613c7.js"
+	crossorigin="anonymous"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/footer.css" />
+<link rel="stylesheet" href="../css/postMain.css" />
+<!-- JavaScript -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
+
+​
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
+	<%@ include file="navi.jsp" %>
+	
 	<h3>호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</h3>
 	<button id="whatMarket">시장 선택하기</button>
 	<br/>
@@ -47,7 +81,6 @@
 			<th>제목:</th>
 			<th>내용:</th>
 			<th>작성일자:</th>
-			<th>사진:</th>
 			<th>좋아요 수:</th>
 			<th>작성자:</th>
 			<th>댓글 수:</th>
@@ -56,10 +89,9 @@
 	<c:forEach items="${postList}" var="post" varStatus="status">
 		<tr>
 			<td>${status.count}</td>
-			<td>${post.ptitle}</td>
+			<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
 			<td>${post.pcontent}</td>
 			<td>${post.pregdate}</td>
-			<td>${post.pphoto}</td>
 			<td>${post.plikecount}</td>
 			<td>${post.nickname}</td>
 			<td>${post.countcomments}</td>
@@ -67,5 +99,8 @@
 		</tr>
 	</c:forEach>
 	</table>
+	
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

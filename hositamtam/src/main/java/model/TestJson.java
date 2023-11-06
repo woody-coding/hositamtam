@@ -1,4 +1,4 @@
-package finalModel;
+package model;
 
 public class TestJson {
 
