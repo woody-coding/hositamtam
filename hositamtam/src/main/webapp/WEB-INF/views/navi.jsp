@@ -24,28 +24,6 @@
 	    <a href="/finalProject/views/marketList?cateno=9">기타</a>
 
 
-<!-- 기존의 동영님 검색바 코드 
-      <form id="searchForm" method="GET" action="/finalProject/views/marketSearch">
-        <div class="market__search">
-          <input
-            type="text"
-            class="market__searchInput"
-            name="keyword"
-            id="keyword"
-            placeholder="   궁금한 시장 이름을 입력하세요. Ex.부평깡통시장"
-          />
-          <button
-            class="market__searchButton"
-            type="submit"
-            name="action"ㅍ
-            value="search"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </form>
--->
-
 
       <nav class="mainHeader__nav">
         <ul class="mainHeader__menu">
