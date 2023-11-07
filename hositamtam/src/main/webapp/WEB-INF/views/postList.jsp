@@ -63,19 +63,20 @@
 	<input type="hidden" id="mno" name="mno" value="${market.mno}">
 	</form>
 	<hr/>
+	
+	<div class="list">
 	<form method="GET" action="/finalProject/views/postMain">
 	<label for="mno"></label>
 	<button>전체글</button>
 	<input type="hidden" id="mno" name="mno" value="${market.mno}">
 	</form>
-	<br/>
+	
 	<form method="GET" action="/finalProject/views/postHot">
 	<label for="mno"></label>
 	<button>인기글</button>
 	<input type="hidden" id="mno" name="mno" value="${market.mno}">
 	</form>
-	<br/>
-	<div class="list row">
+	
 	<form  method="GET" action="/finalProject/views/postCategory">
 	<label for="pCategory"></label>
 	<button id="pCategory" name="pCategory" value="궁금해요">궁금해요</button>
@@ -94,7 +95,6 @@
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
-			<th class="pcontent">내용</th>
 			<th>작성일자</th>
 			<th>좋아요</th>
 			<th>작성자</th>
@@ -104,8 +104,8 @@
 	<c:forEach items="${postList}" var="post" varStatus="status">
 		<tr>
 			<td>${status.count}</td>
-			<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
-			<td>${post.pcontent}</td>
+			<td class= "ptitle"><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
+			
 			<td>${post.pregdate}</td>
 			<td>${post.plikecount}</td>
 			<td>${post.nickname}</td>
