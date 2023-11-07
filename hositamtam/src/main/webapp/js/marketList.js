@@ -15,7 +15,7 @@ function init() {
 
     // 점포 정보 클릭 시, 해당 점포와 연동된 지도 상의 인포윈도우창 띄우기
     document.querySelector('#marketContent').addEventListener('click', function(event) {
-        if (event.target.getAttribute('class') === 'mkcontainer') {
+        if (event.target.getAttribute('class') === 'mkName') {
 			currentMno = event.target.getAttribute('id');
             openInfo();
         }
@@ -197,7 +197,7 @@ function marketAjaxHandler() {
 			
 			marketContents += '<div id="'+ allMarketList[i].mno +'" class="mkcontainer">' +
 					            '<div class="col-9">' +
-					                '<p id="mkName">' + allMarketList[i].mname + '</p>' +
+					                '<p class="mkName" id="'+ allMarketList[i].mno +'">' + allMarketList[i].mname + '</p>' +
 					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
 					                '<span>화장실 ' + allMarketList[i].mtoilet + '</span><span>주차장 ' + allMarketList[i].mparking + '</span>' +
 					            '</div>' +
