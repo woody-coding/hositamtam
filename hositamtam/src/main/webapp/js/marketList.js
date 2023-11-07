@@ -97,10 +97,19 @@ function openInfo() {
 			
             let marker = markers[i]; // 이미 생성된 마커를 가져옵니다.
             
-            let infowindow = new naver.maps.InfoWindow({
-                content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
-            });
+	         var infowindow = new naver.maps.InfoWindow({
+	       /*     content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
+	     	 */ content: '<div class="goMarket"><div class="up">' + locations[i].mname + '</div><div class="down"><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a></div></div>', 
+	                    maxWidth: 300,
+	                    borderWidth: 0,
+	                    disableAnchor: true, 
+		 	});
+		 	
             infowindow.open(map, marker);
+            
+            naver.maps.Event.addListener(map, "click", function (mouseEvent) {
+                infowindow.close();
+            });
         }
     }
 }
