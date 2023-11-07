@@ -65,6 +65,8 @@ button{
 .mkcontainer{
     display: flex;
     border-bottom: 2px solid #0e4194;
+    min-height: 180px;
+	padding: 5px;
 }
 #mkSearchName{
     font-size: 2rem;
@@ -206,7 +208,7 @@ button{
 .infoContent h4{
     text-align: center;
 }
-.infoContent button{
+.infoContent a{
     display: inline-block;
     /* font-family: 'GmarketSans'; */
     margin-left: 5px;
@@ -214,7 +216,11 @@ button{
     color: white;
     border: 0px;
     font-size: 14px;
+    width: 100px;
+    height: 40px;
     border-radius: 10px;
+    line-height: 40px;
+    text-decoration: none;
 }
 .countContainer{
     display: flex;

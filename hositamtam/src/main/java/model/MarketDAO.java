@@ -124,15 +124,23 @@ public class MarketDAO {
 	                marketList.add(marketDO);
 		            }
 				
-					for(MarketDO market : marketList) {
-						jsonObject = new JSONObject(); // jsonObject 초기화
+				
+				if (marketList.isEmpty()) {
+		            jsonObject = new JSONObject();
+		            jsonObject.put("storeErrorMsg", "등록된 시장이 없습니다!");
+		            jsonArray.add(jsonObject);
+		        }
+				
+				
+				for(MarketDO market : marketList) {
+					jsonObject = new JSONObject(); // jsonObject 초기화
+				
+					jsonObject.put("mname", market.getMname());
+					jsonObject.put("mlat", market.getMlat());
+					jsonObject.put("mlng", market.getMlng());
 					
-						jsonObject.put("mname", market.getMname());
-						jsonObject.put("mlat", market.getMlat());
-						jsonObject.put("mlng", market.getMlng());
-						
-						jsonArray.add(jsonObject);
-					}
+					jsonArray.add(jsonObject);
+				}
 				
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -811,6 +811,7 @@ public class StoreDAO {
 
 				storeList.add(storeDO);
 	            }
+	
 			
 				for(StoreDO store : storeList) {
 					jsonObject = new JSONObject(); // jsonObject 초기화

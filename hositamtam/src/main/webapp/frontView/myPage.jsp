@@ -100,17 +100,17 @@
             <img src="/finalProject/images/icons8-병아리-60.png" />
           </div>
           <div class="mylevel__name">
-            <div class="mylevel__grade">${memberDO.nickname}님의 등급</div>
-            <div>${memberDO.grade}</div>
+            <div class="mylevel__grade">${memberInfo.nickname}님의 등급</div>
+            <div>${gradeName}</div>
           </div>
         </section>
         <div id="mylevel__gage">
           <section class="mylevel__gage">
             <div
               class="mylevel__gage__value"
-              style="width: ${memberDO.exp}%; background-color: #e6007e"
+              style="width: ${memberInfo.exp}%; background-color: #e6007e"
             >
-              ${memberDO.exp}%
+              ${memberInfo.exp}%
             </div>
           </section>
         </div>
@@ -126,10 +126,18 @@
 
       <!-- Profile -->
       <div class="myprofile">
-        <div class="myprofile__name">${memberDO.nickname} 님 (${memberDO.id})</div>
+        <div class="myprofile__name">${memberInfo.nickname} 님 (${userId})</div>
         <div class="modify__delete__button">
-          <button class="myprofile__modify__button">정보수정</button>
-          <button class="myprofile__delete__button">회원탈퇴</button>
+        
+          <form id="updateForm" class="myprofile__modify__form" action="/finalProject/views/myPageUpdate" method="POST">
+          	<input type="hidden" name="id" value="${userId}" />
+          	<button class="myprofile__modify__button" id="mypageedit_button" >정보수정</button>
+          </form>
+          
+          <form id="deleteForm" class="myprofile__delete__form" action="/finalProject/views/myPage/deleteMember" method="POST">
+            <input type="hidden" name="id" value="${userId}" />
+            <button class="myprofile__delete__button" id="delete_button" >회원탈퇴</button>
+          </form>
         </div>
 
         <section class="myprofile__activity">
@@ -172,6 +180,7 @@
             &nbsp;내가 등록한 점포
           </h2>
           <button class="myStore__more">더보기</button>
+          <button class="myStore__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -246,6 +255,7 @@
             &nbsp;내가 작성한 글
           </h2>
           <button class="myPost__more">더보기</button>
+          <button class="myPost__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -351,6 +361,7 @@
             &nbsp;내가 작성한 리뷰
           </h2>
           <button class="myReview__more">더보기</button>
+          <button class="myReview__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -387,7 +398,8 @@
               <i class="fa-solid fa-star myReview__star"></i> 5.0
             </td>
             <td class="myReview__td__contents">
-              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+              여기보다 맛있는 집이 있을 수가 없어요 ! 여기보다 맛있는 데가
+              있으면 저한테 한번만 말해주세요 나 진짜 거기 가볼래요
             </td>
             <td class="myReview__td">2023-10-04</td>
           </tr>
@@ -441,6 +453,7 @@
             &nbsp;내가 찜한 점포
           </h2>
           <button class="myStoreLike__more">더보기</button>
+          <button class="myStoreLike__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr class="myStoreLike__tr">
