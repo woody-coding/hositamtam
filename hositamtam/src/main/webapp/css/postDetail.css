@@ -1,0 +1,12 @@
+hr {
+	background:#0e4194;
+    height:1px;
+    border:0;
+
+}
+
+#plikecountUpdate {
+	border: solid 2px red;
+	width: 50px;
+	height: 50px;
+}

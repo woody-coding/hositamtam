@@ -21,6 +21,10 @@
 		out.println(marketDAO.getMarketList());
 	}
 	else if(command != null && command.equals("getMarketListByItem")) {
+		if(!cateno.equals("1") && !cateno.equals("2") && !cateno.equals("3") && !cateno.equals("4") && !cateno.equals("5") && !cateno.equals("6") && !cateno.equals("7") && !cateno.equals("8") && !cateno.equals("9")) {
+			cateno = "11";
+		}
+		
 		out.println(marketDAO.getMarketListByItem((Integer.parseInt(cateno))));
 	}
 	else if(command != null && command.equals("getMarketListBySearch")) {
@@ -30,7 +34,14 @@
 		out.println(storeDAO.getStoreInMarket((Integer.parseInt(mno))));
 	}
 	else if(command != null && command.equals("getMarketLatLng")) {
-		out.println(marketDAO.getMarketLatLng((Integer.parseInt(mno))));
+        try {
+            int number = Integer.parseInt(mno);
+            // 정수로 변환 가능한 경우
+            out.println(marketDAO.getMarketLatLng(number));
+        } catch (NumberFormatException e) {
+            // 정수로 변환할 수 없는 경우
+        	out.println(marketDAO.getMarketLatLng(0));
+        }	
 	}
 	else if(command != null && command.equals("getManyReview")) {
 		out.println(storeDAO.getManyReview((Integer.parseInt(mno))));
@@ -41,9 +52,9 @@
 	else if(command != null && command.equals("getManyStoreLike")) {
 		out.println(storeDAO.getManyStoreLike((Integer.parseInt(mno))));
 	}
-	//else if(command != null && command.equals("updateLike")) {
-	//	out.println(postDAO.updateLike((Integer.parseInt(pno)), id));
-	//}
+	else if(command != null && command.equals("updateLike")) {
+		out.println(postDAO.updateLike((Integer.parseInt(pno)), id));
+	}
 
 	
 	out.flush();

@@ -1,56 +1,93 @@
-document.addEventListener("DOMContentLoaded", function () {
-  var deleteButton = document.querySelector(".myprofile__delete__button");
+var xhr = new XMLHttpRequest();
 
-  deleteButton.addEventListener("click", function () {
-    var confirmDelete = confirm("정말 회원 탈퇴를 진행하시겠습니까?");
 
-    if (confirmDelete) {
-      // '예'를 눌렀을 때 처리 방식
+// 닉네임, 비밀번호 중복 확인 및 에러 처리 상태 변수
+var nicknameValid = false;
+var passwdValid = false;
+
+
+ function ajaxNicknameChangeHandler() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        if (response.isDuplicate === "success") {
+            // 중복된 닉네임일 경우 메시지 표시
+            document.getElementById('error_msg').textContent = '이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해주세요.';
+            nicknameValid = false;
+        } else {
+            // 중복되지 않은 닉네임일 경우 메시지 초기화
+            document.getElementById('error_msg').textContent = '';
+            nicknameValid = true;
+        }
     }
-  });
-});
-
-
-function changePasswdHandler(){
-	let hiddenForm = document.querySelector('#hiddenForm');
-	let passwd = document.querySelector('#passwd');
-	let newInputPasswd = document.querySelector('#newInputPasswd');
-	let newPasswd = document.querySelector('#newPasswd');
-	let msg = document.querySelector('#msg');
-	
-	if(newInputPasswd.value.length < 4 || passwd.value === newInputPasswd.value){
-		msg.innerHTML = "새로운 비밀번호는 4글자 이상이고, 기존 비밀번호와 달라야합니다.";
-		return;
-	}
-	
-	newPasswd.value = newInputPasswd.value;
-	hiddenForm.setAttribute('action', '/finalProject/js/changePasswd');
-	hiddenForm.submit();
 }
 
-function changeGradeHandler(){
-	let hiddenForm = document.querySelector('#hiddenForm');
-	let newInputGrade = document.querySelector('#newInputGrade');
-	let grade = document.querySelector('#grade');
-	
-	grade.value = newInputGrade.value;
-	hiddenForm.setAttribute('action', '/myProject/step2/changeGrade');
-	hiddenForm.submit();
+// 닉네임 중복 확인 버튼 클릭 시 이벤트 처리
+function changeNicknameHandler() {
+    // 입력한 닉네임 가져오기
+    var newNickname = document.getElementById('change-nickname').value;
+
+    // AJAX를 사용하여 서버에 중복 확인 요청
+    xhr.onreadystatechange = ajaxNicknameChangeHandler;
+    
+    xhr.open('GET', '/hositamtam/updateNickname', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.send('newNickname=' + newNickname);
 }
 
-function deleteMemberHandler(){
-	if(confirm('현재 회원을 정말 삭제하시겠습니까?')){
-		let hiddenForm = document.querySelector('#hiddenForm');
-		
-		hiddenForm.setAttribute('action', '/myProject/step2/deleteMember');
-		hiddenForm.submit();
-	}
+
+
+// 최종 수정하기 요청하는 JavaScript 함수
+function updateHandler() {
+    if (nicknameValid || passwdValid) {
+        var newNickname = document.getElementById('change-nickname').value;
+        var newPassword = document.getElementById('change-password').value;
+        var confirmPassword = document.getElementById('confirm__password').value;
+
+        // 서버로의 수정 요청 데이터를 준비
+        var data = {
+            newNickname: newNickname,
+            newPassword: newPassword,
+            confirmPassword: confirmPassword
+        };
+
+        // 서버로 최종 수정 요청을 보내는 AJAX 요청
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/views/myPageUpdate', true);
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // 수정 성공 시, 서버 응답 처리
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        // 수정 성공 시의 동작을 수행 (예: 메시지 출력 또는 리다이렉트)
+                    } else {
+                        // 수정 실패 시의 동작을 수행 (예: 에러 메시지 출력)
+                        console.log(response.message);
+                    }
+                } else {
+                    // 서버 응답 오류 처리
+                    console.error('서버 응답 오류');
+                }
+            }
+        };
+
+        // 데이터를 JSON 문자열로 변환하여 요청 본문에 추가
+        xhr.send(JSON.stringify(data));
+    } else {
+        // 중복 확인을 통과하지 못한 경우 에러 메시지 표시
+        document.getElementById('error_msg').textContent = '닉네임 및 비밀번호를 확인하세요.';
+    }
 }
 
-function init(){
-	document.querySelector('#changePasswd').addEventListener('click', changePasswdHandler);
-	document.querySelector('#changeGrade').addEventListener('click', changeGradeHandler);
-	document.querySelector('#deleteMember').addEventListener('click', deleteMemberHandler);
+
+function init() {
+    // 닉네임 수정 버튼 클릭 시
+    document.querySelector('#nickname_check').addEventListener('click', changeNicknameHandler);
+
+    // 수정하기 버튼 클릭 시
+    document.querySelector('#update_button').addEventListener('click', updateHandler);
 }
 
 window.addEventListener('load', init);

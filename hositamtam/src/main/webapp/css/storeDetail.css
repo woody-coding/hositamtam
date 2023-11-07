@@ -34,6 +34,11 @@ body {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 /* common */
 .max-container {
   max-width: var(--size-max-width);
@@ -273,6 +278,7 @@ body {
 /* Anchor */
 .storeDetail__arrow-up {
   background-color: var(--color-background);
+  color: black;
   text-decoration: none;
   position: fixed;
   bottom: 3rem;

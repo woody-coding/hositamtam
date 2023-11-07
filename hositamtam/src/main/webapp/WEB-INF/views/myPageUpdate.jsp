@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" import="model.MemberDO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -17,6 +17,15 @@
       rel="stylesheet"
     />
 
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+	<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
     <!-- Font Awesome -->
     <script
       src="https://kit.fontawesome.com/89490613c7.js"
@@ -40,20 +49,21 @@
     <section id="mypage__update" class="section">
       <div class="max-container">
         <div class="mypage__update">
-          <form id="mypage__update__form">
+          <form id="mypage__update__form" action="/views/myPageUpdate" method="POST">
             <div class="mypage__update__form">
               <label for="new-username" class="mypage__update__id">
-                tmi****
+                ${userId}
               </label>
-
+              
               <label for="change-nickname" class="mypage__update__label">
                 <input
                   class="mypage__update__input"
                   type="text"
                   id="change-nickname"
+                  name="change-nickname"
                   placeholder="닉네임"
                 />
-                <button class="duplication__check">중복확인</button>
+                <button class="duplication__check" id="nickname_check">중복확인</button>
               </label>
 
               <label for="change-password" class="mypage__update__label">
@@ -61,9 +71,10 @@
                   class="mypage__update__input"
                   type="password"
                   id="change-password"
+                  name="change-password"
                   placeholder="변경할 비밀번호"
                 />
-                <button class="duplication__check">중복확인</button>
+                <button class="duplication__check" id="passwd_check">중복확인</button>
               </label>
 
               <label for="confirm-password" class="mypage__update__label">
@@ -76,14 +87,14 @@
               </label>
             </div>
 
-            <div class="mypage__update__error">
-              비밀번호가 일치하지 않습니다.
+            <div class="mypage__update__error" id="error_msg">
+              일치하지 않습니다.
             </div>
 
-            <button class="mypage__update__button" type="submit">
-              수정하기
-            </button>
-          </form>
+	            <button class="mypage__update__button" type="submit" id="update_button">
+	              수정하기
+	            </button>
+         	</form>
         </div>
       </div>
     </section>

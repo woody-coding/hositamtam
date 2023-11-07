@@ -29,6 +29,7 @@
     width:70%; 
     float: left;
 }
+
 .plusStore{
     width: 50px;
     height: 50px;
@@ -64,6 +65,8 @@ button{
 .mkcontainer{
     display: flex;
     border-bottom: 2px solid #0e4194;
+    min-height: 180px;
+	padding: 5px;
 }
 #mkSearchName{
     font-size: 2rem;
@@ -87,11 +90,12 @@ button{
     font-size: 40px;
 }
 
-.searchResultName button{
+#toPost{
     padding: 5px;
-    color: white;
+    
     border-radius: 10px;
-    font-size: 35px;
+    
+    width: 150px;
     height: 50px;
     background-color: #e6007e;
     border: 0;
@@ -99,10 +103,14 @@ button{
     transition: transform 0.5s ease-in-out;
     box-shadow: 0px 5px 0px 0px pink;
 }
+#toPost a{
+	font-size: 35px;
+	color: white;
+	text-decoration: none;
+}
 
 
-
-.searchResultName button:hover{
+#toPost:hover{
     transform: rotate(15deg);
     animation: rotateAnimation 0.5s ease-in-out infinite;
 }
@@ -150,7 +158,7 @@ button{
     overflow: auto;
 }
 .iwContent{
-    width: 100px;
+    width: 120px;
     height: 40px;
     /* background-color: #e6007e; */
     position: relative;
@@ -168,7 +176,8 @@ button{
 .up {
     position: absolute;
     top: 0;
-    left: 35px;
+    left: 45px;
+    
     transition: top 100ms;
     transition: transform 0.5s ease-in-out;
     animation: rotateAnimation 0.5s ease-in-out infinite;
@@ -176,7 +185,9 @@ button{
   
   .down {
     position: absolute;
+    left: 10px;
     font-size: 1.5rem;
+    
     top: 40px; /* 초기에 숨겨진 상태 */
     transition: top 100ms;
 
@@ -197,7 +208,7 @@ button{
 .infoContent h4{
     text-align: center;
 }
-.infoContent button{
+.infoContent a{
     display: inline-block;
     /* font-family: 'GmarketSans'; */
     margin-left: 5px;
@@ -205,7 +216,11 @@ button{
     color: white;
     border: 0px;
     font-size: 14px;
+    width: 100px;
+    height: 40px;
     border-radius: 10px;
+    line-height: 40px;
+    text-decoration: none;
 }
 .countContainer{
     display: flex;

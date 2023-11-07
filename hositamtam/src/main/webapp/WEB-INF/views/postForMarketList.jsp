@@ -39,24 +39,27 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="../js/postMain.js"></script>
 </head>
 <body>
 	<%@ include file="navi.jsp" %>
-	
+	<div  class="section" id="section1">
+	<div class="container mt-5">
 	<h3>호심탐탐의 시끌시끌 페이지 입니다(시장 선택 안되었을 때)</h3>
 	<button id="whatMarket">시장 선택하기</button>
 	<hr/>
-	
+	<div class="mkNameList">
 	<form method="GET" action="/finalProject/views/postMain">
 	<c:forEach items="${marketList}" var="market">
 	<label for="mno"></label>
-	<button id="mno" name="mno" value="${market.mno}">"${market.mname}"</button>
+	<button id="mno" name="mno" value="${market.mno}">${market.mname}</button>
 	</c:forEach>
 	</form>
+	</div>
 	<hr>
-	<h4>시장을 선택해주세요!</h4>
-	
+	 <img src="../images/보고.PNG">
+	</div>
+	</div>
 	
 	<%@ include file="footer.jsp" %>
 </body>

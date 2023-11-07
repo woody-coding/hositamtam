@@ -44,64 +44,77 @@
 	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script>
+	function init() {
 
+	    // 현재 접속한 사용자가 회원인지 비회원인지 판단하기
+	    let id = '<%= session.getAttribute("userId") %>';
+	
+	    
+	    id = (id === 'null') ? null : id;
+	    
+	    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
+	    
+	    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+	    const localStorageData = window.localStorage.getItem("memberId");
+	    const localStorageMember = JSON.parse(localStorageData);
+	
+           
+	    if(id !== null) {
+           	if (localStorageMember !== null && localStorageMember.id !== id) {
+           		window.localStorage.removeItem('memberId');
+           	}
+           	
+               const member = { id: id };
+               const memberId = JSON.stringify(member);
+               window.localStorage.setItem('memberId', memberId);
+           }
+           else if(id === null && localStorageMember !== null) {
+           	window.localStorage.removeItem('memberId');
+           }
+
+	}
+	
+	window.addEventListener('load', init);
+</script>
 <script src="../js/main.js"></script>
 
 </head>
 <body>
-	<%@ include file="navi.jsp"%>
 
-	<div class="section" id="section1">
-		<video src="../video/main영상.mp4" muted autoplay loop id="myVideo">
-		</video>
+	<%@ include file="navi.jsp" %>
 
+    <div  class="section" id="section1">
+     <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
 
+      
 
-		<div class="listCategory">
-			<div class="close"></div>
-			<div class="listCategoryContent">
-				<p>어떤 시장이 궁금한가요?</p>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=1">농산물</a>
-				</div>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=2">음식점</a>
-				</div>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=3">가공식품</a>
-				</div>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=4">수산물</a>
-				</div>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=5">축산물</a>
-				</div>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=6">가정용품</a>
-				</div>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=7">의류</a>
-				</div>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=8">신발</a>
-				</div>
-				<div class="goCategory">
-					<a href="market.jsp?cateno=9">기타</a>
-				</div>
+      <div class="listCategory" >
+        <div class="close"></div>
+        <div class="listCategoryContent">
 
-			</div>
-		</div>
+          
+            <p>어떤 시장이 궁금한가요?</p>
+            <div class="goCategory">
+	            <li><a href="/finalProject/views/marketList?cateno=1">농산물</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=2">음식점</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=3">가공식품</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=4">수산물</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=5">축산물</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=6">가정용품</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=7">의류</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=8">신발</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=9">기타</a></li>
+            </div>	
+        </div>  
+      </div> 
+     
+      
+      <div id="btnGroup">
+          <button id="mkList" class="category"><i class="bi bi-basket-fill"></i><br> 시장 리스트 </button>
+          <button id="goPost" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
+         <!--  <button class="category">
 
-
-		<div id="btnGroup">
-
-			<button id="mkList" class="category">
-				<i class="bi bi-basket-fill"></i><br> 시장 리스트
-			</button>
-			<button id="goPost" class="category">
-				<i class="bi bi-megaphone-fill"></i><br> 시끌시끌
-			</button>
-			<!--  <button class="category">
           <a class="category" href="/finalProject/views/post" ><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</a>
           
           </button> -->

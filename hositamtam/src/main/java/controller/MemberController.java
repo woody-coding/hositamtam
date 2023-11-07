@@ -154,7 +154,7 @@ public class MemberController {
         } catch (Exception e) {
             model.addAttribute("msg", e.getMessage());
             model.addAttribute("join", memberDAO.getMember(command.getId()));
-            viewName = "join";
+            viewName = "redirect:/views/join";
         }
 
 	    return viewName;
@@ -168,7 +168,7 @@ public class MemberController {
 		try {
 			System.out.println(id + passwd);
 
-			System.out.println(memberDAO.loginMember(id, passwd));
+//			System.out.println(memberDAO.loginMember(id, passwd));
 		    // 로그인 처리 성공 유무에 따른 화면 출력
 		    if (memberDAO.loginMember(id, passwd)) {		
 
@@ -196,7 +196,28 @@ public class MemberController {
 		
 	}
 
+	// 해당 등급별 이름 불러오기
+	private String getGradeName(int exp) {
+		String gradeName = "";
+		
+		if (exp < 0) {
+		    gradeName = "시장 왕초보";
+	    } else if (exp >= 0 && exp < 25) {
+	        gradeName = "시장 왕초보";
+	    } else if (exp >= 25 && exp < 50) {
+	        gradeName = "시장 햇병아리";
+	    } else if (exp >= 50 && exp < 75) {
+	        gradeName = "시장 탐험가";
+	    } else if (exp >= 75 && exp < 100) {
+	        gradeName = "시장 지킴이";
+	    } else {
+	        gradeName = "시장 지박령";
+	    }
 
+	    return gradeName;
+	    
+	}
+	
 	// 회원 계정 화면
 	@GetMapping("/views/myPage")
 	public String myPage(HttpSession session, Model model) {
@@ -209,6 +230,11 @@ public class MemberController {
 	    if (userId != null) {
 	        // userId를 모델에 추가하여 마이페이지에서 사용 가능
 	        model.addAttribute("userId", userId);
+	        
+	        // 등급 정보를 가져와 모델에 추가
+	        int userGrade = user.getExp();
+	        String gradeName = getGradeName(userGrade);
+	        model.addAttribute("gradeName", gradeName);
 
 	        return "myPage"; // 마이페이지 뷰로 이동
 	    } else {
@@ -216,30 +242,72 @@ public class MemberController {
 	        return "redirect:/views/login"; // 로그인 페이지로 리다이렉트
 	    }
 	}
+	
 
 	
-	@GetMapping("/views/myPageUpdate")
-	public void toMyPageUpdate(@RequestParam("id") String id) {
+	@GetMapping("/views/myPageUpdate") // URL 경로 변경
+	public String toMyPageUpdate(HttpSession session, Model model) {
+	    String userId = (String) session.getAttribute("userId");
+
+	    // 사용자 정보를 가져와서 memberList로 모델에 추가
+	    MemberDO user = memberDAO.getMember(userId);
+	    model.addAttribute("memberList", user);
+
+	    return "myPageUpdate"; // 비밀번호와 닉네임 수정 페이지로 이동
+	}
+
+	
+	@GetMapping("/updateNickname") // URL 경로 변경
+	public String updateNickname(@ModelAttribute MemberDO command, HttpSession session, Model model) {
+	    // 현재 사용자 아이디 가져오기
+	    String userId = (String) session.getAttribute("userId");
+	    command.setId(userId);
+
+	    try {
+	        memberDAO.changeNickname(command);
+	        // 닉네임 업데이트 성공 시, 세션 업데이트
+	        MemberDO updatedUser = memberDAO.getMember(userId);
+	        session.setAttribute("memberInfo", updatedUser);
+	    } catch (Exception e) {
+	        model.addAttribute("msg", e.getMessage());
+	        return "myPageUpdate"; // 업데이트 실패 시 수정 페이지로 다시 돌아감
+	    }
+
+	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
 	}
 	
-	@PostMapping("/myPage/updatePasswd")
-	public String updatePasswd(@ModelAttribute MemberDO command) {
-//		memberDAO.updatePasswd(command);
-			
-		return "redirect:/myPage";
+	@PostMapping("/updatePasswd") // URL 경로 변경
+	public String updatePasswd(@ModelAttribute MemberDO command, HttpSession session, Model model) {
+	    // 현재 사용자 아이디 가져오기
+	    String userId = (String) session.getAttribute("userId");
+	    command.setId(userId);
+
+	    try {
+	        memberDAO.changePasswd(command);
+	        // 비밀번호 업데이트 성공 시, 세션 업데이트
+	        MemberDO updatedUser = memberDAO.getMember(userId);
+	        session.setAttribute("memberInfo", updatedUser);
+	    } catch (Exception e) {
+	        model.addAttribute("msg", e.getMessage());
+	        return "myPageUpdate"; // 업데이트 실패 시 수정 페이지로 다시 돌아감
+	    }
+
+	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
 	}
 	
-	@PostMapping("/views/myPage/updateNickname")
-	public String updateNickname(@ModelAttribute MemberDO command) {
-//		memberDAO.updateNickname(command);
-			
-		return "redirect:/myPage";
-	}
 	
+
+	// 회원 탈퇴
 	@PostMapping("/views/myPage/deleteMember")
-	public String deleteMember(@RequestParam("id") String id) {
+	public String deleteMember(@RequestParam("id") String id, HttpSession session) {
+		
 		memberDAO.deleteMember(id);
 		
-		return "redirect:/main";
+		
+		// 세션에서 사용자 정보 삭제
+	    session.removeAttribute("userId");
+	    session.invalidate();
+	    
+		return "redirect:/views/main";
 	}
 }

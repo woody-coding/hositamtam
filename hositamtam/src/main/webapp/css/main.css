@@ -140,7 +140,7 @@ ul {
         color: white;
         right: 0;
         text-align: right;
-        애니메이션시작화면 
+        
         transition : all 0.5s;
         transform: translateX(550px);
 }
@@ -149,17 +149,16 @@ ul {
   
   padding: 10px;
 }
-.goCategory button{
+.goCategory a{
+  display: inline-block;
   border: 0;
   background-color: transparent;
   color: white;
 }
-.goCategory:hover{
-  transform: translateX(-50px);
+.goCategory li {
+    list-style-type: none;
+}
 
-}
-.left:hover{
-}
 
 .show-list{
   transition : all 0.5s;

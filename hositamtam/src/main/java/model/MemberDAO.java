@@ -140,38 +140,8 @@ public class MemberDAO {
 		}
 		return rowCount;
 	}
-// 아이디 중복 확인
-//	        this.sql = "SELECT id FROM member WHERE id = ?";
-//	        pstmt = conn.prepareStatement(sql);
-//	        pstmt.setString(1, memberDO.getId());
-//	        this.rs = pstmt.executeQuery();
-//
-//	        if (rs.next()) {
-//	            isIdDuplicate = true;
-//	            throw new Exception("아이디가 중복되었습니다.");
-//	        }
-//
-//	        // 닉네임 중복 확인
-//	        this.sql = "SELECT nickname FROM member WHERE nickname = ?";
-//	        pstmt = conn.prepareStatement(sql);
-//	        pstmt.setString(1, memberDO.getNickname());
-//	        this.rs = pstmt.executeQuery();
-//
-//	        if (rs.next()) {
-//	            isNicknameDuplicate = true;
-//	            throw new Exception("닉네임이 중복되었습니다.");
-//	        }
-//
-//	        // 비밀번호란과 비밀번호확인란이 같은지 확인
-//	        if (rs.next()) {
-//            	isPasswordMatch = true;
-//	        }
-//
-//	        if (!isIdDuplicate && !isNicknameDuplicate && isPasswordMatch) {
-	            // 아이디, 닉네임 중복이 아니고, 비밀번호가 비밀번호 확인란과 일치하는 경우에만 회원 등록 수행
-	    	
 
-	// 아이디 중복 확인
+	// 2-1.회원가입(아이디 중복 확인)
 	public String isIdDuplicate(MemberDO memberDO) throws Exception {
 	    boolean isIdDuplicate = false;
 	    String errorMessage = "";
@@ -194,7 +164,7 @@ public class MemberDAO {
 	    return errorMessage;
 	}
 
-	// 닉네임 중복 확인
+	// 2-2.회원가입(닉네임 중복 확인)
 	public String isNicknameDuplicate(MemberDO memberDO) throws Exception {
 	    boolean isNicknameDuplicate = false;
 	    String errorMessage = "";
@@ -251,53 +221,47 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
-	    if(!loginSuccess) {
-	    	throw new Exception("로그인에 실패했습니다. 다시 시도해주세요");
-	    }
+	    
 	    return loginSuccess;
 	}
 
-	
-
-	
-	// 4. 회원 정보 수정
-	public int changePasswd(MemberDO memberDO) throws Exception {
+	// 4-1.회원 정보 수정(닉네임 수정)
+	public int changeNickname(MemberDO memberDO) throws Exception {
 	    int rowCount = 0;
-	    boolean isNicknameDuplicate = false;
-	    boolean isPasswordMatch = false;
+	    boolean isNicknameDuplicate = false; // 닉네임 중복검사 불통
 
 	    try {
-	        // 닉네임 중복 확인
-	        this.sql = "SELECT id FROM member WHERE nickname = ? AND id != ?";
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1, memberDO.getNickname());
-	        pstmt.setString(2, memberDO.getId());
-	        this.rs = pstmt.executeQuery();
-
-	        if (rs.next()) {
-	            isNicknameDuplicate = true;
-	        }
-
-	        // 비밀번호 확인
-	        this.sql = "SELECT passwd FROM member WHERE id = ?";
+	        // 기존의 닉네임 가져오기
+	        this.sql = "SELECT nickname FROM member WHERE id = ?";
 	        pstmt = conn.prepareStatement(sql);
 	        pstmt.setString(1, memberDO.getId());
-	        this.rs = pstmt.executeQuery();
+	        rs = pstmt.executeQuery();
 
 	        if (rs.next()) {
-	            String savedPassword = rs.getString("passwd");
-	            if (savedPassword.equals(memberDO.getPasswd())) {
-	                isPasswordMatch = true;
+	            String oldNickname = rs.getString("nickname");
+
+	            if (oldNickname == null) {
+	                // 아이디에 해당하는 닉네임을 찾을 수 없음
+	                throw new Exception("사용자를 찾을 수 없습니다.");
 	            }
+
+	            // 입력한 닉네임과 기존 닉네임 비교
+	            if (!oldNickname.equals(memberDO.getNickname())) {
+	                // 새로 입력한 닉네임과 기존 닉네임이 다르면 중복 확인 통과
+	                isNicknameDuplicate = true;
+	            }
+	        } else {
+	            // 아이디에 해당하는 닉네임을 찾을 수 없음
+	            throw new Exception("사용자를 찾을 수 없습니다.");
 	        }
 
-	        if (!isNicknameDuplicate && !isPasswordMatch) {
-	            // 닉네임 중복이 아니고, 비밀번호가 일치하지 않는 경우에만 비밀번호 변경 수행
-	            this.sql = "UPDATE member SET passwd = ? WHERE id = ?";
+	        if (!isNicknameDuplicate) {
+	            // 닉네임 중복이 아닌 경우에만 닉네임 변경 수행
+	            this.sql = "UPDATE member SET nickname = ? WHERE id = ?";
 	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setString(1, memberDO.getPasswd());
+	            pstmt.setString(1, memberDO.getNickname());
 	            pstmt.setString(2, memberDO.getId());
-
+	            
 	            rowCount = pstmt.executeUpdate();
 	        }
 	    } catch (SQLException e) {
@@ -317,44 +281,74 @@ public class MemberDAO {
 	        throw new Exception("닉네임이 다른 사용자와 중복됩니다. 다른 닉네임을 선택해주세요.");
 	    }
 
-	    if (isPasswordMatch) {
-	        // 새로운 비밀번호가 이전 비밀번호와 동일하여 수정 불가능
-	        throw new Exception("새로운 비밀번호는 이전 비밀번호와 동일할 수 없습니다.");
+	    return rowCount;
+	}
+
+	
+	// 4-2.회원 정보 수정(비밀번호 수정)
+	public int changePasswd(MemberDO memberDO) throws Exception {
+		int rowCount = 0;
+	    boolean isPasswdDuplicate = false; // 닉네임 중복검사 불통
+
+	    try {
+	        // 기존의 닉네임 가져오기
+	        this.sql = "SELECT passwd FROM member WHERE id = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, memberDO.getId());
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            String oldPasswd = rs.getString("passwd");
+
+	            if (oldPasswd == null) {
+	                // 아이디에 해당하는 닉네임을 찾을 수 없음
+	                throw new Exception("사용자를 찾을 수 없습니다.");
+	            }
+
+	            // 입력한 닉네임과 기존 닉네임 비교
+	            if (!oldPasswd.equals(memberDO.getPasswd())) {
+	                // 새로 입력한 닉네임과 기존 닉네임이 다르면 중복 확인 통과
+	                isPasswdDuplicate = true;
+	            }
+	        } else {
+	            // 아이디에 해당하는 닉네임을 찾을 수 없음
+	            throw new Exception("사용자를 찾을 수 없습니다.");
+	        }
+
+	        if (!isPasswdDuplicate) {
+	            // 닉네임 중복이 아닌 경우에만 닉네임 변경 수행
+	            this.sql = "UPDATE member SET passwd = ? WHERE id = ?";
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, memberDO.getPasswd());
+	            pstmt.setString(2, memberDO.getId());
+	            
+	            rowCount = pstmt.executeUpdate();
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null && !pstmt.isClosed()) {
+	                pstmt.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    if (isPasswdDuplicate) {
+	        // 닉네임이 중복되어 수정 불가능
+	        throw new Exception("닉네임이 다른 사용자와 중복됩니다. 다른 닉네임을 선택해주세요.");
 	    }
 
 	    return rowCount;
 	}
 	
 	
-//	// 3-1.회원 정보 수정에서 비밀번호가 이전 비밀번호와 중복확인
-//	public int dupliPasswd(MemberDO memberDO) {
-//		int rowCount = 0;
-//
-//		sql = "UPDATE member SET passwd = ? WHERE id = ?";
-//
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//
-//            pstmt.setString(1, memberDO.getId());
-//            pstmt.setString(2, memberDO.getPasswd());
-//
-//			rowCount = pstmt.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (pstmt != null)
-//					pstmt.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return rowCount;
-//	}
 	
 	
-	// 5. 회원 정보 삭제
+	
+	// 5.회원 정보 삭제(회원 탈퇴)
 	public int deleteMember(String id) {
 		int rowCount = 0;
 		this.sql = "delete from member where id = ?";

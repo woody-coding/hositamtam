@@ -5,7 +5,9 @@ let mapOptions;
 let map;
 let markers = [];
 
-let currentMno = location.search.substring(5);
+let searchParams = new URLSearchParams(location.search);
+let currentMno = searchParams.get('mno');
+
 let currentId = null;
 let currentNickname = null;
 let mname;

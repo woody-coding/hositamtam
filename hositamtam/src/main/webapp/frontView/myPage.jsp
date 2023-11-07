@@ -100,17 +100,17 @@
             <img src="/finalProject/images/icons8-병아리-60.png" />
           </div>
           <div class="mylevel__name">
-            <div class="mylevel__grade">${memberDO.nickname}님의 등급</div>
-            <div>${memberDO.grade}</div>
+            <div class="mylevel__grade">${memberInfo.nickname}님의 등급</div>
+            <div>${gradeName}</div>
           </div>
         </section>
         <div id="mylevel__gage">
           <section class="mylevel__gage">
             <div
               class="mylevel__gage__value"
-              style="width: ${memberDO.exp}%; background-color: #e6007e"
+              style="width: ${memberInfo.exp}%; background-color: #e6007e"
             >
-              ${memberDO.exp}%
+              ${memberInfo.exp}%
             </div>
           </section>
         </div>
@@ -126,10 +126,18 @@
 
       <!-- Profile -->
       <div class="myprofile">
-        <div class="myprofile__name">${memberDO.nickname} 님 (${memberDO.id})</div>
+        <div class="myprofile__name">${memberInfo.nickname} 님 (${userId})</div>
         <div class="modify__delete__button">
-          <button class="myprofile__modify__button">정보수정</button>
-          <button class="myprofile__delete__button">회원탈퇴</button>
+        
+          <form id="updateForm" class="myprofile__modify__form" action="/finalProject/views/myPageUpdate" method="POST">
+          	<input type="hidden" name="id" value="${userId}" />
+          	<button class="myprofile__modify__button" id="mypageedit_button" >정보수정</button>
+          </form>
+          
+          <form id="deleteForm" class="myprofile__delete__form" action="/finalProject/views/myPage/deleteMember" method="POST">
+            <input type="hidden" name="id" value="${userId}" />
+            <button class="myprofile__delete__button" id="delete_button" >회원탈퇴</button>
+          </form>
         </div>
 
         <section class="myprofile__activity">
@@ -172,6 +180,7 @@
             &nbsp;내가 등록한 점포
           </h2>
           <button class="myStore__more">더보기</button>
+          <button class="myStore__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -181,38 +190,56 @@
             <th class="myStore__th">취급 품목</th>
           </tr>
           <%-- <c:forEach >
-	          <tr>
+	          <tr class="myStore__tr">
 	            <td class="myStore__td">${storeDO.sname}</td>
 	            <td class="myStore__td">${storeDO.stype}</td>
 	            <td class="myStore__td">${storeDO.payno}</td>
 	            <td class="myStore__td">${storeDO.scategory}</td>
 	          </tr>
           </c:forEach> --%>
-          <tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">은하갈비</td>
             <td class="myStore__td">매장</td>
             <td class="myStore__td">현금 &nbsp; 카드</td>
             <td class="myStore__td">음식점</td>
           </tr>
-          <tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">기장농산</td>
             <td class="myStore__td">매장</td>
             <td class="myStore__td">현금 &nbsp; 계좌이체</td>
             <td class="myStore__td">농산물</td>
           </tr>
-          <tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">망미축산도매센타</td>
             <td class="myStore__td">매장</td>
             <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
             <td class="myStore__td">축산물</td>
           </tr>
-          <tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">안동상회 앞 잡화점</td>
             <td class="myStore__td">좌판</td>
             <td class="myStore__td">현금 &nbsp; 계좌이체</td>
             <td class="myStore__td">기타</td>
           </tr>
-          <tr>
+          <tr class="myStore__tr">
+            <td class="myStore__td">명가 장충동 족발</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">음식점</td>
+          </tr>
+          <tr class="myStore__tr">
+            <td class="myStore__td">명가 장충동 족발</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">음식점</td>
+          </tr>
+          <tr class="myStore__tr">
+            <td class="myStore__td">명가 장충동 족발</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">음식점</td>
+          </tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">명가 장충동 족발</td>
             <td class="myStore__td">매장</td>
             <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
@@ -228,6 +255,7 @@
             &nbsp;내가 작성한 글
           </h2>
           <button class="myPost__more">더보기</button>
+          <button class="myPost__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -238,7 +266,7 @@
             <th class="myPost__th">작성일</th>
           </tr>
           <%-- <c:forEach >
-	          <tr>
+	          <tr class="myPost__tr">
 	            <td class="myPost__td__title">${postDO.ptitle}</td>
 	            <td class="myPost__td">${postDO.pcategory}</td>
 	            <td class="myPost__td">
@@ -248,7 +276,71 @@
 	            <td class="myPost__td">${postDO.pregdate}</td>
 	          </tr>
           </c:forEach> --%>
-          <tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">거인통닭의 실체</td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
             <td class="myPost__td__title">
               핫둘셋넷다여일여아열핫둘셋넷다여일여아열
             </td>
@@ -269,6 +361,7 @@
             &nbsp;내가 작성한 리뷰
           </h2>
           <button class="myReview__more">더보기</button>
+          <button class="myReview__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -278,7 +371,7 @@
             <th class="myReview__th">작성일</th>
           </tr>
           <%-- <c:forEach >
-	          <tr>
+	          <tr class="myReview__tr">
 	            <td class="myReview__td__name">${storeDO.sname}</td>
 	            <td class="myReview__td__star">
 	              <i class="fa-solid fa-star myReview__star"></i> 5.0
@@ -289,7 +382,58 @@
 	            <td class="myReview__td">2023-10-04</td>
 	          </tr>
           </c:forEach> --%>
-          <tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">괘법르네시떼 거인통닭</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              이렇게 맛있는 치킨은 제 인생 처음이에요 !
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              여기보다 맛있는 집이 있을 수가 없어요 ! 여기보다 맛있는 데가
+              있으면 저한테 한번만 말해주세요 나 진짜 거기 가볼래요
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
             <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
             <td class="myReview__td__star">
               <i class="fa-solid fa-star myReview__star"></i> 5.0
@@ -309,9 +453,10 @@
             &nbsp;내가 찜한 점포
           </h2>
           <button class="myStoreLike__more">더보기</button>
+          <button class="myStoreLike__less">접기</button>
         </div>
         <table class="myPage__table">
-          <tr>
+          <tr class="myStoreLike__tr">
             <th class="myStoreLike__th">점포명</th>
             <th class="myStoreLike__th">점포 형태</th>
             <th class="myStoreLike__th">결제 방식</th>
@@ -325,25 +470,37 @@
 	            <td class="myStoreLike__td">${storeDO.scategory}</td>
 	          </tr>
           </c:forEach> --%>
-          <tr>
+          <tr class="myStoreLike__tr">
+            <td class="myStoreLike__td">괘법르네시떼 거인통닭</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStoreLike__td">음식점</td>
+          </tr>
+          <tr class="myStoreLike__tr">
             <td class="myStoreLike__td">순희닭강정</td>
             <td class="myStoreLike__td">매장</td>
             <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
             <td class="myStoreLike__td">음식점</td>
           </tr>
-          <tr>
+          <tr class="myStoreLike__tr">
             <td class="myStoreLike__td">은하갈비</td>
             <td class="myStoreLike__td">매장</td>
             <td class="myStoreLike__td">현금 &nbsp; 카드</td>
             <td class="myStoreLike__td">음식점</td>
           </tr>
-          <tr>
+          <tr class="myStoreLike__tr">
             <td class="myStoreLike__td">망미청과</td>
             <td class="myStoreLike__td">매장</td>
             <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
             <td class="myStoreLike__td">농산물</td>
           </tr>
-          <tr>
+          <tr class="myStoreLike__tr">
+            <td class="myStoreLike__td">초읍만두</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStoreLike__td">음식점</td>
+          </tr>
+          <tr class="myStoreLike__tr">
             <td class="myStoreLike__td">초읍만두</td>
             <td class="myStoreLike__td">매장</td>
             <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
