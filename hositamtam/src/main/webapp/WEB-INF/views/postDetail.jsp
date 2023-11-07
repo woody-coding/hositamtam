@@ -39,6 +39,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src=".../js/plikecountTest.js"></script>
 </head>
 <body>	
 
@@ -46,8 +47,6 @@
 	<div  class="section" id="section1">
 	<div class="container mt-5">
 	<c:forEach items="${post}" var="post">	
-	<div>${post.pno}</div>
-	<div>${post.id}</div>
 	<h2>${market.mname}의 게시글 상세 페이지입니다.</h2>
 	<hr/>
 	<div>커뮤니티 > ${post.pcategory}</div>
@@ -69,10 +68,12 @@
 		${post.pcontent}
 	</div>
 	<br/>
-	<div>${post.pphoto}</div>
+	<image src="${post.pphoto}"></image>
 	<br/>
 	<hr/>
-	
+	<div id="plikecountUpdate">좋아요 수 : ${post.plikecount}</div>
+	<div>댓글 수 : ${post.countcomments}</div>
+
 	<form method="POST" action="/finalProject/views/InsertComment">
 	<label for="pno"></label>
 	<input type="hidden" name="pno" value="${post.pno}">
