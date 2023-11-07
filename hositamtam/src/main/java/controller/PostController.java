@@ -109,6 +109,7 @@ public class PostController {
 	// 게시글 상세 페이지 이동
 	@GetMapping("/views/toPostDetail")
 	public String toPostDetail(@RequestParam int pno, Model model) {
+		model.addAttribute("pno", pno);
 		model.addAttribute("post", postDAO.getAllPostInfo(pno));
 		model.addAttribute("market", postDAO.getMarketNameByPno(pno));
 		model.addAttribute("commentList", postDAO.getComment(pno));

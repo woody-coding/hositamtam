@@ -52,9 +52,9 @@
 	else if(command != null && command.equals("getManyStoreLike")) {
 		out.println(storeDAO.getManyStoreLike((Integer.parseInt(mno))));
 	}
-	//else if(command != null && command.equals("updateLike")) {
-	//	out.println(postDAO.updateLike((Integer.parseInt(pno)), id));
-	//}
+	else if(command != null && command.equals("updateLike")) {
+		out.println(postDAO.updateLike((Integer.parseInt(pno)), id));
+	}
 
 	
 	out.flush();

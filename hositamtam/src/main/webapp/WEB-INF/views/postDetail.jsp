@@ -39,7 +39,29 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src=".../js/plikecountTest.js"></script>
+	
+	<script>
+		function init() {
+			
+			let pno = '<%= request.getAttribute("pno") %>';
+			
+			pno = (pno === 'null') ? null : pno;
+		    
+		    console.log('pno : ' + pno + '    /    typeof : ' + typeof(pno));
+		    
+		    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+
+	        window.localStorage.removeItem('postNumber');
+  	
+            const postNum = { pno: pno };
+            const postNumber = JSON.stringify(postNum);
+            window.localStorage.setItem('postNumber', postNumber);
+	     
+		}
+	
+		window.addEventListener('load', init);
+	</script>
+<script src="../js/plikecountUpdate.js"></script>
 </head>
 <body>	
 
@@ -57,9 +79,10 @@
 	<div>
 	<h4>${post.ptitle}</h4>
 	${market.mname} | ${post.nickname} | ${post.pregdate}
-	<span class="likeComment">
-	좋아요  ${post.plikecount} | 댓글  ${post.countcomments}
-	</span>
+	
+	<button id="plikecountUpdate"><i class="fa-solid fa-heart"></i></button>
+	<span class="likeComment"><span id="plikecountView">좋아요 ${post.plikecount}개</span> | 댓글  ${post.countcomments}</span>
+	
 	</div>
 	
 	</div>
@@ -71,8 +94,6 @@
 	<image src="${post.pphoto}"></image>
 	<br/>
 	<hr/>
-	<div id="plikecountUpdate">좋아요 수 : ${post.plikecount}</div>
-	<div>댓글 수 : ${post.countcomments}</div>
 
 	<form method="POST" action="/finalProject/views/InsertComment">
 	<label for="pno"></label>
