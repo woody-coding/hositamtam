@@ -47,55 +47,100 @@ window.addEventListener('load', init);
 
 
 
-// 더보기 버튼
+// 더보기, 접기 버튼
 document.addEventListener("DOMContentLoaded", function () {
   var storeMoreButton = document.querySelector(".myStore__more");
+  var storeLessButton = document.querySelector(".myStore__less");
   var storeHidden = document.querySelectorAll(".myStore__tr:nth-child(n + 7)");
   var postMoreButton = document.querySelector(".myPost__more");
+  var postLessButton = document.querySelector(".myPost__less");
   var postHidden = document.querySelectorAll(".myPost__tr:nth-child(n + 7)");
   var reviewMoreButton = document.querySelector(".myReview__more");
-  var reviewHidden = document.querySelectorAll(
-    ".myReview__tr:nth-child(n + 7)"
-  );
-
+  var reviewLessButton = document.querySelector(".myReview__less");
+  var reviewHidden = document.querySelectorAll(".myReview__tr:nth-child(n + 7)");
   var storeLikeMoreButton = document.querySelector(".myStoreLike__more");
-  var storeLikeHidden = document.querySelectorAll(
-    ".myStoreLike__tr:nth-child(n + 7)"
-  );
+  var storeLikeLessButton = document.querySelector(".myStoreLike__less");
+  var storeLikeHidden = document.querySelectorAll(".myStoreLike__tr:nth-child(n + 7)");
 
-  // 내가 등록한 점포
+  // 내가 등록한 점포 더보기
   storeMoreButton.addEventListener("click", function () {
     storeHidden.forEach(function (row) {
       row.style.display = "table-row";
     });
 
     storeMoreButton.style.display = "none";
+    storeLessButton.style.display = "block";
   });
 
-  // 내가 작성한 글
+  // 내가 등록한 점포 접기
+  storeLessButton.addEventListener("click", function () {
+    storeHidden.forEach(function (row) {
+      row.style.display = "none";
+    });
+
+    storeMoreButton.style.display = "block";
+    storeLessButton.style.display = "none";
+  });
+
+  // 내가 작성한 글 더보기
   postMoreButton.addEventListener("click", function () {
     postHidden.forEach(function (row) {
       row.style.display = "table-row";
     });
 
     postMoreButton.style.display = "none";
+    postLessButton.style.display = "block";
   });
 
-  // 내가 작성한 리뷰
+  // 내가 작성한 글 접기
+  postLessButton.addEventListener("click", function () {
+    postHidden.forEach(function (row) {
+      row.style.display = "none";
+    });
+
+    postMoreButton.style.display = "block";
+    postLessButton.style.display = "none";
+  });
+
+  // 내가 작성한 리뷰 더보기
   reviewMoreButton.addEventListener("click", function () {
     reviewHidden.forEach(function (row) {
       row.style.display = "table-row";
     });
 
     reviewMoreButton.style.display = "none";
+    reviewLessButton.style.display = "block";
   });
 
-  // 내가 찜한 점포
+  // 내가 작성한 리뷰 접기
+  reviewLessButton.addEventListener("click", function () {
+    reviewHidden.forEach(function (row) {
+      row.style.display = "none";
+    });
+
+    reviewMoreButton.style.display = "block";
+    reviewLessButton.style.display = "none";
+  });
+
+  // 내가 찜한 점포 더보기
   storeLikeMoreButton.addEventListener("click", function () {
     storeLikeHidden.forEach(function (row) {
       row.style.display = "table-row";
     });
 
     storeLikeMoreButton.style.display = "none";
+    storeLikeLessButton.style.display = "block";
+  });
+
+  // 내가 찜한 점포 접기
+  storeLikeLessButton.addEventListener("click", function () {
+    storeLikeHidden.forEach(function (row) {
+      row.style.display = "none";
+    });
+
+    storeLikeMoreButton.style.display = "block";
+    storeLikeLessButton.style.display = "none";
   });
 });
+
+
