@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest();
-
+var updateXhr = new XMLHttpRequest();
 
 // 닉네임, 비밀번호 중복 확인 및 에러 처리 상태 변수
 var nicknameValid = false;
@@ -29,7 +29,7 @@ function changeNicknameHandler() {
     // AJAX를 사용하여 서버에 중복 확인 요청
     xhr.onreadystatechange = ajaxNicknameChangeHandler;
     
-    xhr.open('GET', '/hositamtam/updateNickname', true);
+    xhr.open('GET', '/finalProject/views/updateNickname?newNickname=' + newNickname, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.send('newNickname=' + newNickname);
@@ -52,14 +52,14 @@ function updateHandler() {
         };
 
         // 서버로 최종 수정 요청을 보내는 AJAX 요청
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/views/myPageUpdate', true);
-        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
+        
+        updateXhr.open('POST', '/finalProject/views/myPage', true);
+        updateXhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        updateXhr.onreadystatechange = function () {
+            if (updateXhr.readyState === 4) {
+                if (updateXhr.status === 200) {
                     // 수정 성공 시, 서버 응답 처리
-                    var response = JSON.parse(xhr.responseText);
+                    var response = JSON.parse(updateXhr.responseText);
                     if (response.success) {
                         // 수정 성공 시의 동작을 수행 (예: 메시지 출력 또는 리다이렉트)
                     } else {
@@ -74,7 +74,7 @@ function updateHandler() {
         };
 
         // 데이터를 JSON 문자열로 변환하여 요청 본문에 추가
-        xhr.send(JSON.stringify(data));
+        updateXhr.send(JSON.stringify(data));
     } else {
         // 중복 확인을 통과하지 못한 경우 에러 메시지 표시
         document.getElementById('error_msg').textContent = '닉네임 및 비밀번호를 확인하세요.';
