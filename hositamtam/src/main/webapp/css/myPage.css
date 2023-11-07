@@ -248,6 +248,13 @@ a {
   text-align: center;
 }
 
+.myStore__tr:nth-child(n + 7),
+.myPost__tr:nth-child(n + 7),
+.myReview__tr:nth-child(n + 7),
+.myStoreLike__tr:nth-child(n + 7) {
+  display: none;
+}
+
 .myStore__td,
 .myPost__td,
 .myPost__td__title,

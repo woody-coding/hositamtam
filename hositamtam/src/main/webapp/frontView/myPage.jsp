@@ -181,38 +181,56 @@
             <th class="myStore__th">취급 품목</th>
           </tr>
           <%-- <c:forEach >
-	          <tr>
+	          <tr class="myStore__tr">
 	            <td class="myStore__td">${storeDO.sname}</td>
 	            <td class="myStore__td">${storeDO.stype}</td>
 	            <td class="myStore__td">${storeDO.payno}</td>
 	            <td class="myStore__td">${storeDO.scategory}</td>
 	          </tr>
           </c:forEach> --%>
-          <tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">은하갈비</td>
             <td class="myStore__td">매장</td>
             <td class="myStore__td">현금 &nbsp; 카드</td>
             <td class="myStore__td">음식점</td>
           </tr>
-          <tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">기장농산</td>
             <td class="myStore__td">매장</td>
             <td class="myStore__td">현금 &nbsp; 계좌이체</td>
             <td class="myStore__td">농산물</td>
           </tr>
-          <tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">망미축산도매센타</td>
             <td class="myStore__td">매장</td>
             <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
             <td class="myStore__td">축산물</td>
           </tr>
-          <tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">안동상회 앞 잡화점</td>
             <td class="myStore__td">좌판</td>
             <td class="myStore__td">현금 &nbsp; 계좌이체</td>
             <td class="myStore__td">기타</td>
           </tr>
-          <tr>
+          <tr class="myStore__tr">
+            <td class="myStore__td">명가 장충동 족발</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">음식점</td>
+          </tr>
+          <tr class="myStore__tr">
+            <td class="myStore__td">명가 장충동 족발</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">음식점</td>
+          </tr>
+          <tr class="myStore__tr">
+            <td class="myStore__td">명가 장충동 족발</td>
+            <td class="myStore__td">매장</td>
+            <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStore__td">음식점</td>
+          </tr>
+          <tr class="myStore__tr">
             <td class="myStore__td">명가 장충동 족발</td>
             <td class="myStore__td">매장</td>
             <td class="myStore__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
@@ -238,7 +256,7 @@
             <th class="myPost__th">작성일</th>
           </tr>
           <%-- <c:forEach >
-	          <tr>
+	          <tr class="myPost__tr">
 	            <td class="myPost__td__title">${postDO.ptitle}</td>
 	            <td class="myPost__td">${postDO.pcategory}</td>
 	            <td class="myPost__td">
@@ -248,7 +266,71 @@
 	            <td class="myPost__td">${postDO.pregdate}</td>
 	          </tr>
           </c:forEach> --%>
-          <tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">거인통닭의 실체</td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
+            <td class="myPost__td__title">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myPost__td">일상</td>
+            <td class="myPost__td">
+              <i class="fa-regular fa-thumbs-up myPost__thumbsUp"></i> &nbsp;3
+            </td>
+            <td class="myPost__td">0</td>
+            <td class="myPost__td">2023-10-04</td>
+          </tr>
+          <tr class="myPost__tr">
             <td class="myPost__td__title">
               핫둘셋넷다여일여아열핫둘셋넷다여일여아열
             </td>
@@ -278,7 +360,7 @@
             <th class="myReview__th">작성일</th>
           </tr>
           <%-- <c:forEach >
-	          <tr>
+	          <tr class="myReview__tr">
 	            <td class="myReview__td__name">${storeDO.sname}</td>
 	            <td class="myReview__td__star">
 	              <i class="fa-solid fa-star myReview__star"></i> 5.0
@@ -289,7 +371,57 @@
 	            <td class="myReview__td">2023-10-04</td>
 	          </tr>
           </c:forEach> --%>
-          <tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">괘법르네시떼 거인통닭</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              이렇게 맛있는 치킨은 제 인생 처음이에요 !
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
+            <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
+            <td class="myReview__td__star">
+              <i class="fa-solid fa-star myReview__star"></i> 5.0
+            </td>
+            <td class="myReview__td__contents">
+              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+            </td>
+            <td class="myReview__td">2023-10-04</td>
+          </tr>
+          <tr class="myReview__tr">
             <td class="myReview__td__name">핫둘셋넷다여일여아열핫둘셋넷다</td>
             <td class="myReview__td__star">
               <i class="fa-solid fa-star myReview__star"></i> 5.0
@@ -311,7 +443,7 @@
           <button class="myStoreLike__more">더보기</button>
         </div>
         <table class="myPage__table">
-          <tr>
+          <tr class="myStoreLike__tr">
             <th class="myStoreLike__th">점포명</th>
             <th class="myStoreLike__th">점포 형태</th>
             <th class="myStoreLike__th">결제 방식</th>
@@ -325,25 +457,37 @@
 	            <td class="myStoreLike__td">${storeDO.scategory}</td>
 	          </tr>
           </c:forEach> --%>
-          <tr>
+          <tr class="myStoreLike__tr">
+            <td class="myStoreLike__td">괘법르네시떼 거인통닭</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStoreLike__td">음식점</td>
+          </tr>
+          <tr class="myStoreLike__tr">
             <td class="myStoreLike__td">순희닭강정</td>
             <td class="myStoreLike__td">매장</td>
             <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
             <td class="myStoreLike__td">음식점</td>
           </tr>
-          <tr>
+          <tr class="myStoreLike__tr">
             <td class="myStoreLike__td">은하갈비</td>
             <td class="myStoreLike__td">매장</td>
             <td class="myStoreLike__td">현금 &nbsp; 카드</td>
             <td class="myStoreLike__td">음식점</td>
           </tr>
-          <tr>
+          <tr class="myStoreLike__tr">
             <td class="myStoreLike__td">망미청과</td>
             <td class="myStoreLike__td">매장</td>
             <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
             <td class="myStoreLike__td">농산물</td>
           </tr>
-          <tr>
+          <tr class="myStoreLike__tr">
+            <td class="myStoreLike__td">초읍만두</td>
+            <td class="myStoreLike__td">매장</td>
+            <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>
+            <td class="myStoreLike__td">음식점</td>
+          </tr>
+          <tr class="myStoreLike__tr">
             <td class="myStoreLike__td">초읍만두</td>
             <td class="myStoreLike__td">매장</td>
             <td class="myStoreLike__td">현금 &nbsp; 카드 &nbsp; 계좌이체</td>

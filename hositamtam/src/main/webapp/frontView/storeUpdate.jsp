@@ -73,14 +73,14 @@
             <div class="store__update__form">
               <div class="store__type">
                 <h2 class="store__type__title siau__h2">점포 형태</h2>
-                <button class="store__type__button">좌판</button>
-                <button class="store__type__button">매장</button>
+                <button class="store__type__button1">좌판</button>
+                <button class="store__type__button2">매장</button>
               </div>
               <div class="store__payment">
                 <h2 class="store__payment__title siau__h2">결제 방식</h2>
-                <button class="store__payment__button">현금</button>
-                <button class="store__payment__button">카드</button>
-                <button class="store__payment__button">계좌이체</button>
+                <button class="store__payment__button1">현금</button>
+                <button class="store__payment__button2">카드</button>
+                <button class="store__payment__button3">계좌이체</button>
               </div>
               <div class="store__category">
                 <h2 class="store__category__title siau__h2">취급 품목</h2>
