@@ -202,13 +202,13 @@ public class MemberController {
 		
 		if (exp < 0) {
 		    gradeName = "시장 왕초보";
-	    } else if (exp >= 0 && exp < 20) {
+	    } else if (exp >= 0 && exp < 25) {
 	        gradeName = "시장 왕초보";
-	    } else if (exp >= 20 && exp < 40) {
+	    } else if (exp >= 25 && exp < 50) {
 	        gradeName = "시장 햇병아리";
-	    } else if (exp >= 40 && exp < 60) {
+	    } else if (exp >= 50 && exp < 75) {
 	        gradeName = "시장 탐험가";
-	    } else if (exp >= 60 && exp < 80) {
+	    } else if (exp >= 75 && exp < 100) {
 	        gradeName = "시장 지킴이";
 	    } else {
 	        gradeName = "시장 지박령";
