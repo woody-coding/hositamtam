@@ -39,6 +39,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src=".../js/plikecountTest.js"></script>
 </head>
 <body>	
 
@@ -72,7 +73,9 @@
 	<div>${post.pphoto}</div>
 	<br/>
 	<hr/>
-	
+	<div id="plikecountUpdate">좋아요 수 : ${post.plikecount}</div>
+	<div>댓글 수 : ${post.countcomments}</div>
+
 	<form method="POST" action="/finalProject/views/InsertComment">
 	<label for="pno"></label>
 	<input type="hidden" name="pno" value="${post.pno}">
