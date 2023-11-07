@@ -160,8 +160,8 @@ function openInfo() {
             let infowindow = new naver.maps.InfoWindow({
                 content: '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">평균별점' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', 찜수: ' + locations[i].sfavoritecount + 
                 ', 이미지: ' + locations[i].sphoto + '</div>' + 
-                '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
-                '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/>'
+                '<a href="/finalModel/views/storeDetail?sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+                '<a href="/finalModel/views/storeUpdate?sno=' + locations[i].sno + '">점포 정보 수정!</a><br/>'
             });
             infowindow.open(map, marker);
         }

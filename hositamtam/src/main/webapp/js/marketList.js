@@ -15,9 +15,8 @@ function init() {
 
     // 점포 정보 클릭 시, 해당 점포와 연동된 지도 상의 인포윈도우창 띄우기
     document.querySelector('#marketContent').addEventListener('click', function(event) {
-        if (event.target.getAttribute('class') === 'personalMcontent') {
+        if (event.target.getAttribute('class') === 'mkcontainer') {
 			currentMno = event.target.getAttribute('id');
-			
             openInfo();
         }
     });
