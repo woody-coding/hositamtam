@@ -17,6 +17,34 @@ function latLngAjaxHandler() {
 		
 		const latLng = JSON.parse(xhr.responseText);
 		
+		
+			
+		
+        // storeErrorMsg 값(내용)을 가져옵니다.
+        const storeErrorMsg = latLng[0].storeErrorMsg;
+        
+        // 에러 메시지가 있는지 확인하고 화면에 표시
+        if (storeErrorMsg) {
+			
+			// 기존 jsp에 있던 div 태그들 숨기기
+			document.querySelector("#map").style.display = "none";
+            document.querySelector("#marketName").style.display = "none";
+            document.querySelector("#manyReview").style.display = "none";
+            document.querySelector("#manyRating").style.display = "none";
+            document.querySelector("#manyStoreLike").style.display = "none";
+            document.querySelector("#storeContent").style.display = "none";
+			
+            // 에러 메시지를 표시할 요소 선택
+            document.querySelector("#storeErrorMsg").innerHTML = storeErrorMsg;
+            
+            // 마커 및 기존 컨텐츠를 지우기
+            removeMarker();
+        }
+		
+		
+	
+		
+		
 		mlat = latLng[0].mlat;
 		mlng = latLng[0].mlng;
 		mname = latLng[0].mname;
