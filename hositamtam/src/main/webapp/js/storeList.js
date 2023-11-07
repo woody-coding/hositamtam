@@ -188,7 +188,7 @@ function openInfo() {
 	        let infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
 	            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><img src="./images/2b50.png" alt="평균별점">' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', <i class="fa-solid fa-heart"></i>: ' + locations[i].sfavoritecount + 
 	            ', 이미지: ' + locations[i].sphoto + '</div>' + 
-	            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+	            '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
 	            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/></div>'
 	        });
 	        
@@ -410,7 +410,7 @@ function showMarkers() {
         var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
             content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><img src="./images/2b50.png" alt="평균별점">' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', <i class="fa-solid fa-heart"></i>: ' + locations[i].sfavoritecount + 
             ', 이미지: ' + locations[i].sphoto + '</div>' + 
-            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+            '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
             '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/></div>'
         });
 
