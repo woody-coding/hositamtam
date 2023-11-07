@@ -1,55 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8" import="model.MemberDO"%>
 
 <jsp:useBean id="memberDAO" class="model.MemberDAO" />
-<jsp:useBean id="jsonMember" class="model.JsonMember" />
+<jsp:useBean id="JsonNickName" class="model.JsonCheckNickName" />
 <jsp:useBean id="memberDO" class="model.MemberDO" />
 <jsp:setProperty name="memberDO" property="*" />
 
 <%
-	jsonMember.setMemberDAO(memberDAO);
+	JsonNickName.setMemberDAO(memberDAO);
 	String command = request.getParameter("command");
-	if(command != null && command.equals("list")){
-		out.println(jsonMember.getAllMemberJson());
+
+	if (command != null && command.equals("checkNickname")) {
+		// 클라이언트에서 전달한 닉네임 값 가져오기
+		String newNickname = request.getParameter("newNickname");
+
+		// 닉네임 중복 확인
+		boolean isDuplicate = memberDAO.isNicknameDuplicate(newNickname);
+
+		// JSON 형태의 응답 생성
+		String jsonResponse = JsonNickName.getCheckNickName(isDuplicate);
+		out.println(jsonResponse);
 		out.flush();
-		
-	}else if(command != null && command.equals("insert")){
-		
-		try{
-			int rowCount = memberDAO.insertMember(memberDO);
-			out.println(jsonMember.getResult(rowCount));
-			
-		}catch(Exception e){
-			out.println(jsonMember.getMessage(e.getMessage()));
-			
-		}
-		
-		out.flush();
-	
-	}else if(command != null && command.equals("modify")){
-		// id�� memberDO setProperty�� ����
-		out.println(jsonMember.getMemberJson(memberDO.getId()));
-		out.flush();
-		
-	}else if(command != null && command.equals("changePasswd")){
-		int rowCount = memberDAO.changePasswd(memberDO);
-		
-		out.println(jsonMember.getResult(rowCount));
-		out.flush();
-		
-	}else if(command != null && command.equals("changeGrade")){
-		int rowCount = memberDAO.changeGrade(memberDO);
-		
-		out.println(jsonMember.getResult(rowCount));
-		out.flush();
-		
-	}else if(command != null && command.equals("deleteMember")){
-		int rowCount = memberDAO.deleteMember(memberDO.getId());
-		
-		out.println(jsonMember.getResult(rowCount));
-		out.flush();
-	}
-	
-	
+	} 
 %>
-</html>

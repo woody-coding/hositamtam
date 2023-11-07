@@ -164,27 +164,26 @@ public class MemberDAO {
 	    return errorMessage;
 	}
 
-	// 2-2.회원가입(닉네임 중복 확인)
-	public String isNicknameDuplicate(MemberDO memberDO) throws Exception {
+	// 2-2.회원가입 & 회원정보 수정(닉네임 중복 확인)
+	public boolean isNicknameDuplicate(String newNickname) throws Exception {
 	    boolean isNicknameDuplicate = false;
-	    String errorMessage = "";
 
 	    try {
 	        this.sql = "SELECT nickname FROM member WHERE nickname = ?";
 	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1, memberDO.getNickname());
+	        pstmt.setString(1, newNickname);
 	        this.rs = pstmt.executeQuery();
 
 	        if (rs.next()) {
 	            isNicknameDuplicate = true;
-	            errorMessage = "닉네임이 중복되었습니다.";
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	        errorMessage = "닉네임 중복 확인 중 오류가 발생했습니다.";
+	        // 예외 발생 시에도 중복으로 처리
+	        isNicknameDuplicate = true;
 	    }
 
-	    return errorMessage;
+	    return isNicknameDuplicate;
 	}
 	
 	
