@@ -1,4 +1,4 @@
-var count = 0;
+var count = 1;
 function dropDownHandler() {
   if(count % 2 == 1){
   document.querySelector('.mkNameList').classList.add('show-mkNameList');
