@@ -46,15 +46,17 @@
 			
 			// 1. 파라미터 mno 값 읽어오기
 		    let mno = '<%= request.getAttribute("mno") %>';
+		    let msg = '<%= request.getAttribute("msg") %>';
 		
 		    mno = (mno === 'null') ? null : mno;
+		    msg = (msg === 'null') ? null : msg;
 		    
 		    console.log('mno : ' + mno + '    /    typeof : ' + typeof(mno));
 		
 		    // 기존의 로컬은 무조건 삭제 후, 다시 등록
 			window.localStorage.removeItem('mnoToStore');
 		    	
-		    const whatMno = { mno: mno };
+		    const whatMno = { mno: mno, msg: msg };
 		    const mnoToStore = JSON.stringify(whatMno);
 		    window.localStorage.setItem('mnoToStore', mnoToStore);
 		
@@ -112,6 +114,7 @@
 	</div>
 	<div id="storeContent"></div>
 	<div id="storeErrorMsg"></div>
+	<div id="errMsg"></div>
 	</div>
 	</div>
 	<%-- <%@ include file="footer.jsp" %> --%>
