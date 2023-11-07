@@ -1,6 +1,11 @@
 package controller;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.MultipartRequest;
+
 
 import model.PostDO;
 import model.PostDAO;
@@ -58,9 +66,43 @@ public class PostController {
 	}
 	// 글 등록 기능
 	@PostMapping("/views/postUpdate")
-	public String PostUpdate(@ModelAttribute PostDO command, Model model) {
-		postDAO.insertPost(command);
-		model.addAttribute("postList", postDAO.getAllPost(command.getMno()));
+	public String insertPost(@ModelAttribute PostDO command, Model model, HttpServletRequest request) throws IOException {
+        String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
+        int sizeLimit = 1024 * 1024 * 5;
+        MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit,
+                "UTF-8", new DefaultFileRenamePolicy());
+
+    	File uploadDir = new File(directory);	
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
+            }
+            String savedName = "";
+            @SuppressWarnings("unchecked")
+            Enumeration<String> fileNames = multi.getFileNames();
+            if (fileNames.hasMoreElements()) {
+                String paramName = fileNames.nextElement();
+                savedName = multi.getFilesystemName(paramName);
+            }
+            // 파일 정보를 photo 변수에 저장
+            String postImg = "/finalProject/upload/" + savedName; // 웹 경로로 수정
+            // 세션이메일을 받아서 판매자 이메일로 저장
+            int mno = Integer.parseInt(multi.getParameter("mno"));
+            String id = multi.getParameter("id");
+            String ptitle = multi.getParameter("ptitle");
+            String pcontent = multi.getParameter("pcontent");
+            String pcategory = multi.getParameter("pcategory");
+            // 게시물 생성
+            PostDO post = new PostDO();
+            post.setMno(mno);
+            post.setId(id);
+            post.setPtitle(ptitle);
+            post.setPcontent(pcontent);
+            post.setPphoto(postImg);
+            post.setPcategory(pcategory);
+            postDAO.insertPost(post);
+            
+            model.addAttribute("postList", postDAO.getAllPost(mno));
+    		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
 

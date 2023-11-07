@@ -44,7 +44,7 @@
 	<div class="container mt-5">
 	
 	<h2>${market.mname}의 게시글 등록 페이지입니다.</h2>
-	<form method="POST" action="/finalProject/views/postUpdate">
+	<form method="POST" action="/finalProject/views/postUpdate" enctype="multipart/form-data">
 	<label for="pcategory">카테고리</label> 	
 	<input type="radio" name="pcategory" value="궁금해요" />궁금해요
 	<input type="radio" name="pcategory" value="도와주세요" />도와주세요

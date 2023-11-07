@@ -45,8 +45,6 @@
 	<div  class="section" id="section1">
 	<div class="container mt-5">
 	<c:forEach items="${post}" var="post">	
-	<div>${post.pno}</div>
-	<div>${post.id}</div>
 	<h2>호심탐탐 시끌시끌의 게시글 상세 페이지입니다.</h2>
 	<hr/><br/>
 	<div>커뮤니티 > ${post.pcategory}</div>
@@ -64,7 +62,7 @@
 		${post.pcontent}
 	</div>
 	<br/>
-	<div>${post.pphoto}</div>
+	<image src="${post.pphoto}"></image>
 	<br/>
 	<hr/>
 	<div>좋아요 수 : ${post.plikecount}</div>
