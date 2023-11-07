@@ -16,6 +16,18 @@
       href="https://webfontworld.github.io/gmarket/GmarketSans.css"
       rel="stylesheet"
     />
+	
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+	
+	<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
+	
 
     <!-- Font Awesome -->
     <script
@@ -74,14 +86,14 @@
         <div class="myprofile__name">${memberInfo.nickname} (${userId})</div>
         <div class="modify__delete__button">
         
-          <form id="updateForm" action="/finalProject/views/myPageUpdate" method="POST">
+          <form id="updateForm" action="/finalProject/views/myPageUpdate" method="GET">
           	<input type="hidden" name="id" value="${userId}" />
-          	<button class="myprofile__modify__button" id="mypageedit_button" >정보수정</button>
+          	<button class="myprofile__modify__button" type="submit" id="mypageedit_button" >정보수정</button>
           </form>
           
           <form id="deleteForm" action="/finalProject/views/myPage/deleteMember" method="POST">
             <input type="hidden" name="id" value="${userId}" />
-            <button class="myprofile__delete__button" id="delete_button" >회원탈퇴</button>
+            <button class="myprofile__delete__button" type="submit" id="delete_button" >회원탈퇴</button>
           </form>
         </div>
 
