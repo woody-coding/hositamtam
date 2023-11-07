@@ -197,9 +197,10 @@ function openInfo() {
                    '<img src="' + locations[i].sphoto  + '">' +
                    '</div></div>' +
                    '<div class="btnContainer">' +
-                   '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno  + '">점포 상세</a>' +
+                   '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
                    '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' +locations[i].sno  + '">점포 수정</a>' +
                    '</div></div>'   });
+
 	        
             infowindow.open(map, marker);
             
@@ -430,6 +431,7 @@ function showMarkers() {
         });
 
         var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
+
             content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
                    '<p>취급품목: ' + locations[i].scategory + '</p>' +
                    '<p>점포형태: ' +  locations[i].stype + '</p>' +
@@ -441,9 +443,10 @@ function showMarkers() {
                    '<img src="' + locations[i].sphoto  + '">' +
                    '</div></div>' +
                    '<div class="btnContainer">' +
-                   '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno  + '">점포 상세</a>' +
+                   '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
                    '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' +locations[i].sno  + '">점포 수정</a>' +
                    '</div></div>'
+
         });
 
         (function (marker, infowindow) {

@@ -50,10 +50,12 @@
 		// 로컬 스토리지를 활용해서 파라미터 keyword 혹은 cateno값 읽어오기
 	    let keyword = '<%= request.getAttribute("keyword") %>';
 	    let cateno = '<%= request.getAttribute("cateno") %>';
+	    let msg = '<%= request.getAttribute("msg") %>';
 	
 	    
 	    keyword = (keyword === 'null') ? null : keyword;
 	    cateno = (cateno === 'null') ? null : cateno;
+	    msg = (msg === 'null') ? null : msg;
 	    
 	    console.log('keyword : ' + keyword + '    /    typeof : ' + typeof(keyword));
 	    console.log('cateno : ' + cateno + '    /    typeof : ' + typeof(cateno));
@@ -61,7 +63,7 @@
 	    // 기존의 로컬은 무조건 삭제 후, 다시 등록
 		window.localStorage.removeItem('KeywordAndCateno');
 	    	
-	    const keyCateno = { keyword: keyword, cateno: cateno };
+	    const keyCateno = { keyword: keyword, cateno: cateno, msg: msg };
 	    const KeywordAndCateno = JSON.stringify(keyCateno);
 	    window.localStorage.setItem('KeywordAndCateno', KeywordAndCateno);
 	

@@ -29,7 +29,24 @@ function init() {
 	const keyCate = window.localStorage.getItem('KeywordAndCateno');
 	const KeywordAndCateno = JSON.parse(keyCate);
 
-    if (KeywordAndCateno.keyword) {
+
+	if(KeywordAndCateno.msg) {
+				
+		let errMsg = KeywordAndCateno.msg;
+					
+		// 기존 jsp에 있던 div 태그들 숨기기
+		document.querySelector("#map").style.display = "none";
+        document.querySelector("#howGetMarket").style.display = "none";
+        document.querySelector("#marketContent").style.display = "none";
+		
+        // 에러 메시지를 표시할 요소 선택
+        document.querySelector("#marketErrorMsg").innerHTML = errMsg;
+        
+        // 마커 및 기존 컨텐츠를 지우기
+        removeMarker();
+	}
+
+    else if (KeywordAndCateno.keyword) {
 
         let currentKeyword = KeywordAndCateno.keyword;
         
