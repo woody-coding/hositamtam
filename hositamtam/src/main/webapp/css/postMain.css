@@ -6,17 +6,6 @@
     
 }
 
-  /*html, body {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    
-  }*/
-  /*body {
-  overflow-y: scroll;  세로 스크롤바를 항상 표시 
-  height: 100vh;  뷰포트 높이만큼 높이 설정 
-}*/
 .section {
     width: 100%;
     height: 100%;
@@ -44,7 +33,10 @@ td,tr{
 button {
 	display: inline-block;
 }
-
+.container img{
+	text-align: center;
+	
+}
 #postlistTable th,
 #postlistTable td {
   border-bottom: 1px solid #0e4194;
@@ -161,53 +153,11 @@ border-bottom: 1px solid #0188CC;
     float: right;
 }
 
-
-  .black-bg {
-    width : 100%;
-    height : 100vh;
-    
-    position : absolute;
-    background : rgba(0,0,0,0.5);
-    padding: 30px;
-    visibility : hidden;
-    opacity : 0; 
-    transition : all 1s;
-    transform: translateY(100%);
-    
-  }
-  .black-bg-modify {
-    width : 100%;
-    height : 100vh;
-   
-    position : absolute;
-    background : rgba(0,0,0,0.5);
-    padding: 30px;
-    visibility : hidden;
-    opacity : 0;
-    transition : all 1s;
-    transform: translateY(100%);
-    
-  }
-  .white-bg {
-    background: white;
-    border-radius: 5px;
-    padding: 30px;
-    border: 4px solid #0188CC;
-    
-  } 
-
   
   .show {
     display: block;
   }
-  .show-modal {
-    z-index : 99;
-
-    visibility : visible;
-  opacity : 1;
-  transition : all 1s;
-  transform: translateY(0%);
-  }
+  
   .left{
     display: flex;
     
@@ -236,22 +186,16 @@ border-bottom: 1px solid #0188CC;
 }
 
 .mkNameList{
-    /* z-index: 5; */
     position: absolute;
-    
     width: 1400px;
     visibility: hidden;
-    
     opacity: 0;
     background-color: white;
 }
 .mkNameList span{
     margin-left: 20px;
 }
-.btnDown{
-  /* transition : all 1s; */
 
-}
 
 .show-mkNameList{
   

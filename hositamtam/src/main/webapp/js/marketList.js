@@ -183,7 +183,7 @@ function marketAjaxHandler() {
 		    mapTypeControl: true,
 		    mapTypeControlOptions: {
 		        style: naver.maps.MapTypeControlStyle.BUTTON,
-		        position: naver.maps.Position.TOP_RIGHT
+		        position: naver.maps.Position.BOTTOM_LEFT,
 		    }
 		};
 		
