@@ -34,24 +34,39 @@
 a{
     text-decoration: none;
 }
+td a{
+	 text-decoration: none;
+	 color: black;
+}
+td,tr{
+	text-align: center;
+}
 button {
 	display: inline-block;
 }
 
+#postlistTable th,
+#postlistTable td {
+  border-bottom: 1px solid #0e4194;
+}
+
+#postlistTable {
+  border-collapse: collapse;
+}
 .list {
     display: flex;
-    justify-content: space-between;
+   
    
     margin: 0;
     padding: 0;
     border-bottom: 2px solid #0188CC;
 }
-.list::after {
+/*.list::after {
     content: '';
     display: block;
     clear: both;
-}
-#pCategory{
+}*/
+.list button{
 	 display: block;
     padding: 10px 20px 10px 20px;
     float: left;
@@ -63,7 +78,7 @@ button {
     font-weight: bold;
     
 }
-#pCategory:hover{
+.list button:hover{
     background-color: #0188CC;
     border-radius: 10px;
     color: black;
@@ -104,11 +119,9 @@ button {
   
 }
 .commentBox{
-    display: none;
+    display: flex;
 }
-.commentList{
-    display: none;
-}
+
 .show-more{
     display: block;
 
@@ -367,9 +380,19 @@ th {
     padding: 5px;
     border-bottom: 1px solid #0e4194;     
     }
-.pcontent {
+.ptitle {
 	 padding: 5px;
-	text-align: center;
+	text-align: left;
 	min-width: 600px; 
     
+}
+
+.postHeader h4{
+	color: #0e4194;
+}
+.likeComment{
+	float: right;
+}
+.likeComment::after{
+	clear: both;
 }
