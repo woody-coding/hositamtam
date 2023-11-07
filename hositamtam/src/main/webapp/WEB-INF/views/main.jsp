@@ -44,7 +44,39 @@
 	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script>
+	function init() {
 
+	    // 현재 접속한 사용자가 회원인지 비회원인지 판단하기
+	    let id = '<%= session.getAttribute("userId") %>';
+	
+	    
+	    id = (id === 'null') ? null : id;
+	    
+	    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
+	    
+	    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+	    const localStorageData = window.localStorage.getItem("memberId");
+	    const localStorageMember = JSON.parse(localStorageData);
+	
+           
+	    if(id !== null) {
+           	if (localStorageMember !== null && localStorageMember.id !== id) {
+           		window.localStorage.removeItem('memberId');
+           	}
+           	
+               const member = { id: id };
+               const memberId = JSON.stringify(member);
+               window.localStorage.setItem('memberId', memberId);
+           }
+           else if(id === null && localStorageMember !== null) {
+           	window.localStorage.removeItem('memberId');
+           }
+
+	}
+	
+	window.addEventListener('load', init);
+</script>
 <script src="../js/main.js"></script>
 
 </head>
