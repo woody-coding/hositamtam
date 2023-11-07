@@ -256,26 +256,8 @@ public class MemberController {
 	    return "myPageUpdate"; // 비밀번호와 닉네임 수정 페이지로 이동
 	}
 
-	@PostMapping("/views/myPageUpdate/updatePasswd") // URL 경로 변경
-	public String updatePasswd(@ModelAttribute MemberDO command, HttpSession session, Model model) {
-	    // 현재 사용자 아이디 가져오기
-	    String userId = (String) session.getAttribute("userId");
-	    command.setId(userId);
-
-	    try {
-	        memberDAO.changePasswd(command);
-	        // 비밀번호 업데이트 성공 시, 세션 업데이트
-	        MemberDO updatedUser = memberDAO.getMember(userId);
-	        session.setAttribute("memberInfo", updatedUser);
-	    } catch (Exception e) {
-	        model.addAttribute("msg", e.getMessage());
-	        return "myPageUpdate"; // 업데이트 실패 시 수정 페이지로 다시 돌아감
-	    }
-
-	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
-	}
-
-	@PostMapping("/views/myPageUpdate/updateNickname") // URL 경로 변경
+	
+	@GetMapping("/updateNickname") // URL 경로 변경
 	public String updateNickname(@ModelAttribute MemberDO command, HttpSession session, Model model) {
 	    // 현재 사용자 아이디 가져오기
 	    String userId = (String) session.getAttribute("userId");
@@ -293,7 +275,27 @@ public class MemberController {
 
 	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
 	}
+	
+	@PostMapping("/updatePasswd") // URL 경로 변경
+	public String updatePasswd(@ModelAttribute MemberDO command, HttpSession session, Model model) {
+	    // 현재 사용자 아이디 가져오기
+	    String userId = (String) session.getAttribute("userId");
+	    command.setId(userId);
 
+	    try {
+	        memberDAO.changePasswd(command);
+	        // 비밀번호 업데이트 성공 시, 세션 업데이트
+	        MemberDO updatedUser = memberDAO.getMember(userId);
+	        session.setAttribute("memberInfo", updatedUser);
+	    } catch (Exception e) {
+	        model.addAttribute("msg", e.getMessage());
+	        return "myPageUpdate"; // 업데이트 실패 시 수정 페이지로 다시 돌아감
+	    }
+
+	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
+	}
+	
+	
 
 	// 회원 탈퇴
 	@PostMapping("/views/myPage/deleteMember")
