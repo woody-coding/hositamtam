@@ -156,7 +156,7 @@ button{
     overflow: auto;
 }
 .iwContent{
-    width: 100px;
+    width: 120px;
     height: 40px;
     /* background-color: #e6007e; */
     position: relative;
@@ -174,7 +174,8 @@ button{
 .up {
     position: absolute;
     top: 0;
-    left: 35px;
+    left: 45px;
+    
     transition: top 100ms;
     transition: transform 0.5s ease-in-out;
     animation: rotateAnimation 0.5s ease-in-out infinite;
@@ -182,7 +183,9 @@ button{
   
   .down {
     position: absolute;
+    left: 10px;
     font-size: 1.5rem;
+    
     top: 40px; /* 초기에 숨겨진 상태 */
     transition: top 100ms;
 

@@ -38,7 +38,7 @@ function latLngAjaxHandler() {
 		    mapTypeControl: true, // 위성 지도 토글 버튼을 표시
 		    mapTypeControlOptions: {
 		        style: naver.maps.MapTypeControlStyle.BUTTON,
-		        position: naver.maps.Position.TOP_RIGHT
+		        position: naver.maps.Position.BOTTOM_LEFT
 		    }
 		};
 		
