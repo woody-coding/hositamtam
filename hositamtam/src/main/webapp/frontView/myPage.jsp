@@ -172,6 +172,7 @@
             &nbsp;내가 등록한 점포
           </h2>
           <button class="myStore__more">더보기</button>
+          <button class="myStore__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -246,6 +247,7 @@
             &nbsp;내가 작성한 글
           </h2>
           <button class="myPost__more">더보기</button>
+          <button class="myPost__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -351,6 +353,7 @@
             &nbsp;내가 작성한 리뷰
           </h2>
           <button class="myReview__more">더보기</button>
+          <button class="myReview__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr>
@@ -441,6 +444,7 @@
             &nbsp;내가 찜한 점포
           </h2>
           <button class="myStoreLike__more">더보기</button>
+          <button class="myStoreLike__less">접기</button>
         </div>
         <table class="myPage__table">
           <tr class="myStoreLike__tr">
