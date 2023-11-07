@@ -43,3 +43,59 @@ function init() {
 
 
 window.addEventListener('load', init);
+
+
+
+
+// 더보기 버튼
+document.addEventListener("DOMContentLoaded", function () {
+  var storeMoreButton = document.querySelector(".myStore__more");
+  var storeHidden = document.querySelectorAll(".myStore__tr:nth-child(n + 7)");
+  var postMoreButton = document.querySelector(".myPost__more");
+  var postHidden = document.querySelectorAll(".myPost__tr:nth-child(n + 7)");
+  var reviewMoreButton = document.querySelector(".myReview__more");
+  var reviewHidden = document.querySelectorAll(
+    ".myReview__tr:nth-child(n + 7)"
+  );
+
+  var storeLikeMoreButton = document.querySelector(".myStoreLike__more");
+  var storeLikeHidden = document.querySelectorAll(
+    ".myStoreLike__tr:nth-child(n + 7)"
+  );
+
+  // 내가 등록한 점포
+  storeMoreButton.addEventListener("click", function () {
+    storeHidden.forEach(function (row) {
+      row.style.display = "table-row";
+    });
+
+    storeMoreButton.style.display = "none";
+  });
+
+  // 내가 작성한 글
+  postMoreButton.addEventListener("click", function () {
+    postHidden.forEach(function (row) {
+      row.style.display = "table-row";
+    });
+
+    postMoreButton.style.display = "none";
+  });
+
+  // 내가 작성한 리뷰
+  reviewMoreButton.addEventListener("click", function () {
+    reviewHidden.forEach(function (row) {
+      row.style.display = "table-row";
+    });
+
+    reviewMoreButton.style.display = "none";
+  });
+
+  // 내가 찜한 점포
+  storeLikeMoreButton.addEventListener("click", function () {
+    storeLikeHidden.forEach(function (row) {
+      row.style.display = "table-row";
+    });
+
+    storeLikeMoreButton.style.display = "none";
+  });
+});
