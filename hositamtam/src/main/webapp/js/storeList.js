@@ -102,7 +102,24 @@ function init() {
 	const currentmno = JSON.parse(mnoToStore);
 	
 	currentMno = currentmno.mno;
+	let errMsg = currentmno.msg;
 	
+	if(errMsg) {
+		// 기존 jsp에 있던 div 태그들 숨기기
+		document.querySelector("#map").style.display = "none";
+        document.querySelector("#marketName").style.display = "none";
+        document.querySelector("#manyReview").style.display = "none";
+        document.querySelector("#manyRating").style.display = "none";
+        document.querySelector("#manyStoreLike").style.display = "none";
+        document.querySelector("#storeContent").style.display = "none";
+        document.querySelector("#storeErrorMsg").style.display = "none";
+		
+        // 에러 메시지를 표시할 요소 선택
+        document.querySelector("#errMsg").innerHTML = errMsg;
+        
+        // 마커 및 기존 컨텐츠를 지우기
+        removeMarker();
+	}
 	
 	
 	
@@ -198,7 +215,7 @@ function openInfo() {
                    '</div></div>' +
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
-                   '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
                    '</div></div>'   });
 
 	        
@@ -444,7 +461,7 @@ function showMarkers() {
                    '</div></div>' +
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
-                   '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
                    '</div></div>'
 
         });

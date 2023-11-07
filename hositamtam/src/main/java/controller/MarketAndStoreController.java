@@ -41,7 +41,7 @@ public class MarketAndStoreController {
 	public String StoreList(@RequestParam(value="mno", required=false) String mno, Model model) {
 		
 		if(mno == null) {
-			model.addAttribute("msg", "잘못된 접근입니다. 원하시는 전통시장을 선택해주세요!");
+			model.addAttribute("msg", "잘못된 접근입니다. 원하시는 전통시장을 검색 혹은 카테고리를 통해 선택해주세요!");
 		}
 		
 		model.addAttribute("mno", mno);
@@ -62,10 +62,10 @@ public class MarketAndStoreController {
 		return "storeList";
 	}
 	@GetMapping("/views/storeUpdate")
-	public String StoreUpdate(@RequestParam StoreDO storeDO, Model model) {
+	public String StoreUpdate(@RequestParam(value="sno", required=false) String sno, Model model) {
 		//수정예정
-		model.addAttribute("storeList", storeDAO.updateStore(storeDO));
-		return "storeList";
+		model.addAttribute("sno", sno);
+		return "storeUpdate";
 	}
 	
 
