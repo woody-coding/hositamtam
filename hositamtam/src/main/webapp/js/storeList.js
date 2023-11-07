@@ -32,7 +32,7 @@ function latLngAjaxHandler() {
 		    mapTypeControl: true, // 위성 지도 토글 버튼을 표시
 		    mapTypeControlOptions: {
 		        style: naver.maps.MapTypeControlStyle.BUTTON,
-		        position: naver.maps.Position.BOTTOM_LEFT
+		        position: naver.maps.Position.TOP_RIGHT
 		    }
 		};
 		
@@ -41,8 +41,8 @@ function latLngAjaxHandler() {
 		markers = [];
         
         // 지도 생성 후, 해당 시장명 + 해당 시장 커뮤니티 버튼 생성
-         document.querySelector('#marketName').innerHTML = '<div class="searchResultName"><h4>' + mname + '</h4>'+ '  <div id="toPost"><a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a></div></div>';
-      
+        document.querySelector('#marketName').innerHTML = mname + '  <a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a>';
+
         
         getStoreInfo();
     }
@@ -157,18 +157,14 @@ function openInfo() {
 			
             let marker = markers[i]; // 이미 생성된 마커를 가져옵니다.
             
-	        let infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
-	            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><img src="./images/2b50.png" alt="평균별점">' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', <i class="fa-solid fa-heart"></i>: ' + locations[i].sfavoritecount + 
-	            ', 이미지: ' + locations[i].sphoto + '</div>' + 
-	            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
-	            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/></div>'
-	        });
-	        
-            infowindow.open(map, marker);
-            
-            naver.maps.Event.addListener(map, "click", function (mouseEvent) {
-                infowindow.close();
+            let infowindow = new naver.maps.InfoWindow({
+                content: '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">평균별점' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', 찜수: ' + locations[i].sfavoritecount + 
+                ', 이미지: ' + locations[i].sphoto + '</div>' + 
+//                '<a href="/finalModel/views/storeDetail?sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+            '<a href="storeDetail?sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+                '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/>'
             });
+            infowindow.open(map, marker);
         }
     }
 }
@@ -382,7 +378,8 @@ function showMarkers() {
         var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
             content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><img src="./images/2b50.png" alt="평균별점">' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', <i class="fa-solid fa-heart"></i>: ' + locations[i].sfavoritecount + 
             ', 이미지: ' + locations[i].sphoto + '</div>' + 
-            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+//            '<a href="/views/storeDetail.jsp?sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+            '<a href="storeDetail">점포 상세페이지로 이동!</a><br/>' +
             '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/></div>'
         });
 
