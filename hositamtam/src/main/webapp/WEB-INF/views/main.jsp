@@ -61,39 +61,19 @@
         <div class="close"></div>
         <div class="listCategoryContent">
 
-          <form method="POST" action="/finalProject/views/marketCategory">
-            
+          
             <p>어떤 시장이 궁금한가요?</p>
             <div class="goCategory">
-              <button id="cateno" name="cateno" value="1">농산물</button>
-	
+	            <li><a href="/finalProject/views/marketList?cateno=1">농산물</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=2">음식점</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=3">가공식품</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=4">수산물</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=5">축산물</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=6">가정용품</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=7">의류</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=8">신발</a></li>
+	            <li><a href="/finalProject/views/marketList?cateno=9">기타</a></li>
             </div>	
-            <div class="goCategory">
-             <button id="cateno" name="cateno" value="2">음식점</button>
-            </div>
-            <div class="goCategory">
-              <button id="cateno" name="cateno" value="3">가공식품</button>
-            </div>
-            <div class="goCategory">
-              <button id="cateno" name="cateno" value="4">수산물</button>
-            </div>
-            <div class="goCategory">
-              <button id="cateno" name="cateno" value="5">축산물</button>
-            </div>
-            <div class="goCategory">
-              <button id="cateno" name="cateno" value="6">가정용품</button>
-            </div>
-            <div class="goCategory">
-              <button id="cateno" name="cateno" value="7">의류</button>
-            </div>
-            <div class="goCategory">
-              <button id="cateno" name="cateno" value="8">신발</button>
-            </div>
-            <div class="goCategory">
-             <button id="cateno" name="cateno" value="9">기타</button>
-            </div>
-      
-          </form>
         </div>  
       </div> 
      
