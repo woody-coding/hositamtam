@@ -212,71 +212,7 @@ border-bottom: 1px solid #0188CC;
     display: flex;
     
   }
-.postCategory{
-    margin: 1rem;
 
-}
-.postCategory-radio{
-    font-size: 2rem;
-    display: flex;
-    justify-content: space-around;
-}  
-.postCategory-radio input[type="radio"]{
-    display: none;
-}  
-
-.postCategory-radio label {
-    color: black;   
-}
-
-.postCategory-radio label.selected {
-    color: #0e4194; 
-}
-
-.radioBox{
-    width: 160px;
-    text-align: center;
-}
-.radioBox:hover{
-    background-color: #0188CC;
-}
-.postHead{
-    border: 4px solid #0188CC;
-    font-size: 1.5rem;
-    margin: 1rem;
-    
-}
-.postHead input{
-    border: 0px;
-}
-.postContent{
-    border: 4px solid #0188CC;
-    margin: 1rem;
-    font-size: 1.3rem;
-
-
-}
-.postContent textarea{
-    border: 0px;
-}
-.postPicture{
-    display: flex;
-    margin: 1rem;
-
-}
-#image_container{
-    max-width: 900px;
-    max-height: 400px;
-}
-
-
-#image_container img {
-    max-width: 100%; /* 이미지를 컨테이너의 가로 크기에 맞게 조정 */
-    max-height: 100%; /* 이미지를 컨테이너의 세로 크기에 맞게 조정 */
-}
-#imgBox img{
-	width: 360px;
-}
 #mkName{
     font-size: 40px;
 }

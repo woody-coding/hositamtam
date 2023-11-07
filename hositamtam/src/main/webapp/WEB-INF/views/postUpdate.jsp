@@ -18,7 +18,8 @@
 <!-- CSS -->
 <link rel="stylesheet" href="../css/loginHeader.css" />
 <link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/postMain.css" />
+<!-- <link rel="stylesheet" href="../css/postMain.css" /> -->
+<link rel="stylesheet" href="../css/postUpdate.css" />
 <!-- JavaScript -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -37,6 +38,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script  src ="../js/postMain.js"></script>	
+
 </head>
 <body>
 	<%@ include file="navi.jsp" %>
@@ -44,19 +47,41 @@
 	<div class="container mt-5">
 	
 	<h2>${market.mname}의 게시글 등록 페이지입니다.</h2>
+	<hr/>
 	<form method="POST" action="/finalProject/views/postUpdate">
+	<div class="postCategory-radio">
 	<label for="pcategory">카테고리</label> 	
-	<input type="radio" name="pcategory" value="궁금해요" />궁금해요
-	<input type="radio" name="pcategory" value="도와주세요" />도와주세요
-	<input type="radio" name="pcategory" value="소통해요" />소통해요
-	<input type="radio" name="pcategory" value="시장소식" />시장소식
-	<br>
+	<!-- <input class="radioBox" type="radio" name="pcategory" value="궁금해요" />궁금해요
+	<input class="radioBox" type="radio" name="pcategory" value="도와주세요" />도와주세요
+	<input class="radioBox" type="radio" name="pcategory" value="소통해요" />소통해요
+	<input class="radioBox" type="radio" name="pcategory" value="시장소식" />시장소식
+	 -->
+	              <div class="radioBox">
+                  <label for="pcategory"><input type="radio" name="pcategory" value="시장질문" />시장질문</label>
+
+
+                  </div>
+                   <div class="radioBox">
+                  <label><input type="radio" name="pcategory" value="사건사고">사건사고</label>
+
+                  </div>
+                  <div class="radioBox">
+                  <label><input type="radio" name="pcategory" value="일상">일상</label>
+
+                  </div>
+                  <div class="radioBox">
+                    <label><input type="radio" name="pcategory" value="실종/분실">실종/분실</label>
+
+                  </div> 
+	</div>
+	 <div class="postHead row">
 	<label for="ptitle">제목</label>
 	<input type="text" name="ptitle" placeholder="제목을 입력하세요" />
-	<br>
+	</div>
+	 <div class="postContent row">
 	<label for="pcontent">내용</label>
-	<input type="text" name="pcontent" placeholder="내용을 입력하세요" />
-	<br>
+	<textarea  name="pcontent" placeholder="내용을 입력하세요" ></textarea>
+	</div>
 	<label for="pphoto">사진</label>
 	<input type="file" name="pphoto" placeholder="내용을 입력하세요" />
 	<br>
@@ -64,7 +89,7 @@
 	<input type="hidden" name="mno" value="${market.mno}"/>
 	<label for="id"></label>
 	<input type="hidden" name="id" value="${userId}"/>
-	<input type="submit" value="등록하기">
+	<input class="btn btn-primary" type="submit" value="등록하기">
 	</form>
 	</div>
 	</div>
