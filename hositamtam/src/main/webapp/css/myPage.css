@@ -135,27 +135,29 @@ a {
   margin-top: 1rem;
 }
 
-.myprofile__modify__button {
+.myprofile__modify__form,
+.myprofile__delete__form {
   width: 100%;
   margin: 0 1rem;
+}
+
+.myprofile__modify__button,
+.myprofile__delete__button {
+  width: 100%;
   padding: 5px;
   font-size: 20px;
   border-radius: 4px;
   border: none;
   color: var(--color-background);
-  background-color: var(--color-primary);
   transition: all 0.15s linear;
 }
 
+.myprofile__modify__button {
+  background-color: var(--color-primary);
+}
+
 .myprofile__delete__button {
-  width: 100%;
-  margin: 0 1rem;
-  font-size: 20px;
-  border-radius: 4px;
-  border: none;
-  color: var(--color-background);
   background-color: var(--color-gray);
-  transition: all 0.15s linear;
 }
 
 .myprofile__modify__button:hover {
@@ -211,6 +213,8 @@ a {
 }
 
 .myActivity {
+  box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2);
+  padding: 40px;
   margin: 0 5rem 5rem;
 }
 
@@ -220,7 +224,6 @@ a {
 .myStoreLike {
   display: flex;
   justify-content: space-between;
-  /* margin-top: 5rem; */
   margin-bottom: 1rem;
 }
 
@@ -281,11 +284,13 @@ a {
 
 .myReview__th__name,
 .myReview__td__name {
-  width: 25%;
+  /* width: 25%; */
+  width: 27%;
 }
 
 .myReview__th__star,
 .myReview__td__star {
+  /* width: 10%; */
   width: 10%;
 }
 
@@ -295,7 +300,13 @@ a {
 
 .myReview__th__contents,
 .myReview__td__contents {
-  width: 53%;
+  width: 50%;
+}
+
+.myReview__td__contents {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .myStore__more,
@@ -307,10 +318,9 @@ a {
   margin-top: 0.3rem;
   border: none;
   border-bottom: 1px solid var(--color-gray);
-  /* border-radius: 4px; */
   color: var(--color-gray);
   background-color: var(--color-background);
-  /* background-color: var(--color-accent); */
+  cursor: pointer;
 }
 
 .myStore__less,
@@ -323,10 +333,9 @@ a {
   margin-top: 0.3rem;
   border: none;
   border-bottom: 1px solid var(--color-gray);
-  /* border-radius: 4px; */
   color: var(--color-gray);
   background-color: var(--color-background);
-  /* background-color: var(--color-accent); */
+  cursor: pointer;
 }
 
 /* Anchor */
@@ -349,27 +358,22 @@ a {
 }
 
 .myPage__store {
-  /* bottom: 19rem; */
   bottom: 44.25rem;
 }
 
 .myPage__post {
-  /* bottom: 15rem; */
   bottom: 40.25rem;
 }
 
 .myPage__review {
-  /* bottom: 11rem; */
   bottom: 36.25rem;
 }
 
 .myPage__storeLike {
-  /* bottom: 7rem; */
   bottom: 32.25rem;
 }
 
 .myPage__arrow-up {
-  /* bottom: 3rem; */
   bottom: 28.25rem;
 }
 
