@@ -41,8 +41,8 @@ function latLngAjaxHandler() {
 		markers = [];
         
         // 지도 생성 후, 해당 시장명 + 해당 시장 커뮤니티 버튼 생성
-        document.querySelector('#marketName').innerHTML = mname + '  <a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a>';
-
+         document.querySelector('#marketName').innerHTML = '<div class="searchResultName"><h4>' + mname + '</h4>'+ '  <div id="toPost"><a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a></div></div>';
+      
         
         getStoreInfo();
     }
