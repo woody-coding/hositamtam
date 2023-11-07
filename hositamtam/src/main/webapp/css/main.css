@@ -149,14 +149,14 @@ ul {
   
   padding: 10px;
 }
-.goCategory button{
+.goCategory a{
+  display: inline-block;
   border: 0;
   background-color: transparent;
   color: white;
 }
-.goCategory:hover{
-  transform: translateX(-50px);
-
+.goCategory li {
+    list-style-type: none;
 }
 
 

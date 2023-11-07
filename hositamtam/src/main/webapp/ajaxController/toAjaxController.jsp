@@ -34,7 +34,14 @@
 		out.println(storeDAO.getStoreInMarket((Integer.parseInt(mno))));
 	}
 	else if(command != null && command.equals("getMarketLatLng")) {
-		out.println(marketDAO.getMarketLatLng((Integer.parseInt(mno))));
+        try {
+            int number = Integer.parseInt(mno);
+            // 정수로 변환 가능한 경우
+            out.println(marketDAO.getMarketLatLng(number));
+        } catch (NumberFormatException e) {
+            // 정수로 변환할 수 없는 경우
+        	out.println(marketDAO.getMarketLatLng(0));
+        }	
 	}
 	else if(command != null && command.equals("getManyReview")) {
 		out.println(storeDAO.getManyReview((Integer.parseInt(mno))));
@@ -45,9 +52,9 @@
 	else if(command != null && command.equals("getManyStoreLike")) {
 		out.println(storeDAO.getManyStoreLike((Integer.parseInt(mno))));
 	}
-	//else if(command != null && command.equals("updateLike")) {
-	//	out.println(postDAO.updateLike((Integer.parseInt(pno)), id));
-	//}
+	else if(command != null && command.equals("updateLike")) {
+		out.println(postDAO.updateLike((Integer.parseInt(pno)), id));
+	}
 
 	
 	out.flush();

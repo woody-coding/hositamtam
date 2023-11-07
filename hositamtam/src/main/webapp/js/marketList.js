@@ -15,9 +15,8 @@ function init() {
 
     // 점포 정보 클릭 시, 해당 점포와 연동된 지도 상의 인포윈도우창 띄우기
     document.querySelector('#marketContent').addEventListener('click', function(event) {
-        if (event.target.getAttribute('class') === 'personalMcontent') {
+        if (event.target.getAttribute('class') === 'mkName') {
 			currentMno = event.target.getAttribute('id');
-			
             openInfo();
         }
     });
@@ -30,7 +29,24 @@ function init() {
 	const keyCate = window.localStorage.getItem('KeywordAndCateno');
 	const KeywordAndCateno = JSON.parse(keyCate);
 
-    if (KeywordAndCateno.keyword) {
+
+	if(KeywordAndCateno.msg) {
+				
+		let errMsg = KeywordAndCateno.msg;
+					
+		// 기존 jsp에 있던 div 태그들 숨기기
+		document.querySelector("#map").style.display = "none";
+        document.querySelector("#howGetMarket").style.display = "none";
+        document.querySelector("#marketContent").style.display = "none";
+		
+        // 에러 메시지를 표시할 요소 선택
+        document.querySelector("#marketErrorMsg").innerHTML = errMsg;
+        
+        // 마커 및 기존 컨텐츠를 지우기
+        removeMarker();
+	}
+
+    else if (KeywordAndCateno.keyword) {
 
         let currentKeyword = KeywordAndCateno.keyword;
         
@@ -98,10 +114,19 @@ function openInfo() {
 			
             let marker = markers[i]; // 이미 생성된 마커를 가져옵니다.
             
-            let infowindow = new naver.maps.InfoWindow({
-                content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
-            });
+	         var infowindow = new naver.maps.InfoWindow({
+	       /*     content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
+	     	 */ content: '<div class="goMarket"><div class="up">' + locations[i].mname + '</div><div class="down"><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a></div></div>', 
+	                    maxWidth: 300,
+	                    borderWidth: 0,
+	                    disableAnchor: true, 
+		 	});
+		 	
             infowindow.open(map, marker);
+            
+            naver.maps.Event.addListener(map, "click", function (mouseEvent) {
+                infowindow.close();
+            });
         }
     }
 }
@@ -189,7 +214,7 @@ function marketAjaxHandler() {
 			
 			marketContents += '<div id="'+ allMarketList[i].mno +'" class="mkcontainer">' +
 					            '<div class="col-9">' +
-					                '<p id="mkName">' + allMarketList[i].mname + '</p>' +
+					                '<p class="mkName" id="'+ allMarketList[i].mno +'">' + allMarketList[i].mname + '</p>' +
 					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
 					                '<span>화장실 ' + allMarketList[i].mtoilet + '</span><span>주차장 ' + allMarketList[i].mparking + '</span>' +
 					            '</div>' +
