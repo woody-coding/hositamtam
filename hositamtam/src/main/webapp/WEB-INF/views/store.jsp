@@ -59,38 +59,7 @@
 		    const whatMno = { mno: mno, msg: msg };
 		    const mnoToStore = JSON.stringify(whatMno);
 		    window.localStorage.setItem('mnoToStore', mnoToStore);
-		
-		    
-		    
-		    
-		    // 2. 현재 접속한 사용자가 회원인지 비회원인지 판단하기
-		    let id = '<%= session.getAttribute("userId") %>';
-		
-		    
-		    id = (id === 'null') ? null : id;
-		    
-		    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
-		    
-		    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
-		    const localStorageData = window.localStorage.getItem("memberId");
-		    const localStorageMember = JSON.parse(localStorageData);
-		
-            
-		    if(id !== null) {
-            	if (localStorageMember !== null && localStorageMember.id !== id) {
-            		window.localStorage.removeItem('memberId');
-            	}
-            	
-                const member = { id: id };
-                const memberId = JSON.stringify(member);
-                window.localStorage.setItem('memberId', memberId);
-            }
-            else if(id === null && localStorageMember !== null) {
-            	window.localStorage.removeItem('memberId');
-            }
-		    
-		    
-		
+	
 		}
 		
 		window.addEventListener('load', init);
