@@ -20,23 +20,26 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" href="../css/loginHeader.css" />
-	<!-- <link rel="stylesheet" href="../css/login.css" /> -->
+	
 	<link rel="stylesheet" href="../css/footer.css" />
 	<link rel="stylesheet" href="../css/storeList.css" />
 	
 	
 	<!-- JavaScript -->
-	<!-- 경인키 51l0xj0874 -->
-	<!-- 동영키 e9fw481dyk 5502 동작-->
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
 	<script type="text/javascript"
 		src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-		crossorigin="anonymous">
+	
     <script>
 
 		function init() {
@@ -94,21 +97,21 @@
     <script src="/finalProject/js/storeList.js"></script>
 </head>
 <body>
-	
-	
-	<div id="map" style="width:1100px; height:700px;"></div>
-	
+	<%@ include file="navi.jsp" %>
+	<div class="section">
+	<div id="map" style="width:1200px; height:900px;">
+	<button id="insertStore" class="plusStore"><i class="bi bi-plus-circle-fill"></i></button>
+	</div>
+	<div class="right">
 	<div id="marketName"></div>
-	
+	 <div class="btnSort">
 	<button id="manyReview">리뷰 많은 순</button>
 	<button id="manyRating">별점 높은 순</button>
 	<button id="manyStoreLike">찜 많은 순</button>
-	
+	</div>
 	<div id="storeContent"></div>
-	
-	<button id="insertStore">새 점포 등록</button><br/>
-	
-	
-	
+	</div>
+	</div>
+	<%-- <%@ include file="footer.jsp" %> --%>
 </body>
 </html>

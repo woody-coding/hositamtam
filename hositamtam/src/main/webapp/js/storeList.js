@@ -42,6 +42,7 @@ function latLngAjaxHandler() {
         
         // 지도 생성 후, 해당 시장명 + 해당 시장 커뮤니티 버튼 생성
         document.querySelector('#marketName').innerHTML = mname + '  <a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a>';
+
         
         getStoreInfo();
     }
@@ -270,7 +271,7 @@ function storeAjaxHandler() {
         
         
 		for(let i=0; i < allStoreList.length; i++) {
-			storeContents += '<div id="'+ allStoreList[i].sno +'" class="personalScontent">평균별점' + allStoreList[i].savgrating + '('+ allStoreList[i].sreviewcount + ')' +', 점포명: ' + allStoreList[i].sname + ', 취급품목: ' + allStoreList[i].scategory + ', 점포형태: ' + allStoreList[i].stype + ', 찜수: ' + allStoreList[i].sfavoritecount + 
+			storeContents += '<div id="'+ allStoreList[i].sno +'" class="personalScontent"><img src="./images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '('+ allStoreList[i].sreviewcount + ')' +', 점포명: ' + allStoreList[i].sname + ', 취급품목: ' + allStoreList[i].scategory + ', 점포형태: ' + allStoreList[i].stype + ', <i class="fa-solid fa-heart"></i>: ' + allStoreList[i].sfavoritecount + 
             ', 이미지: ' + allStoreList[i].sphoto + '</div>';
 		}
 		
@@ -374,10 +375,10 @@ function showMarkers() {
         });
 
         var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
-            content: '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">평균별점' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', 찜수: ' + locations[i].sfavoritecount + 
+            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><img src="./images/2b50.png" alt="평균별점">' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', <i class="fa-solid fa-heart"></i>: ' + locations[i].sfavoritecount + 
             ', 이미지: ' + locations[i].sphoto + '</div>' + 
             '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
-            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/>'
+            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/></div>'
         });
 
         (function (marker, infowindow) {

@@ -22,7 +22,6 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="../css/loginHeader.css" />
-<!-- <link rel="stylesheet" href="../css/login.css" /> -->
 <link rel="stylesheet" href="../css/footer.css" />
 <link rel="stylesheet" href="../css/marketList.css" />
 
@@ -30,15 +29,20 @@
 <!-- JavaScript -->
 <!-- 경인키 51l0xj0874 -->
 <!-- 동영키 e9fw481dyk 5502 동작-->
-<script type="text/javascript"
-	src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
 <script>
 
 	function init() {
@@ -73,13 +77,16 @@
 <body>
 	<%@ include file="navi.jsp" %>
 
-	
-	<div id="map" style="width: 1100px; height: 700px;"></div>
+	<div class="section">
+	<div id="map" style="width:1200px; height:900px;"></div>
 
+	
+	<div id="mkListResult" class="row">
 	<div id="howGetMarket"></div><br/>
 	<div id="marketErrorMsg"></div>
 	<div id="marketContent"></div>
-
+	</div>
+	</div>
 
 	<%@ include file="footer.jsp"%>
 </body>

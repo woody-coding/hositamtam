@@ -187,11 +187,11 @@ function marketAjaxHandler() {
 			//marketContents += '<div id="'+ allMarketList[i].mno +'" class="personalMcontent">' + allMarketList[i].mname + '|' + allMarketList[i].mtype + 
 			//'|' + allMarketList[i].maddr + '| 화장실 여부: ' + allMarketList[i].mtoilet + '| 주차가능 여부: ' + allMarketList[i].mparking + '|' + allMarketList[i].mtel + '</div>';
 			
-			marketContents += '<div id="'+ allMarketList[i].mno +'" class="personalMcontent">' +
+			marketContents += '<div id="'+ allMarketList[i].mno +'" class="mkcontainer">' +
 					            '<div class="col-9">' +
 					                '<p id="mkName">' + allMarketList[i].mname + '</p>' +
 					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
-					                '<span>화장실 ' + allMarketList[i].mtoilet + '</span>주차장 ' + allMarketList[i].mparking + '</span>' +
+					                '<span>화장실 ' + allMarketList[i].mtoilet + '</span><span>주차장 ' + allMarketList[i].mparking + '</span>' +
 					            '</div>' +
 					        '</div>'
 		}
@@ -257,8 +257,12 @@ function showMarkers() {
         });
 
         var infowindow = new naver.maps.InfoWindow({
-            content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
-        });
+       /*     content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
+      */ content: '<div class="goMarket"><div class="up">' + locations[i].mname + '</div><div class="down"><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a></div></div>', 
+                    maxWidth: 300,
+                    borderWidth: 0,
+                    disableAnchor: true, 
+	  });
 
         (function (marker, infowindow) {
             naver.maps.Event.addListener(marker, "click", function (e) {
