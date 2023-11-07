@@ -64,19 +64,20 @@
 	<input type="hidden">
 	</form>
 	<hr/>
+	
+	<div class="list">
 	<form method="GET" action="/finalProject/views/postMain">
 	<label for="mno"></label>
 	<button>전체글</button>
 	<input type="hidden" name="mno" value="${market.mno}">
 	</form>
-	<br/>
+	
 	<form method="GET" action="/finalProject/views/postHot">
 	<label for="mno"></label>
 	<button>인기글</button>
 	<input type="hidden" name="mno" value="${market.mno}">
 	</form>
-	<br/>
-	<div class="list row">
+	
 	<form  method="GET" action="/finalProject/views/postCategory">
 	<label for="pCategory"></label>
 	<button id="pCategory" name="pCategory" value="궁금해요">궁금해요</button>
@@ -91,7 +92,6 @@
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
-			<th class="pcontent">내용</th>
 			<th>작성일자</th>
 			<th>좋아요</th>
 			<th>작성자</th>
@@ -110,7 +110,6 @@
 			<td id="${post.pno}">${post.countcomments}</td>
 			<td id="${post.pno}">${post.pcategory}</td>
 			<th id="postOrHide">⁝</th>
-
 		</tr>
 	</c:forEach>
 	</table>
