@@ -40,7 +40,8 @@ body{
 .mkcontainer {
 	display: flex;
 	border-bottom: 2px solid #0e4194;
-	/*height: 150px;*/
+	min-height: 180px;
+	padding: 5px;
 }
 
 #howGetMarket {
