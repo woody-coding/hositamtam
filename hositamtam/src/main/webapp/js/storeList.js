@@ -17,6 +17,34 @@ function latLngAjaxHandler() {
 		
 		const latLng = JSON.parse(xhr.responseText);
 		
+		
+			
+		
+        // storeErrorMsg 값(내용)을 가져옵니다.
+        const storeErrorMsg = latLng[0].storeErrorMsg;
+        
+        // 에러 메시지가 있는지 확인하고 화면에 표시
+        if (storeErrorMsg) {
+			
+			// 기존 jsp에 있던 div 태그들 숨기기
+			document.querySelector("#map").style.display = "none";
+            document.querySelector("#marketName").style.display = "none";
+            document.querySelector("#manyReview").style.display = "none";
+            document.querySelector("#manyRating").style.display = "none";
+            document.querySelector("#manyStoreLike").style.display = "none";
+            document.querySelector("#storeContent").style.display = "none";
+			
+            // 에러 메시지를 표시할 요소 선택
+            document.querySelector("#storeErrorMsg").innerHTML = storeErrorMsg;
+            
+            // 마커 및 기존 컨텐츠를 지우기
+            removeMarker();
+        }
+		
+		
+	
+		
+		
 		mlat = latLng[0].mlat;
 		mlng = latLng[0].mlng;
 		mname = latLng[0].mname;
@@ -74,7 +102,24 @@ function init() {
 	const currentmno = JSON.parse(mnoToStore);
 	
 	currentMno = currentmno.mno;
+	let errMsg = currentmno.msg;
 	
+	if(errMsg) {
+		// 기존 jsp에 있던 div 태그들 숨기기
+		document.querySelector("#map").style.display = "none";
+        document.querySelector("#marketName").style.display = "none";
+        document.querySelector("#manyReview").style.display = "none";
+        document.querySelector("#manyRating").style.display = "none";
+        document.querySelector("#manyStoreLike").style.display = "none";
+        document.querySelector("#storeContent").style.display = "none";
+        document.querySelector("#storeErrorMsg").style.display = "none";
+		
+        // 에러 메시지를 표시할 요소 선택
+        document.querySelector("#errMsg").innerHTML = errMsg;
+        
+        // 마커 및 기존 컨텐츠를 지우기
+        removeMarker();
+	}
 	
 	
 	
@@ -157,11 +202,28 @@ function openInfo() {
 			
             let marker = markers[i]; // 이미 생성된 마커를 가져옵니다.
             
-            let infowindow = new naver.maps.InfoWindow({
-                content: '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">평균별점' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', 찜수: ' + locations[i].sfavoritecount + 
-                ', 이미지: ' + locations[i].sphoto + '</div>' + 
-                '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
-                '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/>'
+
+	        let infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
+	            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
+                   '<p>취급품목: ' + locations[i].scategory + '</p>' +
+                   '<p>점포형태: ' +  locations[i].stype + '</p>' +
+                   '<div class="countContainer">' +
+                   '<img src="../images/2b50.png" alt="평균별점">' + locations[i].savgrating + '(' + locations[i].sreviewcount + ')' +
+                   '<i class="fa-solid fa-heart"></i>: ' +  locations[i].sfavoritecount +
+                   '</div>' +
+                   '<div class="imgContainer">' +
+                   '<img src="' + locations[i].sphoto  + '">' +
+                   '</div></div>' +
+                   '<div class="btnContainer">' +
+                   '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '</div></div>'   });
+
+	        
+            infowindow.open(map, marker);
+            
+            naver.maps.Event.addListener(map, "click", function (mouseEvent) {
+                infowindow.close();
             });
             infowindow.open(map, marker);
         }
@@ -271,8 +333,21 @@ function storeAjaxHandler() {
         
         
 		for(let i=0; i < allStoreList.length; i++) {
-			storeContents += '<div id="'+ allStoreList[i].sno +'" class="personalScontent"><img src="./images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '('+ allStoreList[i].sreviewcount + ')' +', 점포명: ' + allStoreList[i].sname + ', 취급품목: ' + allStoreList[i].scategory + ', 점포형태: ' + allStoreList[i].stype + ', <i class="fa-solid fa-heart"></i>: ' + allStoreList[i].sfavoritecount + 
-            ', 이미지: ' + allStoreList[i].sphoto + '</div>';
+			storeContents += '<div class="mkcontainer row">' +
+'<div id="' + allStoreList[i].sno + '" class="personalScontent">' +
+    '<p>'+
+    '점포명: ' + allStoreList[i].sname +
+    '</p>' +
+    '<p>취급품목: ' + allStoreList[i].scategory + '</p>' +
+    '<p>점포형태: ' +  allStoreList[i].stype + '</p>' +
+    '<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' +
+    ' <i class="fa-solid fa-heart"></i>: ' + allStoreList[i].sfavoritecount +
+    '<div class="imgContainer">' +
+    '<img src="' + allStoreList[i].sphoto  + '">' +
+    '</div>'+
+'</div>'+
+'</div>';
+
 		}
 		
 		document.querySelector('#storeContent').innerHTML = storeContents;
@@ -375,10 +450,22 @@ function showMarkers() {
         });
 
         var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
-            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><img src="./images/2b50.png" alt="평균별점">' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', <i class="fa-solid fa-heart"></i>: ' + locations[i].sfavoritecount + 
-            ', 이미지: ' + locations[i].sphoto + '</div>' + 
-            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
-            '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/></div>'
+
+
+            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
+                   '<p>취급품목: ' + locations[i].scategory + '</p>' +
+                   '<p>점포형태: ' +  locations[i].stype + '</p>' +
+                   '<div class="countContainer">' +
+                   '<img src="../images/2b50.png" alt="평균별점">' + locations[i].savgrating + '(' + locations[i].sreviewcount + ')' +
+                   '<i class="fa-solid fa-heart"></i>: ' +  locations[i].sfavoritecount +
+                   '</div>' +
+                   '<div class="imgContainer">' +
+                   '<img src="' + locations[i].sphoto  + '">' +
+                   '</div></div>' +
+                   '<div class="btnContainer">' +
+                   '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '</div></div>'
         });
 
         (function (marker, infowindow) {

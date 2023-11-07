@@ -9,15 +9,15 @@
 
 		<form id="searchBox" action="/finalProject/views/marketList">
 		<div class="market__search">
+			<button
+	            class="market__searchButton"
+	            type="submit"
+	            name="action"
+	            value="search"
+	          >
+	            <i class="fa-solid fa-magnifying-glass"></i>
+	          </button>
 		    <input type="text" id="searchInput" name="keyword" class="market__searchInput" placeholder="궁금한 시장 이름을 입력하세요. Ex.부평깡통시장" " />
-		<button
-            class="market__searchButton"
-            type="submit"
-            name="action"
-            value="search"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
           </div>
 		</form>
 

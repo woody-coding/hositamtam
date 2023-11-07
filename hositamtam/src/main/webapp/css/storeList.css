@@ -65,6 +65,8 @@ button{
 .mkcontainer{
     display: flex;
     border-bottom: 2px solid #0e4194;
+    min-height: 180px;
+	padding: 5px;
 }
 #mkSearchName{
     font-size: 2rem;
@@ -156,7 +158,7 @@ button{
     overflow: auto;
 }
 .iwContent{
-    width: 100px;
+    width: 120px;
     height: 40px;
     /* background-color: #e6007e; */
     position: relative;
@@ -174,7 +176,8 @@ button{
 .up {
     position: absolute;
     top: 0;
-    left: 35px;
+    left: 45px;
+    
     transition: top 100ms;
     transition: transform 0.5s ease-in-out;
     animation: rotateAnimation 0.5s ease-in-out infinite;
@@ -182,7 +185,9 @@ button{
   
   .down {
     position: absolute;
+    left: 10px;
     font-size: 1.5rem;
+    
     top: 40px; /* 초기에 숨겨진 상태 */
     transition: top 100ms;
 
@@ -203,7 +208,7 @@ button{
 .infoContent h4{
     text-align: center;
 }
-.infoContent button{
+.infoContent a{
     display: inline-block;
     /* font-family: 'GmarketSans'; */
     margin-left: 5px;
@@ -211,7 +216,11 @@ button{
     color: white;
     border: 0px;
     font-size: 14px;
+    width: 100px;
+    height: 40px;
     border-radius: 10px;
+    line-height: 40px;
+    text-decoration: none;
 }
 .countContainer{
     display: flex;

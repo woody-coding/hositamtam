@@ -46,49 +46,20 @@
 			
 			// 1. 파라미터 mno 값 읽어오기
 		    let mno = '<%= request.getAttribute("mno") %>';
+		    let msg = '<%= request.getAttribute("msg") %>';
 		
 		    mno = (mno === 'null') ? null : mno;
+		    msg = (msg === 'null') ? null : msg;
 		    
 		    console.log('mno : ' + mno + '    /    typeof : ' + typeof(mno));
 		
 		    // 기존의 로컬은 무조건 삭제 후, 다시 등록
 			window.localStorage.removeItem('mnoToStore');
 		    	
-		    const whatMno = { mno: mno };
+		    const whatMno = { mno: mno, msg: msg };
 		    const mnoToStore = JSON.stringify(whatMno);
 		    window.localStorage.setItem('mnoToStore', mnoToStore);
-		
-		    
-		    
-		    
-		    // 2. 현재 접속한 사용자가 회원인지 비회원인지 판단하기
-		    let id = '<%= session.getAttribute("userId") %>';
-		
-		    
-		    id = (id === 'null') ? null : id;
-		    
-		    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
-		    
-		    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
-		    const localStorageData = window.localStorage.getItem("memberId");
-		    const localStorageMember = JSON.parse(localStorageData);
-		
-            
-		    if(id !== null) {
-            	if (localStorageMember !== null && localStorageMember.id !== id) {
-            		window.localStorage.removeItem('memberId');
-            	}
-            	
-                const member = { id: id };
-                const memberId = JSON.stringify(member);
-                window.localStorage.setItem('memberId', memberId);
-            }
-            else if(id === null && localStorageMember !== null) {
-            	window.localStorage.removeItem('memberId');
-            }
-		    
-		    
-		
+	
 		}
 		
 		window.addEventListener('load', init);
@@ -98,6 +69,7 @@
 </head>
 <body>
 	<%@ include file="navi.jsp" %>
+	
 	<div class="section">
 	<div id="map" style="width:1200px; height:900px;">
 	<button id="insertStore" class="plusStore"><i class="bi bi-plus-circle-fill"></i></button>
@@ -110,6 +82,8 @@
 	<button id="manyStoreLike">찜 많은 순</button>
 	</div>
 	<div id="storeContent"></div>
+	<div id="storeErrorMsg"></div>
+	<div id="errMsg"></div>
 	</div>
 	</div>
 	<%-- <%@ include file="footer.jsp" %> --%>

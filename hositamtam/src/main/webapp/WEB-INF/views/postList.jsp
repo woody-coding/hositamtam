@@ -39,6 +39,7 @@
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="../js/postMain.js"></script>
+	<script src="../js/postList.js"></script>
 </head>
 <body>
 	<%@ include file="navi.jsp" %>
@@ -57,60 +58,58 @@
 	</div>
 	</div>
 	<br/>
-	<form method="GET" action="/finalProject/views/toPostUpdate">
+	<form method="GET" action="/finalProject/views/toPostUpdate" id="insertPost">
 	<label for="mno"></label>
 	<button id="writePost"><i class="bi bi-pencil-square"></i>글 등록</button>
-	<input type="hidden" id="mno" name="mno" value="${market.mno}">
+	<input type="hidden">
 	</form>
 	<hr/>
+	
+	<div class="list">
 	<form method="GET" action="/finalProject/views/postMain">
 	<label for="mno"></label>
 	<button>전체글</button>
-	<input type="hidden" id="mno" name="mno" value="${market.mno}">
+	<input type="hidden" name="mno" value="${market.mno}">
 	</form>
-	<br/>
+	
 	<form method="GET" action="/finalProject/views/postHot">
 	<label for="mno"></label>
 	<button>인기글</button>
-	<input type="hidden" id="mno" name="mno" value="${market.mno}">
+	<input type="hidden" name="mno" value="${market.mno}">
 	</form>
-	<br/>
-	<div class="list row">
+	
 	<form  method="GET" action="/finalProject/views/postCategory">
 	<label for="pCategory"></label>
 	<button id="pCategory" name="pCategory" value="궁금해요">궁금해요</button>
 	<button id="pCategory" name="pCategory" value="도와주세요">도와주세요</button>
 	<button id="pCategory" name="pCategory" value="소통해요">소통해요</button>
 	<button id="pCategory" name="pCategory" value="시장소식">시장소식</button>
-	<input type="hidden" id="mno" name="mno" value="${market.mno}">
+	<input type="hidden" name="mno" value="${market.mno}">
 	</form>
 	</div>
-	
-	
-	
-	
 	
 	<table id="postlistTable">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
-			<th class="pcontent">내용</th>
 			<th>작성일자</th>
 			<th>좋아요</th>
 			<th>작성자</th>
 			<th>댓글</th>
 			<th>카테고리</th>
+			
 		</tr>
 	<c:forEach items="${postList}" var="post" varStatus="status">
-		<tr>
-			<td>${status.count}</td>
-			<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
-			<td>${post.pcontent}</td>
-			<td>${post.pregdate}</td>
-			<td>${post.plikecount}</td>
-			<td>${post.nickname}</td>
-			<td>${post.countcomments}</td>
-			<td>${post.pcategory}</td>
+		<tr >
+			<td id="${post.pno}">${status.count}</td>
+			<td id="${post.pno}">${post.ptitle}</td>
+			<td id="${post.pno}">${post.pcontent}</td>
+			<td id="${post.pno}">${post.pregdate}</td>
+			<td id="${post.pno}">${post.plikecount}</td>
+			<td id="${post.pno}">${post.nickname}</td>
+			<td id="${post.pno}">${post.countcomments}</td>
+			<td id="${post.pno}">${post.pcategory}</td>
+			<th id="postOrHide">⁝</th>
 		</tr>
 	</c:forEach>
 	</table>
