@@ -98,6 +98,7 @@
 </head>
 <body>
 	<%@ include file="navi.jsp" %>
+	
 	<div class="section">
 	<div id="map" style="width:1200px; height:900px;">
 	<button id="insertStore" class="plusStore"><i class="bi bi-plus-circle-fill"></i></button>
@@ -110,6 +111,7 @@
 	<button id="manyStoreLike">찜 많은 순</button>
 	</div>
 	<div id="storeContent"></div>
+	<div id="storeErrorMsg"></div>
 	</div>
 	</div>
 	<%-- <%@ include file="footer.jsp" %> --%>
