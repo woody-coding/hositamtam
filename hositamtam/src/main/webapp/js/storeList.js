@@ -1,23 +1,17 @@
 let xhr = new XMLHttpRequest();
-
 let locations = [];
 let mapOptions;
 let map;
 let markers = [];
 let currentMno;
 let currentId = null;
+let currentSno;
 let mname;
 
 
 
 
-
-
-
-
-
-
-
+// mno 값을 매개변수로 해당 시장의 중심좌표, 시장명 반환
 function latLngAjaxHandler() {
 	if (xhr.readyState === 4 && xhr.status === 200) {
 		
@@ -47,7 +41,7 @@ function latLngAjaxHandler() {
 		markers = [];
         
         // 지도 생성 후, 해당 시장명 + 해당 시장 커뮤니티 버튼 생성
-        document.querySelector('#marketName').innerHTML = mname + '  <a href="컨트롤러.jsp?command=커멘드&mno='+ currentMno +'">시끌시끌</a>';
+        document.querySelector('#marketName').innerHTML = mname + '  <a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a>';
         
         getStoreInfo();
     }
@@ -139,10 +133,40 @@ function init() {
 
 	// '새 점포 등록' 버튼 클릭 이벤트
 	document.querySelector('#insertStore').addEventListener('click', insertStoreHandler);
+	
+	
+    // 점포 정보 클릭 시, 해당 점포와 연동된 지도 상의 인포윈도우창 띄우기
+    document.querySelector('#storeContent').addEventListener('click', function(event) {
+        if (event.target.getAttribute('class') === 'personalScontent') {
+			currentSno = event.target.getAttribute('id');
+            
+            openInfo();
+        }
+    });
   
 }
 	
+
+
+// 해당 점포 정보에 연동된 인포윈도우창을 지도 상에서 띄우기
+function openInfo() {
 	
+    for (var i = 0; i < locations.length; i++) {
+        if (parseFloat(currentSno) === locations[i].sno) {
+			
+            let marker = markers[i]; // 이미 생성된 마커를 가져옵니다.
+            
+            let infowindow = new naver.maps.InfoWindow({
+                content: '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">평균별점' + locations[i].savgrating + '('+ locations[i].sreviewcount + ')' +', 점포명: ' + locations[i].sname + ', 취급품목: ' + locations[i].scategory + ', 점포형태: ' + locations[i].stype + ', 찜수: ' + locations[i].sfavoritecount + 
+                ', 이미지: ' + locations[i].sphoto + '</div>' + 
+                '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 상세페이지로 이동!</a><br/>' +
+                '<a href="/finalModel/ajaxController/toAjaxController.jsp?command=getStoreInMarket&sno=' + locations[i].sno + '">점포 정보 수정!</a><br/>'
+            });
+            infowindow.open(map, marker);
+        }
+    }
+}
+
 
 
 
@@ -357,9 +381,9 @@ function showMarkers() {
         });
 
         (function (marker, infowindow) {
-            naver.maps.Event.addListener(marker, "click", function (e) {
-                infowindow.open(map, marker);
-            });
+		    naver.maps.Event.addListener(marker, "click", function (e) {
+		        infowindow.open(map, marker);
+		    });
 
             naver.maps.Event.addListener(map, "click", function (mouseEvent) {
                 infowindow.close();

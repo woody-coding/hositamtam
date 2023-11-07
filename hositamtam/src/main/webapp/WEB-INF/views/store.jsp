@@ -94,7 +94,7 @@
     <script src="/finalProject/js/storeList.js"></script>
 </head>
 <body>
-	<%@ include file="navi.jsp" %>
+	
 	
 	<div id="map" style="width:1100px; height:700px;"></div>
 	
@@ -109,6 +109,6 @@
 	<button id="insertStore">새 점포 등록</button><br/>
 	
 	
-	<%@ include file="footer.jsp" %>
+	
 </body>
 </html>

@@ -3,6 +3,116 @@ let locations = [];
 let markers = [];
 let mapOptions = {};
 let map;
+let currentMno;
+
+
+
+
+
+// 초기화 함수
+function init() {
+
+
+    // 점포 정보 클릭 시, 해당 점포와 연동된 지도 상의 인포윈도우창 띄우기
+    document.querySelector('#marketContent').addEventListener('click', function(event) {
+        if (event.target.getAttribute('class') === 'personalMcontent') {
+			currentMno = event.target.getAttribute('id');
+			
+            openInfo();
+        }
+    });
+
+
+
+
+
+
+	const keyCate = window.localStorage.getItem('KeywordAndCateno');
+	const KeywordAndCateno = JSON.parse(keyCate);
+
+    if (KeywordAndCateno.keyword) {
+
+        let currentKeyword = KeywordAndCateno.keyword;
+        
+        document.querySelector('#howGetMarket').innerHTML = "'"+ currentKeyword + "' (으)로 검색된 결과입니다.";	
+        
+        
+        xhr.onreadystatechange = marketAjaxHandler;
+        
+        let param = '?command=getMarketListBySearch&keyword=' + currentKeyword;
+        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+        xhr.send();
+    }
+    
+    else if(KeywordAndCateno.cateno) {
+		
+		let currentCateno = KeywordAndCateno.cateno;
+		let currentCate = '';
+		
+		document.querySelector('#howGetMarket').innerHTML = '';
+		
+		if(currentCateno === '1') {
+			currentCate = '농산물';
+		} else if(currentCateno === '2') {
+			currentCate = '음식점';
+		} else if(currentCateno === '3') {
+			currentCate = '가공식품';
+		} else if(currentCateno === '4') {
+			currentCate = '수산물';
+		} else if(currentCateno === '5') {
+			currentCate = '축산물';
+		} else if(currentCateno === '6') {
+			currentCate = '가정용품';
+		} else if(currentCateno === '7') {
+			currentCate = '의류';
+		} else if(currentCateno === '8') {
+			currentCate = '신발';
+		} else if(currentCateno === '9') {
+			currentCate = '기타';
+		}
+		
+		if(currentCateno !== '1' && currentCateno !== '2' && currentCateno !== '3' && currentCateno !== '4' && currentCateno !== '5' && currentCateno !== '6' && currentCateno !== '7' && currentCateno !== '8' && currentCateno !== '9') {
+			document.querySelector('#marketErrorMsg').innerHTML = "잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!";
+		} else {
+			document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'에 특화된 전통시장 목록 입니다.";
+
+		}
+		
+		
+		xhr.onreadystatechange = marketAjaxHandler;
+		
+	    let param = '?command=getMarketListByItem&cateno=' + currentCateno;
+	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+	    xhr.send();
+	}
+}
+
+
+
+
+// 해당 점포 정보에 연동된 인포윈도우창을 지도 상에서 띄우기
+function openInfo() {
+	
+    for (var i = 0; i < locations.length; i++) {
+        if (parseFloat(currentMno) === locations[i].mno) {
+			
+            let marker = markers[i]; // 이미 생성된 마커를 가져옵니다.
+            
+            let infowindow = new naver.maps.InfoWindow({
+                content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
+            });
+            infowindow.open(map, marker);
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 
 // marketAjaxHandler 함수
@@ -129,71 +239,6 @@ function marketAjaxHandler() {
 }
 
 
-
-
-
-// 초기화 함수
-function init() {
-
-	const keyCate = window.localStorage.getItem('KeywordAndCateno');
-	const KeywordAndCateno = JSON.parse(keyCate);
-
-    if (KeywordAndCateno.keyword) {
-
-        let currentKeyword = KeywordAndCateno.keyword;
-        
-        document.querySelector('#howGetMarket').innerHTML = "'"+ currentKeyword + "' (으)로 검색된 결과입니다.";	
-        
-        
-        xhr.onreadystatechange = marketAjaxHandler;
-        
-        let param = '?command=getMarketListBySearch&keyword=' + currentKeyword;
-        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
-        xhr.send();
-    }
-    
-    else if(KeywordAndCateno.cateno) {
-		// 카테고리(취급품목) 클릭했을 때 해당 시장 정보들 비동기 요청
-		//alert(location.search.substring(8).trim());
-		let currentCateno = KeywordAndCateno.cateno;
-		let currentCate = '';
-		
-		if(currentCateno === '1') {
-			currentCate = '농산물';
-		} else if(currentCateno === '2') {
-			currentCate = '음식점';
-		} else if(currentCateno === '3') {
-			currentCate = '가공식품';
-		} else if(currentCateno === '4') {
-			currentCate = '수산물';
-		} else if(currentCateno === '5') {
-			currentCate = '축산물';
-		} else if(currentCateno === '6') {
-			currentCate = '가정용품';
-		} else if(currentCateno === '7') {
-			currentCate = '의류';
-		} else if(currentCateno === '8') {
-			currentCate = '신발';
-		} else if(currentCateno === '9') {
-			currentCate = '기타';
-		}
-		
-		if(currentCateno !== '1' && currentCateno !== '2' && currentCateno !== '3' && currentCateno !== '4' && currentCateno !== '5' && currentCateno !== '6' && currentCateno !== '7' && currentCateno !== '8' && currentCateno !== '9') {
-			document.querySelector('#marketErrorMsg').innerHTML = "잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!";
-		} else {
-			document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'에 특화된 전통시장 목록 입니다.";
-
-		}
-		
-		
-		xhr.onreadystatechange = marketAjaxHandler;
-		
-	    let param = '?command=getMarketListByItem&cateno=' + currentCateno;
-	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
-	    xhr.send();
-	}
-
-}
 
 
 
