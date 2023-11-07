@@ -110,8 +110,6 @@
 	<button id="manyStoreLike">찜 많은 순</button>
 	</div>
 	<div id="storeContent"></div>
-	
-	
 	</div>
 	</div>
 	<%-- <%@ include file="footer.jsp" %> --%>
