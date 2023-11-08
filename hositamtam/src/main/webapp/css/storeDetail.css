@@ -295,13 +295,15 @@ a {
 }
 
 /* pulse */
+
 .storeDetail__like{
-	border: solid 2px #E6007E;
+	border: 0;
 	width: 50px;
 	height: 50px;
-	border-radius: 25%;
+	border-radius: 50%;
 	background-color: white;
-	font-size: 1.2rem;
+	line-height: 50px;
+	font-size: 1.5rem;
 	color: #E6007E;
 }
 
