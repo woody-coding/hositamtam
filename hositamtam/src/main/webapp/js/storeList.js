@@ -122,17 +122,17 @@ function init() {
 	
 	
 	
-	// 로그인되어 있는지 아닌지 로컬스토리지 존재 유무로 판단하기
-	const memberId = window.localStorage.getItem('memberId');
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
 	const member = JSON.parse(memberId);
 	   
 	if (member) {
-		currentId = member.id;
-		console.log("현재 접속한 사용자의 id : " + currentId);
-	}
-	else {
+	    currentId = member.id;
+	    console.log("현재 접속한 사용자의 id: " + currentId);
+	} else {
 	    console.log('현재 접속한 사용자는 비회원입니다.');
 	}
+
 	
 	
 	

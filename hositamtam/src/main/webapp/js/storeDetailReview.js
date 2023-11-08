@@ -68,45 +68,35 @@ function init() {
 	
 	
 	
-	// 로그인되어 있는지 아닌지 로컬스토리지 존재 유무로 판단하기
-	const memberId = window.localStorage.getItem('memberId');
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
 	const member = JSON.parse(memberId);
-	   
-
-
-
-
+	
 	if (member) {
-		currentId = member.id;
-		
-		xhr.onreadystatechange = slikecountStatusHandler;
-		
+	    currentId = member.id;
+	
+	    xhr.onreadystatechange = slikecountStatusHandler;
+	
 	    let param = '?command=updateLikeStoreStatus&sno=' + currentSno + '&id=' + currentId;
 	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
-	    xhr.send();		
+	    xhr.send();
 	}
-
-
-
-
-
 	
 	document.querySelector('.storeDetail__like').addEventListener('click', function() {
-
-		if (member) {
-			currentId = member.id;
-			
-			xhr.onreadystatechange = slikecountHandler;
-			
-		    let param = '?command=updateLikeStore&sno=' + currentSno + '&id=' + currentId;
-		    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
-		    xhr.send();		
-		}
-		else {
-		    alert('로그인이 필요한 서비스 입니다.');
-		    window.location.href = '/finalProject/views/login';
-		}
+	    if (member) {
+	        currentId = member.id;
+	
+	        xhr.onreadystatechange = slikecountHandler;
+	
+	        let param = '?command=updateLikeStore&sno=' + currentSno + '&id=' + currentId;
+	        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+	        xhr.send();
+	    } else {
+	        alert('로그인이 필요한 서비스 입니다.');
+	        window.location.href = '/finalProject/views/login';
+	    }
 	});
+
 	
 	
 	
