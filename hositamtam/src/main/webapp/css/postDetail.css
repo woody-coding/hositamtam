@@ -4,13 +4,13 @@ hr {
     border:0;
 }
 #plikecountUpdate {
-	/*border: solid 2px red;*/
+	border: solid 2px #e6007e;
 	width: 50px;
 	height: 50px;
 	border-radius: 25%;
 	background-color: white;
 	font-size: 1.2rem;
-	color: red;
+	color: #e6007e;
 }
 .fa-heart{
 	font-size: 1.2rem;
@@ -37,4 +37,24 @@ input[type="submit"] {
     border-radius: 5px;
     background-color: #0188CC;
     color: white;
+}
+input[type="submit"]:hover {
+	box-shadow: 0 0 0 18px transparent;
+    animation: pulseSubmit 1s;
+}
+#plikecountUpdate {
+    &:hover {
+      box-shadow: 0 0 0 18px transparent;
+      animation: pulse 1s;
+    }
+  }
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 #e6007e;
+  }
+}
+@keyframes pulseSubmit {
+  from {
+    box-shadow: 0 0 0 0 #0188CC;
+  }
 }
