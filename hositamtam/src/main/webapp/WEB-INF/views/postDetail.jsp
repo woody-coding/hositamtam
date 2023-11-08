@@ -81,7 +81,7 @@
 	${market.mname} | ${post.nickname} | ${post.pregdate}
 	
 	<button id="plikecountUpdate"><i class="fa-solid fa-heart"></i></button>
-	<span class="likeComment"><span id="plikecountView">좋아요 ${post.plikecount}개</span> | 댓글  ${post.countcomments}</span>
+	<span class="likeComment"><span id="plikecountView"></span> | 댓글  ${post.countcomments}</span>
 	
 	</div>
 	

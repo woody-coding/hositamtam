@@ -50,8 +50,8 @@
 	
 		window.addEventListener('load', init);
 	</script>
-    <script src="../js/storeDetailReview.js"></script>
     <script src="../js/anchor.js"></script>
+    <script src="../js/storeDetailReview.js"></script>
 </head>
 <body>
 

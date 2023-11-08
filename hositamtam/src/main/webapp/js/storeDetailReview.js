@@ -14,13 +14,11 @@ function slikecountHandler() {
 		
 		
 		if(storeLike[0].likeStatus === 'x') {
-			console.log('storeLike[0].likeStatus : ' + storeLike[0].likeStatus);
 			//검은색 하트
-			storeDetail__like.style.color = 'black';
+			//storeDetail__like.style.color = 'black';
 		} else if (storeLike[0].likeStatus === 'o') {
-			console.log('storeLike[0].likeStatus : ' + storeLike[0].likeStatus);
 			//빨간색 하트
-			storeDetail__like.style.color = 'red';
+			//storeDetail__like.style.color = 'red';
 		}
 
 
@@ -39,15 +37,12 @@ function slikecountStatusHandler() {
 		const storeLike = JSON.parse(xhr.responseText);
 		let storeLikeCount = storeLike[0].sfavoritecount;
 		
-		
 		if(storeLike[0].likeStatus === 'x') {
-			console.log('storeLike[0].likeStatus : ' + storeLike[0].likeStatus);
 			//검은색 하트
-			storeDetail__like.style.color = 'black';
+			//storeDetail__like.style.color = 'black';
 		} else if (storeLike[0].likeStatus === 'o') {
-			console.log('storeLike[0].likeStatus : ' + storeLike[0].likeStatus);
 			//빨간색 하트
-			storeDetail__like.style.color = 'red';
+			//storeDetail__like.style.color = 'red';
 		}
 		
 
@@ -89,10 +84,6 @@ function init() {
 	    let param = '?command=updateLikeStoreStatus&sno=' + currentSno + '&id=' + currentId;
 	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
 	    xhr.send();		
-	}
-	else {
-	    alert('로그인이 필요한 서비스 입니다.');
-	    window.location.href = '/finalProject/views/login';
 	}
 
 
