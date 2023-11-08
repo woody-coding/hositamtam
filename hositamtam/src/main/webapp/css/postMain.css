@@ -135,17 +135,8 @@ button {
 #tabCategory{
     color: gray;
 }
-#btnDown{
-    background-color: white;
-    border: 0;
-}
-.commentBox{
-    border-top: 1px solid #0188CC;
 
-}
-.commentList{
-border-bottom: 1px solid #0188CC;
-}
+
 #commentInput{
     width: 800px;
 }
