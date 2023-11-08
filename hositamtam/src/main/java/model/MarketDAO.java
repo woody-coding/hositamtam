@@ -259,14 +259,15 @@ public class MarketDAO {
 		
 		sql = "SELECT mno, mname, mtype, maddr, mlat, mlng, mtoilet, mparking, mtel, mupdateday "
 			     + "FROM market "
-			     + "WHERE mname LIKE ? "
-			     + "ORDER BY mno";
+			     + "WHERE mname LIKE ? OR maddr LIKE ? "
+			     + "ORDER BY mname";
 
 
 	try {
 		keyword = "%" + keyword + "%";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, keyword);
+		pstmt.setString(2, keyword);
 		rs = pstmt.executeQuery();
 		
 		while (rs.next()) {
