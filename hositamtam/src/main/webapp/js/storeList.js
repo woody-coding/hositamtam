@@ -69,8 +69,7 @@ function latLngAjaxHandler() {
 		markers = [];
         
         // 지도 생성 후, 해당 시장명 + 해당 시장 커뮤니티 버튼 생성
-         document.querySelector('#marketName').innerHTML = '<div class="searchResultName"><h4>' + mname + '</h4>'+ '  <div id="toPost"><a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a></div></div>';
-      
+        document.querySelector('#marketName').innerHTML ='<div class="searchResultName"><h4>' + mname + '</h4>'+ '  <div id="toPost"><a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a></div></div>';
         
         getStoreInfo();
     }
@@ -202,6 +201,7 @@ function openInfo() {
 			
             let marker = markers[i]; // 이미 생성된 마커를 가져옵니다.
             
+
 	        let infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
 	            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
                    '<p>취급품목: ' + locations[i].scategory + '</p>' +
@@ -224,6 +224,7 @@ function openInfo() {
             naver.maps.Event.addListener(map, "click", function (mouseEvent) {
                 infowindow.close();
             });
+            infowindow.open(map, marker);
         }
     }
 }
@@ -449,6 +450,7 @@ function showMarkers() {
 
         var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
 
+
             content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
                    '<p>취급품목: ' + locations[i].scategory + '</p>' +
                    '<p>점포형태: ' +  locations[i].stype + '</p>' +
@@ -463,7 +465,6 @@ function showMarkers() {
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
                    '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
                    '</div></div>'
-
         });
 
         (function (marker, infowindow) {

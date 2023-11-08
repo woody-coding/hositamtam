@@ -45,7 +45,7 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	<h3>호심탐탐의 시끌시끌 페이지 입니다(시장 선택 안되었을 때)</h3>
+	<h3>호시탐탐의 시끌시끌 페이지 입니다</h3>
 	<button id="whatMarket">시장 선택하기</button>
 	<hr/>
 	<div class="mkNameList">
@@ -58,8 +58,14 @@
 	</div>
 	<hr>
 	<div class="firstShow">
+<<<<<<< HEAD
 	
 	</div>
+=======
+	 
+	</div>
+	
+>>>>>>> 4f7cafe02ff5656af45401c97a7639d26655586e
 	</div>
 	</div>
 	
