@@ -57,7 +57,9 @@
 	</form>
 	</div>
 	<hr>
-	 <img src="../images/보고.PNG">
+	<div class="firstShow">
+	
+	</div>
 	</div>
 	</div>
 	

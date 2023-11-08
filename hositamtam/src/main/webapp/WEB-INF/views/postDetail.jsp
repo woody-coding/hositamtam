@@ -91,7 +91,7 @@
 		${post.pcontent}
 	</div>
 	<br/>
-	<image src="${post.pphoto}"></image>
+	<img src="${post.pphoto}"></img>
 	<br/>
 	<hr/>
 
