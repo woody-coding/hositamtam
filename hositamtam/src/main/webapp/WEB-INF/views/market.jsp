@@ -82,14 +82,16 @@
 	<div class="section">
 	<div id="map" ></div>
 
-	<!-- style="width:1200px; height:900px;" -->
-	<div id="mkListResult" class="row">
-	<div id="howGetMarket"></div><br/>
+	
+	
+	<div id="howGetMarket"></div>
 	<div id="marketErrorMsg"></div>
+	<div id="mkListResult" class="row">
 	<div id="marketContent"></div>
 	</div>
+	
 	</div>
-
-	<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp"%>
+	
 </body>
 </html>

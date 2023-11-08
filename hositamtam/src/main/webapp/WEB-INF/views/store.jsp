@@ -86,6 +86,6 @@
 	<div id="errMsg"></div>
 	</div>
 	</div>
-	<%-- <%@ include file="footer.jsp" %> --%>
+	 <%@ include file="footer.jsp" %> 
 </body>
 </html>

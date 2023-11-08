@@ -60,7 +60,7 @@
 	<br/>
 	<form method="GET" action="/finalProject/views/toPostUpdate" id="insertPost">
 	<label for="mno"></label>
-	<button id="writePost"><i class="bi bi-pencil-square"></i>글 등록</button>
+	<button id="writePost"><i class="bi bi-pencil-square"></i>글쓰기</button>
 	<input type="hidden">
 	</form>
 	<hr/>
