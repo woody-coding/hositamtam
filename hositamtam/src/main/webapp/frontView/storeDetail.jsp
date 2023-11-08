@@ -152,12 +152,13 @@
         <form id="review__form" style="display: none">
           <div class="review__form">
             <label class="review__label">
-              <input
+              <textarea
                 class="review__input"
-                type="text"
                 id=""
-                placeholder="리뷰를 남겨주세요."
-              />
+                name="review"
+                maxlength="100"
+                placeholder="리뷰를 남겨주세요.(최대 100자)"
+              ></textarea>
             </label>
           </div>
 

@@ -49,7 +49,7 @@
     <section id="mypage__update" class="section">
       <div class="max-container">
         <div class="mypage__update">
-          <form id="mypage__update__form" action="/finalProject/views/updateNickname" method="POST">
+          <form id="mypage__update__form" action="/finalProject/AjaxController.jsp" method="POST">
             <div class="mypage__update__form">
               <label for="new-username" class="mypage__update__id">
                 ${userId}
@@ -63,7 +63,7 @@
                   name="change-nickname"
                   placeholder="닉네임"
                 />
-                <button class="duplication__check" id="nickname_check">중복확인</button>
+                <button class="duplication__check" id="nickname_check" type="button">중복확인</button>
               </label>
 
               <label for="change-password" class="mypage__update__label">
@@ -87,7 +87,7 @@
             </div>
 
             <div class="mypage__update__error" id="error_msg">
-              일치하지 않습니다.
+              
             </div>
 
 	            <button class="mypage__update__button" type="submit" id="update_button">
