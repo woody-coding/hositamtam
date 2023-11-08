@@ -208,7 +208,7 @@ public class MemberController {
 	        gradeName = "시장 햇병아리";
 	    } else if (exp >= 50 && exp < 75) {
 	        gradeName = "시장 탐험가";
-	    } else if (exp >= 75 && exp < 100) {
+	    } else if (exp >= 75) {
 	        gradeName = "시장 지킴이";
 	    } else {
 	        gradeName = "시장 지박령";

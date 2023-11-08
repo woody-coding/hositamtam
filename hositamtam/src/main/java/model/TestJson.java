@@ -12,11 +12,14 @@ public class TestJson {
 		MarketDAO marketDAO = new MarketDAO();
 	//	System.out.println(marketDAO.getMarketListBySearch("ㄴㅇㄹㄴㅇ"));
 	//	System.out.println(marketDAO.getMarketListByItem(1));
-		System.out.println(marketDAO.getMarketLatLng(1));
+	//	System.out.println(marketDAO.getMarketLatLng(1));
 		
 		
 		StoreDAO storeDAO = new StoreDAO();
 	//	System.out.println(storeDAO.getStoreInMarket(2));
+//		MemberDO memberDO = new MemberDO();
+//		JsonMarketStore jsonMarketStore = new JsonMarketStore();
+//		System.out.println(jsonMarketStore.getCheckNickName(memberDO));
 	}
 
 }
