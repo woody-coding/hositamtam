@@ -315,6 +315,10 @@ a {
   white-space: nowrap;
 }
 
+.myReview__td__contents:hover {
+  white-space: inherit;
+}
+
 .myStore__more,
 .myPost__more,
 .myReview__more,
