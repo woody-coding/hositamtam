@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="/finalProject/css/join.css" />
 
     <!-- JavaScript -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
     <script src="/finalProject/js/join.js" charset="UTF-8"></script>
     <script>
     
@@ -151,8 +154,8 @@
               </label>
 
               <label for="gender" class="join__label">
-                <input type="radio"  id="genderm" name="gender" value="men" checked/>남
-                <input type="radio" id="genderw" name="gender" value="women" />여
+                <input type="radio"  id="genderm" name="gender" value="남" checked/>남
+                <input type="radio" id="genderw" name="gender" value="여" />여
               </label>
             </div>
 
