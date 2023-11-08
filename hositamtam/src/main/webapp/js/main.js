@@ -43,7 +43,7 @@ const swiper = new Swiper('.swiper', {
 
 
 
-var count = 0;
+/*var count = 0;
 function dropDownHandler() {
   if(count % 2 == 1){
   document.querySelector('.dropDownMenu').classList.add('show-dropDown');
@@ -54,7 +54,7 @@ function dropDownHandler() {
   }
   count++;
 
-}
+}*/
 
 function displayHandler() {
   document.querySelector('.listCategory').classList.add('show-list');
@@ -89,17 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/*document.querySelector("#goPost").addEventListener("click", function() {
-  // 리디렉션할 URL 설정
-  var redirectURL = "/finalProject/views/post"; // 원하는 경로로 변경
-
-  // 페이지 리디렉션
-  window.location.href = redirectURL;
-});
-*/
 
 function goPostHandler() {
-	alert('안들어오나?');
 	window.location.href = '/finalProject/views/post';
 }
 
@@ -107,7 +98,7 @@ function goPostHandler() {
    function init() {
 document.querySelector('#mkList').addEventListener("click", displayHandler);
 document.querySelector('.close').addEventListener("click", displayCloseHandler);
-document.querySelector(".btnDrop").addEventListener("click",dropDownHandler);
+//document.querySelector('.btnDrop').addEventListener('click',dropDownHandler);
 document.querySelector('#goPost').addEventListener('click', goPostHandler);
 }
  
