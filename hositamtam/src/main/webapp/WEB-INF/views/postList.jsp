@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>postList.jsp</title>
+<title>호시탐탐</title>
 <!-- Favicon -->
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
@@ -60,7 +60,7 @@
 	<br/>
 	<form method="GET" action="/finalProject/views/toPostUpdate" id="insertPost">
 	<label for="mno"></label>
-	<button id="writePost"><i class="bi bi-pencil-square"></i>글 등록</button>
+	<button id="writePost"><i class="bi bi-pencil-square"></i>글쓰기</button>
 	<input type="hidden">
 	</form>
 	<hr/>

@@ -180,7 +180,7 @@ function marketAjaxHandler() {
 		mapOptions = {  			//35.21003 129.0689
 		    center: new naver.maps.LatLng(35.17132, 129.0666),
 		    zoom: 12,
-		    mapTypeControl: true,
+		    mapTypeControl: false,
 		    mapTypeControlOptions: {
 		        style: naver.maps.MapTypeControlStyle.BUTTON,
 		        position: naver.maps.Position.BOTTOM_LEFT,
@@ -213,10 +213,10 @@ function marketAjaxHandler() {
 			//'|' + allMarketList[i].maddr + '| 화장실 여부: ' + allMarketList[i].mtoilet + '| 주차가능 여부: ' + allMarketList[i].mparking + '|' + allMarketList[i].mtel + '</div>';
 			
 			marketContents += '<div id="'+ allMarketList[i].mno +'" class="mkcontainer">' +
-					            '<div class="col-9">' +
+					            '<div class="row">' +
 					                '<p class="mkName" id="'+ allMarketList[i].mno +'">' + allMarketList[i].mname + '</p>' +
 					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
-					                '<span>화장실 ' + allMarketList[i].mtoilet + '</span><span>주차장 ' + allMarketList[i].mparking + '</span>' +
+					                '<p>화장실 ' + allMarketList[i].mtoilet + ' 주차장 ' + allMarketList[i].mparking + '<p>' +
 					            '</div>' +
 					        '</div>'
 		}

@@ -29,8 +29,29 @@
     <link rel="stylesheet" href="../css/storeDetail.css" />
 
     <!-- JavaScript -->
-    <script defer src="../js/storeDetailReview.js"></script>
-    <script defer src="../js/anchor.js"></script>
+	<script>
+		function init() {
+			
+			let sno = '<%= request.getAttribute("sno") %>';
+			
+			sno = (sno === 'null') ? null : sno;
+		    
+		    console.log('sno : ' + sno + '    /    typeof : ' + typeof(sno));
+		    
+		    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+
+	        window.localStorage.removeItem('storeNumber');
+  	
+            const storeNum = { sno: sno };
+            const storeNumber = JSON.stringify(storeNum);
+            window.localStorage.setItem('storeNumber', storeNumber);
+	     
+		}
+	
+		window.addEventListener('load', init);
+	</script>
+    <script src="../js/anchor.js"></script>
+    <script src="../js/storeDetailReview.js"></script>
 </head>
 <body>
 
@@ -45,6 +66,8 @@
         <button class="storeDetail__like">
           <i class="fa-solid fa-heart"></i>
         </button>
+        <p id="storeLikeCount"></p>
+        
         ${store.nickname} 님이 등록한 점포입니다.
         <button class="storeDetail__modify">점포 수정</button>
       </div>

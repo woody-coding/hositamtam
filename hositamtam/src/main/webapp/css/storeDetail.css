@@ -138,8 +138,6 @@ a {
   margin-left: 17rem;
   height: 200px;
   width: 350px;
-  border: 1px solid var(--color-accent);
-  border-radius: 20px;
 }
 
 /* Review */
@@ -294,4 +292,28 @@ a {
 
 .arrow-up__icon {
   padding: 0.7rem;
+}
+
+/* pulse */
+.storeDetail__like{
+	border: solid 2px #E6007E;
+	width: 50px;
+	height: 50px;
+	border-radius: 25%;
+	background-color: white;
+	font-size: 1.2rem;
+	color: #E6007E;
+}
+
+
+.storeDetail__like {
+    &:hover {
+      box-shadow: 0 0 0 18px transparent;
+      animation: pulse 1s;
+    }
+  }
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 #E6007E;
+  }
 }

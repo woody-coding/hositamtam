@@ -440,6 +440,8 @@ public class PostDAO {
 		            pstmt.setInt(1, pno);
 		            pstmt.setString(2, id);
 		            pstmt.executeUpdate();
+		            
+		            jsonObject.put("likeStatus", "x");
 		        } 
 		        else {
 		            // 좋아요가 없는 경우 또는 취소된 경우: 좋아요 추가
@@ -455,6 +457,8 @@ public class PostDAO {
 		            pstmt.setInt(1, pno);
 		            pstmt.setString(2, id);
 		            pstmt.executeUpdate();
+		            
+		            jsonObject.put("likeStatus", "o");
 		        }
 
 		        // 결과 JSON 객체 생성
@@ -489,6 +493,62 @@ public class PostDAO {
 		}
 		
 		
+		
+		
+		
+		
+		// 현재 접속한 id가 해당 pno글에 좋아요를 했는지 안했는지 여부 판단 + 해당 pno글의 최신 좋아요 개수 가져오기
+		public String updateLikeStatus(int pno, String id) {
+		    JSONArray jsonArray = new JSONArray();
+		    JSONObject jsonObject = new JSONObject();
+
+		    try {
+		        // 좋아요 상태 확인
+		        String sqlCheck = "SELECT 1 FROM member_post_like WHERE pno = ? AND id = ?";
+		        pstmt = conn.prepareStatement(sqlCheck);
+		        pstmt.setInt(1, pno);
+		        pstmt.setString(2, id);
+		        ResultSet rs = pstmt.executeQuery();
+
+		        if (rs.next()) {
+		            // 이미 좋아요를 클릭한 경우
+		            jsonObject.put("likeStatus", "o");
+		        } 
+		        else {
+		            // 좋아요가 없는 경우 또는 취소된 경우
+		            jsonObject.put("likeStatus", "x");
+		        }
+
+		        // 결과 JSON 객체 생성
+		        jsonObject.put("pno", pno);
+		        jsonObject.put("id", id);
+
+		        // 좋아요 수 조회
+		        String sqlCount = "SELECT plikecount FROM post WHERE pno = ?";
+		        pstmt = conn.prepareStatement(sqlCount);
+		        pstmt.setInt(1, pno);
+		        rs = pstmt.executeQuery();
+
+		        if (rs.next()) {
+		            int plikecount = rs.getInt("plikecount");
+		            jsonObject.put("plikecount", plikecount);
+		        }
+
+		        jsonArray.add(jsonObject);
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (pstmt != null) {
+		                pstmt.close();
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return jsonArray.toJSONString();
+		}
 		
 		
 		

@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>호시탐탐</title>
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -81,7 +81,7 @@
 	${market.mname} | ${post.nickname} | ${post.pregdate}
 	
 	<button id="plikecountUpdate"><i class="fa-solid fa-heart"></i></button>
-	<span class="likeComment"><span id="plikecountView">좋아요 ${post.plikecount}개</span> | 댓글  ${post.countcomments}</span>
+	<span class="likeComment"><span id="plikecountView"></span> | 댓글  ${post.countcomments}</span>
 	
 	</div>
 	
@@ -91,29 +91,30 @@
 		${post.pcontent}
 	</div>
 	<br/>
-	<image src="${post.pphoto}"></image>
+	<img src="${post.pphoto}"></img>
 	<br/>
 	<hr/>
-
+	
+	<div class="commentInsert row">
 	<form method="POST" action="/finalProject/views/InsertComment">
 	<label for="pno"></label>
 	<input type="hidden" name="pno" value="${post.pno}">
 	<label for="id"></label>
-	<input type="hidden" name="id" value="${post.id}">
-	<label for="ccontent">댓글</label>
-	<input type="text" name="ccontent" placeholder="댓글을 남겨보세요.">
-	<input type="submit" value="등록">
+	<input  type="hidden" name="id" value="${post.id}">
+	<label class="col-2"  for="ccontent">댓글</label>
+	<input class="col-8" type="text" name="ccontent" placeholder="댓글을 남겨보세요.">
+	<input class="col-1"  type="submit" value="등록">
 	</form>
+	</div>
 	<c:forEach items="${commentList}" var="comment">	
-	<br/>
-	<br/>
-	<div class="commentBox">
-	<div>${comment.cnickname}</div>
-	<div>${comment.ccontent}</div>
-	<div>${comment.cregdate}</div>
+	
+	<div class="commentBox row">
+	<div class="col-2">${comment.cnickname}</div>
+	<div class="col-8">${comment.ccontent}</div>
+	<div class="col-2">${comment.cregdate}</div>
 	
 	</div>
-	<hr/>
+
 	</c:forEach>
 	</c:forEach>
 	</div>

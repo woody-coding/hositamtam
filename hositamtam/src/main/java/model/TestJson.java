@@ -20,6 +20,6 @@ public class TestJson {
 //		MemberDO memberDO = new MemberDO();
 //		JsonMarketStore jsonMarketStore = new JsonMarketStore();
 //		System.out.println(jsonMarketStore.getCheckNickName(memberDO));
-	}
 
+	}
 }

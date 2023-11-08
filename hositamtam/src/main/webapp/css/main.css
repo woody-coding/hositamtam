@@ -170,42 +170,6 @@ ul {
 }
 
 /*옆에서 나오는 카테고리 */
-/* Footer */
-#information {
-  position: relative;
-  text-align: center;
-  /* background-color: #d9d9d9; */
-  /* color: grey; */
-  color: white;
-  background-color: #333333;
-  opacity: 0.9;
-  padding: 1rem;
-  font-size: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#information a{
-  color: white;
-}
-.information__title {
-  /* margin-top: 3rem; */
-  margin: 0;
-  padding: 0.5rem 10rem;
-  
-}
-.information__located{
-  width: 1000px;
-}
-
-.footer__logo_img{
-    width: 200px;
-    padding: 0 1rem;
-}
-.bi-arrow-up-circle-fill {
-  font-size: 3rem;
-}
-/* Footer End========================================*/
 
 
 #submit {
@@ -304,6 +268,38 @@ ul {
 }
 
 /*========================= section2===================================== */
+/* Footer */
+#information {
+  position: relative;
+  text-align: center;
+  color: white;
+  background-color: #333333;
+  opacity: 0.9;
+  padding: 1rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.information__title {
+  
+  margin: 0;
+  padding: 0.5rem 10rem;
+  
+}
+.information__located{
+  width: 1000px;
+}
+
+.footer__logo_img{
+    width: 200px;
+    padding: 0 1rem;
+}
+.bi-arrow-up-circle-fill {
+  font-size: 3rem;
+}
+/* Footer End========================================*/
 
  .dropdown{
   margin: 0 auto;

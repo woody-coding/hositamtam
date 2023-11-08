@@ -56,6 +56,8 @@ public class MarketAndStoreController {
 	@GetMapping("/views/storeDetail")
 	public String StoreDetail(@RequestParam int sno, Model model) {
 
+		model.addAttribute("sno", sno);
+		
 		StoreDO storeDO = new StoreDO();
 		storeDO.setSno(sno);
 

@@ -47,8 +47,28 @@
 		}
 
 		window.addEventListener('load', init);
-    
     </script>
+    <script>
+		function init() {
+			
+			let sno = '<%= request.getAttribute("sno") %>';
+			
+			sno = (sno === 'null') ? null : sno;
+		    
+		    console.log('sno : ' + sno + '    /    typeof : ' + typeof(sno));
+		    
+		    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+
+	        window.localStorage.removeItem('storeNumber');
+  	
+            const storeNum = { sno: sno };
+            const storeNumber = JSON.stringify(storeNum);
+            window.localStorage.setItem('storeNumber', storeNumber);
+	     
+		}
+	
+		window.addEventListener('load', init);
+	</script>
   </head>
   <body>
   
@@ -64,7 +84,9 @@
         <button class="storeDetail__like">
           <i class="fa-solid fa-heart"></i>
         </button>
-        ${memberDO.nickname} 님이 등록한 점포입니다.
+        <p id="storeLikeCount"></p>
+        
+        ${store.nickname} 님이 등록한 점포입니다.
         <button class="storeDetail__modify">점포 수정</button>
       </div>
       <div class="storeDetail__star__name">
@@ -75,7 +97,7 @@
         </span>
         <span>
           <h4 class="storeDetail__h4 storeDetail__name">
-            ${storeDO.sname}
+            ${store.sname}
           </h4>
         </span>
       </div>
@@ -83,22 +105,27 @@
         <span class="storeDetail__storeType__title">
           <h4 class="storeDetail__h4">점포 형태</h4>
         </span>
-        <span>${storeDO.stype}</span>
+        <%-- <span>${storeDO.stype}</span> --%>
+        <input type="checkbox" name="stype" value="좌판" <c:if test="${store.stype eq '좌판'}">checked="checked"</c:if>><span>좌판</span>
+        <input type="checkbox" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if>><span>매장</span>
       </div>
       <div class="storeDetail__payment">
         <span class="storeDetail__payment__title">
           <h4 class="storeDetail__h4">결제 방식</h4>
         </span>
-        <span>${storeDO.payno}</span>
+        <%-- <span>${storeDO.payno}</span> --%>
+        <c:forEach var="storePayment" items="${storePaymentList}">
+        	<input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked"><span>${storePayment.paytype}</span>
+        </c:forEach>
       </div>
       <div class="storeDetail__category">
         <span class="storeDetail__category__title">
           <h4 class="storeDetail__h4">취급 품목</h4>
         </span>
-        <span>${storeDO.scategory}</span>
+        <span>${store.scategory}</span>
       </div>
-      <div class="storeDetail__photo">
-        ${sphoto}
+      <div>
+        <img src="../images/${store.sphoto}" class="storeDetail__photo"/>
       </div>
     </section>
 
@@ -110,7 +137,7 @@
       <div class="review__info">
         <img src="/finalProject/images/icons8-병아리-60.png" class="review__level__photo" />
         <span class="review__ask">
-          ${memberDO.nickname} 님 해당 점포에 리뷰를 남겨주세요.
+          ${store.nickname} 님 해당 점포에 리뷰를 남겨주세요.
         </span>
         <span class="review__star">
           <i class="fa-solid fa-star review__star1"></i>
@@ -144,14 +171,36 @@
     <section id="review__contents" class="max-container">
       <div class="review__contents__total">
         <span class="review__contents__star">
-          <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;4.0
+          <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;${storeReviewAvg.rating}
         </span>
         <span>
-          <i class="fa-regular fa-comment-dots storeDetail__review"></i>&nbsp;12
+          <i class="fa-regular fa-comment-dots storeDetail__review"></i>&nbsp;${storeReviewAvg.review}
         </span>
       </div>
+      
       <hr class="storeDetail__hr" />
-      <div class="review__contents__list">
+      
+      <c:forEach var="storeReview" items="${storeReviewList}">
+      	<div class="review__contents__list">
+	        <section class="review__contents__photo" style="color: #0188cc">
+	          <img
+	            src="../images/icons8-caveman-64.png"
+	            class="review__contents__img"
+	          />
+	        </section>
+	        <section class="review__contents__main">
+	          <div class="review__contents__name">${storeReview.id}</div>
+	          <div class="review__contents__ownerInfo">
+	            리뷰 ${storeReview.review } &nbsp; 별점평균 ${storeReview.rating} &nbsp; | &nbsp; ${storeReview.rregdate}
+	          </div>
+	        </section>
+	        <section class="review__contents__value">
+	          ${storeReview.content}
+	        </section>
+	      </div>
+        	<hr class="storeDetail__hr" />
+      </c:forEach>
+      <%-- <div class="review__contents__list">
         <section class="review__contents__photo">
           <img
             src="/finalProject/images/icons8-caveman-64.png"
@@ -214,7 +263,7 @@
           샤오룽바오가 육즙이 넘치구 속에 고기도 많이 들어서 너무 맛있었어요 ~
         </section>
       </div>
-      <hr class="storeDetail__hr" />
+      <hr class="storeDetail__hr" /> --%>
     </section>
 
     <!-- Anchor -->

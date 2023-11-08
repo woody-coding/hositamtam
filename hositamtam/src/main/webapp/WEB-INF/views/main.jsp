@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>호시탐탐</title>
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -46,37 +46,34 @@
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script>
 	function init() {
-
 	    // 현재 접속한 사용자가 회원인지 비회원인지 판단하기
 	    let id = '<%= session.getAttribute("userId") %>';
-	
 	    
 	    id = (id === 'null') ? null : id;
 	    
 	    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
 	    
-	    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
-	    const localStorageData = window.localStorage.getItem("memberId");
-	    const localStorageMember = JSON.parse(localStorageData);
+	    // 세션 스토리지에 저장되어 있는 데이터를 가져옴
+	    const sessionStorageData = window.sessionStorage.getItem("memberId");
+	    const sessionStorageMember = JSON.parse(sessionStorageData);
 	
-           
 	    if(id !== null) {
-           	if (localStorageMember !== null && localStorageMember.id !== id) {
-           		window.localStorage.removeItem('memberId');
+           	if (sessionStorageMember !== null && sessionStorageMember.id !== id) {
+           		window.sessionStorage.removeItem('memberId');
            	}
            	
-               const member = { id: id };
-               const memberId = JSON.stringify(member);
-               window.localStorage.setItem('memberId', memberId);
-           }
-           else if(id === null && localStorageMember !== null) {
-           	window.localStorage.removeItem('memberId');
-           }
-
+            const member = { id: id };
+            const memberId = JSON.stringify(member);
+            window.sessionStorage.setItem('memberId', memberId);
+        }
+        else if(id === null && sessionStorageMember !== null) {
+            window.sessionStorage.removeItem('memberId');
+        }
 	}
 	
 	window.addEventListener('load', init);
 </script>
+
 <script src="../js/main.js"></script>
 
 </head>
@@ -121,7 +118,7 @@
 
 			<button id="category" class="category">
 				<i class="bi bi-info-circle-fill"></i><br>
-				<a href="#section2">서비스 안내</a>
+				<a href="#goService">서비스 안내</a>
 			</button>
 			<!-- 서비스안내 조정 -->
 		</div>
@@ -135,7 +132,7 @@
 
 	<div class="section" id="section2">
 		<!-- <h4>호시탐탐 안내</h4> -->
-		<div class="hosiInfo">
+		<div id="goService" class="hosiInfo">
 			<p>부산 전통시장에 대한 정보를 공유하고 등록되지 않은 점포를 등록해보세요!</p>
 			<!-- carosell 3초마다 이미지 변경 시장리스트사진 커뮤니티  모든 페이지 완성하면 캡쳐해서 슬라이드이미지로 넣기-->
 			<div class="swiper">
@@ -218,9 +215,9 @@
 					</p>
 					<p class="information__title">
 					<p>저희 호시탐탐은 2030 부산세계박람회 개최를 응원합니다!</p>
-					<a href="https://github.com/wlstjd3398/hositamtam" target="blank"><i
-						class="fa-brands fa-github"></i></a>
-					</p>
+					<a href="https://github.com/wlstjd3398/hositamtam" target="blank">
+					<i class="fa-brands fa-github"></i></a>
+				
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
 							data-bs-toggle="dropdown" aria-expanded="false">관련사이트</button>

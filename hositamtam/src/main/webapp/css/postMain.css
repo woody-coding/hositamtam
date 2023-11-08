@@ -1,9 +1,14 @@
-
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "GmarketSans";
+  margin: 0;
 }
 
 .section {
@@ -76,30 +81,7 @@ button {
     color: black;
     
 }
-.tab-button {
-    display: block;
-    padding: 10px 20px 10px 20px;
-    float: left;
-    margin-right: -1px;
-    margin-bottom: -1px;
-    color: grey;
-    text-decoration: none;
-    cursor: pointer;
-}
-.tab-button:hover{
-    background-color: #0188CC;
-    border-radius: 10px;
-    color: black;
-    
-}
-.orange {
-    
-    border-bottom: 1px solid white;
-    background-color: #0188CC;
-    border-radius: 10px;
-    color: black;
-    margin-top: -2px;
-}
+
 .tab-content {
     display: none;
     padding: 10px;
@@ -135,17 +117,8 @@ button {
 #tabCategory{
     color: gray;
 }
-#btnDown{
-    background-color: white;
-    border: 0;
-}
-.commentBox{
-    border-top: 1px solid #0188CC;
 
-}
-.commentList{
-border-bottom: 1px solid #0188CC;
-}
+
 #commentInput{
     width: 800px;
 }
