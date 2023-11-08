@@ -80,9 +80,9 @@
 	<%@ include file="navi.jsp" %>
 
 	<div class="section">
-	<div id="map" style="width:1200px; height:900px;"></div>
+	<div id="map" ></div>
 
-	
+	<!-- style="width:1200px; height:900px;" -->
 	<div id="mkListResult" class="row">
 	<div id="howGetMarket"></div><br/>
 	<div id="marketErrorMsg"></div>

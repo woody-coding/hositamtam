@@ -180,7 +180,7 @@ function marketAjaxHandler() {
 		mapOptions = {  			//35.21003 129.0689
 		    center: new naver.maps.LatLng(35.17132, 129.0666),
 		    zoom: 12,
-		    mapTypeControl: true,
+		    mapTypeControl: false,
 		    mapTypeControlOptions: {
 		        style: naver.maps.MapTypeControlStyle.BUTTON,
 		        position: naver.maps.Position.BOTTOM_LEFT,
