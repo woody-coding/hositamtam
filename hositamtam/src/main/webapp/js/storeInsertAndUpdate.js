@@ -1,25 +1,40 @@
-// 버튼 클릭 시 배경색 변경
-// document.addEventListener("DOMContentLoaded", function () {
-//   var buttons = document.querySelectorAll(
-//     ".store__type__button, .store__payment__button, .store__category__button, .store__category__button2"
-//   );
+// 항목 선택시 버튼색 변경
+document.addEventListener("DOMContentLoaded", function () {
+  var typeButtons = document.querySelectorAll(".store__type__button1, .store__type__button2");
+  var paymentButtons = document.querySelectorAll(".store__payment__button1, .store__payment__button2, .store__payment__button3");
 
-//   buttons.forEach(function (button) {
-//     button.addEventListener("click", function () {
-//       var isActive = button.classList.contains("active");
+  // 점포 형태 선택시 버튼색 변경(단일)
+  typeButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var isActive = button.classList.contains("active");
 
-//       buttons.forEach(function (btn) {
-//         btn.classList.remove("active");
-//       });
+      // 다른 버튼 클릭시 원래 색상으로 변경
+      typeButtons.forEach(function (btn) {
+        btn.classList.remove("active");
+      });
 
-//       if (!isActive) {
-//         button.classList.add("active");
-//       }
-//     });
-//   });
-// });
+      if (!isActive) {
+        button.classList.add("active");
+      }
+    });
+  });
 
-// 사진 파일 미리보기
+  // 결제 방식 선택시 버튼색 변경(다중)
+  paymentButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var isActive = button.classList.contains("active");
+
+      if (!isActive) {
+        button.classList.add("active");
+      }
+      // 재클릭시 선택 해제
+      else button.classList.remove("active");
+    });
+  });
+});
+
+
+// 파일 선택시 사진 미리보기
 document.addEventListener("DOMContentLoaded", function () {
   var fileInput = document.querySelector(".store__photo__input");
   var previewImage = document.createElement("img");

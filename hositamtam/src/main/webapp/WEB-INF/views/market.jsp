@@ -10,7 +10,7 @@
 <title>호시탐탐</title>
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -80,16 +80,18 @@
 	<%@ include file="navi.jsp" %>
 
 	<div class="section">
-	<div id="map" style="width:1200px; height:900px;"></div>
+	<div id="map" ></div>
 
 	
-	<div id="mkListResult" class="row">
-	<div id="howGetMarket"></div><br/>
+	
+	<div id="howGetMarket"></div>
 	<div id="marketErrorMsg"></div>
+	<div id="mkListResult" class="row">
 	<div id="marketContent"></div>
 	</div>
+	
 	</div>
-
-	<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp"%>
+	
 </body>
 </html>

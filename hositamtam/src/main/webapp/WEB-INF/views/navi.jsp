@@ -50,7 +50,7 @@
           <!-- 로그인 되있으면 바꾸기  -->
 			<c:choose>
 				<c:when test="${not empty sessionScope.memberInfo}">
-					<a href="/finalProject/views/logout">${memberInfo.nickname}님 / 로그아웃</a>&nbsp;&nbsp;
+					<li><a class="mainHeader__menu__item" href="/finalProject/views/logout">${memberInfo.nickname}님 / 로그아웃</a></li>&nbsp;&nbsp;
 			        <li><a href="/finalProject/views/myPage" class="mainHeader__menu__item" id="category">마이페이지</a></li>&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>

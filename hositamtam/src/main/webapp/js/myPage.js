@@ -78,8 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
       row.style.display = "none";
     });
 
-    storeMoreButton.style.display = "block";
     storeLessButton.style.display = "none";
+    storeMoreButton.style.display = "block";
   });
 
   // 내가 작성한 글 더보기
@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
       row.style.display = "none";
     });
 
-    postMoreButton.style.display = "block";
     postLessButton.style.display = "none";
+    postMoreButton.style.display = "block";
   });
 
   // 내가 작성한 리뷰 더보기
@@ -118,8 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
       row.style.display = "none";
     });
 
-    reviewMoreButton.style.display = "block";
     reviewLessButton.style.display = "none";
+    reviewMoreButton.style.display = "block";
   });
 
   // 내가 찜한 점포 더보기
@@ -138,8 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
       row.style.display = "none";
     });
 
-    storeLikeMoreButton.style.display = "block";
     storeLikeLessButton.style.display = "none";
+    storeLikeMoreButton.style.display = "block";
   });
 });
 

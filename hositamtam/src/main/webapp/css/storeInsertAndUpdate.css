@@ -88,6 +88,7 @@ body {
   font-size: 1rem;
   margin-left: 1rem;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .store__type,
@@ -121,10 +122,14 @@ body {
 
 .store__type__title,
 .store__payment__title,
-.store__category__title,
 .store__photo__title {
   padding-top: 5px;
   margin-right: 2rem;
+}
+
+.store__category__title {
+  padding-top: 9px;
+  margin-right: 1.9rem;
 }
 
 .store__type__button1,
@@ -148,19 +153,17 @@ body {
 }
 
 .store__type__button1:hover,
-.store__type__button2:hover {
-  background-color: var(--color-accent-variant);
-}
-
+.store__type__button2:hover,
 .store__payment__button1:hover,
 .store__payment__button2:hover,
 .store__payment__button3:hover {
   background-color: var(--color-primary-variant);
 }
 
-/* .active {
-  background-color: #ffcc00;
-} */
+.active {
+  background-color: var(--color-accent-variant);
+  color: var(--color-background);
+}
 
 .store__photo__label {
   padding-top: 5px;
