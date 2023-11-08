@@ -2,9 +2,7 @@ hr {
 	background:#0e4194;
     height:1px;
     border:0;
-
 }
-
 #plikecountUpdate {
 	/*border: solid 2px red;*/
 	width: 50px;
@@ -12,9 +10,8 @@ hr {
 	border-radius: 25%;
 	background-color: white;
 	font-size: 1.2rem;
-	
+	color: red;
 }
-
 .fa-heart{
 	font-size: 1.2rem;
 }
@@ -34,7 +31,6 @@ hr {
 	padding: 5px;
 	    border-bottom: 1px solid #0188CC;
 }
-
 input[type="submit"] {
     border: 0;
     font-size: 20px;
