@@ -57,6 +57,13 @@ a {
 }
 
 /* Store Detail */
+.storeDetail__like {
+	display: inline-block;
+}
+
+
+
+
 #storeDetail {
   width: 960px;
   text-align: center;

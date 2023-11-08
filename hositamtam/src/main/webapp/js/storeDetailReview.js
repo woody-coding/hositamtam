@@ -11,10 +11,51 @@ function slikecountHandler() {
 		
 		const storeLike = JSON.parse(xhr.responseText);
 		let storeLikeCount = storeLike[0].sfavoritecount;
+		
+		
+		if(storeLike[0].likeStatus === 'x') {
+			console.log('storeLike[0].likeStatus : ' + storeLike[0].likeStatus);
+			//검은색 하트
+			storeDetail__like.style.color = 'black';
+		} else if (storeLike[0].likeStatus === 'o') {
+			console.log('storeLike[0].likeStatus : ' + storeLike[0].likeStatus);
+			//빨간색 하트
+			storeDetail__like.style.color = 'red';
+		}
+
 
 		document.querySelector('#storeLikeCount').innerHTML = '찜 ' + storeLikeCount + '개';
     }
 }
+
+
+
+
+
+
+function slikecountStatusHandler() {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+		
+		const storeLike = JSON.parse(xhr.responseText);
+		let storeLikeCount = storeLike[0].sfavoritecount;
+		
+		
+		if(storeLike[0].likeStatus === 'x') {
+			console.log('storeLike[0].likeStatus : ' + storeLike[0].likeStatus);
+			//검은색 하트
+			storeDetail__like.style.color = 'black';
+		} else if (storeLike[0].likeStatus === 'o') {
+			console.log('storeLike[0].likeStatus : ' + storeLike[0].likeStatus);
+			//빨간색 하트
+			storeDetail__like.style.color = 'red';
+		}
+		
+
+		document.querySelector('#storeLikeCount').innerHTML = '찜 ' + storeLikeCount + '개';
+    }
+}
+
+
 
 
 
@@ -36,6 +77,27 @@ function init() {
 	const memberId = window.localStorage.getItem('memberId');
 	const member = JSON.parse(memberId);
 	   
+
+
+
+
+	if (member) {
+		currentId = member.id;
+		
+		xhr.onreadystatechange = slikecountStatusHandler;
+		
+	    let param = '?command=updateLikeStoreStatus&sno=' + currentSno + '&id=' + currentId;
+	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+	    xhr.send();		
+	}
+	else {
+	    alert('로그인이 필요한 서비스 입니다.');
+	    window.location.href = '/finalProject/views/login';
+	}
+
+
+
+
 
 	
 	document.querySelector('.storeDetail__like').addEventListener('click', function() {

@@ -1220,7 +1220,58 @@ public class StoreDAO {
 	
 	
 	
-	
+	// 현재 접속한 id가 해당 sno점포에 찜을 했는지 안했는지 여부 판단 + 해당 sno점포의 최신 찜 개수 가져오기
+	public String updateLikeStoreStatus(int sno, String id) {
+	    JSONArray jsonArray = new JSONArray();
+	    JSONObject jsonObject = new JSONObject();
+
+	    try {
+	        // 좋아요 상태 확인
+	        String sqlCheck = "SELECT 1 FROM member_store_favorite WHERE sno = ? AND id = ?";
+	        pstmt = conn.prepareStatement(sqlCheck);
+	        pstmt.setInt(1, sno);
+	        pstmt.setString(2, id);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            // 이미 찜을 클릭한 경우
+	            jsonObject.put("likeStatus", "o");
+	        } 
+	        else {
+	            // 찜이 없는 경우 또는 취소된 경우
+	            jsonObject.put("likeStatus", "x");
+	        }
+
+	        // 결과 JSON 객체 생성
+	        jsonObject.put("sno", sno);
+	        jsonObject.put("id", id);
+
+	        // 좋아요 수 조회
+	        String sqlCount = "SELECT sfavoritecount FROM store WHERE sno = ?";
+	        pstmt = conn.prepareStatement(sqlCount);
+	        pstmt.setInt(1, sno);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            int sfavoritecount = rs.getInt("sfavoritecount");
+	            jsonObject.put("sfavoritecount", sfavoritecount);
+	        }
+
+	        jsonArray.add(jsonObject);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return jsonArray.toJSONString();
+	}
 	
 	
 	
