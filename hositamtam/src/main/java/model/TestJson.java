@@ -17,7 +17,9 @@ public class TestJson {
 		
 		StoreDAO storeDAO = new StoreDAO();
 	//	System.out.println(storeDAO.getStoreInMarket(2));
-		System.out.println(storeDAO.updateLikeStoreStatus(1, "king123"));
-		System.out.println(storeDAO.updateLikeStore(1, "king123"));
+//		MemberDO memberDO = new MemberDO();
+//		JsonMarketStore jsonMarketStore = new JsonMarketStore();
+//		System.out.println(jsonMarketStore.getCheckNickName(memberDO));
+
 	}
 }
