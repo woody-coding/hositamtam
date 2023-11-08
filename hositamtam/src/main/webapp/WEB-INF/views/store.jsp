@@ -71,7 +71,7 @@
 	<%@ include file="navi.jsp" %>
 	
 	<div class="section">
-	<div id="map" style="width:1200px; height:900px;">
+	<div id="map">
 	<button id="insertStore" class="plusStore"><i class="bi bi-plus-circle-fill"></i></button>
 	</div>
 	<div class="right">
