@@ -23,6 +23,20 @@ function plikecountHandler() {
 		const postLike = JSON.parse(xhr.responseText);
 		let postLikeCount = postLike[0].plikecount;
 
+
+		if(postLike[0].likeStatus === 'x') {
+			//검은색 하트
+		} else if (postLike[0].likeStatus === 'o') {
+			//빨간색 하트
+		}
+		
+		
+		document.querySelector('#plikecountView').innerHTML = '좋아요 ' + postLikeCount + '개';
+    }
+
+  
+  
+/*  동영님 작업 중이던거
 		const plikecountView = document.querySelector('#plikecountView');
 		const plikecountUpdate = document.querySelector('#plikecountUpdate');
 
@@ -30,8 +44,10 @@ function plikecountHandler() {
 
        
        /* plikecountUpdate.style.color = 'red';*/
-	/*	document.querySelector('#plikecountView').innerHTML = '좋아요 ' + postLikeCount + '개';
- */ }
+		document.querySelector('#plikecountView').innerHTML = '좋아요 ' + postLikeCount + '개';
+  }
+*/
+
 }
 
 

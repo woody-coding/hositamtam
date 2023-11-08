@@ -440,6 +440,8 @@ public class PostDAO {
 		            pstmt.setInt(1, pno);
 		            pstmt.setString(2, id);
 		            pstmt.executeUpdate();
+		            
+		            jsonObject.put("likeStatus", "x");
 		        } 
 		        else {
 		            // 좋아요가 없는 경우 또는 취소된 경우: 좋아요 추가
@@ -455,6 +457,8 @@ public class PostDAO {
 		            pstmt.setInt(1, pno);
 		            pstmt.setString(2, id);
 		            pstmt.executeUpdate();
+		            
+		            jsonObject.put("likeStatus", "o");
 		        }
 
 		        // 결과 JSON 객체 생성
