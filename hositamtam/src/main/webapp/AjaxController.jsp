@@ -6,28 +6,42 @@
 <jsp:setProperty name="memberDO" property="*" />
 
 <%
+	// 닉네임 중복확인에 대한 파라미터 가져오기
 	//command 파라미터 값을 가져옵니다.
 	jsonMarketStore.setMemberDAO(memberDAO);
 	String command = request.getParameter("command");
 
+	// nickname 파라미터 값을 가져와서 newNickname에 담음
+	String newNickname = request.getParameter("nickname");
+	// newPassword 파라미터 값을 가져와서 newNickname에 담음
+	String newPassword = request.getParameter("password");
+	
 	if (command != null && command.equals("checkNickname")) {
 		
-		// nickname 파라미터 값을 가져와서 newNickname에 담음
-		String newNickname = request.getParameter("nickname");
 		memberDO.setNickname(newNickname);
 		// JSON 형태의 응답 생성
 		out.println(jsonMarketStore.getCheckNickName(memberDO));
 		out.flush();
 	} 
 	
-	if(command != null && command.equals("updateProfile")){
+	// 비밀번호 중복확인에 대한 파라미터 가져오기
+	if(command != null && command.equals("checkPassword")){
 		
-		String currentPassword = request.getParameter("currentPassword");
-        String newPassword = request.getParameter("newPassword");
+        memberDO.setPasswd(newPassword);
         
+    	 // JSON 형태의 응답 생성
+        out.println(jsonMarketStore.getCheckPasswd(memberDO));
+		out.flush();
+	}
+	
+	// 닉네임과 비밀번호에 대한 파라미터 가져오기
+	if(command != null && command.equals("changeProfile")){
+		
+		memberDO.setNickname(newNickname);
+        memberDO.setPasswd(newPassword);
         
-        
-        out.println();
+     // JSON 형태의 응답 생성
+        out.println(jsonMarketStore.getChangeProfile(memberDO));
 		out.flush();
 	}
 %>
