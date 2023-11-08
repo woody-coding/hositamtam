@@ -12,7 +12,7 @@
 <head>
 <title>호시탐탐</title>
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -39,10 +39,7 @@
 ​
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script src="../js/postMain.js"></script>
 <script src="../js/postList.js"></script>
 </head>
@@ -67,22 +64,22 @@
 			<div class="list">
 				<form method="GET" action="/finalProject/views/postMain">
 					<label for="mno"></label>
-					<button>전체글</button>
+					<button class="tab-button blue" >전체글</button>
 					<input type="hidden" name="mno" value="${market.mno}">
 				</form>
 
 				<form method="GET" action="/finalProject/views/postHot">
 					<label for="mno"></label>
-					<button>인기글</button>
+					<button class="tab-button" >인기글</button>
 					<input type="hidden" name="mno" value="${market.mno}">
 				</form>
 
 				<form method="GET" action="/finalProject/views/postCategory">
 					<label for="pCategory"></label>
-					<button id="pCategory" name="pCategory" value="궁금해요">궁금해요</button>
-					<button id="pCategory" name="pCategory" value="도와주세요">도와주세요</button>
-					<button id="pCategory" name="pCategory" value="소통해요">소통해요</button>
-					<button id="pCategory" name="pCategory" value="시장소식">시장소식</button>
+					<button  class="tab-button" name="pCategory" value="궁금해요" data-id="2">궁금해요</button>
+					<button  class="tab-button" name="pCategory" value="도와주세요" data-id="3">도와주세요</button>
+					<button  class="tab-button" name="pCategory" value="소통해요" data-id="4">소통해요</button>
+					<button class="tab-button" name="pCategory" value="시장소식" data-id="5"> 시장소식</button>
 					<input type="hidden" name="mno" value="${market.mno}">
 				</form>
 			</div>
