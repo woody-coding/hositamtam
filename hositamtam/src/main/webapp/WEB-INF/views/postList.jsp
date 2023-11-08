@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>postList.jsp</title>
+<title>호시탐탐</title>
 <!-- Favicon -->
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 

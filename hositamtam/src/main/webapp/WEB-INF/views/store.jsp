@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>시장 내 점포 리스트 지도로 뿌리기</title>
+    <title>호시탐탐</title>
     <!-- Favicon -->
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 	
 	<!-- G-Market Fonts -->
 	<link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
