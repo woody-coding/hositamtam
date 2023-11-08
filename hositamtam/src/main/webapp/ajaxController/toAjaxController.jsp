@@ -55,7 +55,9 @@
 	else if(command != null && command.equals("updateLike")) {
 		out.println(postDAO.updateLike((Integer.parseInt(pno)), id));
 	}
-
+	else if(command != null && command.equals("updateLikeStore")) {
+		out.println(storeDAO.updateLikeStore((Integer.parseInt(sno)), id));
+	}
 	
 	out.flush();
 %>

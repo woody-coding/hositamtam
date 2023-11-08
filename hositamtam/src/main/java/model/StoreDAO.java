@@ -683,79 +683,22 @@ public class StoreDAO {
 		return rowCount;
 	}
 
-	// ㅇ.찜하기
-	// postDAO를 수정한 것
-/*
-	public String updateLike(int sno, String id) {
-	    JSONArray jsonArray = new JSONArray();
-	    JSONObject jsonObject = new JSONObject();
+	
+	
+	
 
-	    try {
-	        // 좋아요 상태 확인
-	        String sqlCheck = "SELECT 1 FROM member_post_like WHERE pno = ? AND id = ?";
-	        Connection conn = null;
-	        PreparedStatement pstmt = null;
-	        ResultSet rs = null;
-
-	        try {
-	            conn = getConnection(); // getConnection()은 연결을 가져오는 메서드입니다.
-
-	            pstmt = conn.prepareStatement(sqlCheck);
-	            pstmt.setInt(1, pno);
-	            pstmt.setString(2, id);
-	            rs = pstmt.executeQuery();
-
-	            if (rs.next()) {
-	                // 이미 좋아요를 클릭한 경우: 좋아요 취소
-	                // 좋아요 수 감소 쿼리 실행
-	                String sqlUpdate = "UPDATE post SET plikecount = plikecount - 1 WHERE pno = ?";
-	                pstmt = conn.prepareStatement(sqlUpdate);
-	                pstmt.setInt(1, pno);
-	                pstmt.executeUpdate();
-
-	                // 좋아요 정보 삭제 쿼리 실행
-	                String sqlDelete = "DELETE FROM member_post_like WHERE pno = ? AND id = ?";
-	                pstmt = conn.prepareStatement(sqlDelete);
-	                pstmt.setInt(1, pno);
-	                pstmt.setString(2, id);
-	                pstmt.executeUpdate();
-	            } else {
-	                // 좋아요가 없는 경우 또는 취소된 경우: 좋아요 추가
-	                // 좋아요 수 증가 쿼리 실행
-	                String sqlUpdate = "UPDATE post SET plikecount = plikecount + 1 WHERE pno = ?";
-	                pstmt = conn.prepareStatement(sqlUpdate);
-	                pstmt.setInt(1, pno);
-	                pstmt.executeUpdate();
-
-	                // 좋아요 정보 추가 쿼리 실행
-	           
-	}
-*/
+	
+	
+	
+	
+	
+	
 	// ㅈ.점포 삭제
 	public void deleteStore() {
 
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -1190,6 +1133,95 @@ public class StoreDAO {
 		}
 		return jsonArray.toJSONString();
 	}
+	
+	
+	
+	
+	
+	
+	
+	// ㅇ.찜하기 - ajax 비동기 통신 - JSON문자열 데이터로
+	public String updateLikeStore(int sno, String id) {
+	    JSONArray jsonArray = new JSONArray();
+	    JSONObject jsonObject = new JSONObject();
+
+	    try {
+	        // 찜 상태 확인
+	        String sqlCheck = "SELECT 1 FROM member_store_favorite WHERE sno = ? AND id = ?";
+	        pstmt = conn.prepareStatement(sqlCheck);
+	        pstmt.setInt(1, sno);
+	        pstmt.setString(2, id);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            // 이미 찜을 클릭한 경우: 찜 취소
+	            // 찜 수 감소 쿼리 실행
+	            String sqlUpdate = "UPDATE store SET sfavoritecount = sfavoritecount - 1 WHERE sno = ?";
+	            pstmt = conn.prepareStatement(sqlUpdate);
+	            pstmt.setInt(1, sno);
+	            pstmt.executeUpdate();
+
+	            // 찜 정보 삭제 쿼리 실행
+	            String sqlDelete = "DELETE FROM member_store_favorite WHERE sno = ? AND id = ?";
+	            pstmt = conn.prepareStatement(sqlDelete);
+	            pstmt.setInt(1, sno);
+	            pstmt.setString(2, id);
+	            pstmt.executeUpdate();
+	        } 
+	        else {
+	            // 찜이 없는 경우 또는 취소된 경우: 찜 추가
+	            // 찜 수 증가 쿼리 실행
+	            String sqlUpdate = "UPDATE store SET sfavoritecount = sfavoritecount + 1 WHERE sno = ?";
+	            pstmt = conn.prepareStatement(sqlUpdate);
+	            pstmt.setInt(1, sno);
+	            pstmt.executeUpdate();
+
+	            // 찜 정보 추가 쿼리 실행
+	            String sqlInsert = "INSERT INTO member_store_favorite VALUES (?, ?)";
+	            pstmt = conn.prepareStatement(sqlInsert);
+	            pstmt.setInt(1, sno);
+	            pstmt.setString(2, id);
+	            pstmt.executeUpdate();
+	        }
+
+	        // 결과 JSON 객체 생성
+	        jsonObject.put("sno", sno);
+	        jsonObject.put("id", id);
+
+	        // 찜 수 조회
+	        String sqlCount = "SELECT sfavoritecount FROM store WHERE sno = ?";
+	        pstmt = conn.prepareStatement(sqlCount);
+	        pstmt.setInt(1, sno);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            int sfavoritecount = rs.getInt("sfavoritecount");
+	            jsonObject.put("sfavoritecount", sfavoritecount);
+	        }
+
+	        jsonArray.add(jsonObject);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return jsonArray.toJSONString();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

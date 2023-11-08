@@ -44,6 +44,7 @@ sno 		number(5)
 , constraint 	store_type_ck 		check (stype in ('좌판', '매장'))
 , constraint 	store_photo_ck 		check (substr(sphoto, -3) in ('png', 'jpg') or substr(sphoto, -4) = 'jpeg')
 , constraint 	store_category_ck 		check (length(scategory) between 2 and 10)
+, constraint 	store_sfavoritecount_ck 	check (sfavoritecount >= 0)
 );
 
 --* 더미 데이터)
@@ -74,6 +75,7 @@ pno 		number(5)
 , constraint 	post_content_ck 		check (length(pcontent) between 5 and 500)
 , constraint 	post_photo_ck 		check (substr(pphoto, -3) in ('png', 'jpg') or substr(pphoto, -4) = 'jpeg')
 , constraint 	post_pcategory_ck 	check (pcategory in ('궁금해요','도와주세요','소통해요','시장소식'))
+, constraint 	post_plikecount_ck 	check (plikecount >= 0)
 );
 
 
