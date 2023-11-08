@@ -1,3 +1,22 @@
+for (let i = 0; i < $('.tab-button').length; i++){
+
+  $('.tab-button').eq(i).on('click', function(){
+    $('.tab-button').removeClass('blue');
+    $('.tab-button').eq(i).addClass('blue');
+    
+  })
+
+};
+
+
+
+
+
+
+
+
+
+
 var count = 1;
 function dropDownHandler() {
   if(count % 2 == 1){
