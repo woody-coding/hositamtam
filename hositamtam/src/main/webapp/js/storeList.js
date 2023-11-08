@@ -57,7 +57,7 @@ function latLngAjaxHandler() {
 		mapOptions = {
 		    center: new naver.maps.LatLng(mlat, mlng), // 초기 좌표 설정
 		    zoom: 16,
-		    mapTypeControl: true, // 위성 지도 토글 버튼을 표시
+		    mapTypeControl: false, // 위성 지도 토글 버튼을 표시
 		    mapTypeControlOptions: {
 		        style: naver.maps.MapTypeControlStyle.BUTTON,
 		        position: naver.maps.Position.BOTTOM_LEFT

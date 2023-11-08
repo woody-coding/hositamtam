@@ -3,7 +3,7 @@ let currentPno;
 let currentId;
 
 
-var count = 1;
+/*var count = 1;
 function likeHandler() {
   if(count % 2 == 1){
   document.querySelector('#plikecountUpdate').classList.add('click-heart');
@@ -13,15 +13,16 @@ function likeHandler() {
 
   }
   count++;
-
+document.querySelector('#plikecountUpdate').addEventListener('click', likeHandler);
 }
-
+*/
 
 function plikecountHandler() {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 		
 		const postLike = JSON.parse(xhr.responseText);
 		let postLikeCount = postLike[0].plikecount;
+		const plikecountUpdate = document.querySelector('#plikecountUpdate');
 
 
 		if(postLike[0].likeStatus === 'x') {
@@ -112,11 +113,10 @@ function init() {
 	    window.location.href = '/finalProject/views/login';
 	}
 	
-	
-	
-	
-	   
+
+
 	document.querySelector('#plikecountUpdate').addEventListener('click', likeHandler);
+
 	
 	document.querySelector('#plikecountUpdate').addEventListener('click', function() {
 
