@@ -11,7 +11,7 @@ body{
 	min-width: 500px;
 	min-height: 500px;
 	width: 70%;
-	height: 90vh;
+	height: 93vh;
 	float: left;
 }
 
@@ -19,7 +19,7 @@ body{
 	width: 30%;
 	height: 100%;
 	min-width: 500px;
-	min-height: 90vh;
+	max-height: 90vh;
 	overflow: auto;
 	/* background-color: #eeeeee; */
 }
@@ -42,25 +42,28 @@ body{
 
 
 .mkcontainer {
-	display: flex;
-	border-bottom: 2px solid #0e4194;
+	box-sizing: border-box;
+	border-bottom: 1px solid #0e4194;
 	min-height: 180px;
-	padding: 5px;
+	/*padding: 5px;*/
 }
-
+.mkcontainer:hover{
+    background-color: #eeeeee;
+}
 #howGetMarket {
-	font-size: 2rem;
+	font-size: 1.5rem;
+	padding: 5px;
 	font-weight: bold;
 	border-bottom: 2px solid #0e4194;
 
 }
 
-.mkName,
+/*.mkName,
 #mkaddr {
 	font-size: 1.5rem;
-}
+}*/
 
-.col-9 span {
+.row {
 	font-size: 1.5rem;
 }
 
@@ -116,65 +119,16 @@ body{
 	border: 2px solid gray;
 	border-collapse: collapse;
 }
-
-
-
-.listCategory{
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
-        width: 550px; 
-        height: 100vh; 
-        background: #0E4194; 
-        position: fixed; 
-        z-index: 5;
-        color: white;
-        right: 0;
-        text-align: right;
-      /*  애니메이션시작화면 */
-        transition : all 0.5s;
-        transform: translateX(550px);
-}
-.goCategory{
-  line-height: 80px;
-  
-  padding: 10px;
-}
-.goCategory a{
-  border: 0;
-  background-color: transparent;
-  color: white;
-}
-.goCategory:hover{
-  transform: translateX(-50px);
-
+#information{
+	clear: both;
 }
 
-.show-list{
-  transition : all 0.5s;
-  transform: translateX(0px);
-}
-.listCategoryContent{
-  font-size: 2.5rem;
-  
-}
-.close {
-  width: 50px;
-  height: 50px;
-  opacity: 1;
-}
 
-.close:before, .close:after {
-  position: absolute;
-  left: 15px;
-  content: ' ';
-  height: 40px;
-  width: 5px;
-  background-color: #ffffff;
+
+#marketErrorMsg{
+	
+	max-height: 50px;
 }
-.close:before {
-  transform: rotate(45deg);
-}
-.close:after {
-  transform: rotate(-45deg);
+#howGetMarket{
+	max-height: 100px;
 }

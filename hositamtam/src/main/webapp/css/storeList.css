@@ -57,8 +57,11 @@
 button{
     display: inline-block;
     cursor: pointer;
-
+	
 }
+ 
+
+
 .right{
     border-left: 2px solid #0e4194;
     min-width: 500px;
@@ -69,14 +72,18 @@ button{
     /* background-color: #eeeeee; */
 }
 
-/*#information{
-    clear: both;
-}*/
+#information{
+	clear: both;
+}
+
 .mkcontainer{
     display: flex;
     border-bottom: 2px solid #0e4194;
     min-height: 180px;
 	padding: 5px;
+}
+.mkcontainer:hover{
+    background-color: #eeeeee;
 }
 #mkSearchName{
     font-size: 2rem;
@@ -141,6 +148,7 @@ button{
     display: flex;
     justify-content: center;
     border-bottom: 2px solid #0e4194;
+    
 }
 .btnSort button {
     padding: 2px;
@@ -152,6 +160,13 @@ button{
     border: 0px;
     border-radius: 10px;
     margin-bottom: 10px;
+    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
+}
+
+.btnSort button:active {
+  box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+  position: relative;
+  top:2px;
 }
 
 .insertStoreContainer{
