@@ -15,6 +15,12 @@
   --color-purple: #662583;
   --color-gray: #a6a6a6;
   --color-lightgray: #d9d9d9;
+  --color-storeIcon: #635994;
+  --color-postIcon: #f95725;
+  --color-reviewIcon: #d4cfd8;
+  --color-storeLikeIcon: #f8312f;
+  --color-thumbsUp: #0866ff;
+  --color-starIcon: #fcd53f;
 
   /* Size */
   --size-max-width: 1200px;
@@ -24,6 +30,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "GmarketSans";
   margin: 0;
@@ -31,6 +41,7 @@ body {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 /* common */
@@ -50,7 +61,7 @@ a {
   display: block;
   align-items: center;
   text-align: center;
-  margin: 9rem 0 4rem 5rem;
+  margin: 9rem 0 5rem 5rem;
   padding: 40px;
   width: 500px;
   border: 3px solid var(--color-accent);
@@ -65,13 +76,18 @@ a {
 }
 
 .mylevel__picture {
-  margin-left: 3rem;
-  font-size: 3.5rem;
+  margin-left: 3.5rem;
 }
 
 .mylevel__name {
   font-size: 1.5rem;
   margin-right: 3rem;
+}
+
+.mylevel__grade {
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 #mylevel__gage {
@@ -102,7 +118,7 @@ a {
   display: block;
   align-items: center;
   text-align: center;
-  margin: 9rem 5rem 4rem 0;
+  margin: 9rem 5rem 5rem 0;
   padding: 40px;
   width: 500px;
   border: 3px solid var(--color-accent);
@@ -119,7 +135,28 @@ a {
   margin-top: 1rem;
 }
 
+.myprofile__modify__form,
+.myprofile__delete__form {
+  width: 100%;
+  margin: 0 1rem;
+}
+
+.myprofile__modify__button,
+.myprofile__delete__button {
+  width: 100%;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  color: var(--color-background);
+  transition: all 0.15s linear;
+}
+
 .myprofile__modify__button {
+  background-color: var(--color-primary);
+}
+
+.myprofile__delete__button {
   width: 100%;
   margin: 0 1rem;
   padding: 5px;
@@ -127,19 +164,8 @@ a {
   border-radius: 4px;
   border: none;
   color: var(--color-background);
-  background-color: var(--color-primary);
-  transition: all 0.15s linear;
-}
 
-.myprofile__delete__button {
-  width: 100%;
-  margin: 0 1rem;
-  font-size: 20px;
-  border-radius: 4px;
-  border: none;
-  color: var(--color-background);
   background-color: var(--color-gray);
-  transition: all 0.15s linear;
 }
 
 .myprofile__modify__button:hover {
@@ -167,6 +193,22 @@ a {
   margin: 0 0.5rem;
 }
 
+.myStore__icon {
+  color: var(--color-storeIcon);
+}
+
+.myPost__icon {
+  color: var(--color-postIcon);
+}
+
+.myReview__icon {
+  color: var(--color-reviewIcon);
+}
+
+.myStoreLike__icon {
+  color: var(--color-storeLikeIcon);
+}
+
 /* My Activity */
 #myActivity {
   width: 100%;
@@ -179,7 +221,9 @@ a {
 }
 
 .myActivity {
-  margin: 0 5rem 4rem;
+  box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2);
+  padding: 40px;
+  margin: 0 5rem 5rem;
 }
 
 .myStore,
@@ -197,27 +241,79 @@ a {
 
 .myPage__table {
   width: 100%;
+  table-layout: fixed;
   border-top: 2px solid var(--color-lightgray);
   border-collapse: collapse;
 }
 
-.myPage__th {
+.myStore__th,
+.myPost__th,
+.myPost__th__title,
+.myReview__th__name,
+.myReview__th__star,
+.myReview__th,
+.myReview__th__contents,
+.myReview__th__date,
+.myStoreLike__th {
   border-bottom: 2px solid var(--color-lightgray);
-  padding: 10px;
+  padding: 5px;
+  text-align: center;
 }
 
-.myPage__td {
+.myStore__tr:nth-child(n + 7),
+.myPost__tr:nth-child(n + 7),
+.myReview__tr:nth-child(n + 7),
+.myStoreLike__tr:nth-child(n + 7) {
+  display: none;
+}
+
+.myStore__td,
+.myPost__td,
+.myPost__td__title,
+.myReview__td__name,
+.myReview__td__star,
+.myReview__td,
+.myReview__td__contents,
+.myReview__td__date,
+.myStoreLike__td {
   border-bottom: 1px solid var(--color-lightgray);
   padding: 10px;
+  text-align: center;
 }
 
-/* .myStore__contents,
-.myPost__contents,
-.myReview__contents,
-.myStoreLike__contents {
-  font-size: 1.2rem;
-  display: block;
-} */
+.myPost__th__title,
+.myPost__td__title {
+  width: 40%;
+}
+
+.myPost__thumbsUp {
+  color: var(--color-thumbsUp);
+}
+
+.myReview__th__name,
+.myReview__td__name {
+  width: 27%;
+}
+
+.myReview__th__star,
+.myReview__td__star {
+  width: 10%;
+}
+
+.myReview__star {
+  color: var(--color-starIcon);
+}
+
+.myReview__th__contents,
+.myReview__td__contents {
+  width: 50%;
+}
+
+.myReview__td__contents {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .myStore__more,
 .myPost__more,
@@ -228,14 +324,130 @@ a {
   margin-top: 0.3rem;
   border: none;
   border-bottom: 1px solid var(--color-gray);
-  /* border-radius: 4px; */
   color: var(--color-gray);
   background-color: var(--color-background);
-  /* background-color: var(--color-accent); */
+  cursor: pointer;
 }
 
-/* .myPage__hr {
-  background: var(--color-accent);
-  height: 1px;
-  border: 0;
-} */
+.myStore__less,
+.myPost__less,
+.myReview__less,
+.myStoreLike__less {
+  display: none;
+  height: 1.4rem;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  border: none;
+  border-bottom: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  background-color: var(--color-background);
+  cursor: pointer;
+}
+
+/* Anchor */
+.myPage__store,
+.myPage__post,
+.myPage__review,
+.myPage__storeLike,
+.myPage__arrow-up {
+  background-color: var(--color-background);
+  text-decoration: none;
+  position: fixed;
+  right: 3rem;
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: var(--color-gray) 0px 3px 8px;
+  transition: all 300ms ease-in;
+}
+
+.myPage__store {
+  bottom: 44.25rem;
+}
+
+.myPage__post {
+  bottom: 40.25rem;
+}
+
+.myPage__review {
+  bottom: 36.25rem;
+}
+
+.myPage__storeLike {
+  bottom: 32.25rem;
+}
+
+.myPage__arrow-up {
+  bottom: 28.25rem;
+}
+
+.store__icon,
+.arrow-up__icon {
+  padding: 0.7rem 0;
+}
+
+.myStore__menu {
+  color: var(--color-storeIcon);
+}
+
+.myPost__menu {
+  color: var(--color-postIcon);
+}
+
+.myReview__menu {
+  color: var(--color-reviewIcon);
+}
+
+.myStoreLike__menu {
+  color: var(--color-storeLikeIcon);
+}
+
+.myPage__store__info,
+.myPage__post__info,
+.myPage__review__info,
+.myPage__storeLike__info,
+.myPage__arrow-up__info {
+  opacity: 0;
+  position: fixed;
+  right: 7rem;
+}
+
+.myPage__store__info {
+  bottom: 45rem;
+}
+
+.myPage__post__info {
+  bottom: 41rem;
+}
+
+.myPage__review__info {
+  bottom: 37rem;
+}
+
+.myPage__storeLike__info {
+  bottom: 33rem;
+}
+
+.myPage__arrow-up__info {
+  bottom: 29rem;
+}
+
+.myPage__store:hover,
+.myPage__post:hover,
+.myPage__review:hover,
+.myPage__storeLike:hover,
+.myPage__arrow-up:hover {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.myPage__store:hover ~ .myPage__store__info,
+.myPage__post:hover ~ .myPage__post__info,
+.myPage__review:hover ~ .myPage__review__info,
+.myPage__storeLike:hover ~ .myPage__storeLike__info,
+.myPage__arrow-up:hover ~ .myPage__arrow-up__info {
+  opacity: 1;
+  transition: all 200ms ease-in;
+}

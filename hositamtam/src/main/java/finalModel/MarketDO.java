@@ -1,7 +1,5 @@
 package finalModel;
 
-import java.util.Date;
-
 public class MarketDO {
     private int mno;
     private String mname;
@@ -12,7 +10,8 @@ public class MarketDO {
     private String mtoilet;
     private String mparking;
     private String mtel;
-    private Date mupdateday;
+    private String mupdateday;
+    private int cateno;
     
 	public int getMno() {
 		return mno;
@@ -68,10 +67,16 @@ public class MarketDO {
 	public void setMtel(String mtel) {
 		this.mtel = mtel;
 	}
-	public Date getMupdateday() {
+	public String getMupdateday() {
 		return mupdateday;
 	}
-	public void setMupdateday(Date mupdateday) {
+	public void setMupdateday(String mupdateday) {
 		this.mupdateday = mupdateday;
+	}
+	public int getCateno() {
+		return cateno;
+	}
+	public void setCateno(int cateno) {
+		this.cateno = cateno;
 	}
 }

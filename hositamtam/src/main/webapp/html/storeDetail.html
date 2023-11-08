@@ -6,7 +6,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -21,18 +21,19 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/loginHeader.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/storeDetail.css" />
+    <link rel="stylesheet" href="../css/loginHeader.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/storeDetail.css" />
 
     <!-- JavaScript -->
-    <script type="module" src="src/storeDetailReview.js" defer></script>
+    <script defer src="../js/storeDetailReview.js"></script>
+    <script defer src="../js/anchor.js"></script>
   </head>
   <body>
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">
@@ -75,7 +76,11 @@
         <button class="storeDetail__modify">점포 수정</button>
       </div>
       <div class="storeDetail__star__name">
-        <span><h4 class="storeDetail__h4 storeDetail__star">⭐ 4.0</h4></span>
+        <span>
+          <h4 class="storeDetail__h4 storeDetail__star">
+            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; 4.0
+          </h4>
+        </span>
         <span>
           <h4 class="storeDetail__h4 storeDetail__name">
             신발원 옆 러시아 음식점
@@ -107,11 +112,14 @@
 
     <!-- Review -->
     <section id="review" class="max-container">
+      <!-- <span class="review__level">
+          <img src="images/icons8-병아리-60.png" class="review__level__photo" />
+        </span> -->
       <div class="review__info">
-        <span class="review__level__photo" style="color: #e6007e">
-          <i class="fa-solid fa-user"></i>
+        <img src="../images/icons8-병아리-60.png" class="review__level__photo" />
+        <span class="review__ask">
+          탐탐 님 해당 점포에 리뷰를 남겨주세요.
         </span>
-        <span class="review__ask">탐탐 님 해당 점포에 리뷰를 남겨주세요.</span>
         <span class="review__star">
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star"></i>
@@ -143,12 +151,20 @@
     <!-- Review Contents -->
     <section id="review__contents" class="max-container">
       <div class="review__contents__total">
-        <span class="review__contents__star">⭐ 4.0</span><span>📝 12</span>
+        <span class="review__contents__star">
+          <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;4.0
+        </span>
+        <span>
+          <i class="fa-regular fa-comment-dots storeDetail__review"></i>&nbsp;12
+        </span>
       </div>
       <hr class="storeDetail__hr" />
       <div class="review__contents__list">
         <section class="review__contents__photo" style="color: #0188cc">
-          <i class="fa-solid fa-user"></i>
+          <img
+            src="../images/icons8-caveman-64.png"
+            class="review__contents__img"
+          />
         </section>
         <section class="review__contents__main">
           <div class="review__contents__name">호탐시탐짱입니당</div>
@@ -166,7 +182,10 @@
       <hr class="storeDetail__hr" />
       <div class="review__contents__list">
         <section class="review__contents__photo" style="color: #662583">
-          <i class="fa-solid fa-user"></i>
+          <img
+            src="../images/icons8-explorer-60.png"
+            class="review__contents__img"
+          />
         </section>
         <section class="review__contents__main">
           <div class="review__contents__name">쩝쩝박사</div>
@@ -179,7 +198,10 @@
       <hr class="storeDetail__hr" />
       <div class="review__contents__list">
         <section class="review__contents__photo" style="color: #0e4194">
-          <i class="fa-solid fa-user"></i>
+          <img
+            src="../images/icons8-spaceman-66.png"
+            class="review__contents__img"
+          />
         </section>
         <section class="review__contents__main">
           <div class="review__contents__name">시장지박령유망주</div>
@@ -193,6 +215,15 @@
       </div>
       <hr class="storeDetail__hr" />
     </section>
+
+    <!-- Anchor -->
+    <aside>
+      <a class="storeDetail__arrow-up" href="#storeDetail" title="back to top">
+        <div class="arrow-up__icon">
+          <i class="fa-solid fa-arrow-up arrowUp__menu"></i>
+        </div>
+      </a>
+    </aside>
 
     <!-- Footer -->
     <footer id="information" class="section">

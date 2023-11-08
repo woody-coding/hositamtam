@@ -16,44 +16,48 @@ PROMPT .
 PROMPT .
 SET TERMOUT OFF
 
+
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
 
 
+
+
 --5.	STORE (점포 테이블)
+
 create table store(
 sno 		number(5)
 , mno 		number(3)
 , id 		varchar2(12)
-, spno 		number(5)
-, sono 		number(3)
 , sname 		varchar2(60) 	constraint store_name_nn not null
 , slat 		varchar2(20) 	constraint store_lat_nn not null
 , slng 		varchar2(20) 	constraint store_lng_nn not null
-, stype 		varchar2(20) 	constraint store_type_nn not null
+, stype 		char(6) 		constraint store_type_nn not null
 , sphoto 		varchar2(200)
 , sclosecount 	number(1) 	default 0 constraint store_closecount_nn not null
 , sfavoritecount 	number(4) 	default 0 constraint store_favoritecount_nn not null
+, scategory 	varchar2(30) 	constraint store_category_nn not null
 , constraint 	store_no_pk 		primary key (sno)
 , constraint 	store_mno_fk	 	foreign key (mno) references market (mno)
 , constraint 	store_id_fk 		foreign key (id) references member (id)
-, constraint 	store_parent_no_fk 	foreign key (sno) references store (sno)
 , constraint 	store_name_uq 		unique (sname)
 , constraint 	store_name_ck 		check (length(sname) between 2 and 15)
 , constraint 	store_type_ck 		check (stype in ('좌판', '매장'))
 , constraint 	store_photo_ck 		check (substr(sphoto, -3) in ('png', 'jpg') or substr(sphoto, -4) = 'jpeg')
+, constraint 	store_category_ck 		check (length(scategory) between 2 and 10)
+, constraint 	store_sfavoritecount_ck 	check (sfavoritecount >= 0)
 );
 
-
 --* 더미 데이터)
-insert into store values (seq_sno.nextval, 2, 'king123', '', '', '문현역 7번 출구 앞 10m', '35.333242', '145.2343432', '좌판', 'testphoto.png', 1, 0);
-insert into store values (seq_sno.nextval, 99, 'longlee', '', '', '지게골역 출구 앞 5m', '35.33242', '145.23432', '좌판', 'testphoto2.jpeg', 2, 22);
-insert into store values (seq_sno.nextval, 2, 'shortlee', 1, 1, '문현역 5번 출구 앞', '35.33242', '145.23432', '매장', 'testphoto2.jpeg', 2, 79);
-insert into store values (seq_sno.nextval, 2, 'longlee', 3, 1, '서면역 출구 앞 5m', '35.33242', '145.23432', '좌판', 'testphoto3.jpg', 2, 39);
-insert into store values (seq_sno.nextval, 99, 'king123', 2, 2, '지게골역 출구 5m', '35.332', '145.2332', '좌판', 'testphoto22.png', 2, 199);
-
+insert into store values (seq_sno.nextval, 2, 'king123', '문현역 7번 출구 앞 10m', '35.13931', '129.1052', '좌판', 'testphoto.png', 1, 0, '분식');
+insert into store values (seq_sno.nextval, 99, 'longlee', '지게골역 출구 앞 5m', '35.15445', '129.1190', '좌판', 'testphoto2.jpeg', 2, 22, '야채 가게');
+insert into store values (seq_sno.nextval, 2, 'shortlee', '문현역 5번 출구 앞', '35.16046', '129.0562', '매장', 'testphoto2.jpeg', 2, 79, '과일 가게');
+insert into store values (seq_sno.nextval, 2, 'longlee', '서면역 출구 앞 5m', '35.16638', '129.0712', '좌판', 'testphoto3.jpg', 2, 39, '떡볶이 가게');
+insert into store values (seq_sno.nextval, 99, 'king123', '지게골역 출구 5m', '35.14459', '129.0285', '좌판', 'testphoto22.png', 2, 199, '잡화점');
+insert into store values (seq_sno.nextval, 152, 'king123', '역 7번 출구 앞 10m', '35.13933', '129.1051', '좌판', 'testphoto.png', 1, 0, '떡볶이집');
 
 
 --6.	POST (글 테이블)
+
 create table post(
 pno 		number(5)
 , mno 		number(3)
@@ -70,21 +74,46 @@ pno 		number(5)
 , constraint 	post_title_ck 		check (length(ptitle) between 5 and 20)
 , constraint 	post_content_ck 		check (length(pcontent) between 5 and 500)
 , constraint 	post_photo_ck 		check (substr(pphoto, -3) in ('png', 'jpg') or substr(pphoto, -4) = 'jpeg')
-, constraint 	post_pcategory_ck 		check (pcategory in ('시장질문', '사건사고', '일상', '실종/분실'))
+, constraint 	post_pcategory_ck 	check (pcategory in ('궁금해요','도와주세요','소통해요','시장소식'))
+, constraint 	post_plikecount_ck 	check (plikecount >= 0)
 );
 
 
+
 --* 더미 데이터)
-insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '와 이거 실화냐?', '진짜 좀 심하네요 너무 맛없는데 요기 왜옴?? ㄹㅇ이해안되네', 'testphoto.jpeg', 777, '일상');
-insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '사건사고');
-insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서...', '시장완전 개판이네 진짜 무야!!!!', 'marketphoto.jpeg', 11, '사건사고');
-insert into post values (seq_pno.nextval, 100, 'shortlee', sysdate, '대박터짐요!!', '저 오늘 너무 기분 좋아요~~ㅎㅎ', 'marketphoto1.png', 12, '일상');
-insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '제발 읽어주세요.', 'ㅋㅋㅋㅋㅋ이걸 낚이죠?', 'marketphoto11.jpg', 177, '일상');
-insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '사건사고');
-
-
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '와 이거 실화냐?', '진짜 좀 심하네요 너무 맛없는데 요기 왜옴?? ㄹㅇ이해안되네', 'testphoto.jpeg', 777, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서...', '시장완전 개판이네 진짜 무야!!!!', 'marketphoto.jpeg', 11, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'shortlee', sysdate, '대박터짐요!!', '저 오늘 너무 기분 좋아요~~ㅎㅎ', 'marketphoto1.png', 12, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '제발 읽어주세요.', 'ㅋㅋㅋㅋㅋ이걸 낚이죠?', 'marketphoto11.jpg', 177, '소통해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '오늘 날씨 너무 좋아요', '집에만 있기에 심심해서 산책 겸 나왔는데 좋아요~!!', 'testphoto.jpeg', 777, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '드디어 붕세권이다!', '수미식당 옆 좌판에 붕어빵 기계 들어왔네요! 이제 우리 동네 시장도 붕세권입니당ㅎㅎ.', 'marketphoto.jpg', 120, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '남천해변시장 산책 모임 구해용', '남천해변시장 남쪽 입구에 걷기 좋은 코스가 있어서 혹시 같이 걸으실 분 있으면 댓글 남겨주세요ㅎㅎ', 'marketphoto.jpeg', 11, '소통해요');
+insert into post values (seq_pno.nextval, 101, 'shortlee', sysdate, '벌써 일년....', '2023년 시작한 지 엊그제 같은데 벌써 11월이라뇨?!?!?', 'marketphoto1.png', 12, '소통해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '단풍으로 물드니 더욱 운치가 있네욯ㅎㅎ.', '매주 시장에서 장보는데 단풍이 이쁘게 물들어서 사진으로 남겨봐요!', 'marketphoto11.jpg', 177, '소통해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '지난 주에는 춥더니 이번 주는 왤케 덥나유ㅠㅠ', '오락가락하는 날씨네요ㅠㅠ', 'marketphoto.jpg', 120, '소통해요');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '혹시 오늘 수미네 반찬 가게 열었나요??', '지난 주에 보니까 수요일에 휴무였던 거 같은데, 혹시 아시는 분 있으면 댓글 부탁해용!', 'testphoto.jpeg', 777, '궁금해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '남천해변시장 당근 제일 싼 곳', '담주에 당근 많이 사야하는데 제일 싼 곳 추천좀여ㅠ', 'marketphoto.jpg', 120, '궁금해요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 남천해변시장 처음왔는데, 화장실 어디있나여??', '진짜 죽을 거 같아여 제발 빨리 좀 알려주세요', 'marketphoto.jpeg', 11, '궁금해요');
+insert into post values (seq_pno.nextval, 101, 'shortlee', sysdate, '혹시 시장 대표 전화번호 아시는 분??', '혹시 시장 대표 전화번호 아시는 분??', 'marketphoto1.png', 12, '궁금해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '산책로 어디로 가면 있나여??.', '해변길 산책하러 가려고 하는데 어디로 가야하는지 몰겟네요ㅠ', 'marketphoto11.jpg', 177, '궁금해요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '붕어빵 기계 좌표 좀요ㅠㅠ', '날씨가 쌀쌀해서 붕어빵 각이네요 위치 공유해주세요.', 'marketphoto.jpg', 120, '궁금해요');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '와 이거 실화냐?', '진짜 좀 심하네요 너무 맛없는데 요기 왜옴?? ㄹㅇ이해안되네', 'testphoto.jpeg', 777, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '오늘 시장에서...', '시장완전 개판이네 진짜 무야!!!!', 'marketphoto.jpeg', 11, '시장소식');
+insert into post values (seq_pno.nextval, 101, 'shortlee', sysdate, '대박터짐요!!', '저 오늘 너무 기분 좋아요~~ㅎㅎ', 'marketphoto1.png', 12, '시장소식');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '제발 읽어주세요.', 'ㅋㅋㅋㅋㅋ이걸 낚이죠?', 'marketphoto11.jpg', 177, '시장소식');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '오늘 시장에서 무슨 일이...', '오늘 시장에서 무슨 일이 있었나요? 공유해주세요.', 'marketphoto.jpg', 120, '시장소식');
+insert into post values (seq_pno.nextval, 100, 'king123', '2023-10-23', '빨간 모자 쓴 7세 아동을 찾습니다.', '남천해변시장 1번 화장실 쪽에서 길을 잃은 것으로 보입니다. 혹시 보신 분은 010-0000-0000으로 연락주세요', 'testphoto.jpeg', 777, '도와주세요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '에어팟 프로 왼쪽 찾아주실 분ㅠ', '해변로 쪽 CU 앞에서 잃어버린 것 같아요 찾아주신 분은 제 오른 쪽 귀가 감사의 인사를 드릴게요ㅠ.', 'marketphoto.jpg', 120, '도와주세요');
+insert into post values (seq_pno.nextval, 100, 'longlee', sysdate, '찬미네 잡화점 앞에서 갈색 지갑 분실 하신 분 남천1동 파출소에 맡겨놨습니다!', '10/29일 오후 3시경 주웠고, 빨리 가져가시길 바랍니당!', 'marketphoto.jpeg', 11, '도와주세요');
+insert into post values (seq_pno.nextval, 101, 'shortlee', sysdate, '우리 해피 찾아주세요ㅠ', '검정 치와와 입니다ㅠㅠ 꽃무늬 옷 입고 있어요. 찾아주신 분 꼭 사례할게요', 'marketphoto1.png', 12, '도와주세요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '에어팟 프로 오른쪽 잃어버렸습니다.', '해변로 쪽 GS 앞에서 잃버린 것 같네요. 혹시 보신 분 있으신가여???', 'marketphoto11.jpg', 177, '도와주세요');
+insert into post values (seq_pno.nextval, 101, 'longlee', sysdate, '흰색 말티즈가 시장 안을 며칠째 떠돌고 있습니다.', '목걸이 있는 거 보니까 집에서 키우는 댕댕이 같은데, 혹시 견주분 보시면 연락주세요!.', 'marketphoto.jpg', 120, '도와주세요');
 
 --7.	COMMENTS (댓글 테이블)
+
 create table comments(
 cno 		number(5)
 , pno 		number(5)
@@ -98,12 +127,13 @@ cno 		number(5)
 );
 
 
+
 --* 더미 데이터)
 insert into comments values (seq_cno.nextval, 1, 'king123', '아 글 진짜 못쓰네 지루해서 잠올 뻔 했다~~', '2023-10-23');
 
 
-
 --8.	MEMBER_POST_LIKE (글 좋아요 테이블)
+
 create table member_post_like(
 pno 		number(5)
 , id 	varchar2(12)
@@ -113,29 +143,16 @@ pno 		number(5)
 );
 
 
+
 --* 더미 데이터)
 insert into member_post_like values (1, 'king123');
 
 
 
---9.	STORE_CATEGORY (점포 카테고리 교차 테이블)
-create table store_category(
-sno 		number(5)
-, cateno 		number(5)
-, constraint 	store_category_sno_fk 		foreign key (sno) references store (sno)
-, constraint 	store_category_cateno_fk	 	foreign key (cateno) references category (cateno)
-, constraint 	store_category_sno_cateno_pk 		primary key (sno, cateno)
-);
 
 
---* 더미 데이터)
-insert into store_category values (1, 3);
-insert into store_category values (2, 4);
-insert into store_category values (2, 1);
+--9.	MEMBER_STORE_CLOSE (점포 폐업신고 테이블)
 
-
-
---10.	MEMBER_STORE_CLOSE (점포 폐업신고 테이블)
 create table member_store_close(
 sno 		number(5)
 , id 	varchar2(12)
@@ -145,13 +162,15 @@ sno 		number(5)
 );
 
 
+
 --* 더미 데이터)
 insert into member_store_close values (1, 'king123');
 insert into member_store_close values (2, 'king123');
 
 
 
---11.	MEMBER_STORE_FAVORITE (점포 찜 테이블)
+--10.	MEMBER_STORE_FAVORITE (점포 찜 테이블)
+
 create table member_store_favorite(
 sno 		number(5)
 , id 		varchar2(12)
@@ -161,13 +180,15 @@ sno 		number(5)
 );
 
 
+
 --* 더미 데이터)
 insert into member_store_favorite values (1, 'king123');
 insert into member_store_favorite values (2, 'king123');
 
 
 
---12.	REVIEW (리뷰 테이블)
+--11.	REVIEW (리뷰 테이블)
+
 create table review(
 rno 		number(5)
 , sno 		number(5)
@@ -183,6 +204,7 @@ rno 		number(5)
 );
 
 
+
 --* 더미 데이터)
 insert into review values (seq_rno.nextval, 1, 'king123', '2023-08-01', '굿 진짜 존맛탱 그잡채!', 5);
 insert into review values (seq_rno.nextval, 2, 'king123', '2023-10-23', '우웩 토나옴 다신 여기 안온다', 1);
@@ -193,12 +215,14 @@ insert into review values (seq_rno.nextval, 2, 'shortlee', sysdate, '맛있음!!
 
 
 
---13.	PAYMENT (결제방식 테이블)
+--12.	PAYMENT (결제방식 테이블)
+
 create table payment(
 payno 	number(1)
 , paytype 	varchar2(12) 	constraint payment_type_nn not null
 , constraint 		payment_payno_pk 	primary key (payno)
 );
+
 
 
 --** 필수 입력 데이터)
@@ -207,8 +231,8 @@ insert into payment values (2, '카드');
 insert into payment values (3, '계좌이체');
 
 
+--13.	STORE_PAYMENT (점포 결제방식 교차 테이블)
 
---14.	STORE_PAYMENT (점포 결제방식 교차 테이블)
 create table store_payment(
 sno 		number(5)
 , payno 		number(1)
@@ -224,8 +248,8 @@ insert into store_payment values (1, 3);
 insert into store_payment values (2, 1);
 
 
-COMMIT;
 
+COMMIT;
 
 SET TERMOUT ON
 PROMPT TMI

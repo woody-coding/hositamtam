@@ -47,6 +47,11 @@ button {
 body a {
     text-decoration: none;
 }
+.mainHeader__nav a{
+	color: black;
+	text-decoration: none;
+}
+
 #section1 video {
   /* position: absolute;
   top: 0;
@@ -67,13 +72,9 @@ body a {
   position: relative;
 }
 #section1{
-    margin-top: 3rem;
+    margin-top: 45px;
     /* 3rem 나중에 바꾸기 */
-    /* background-image:
-      linear-gradient(
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.4)),  
-        url(../images/메인페이지-배경.png); */
+    
     background-size: 100% 100%;
     width: 100%;
     height: 100%;
@@ -88,74 +89,7 @@ ul {
     padding: 0;
   }
   
-  /* header */
-  /* .mainHeader {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1;
-    background-color: var(--color-background);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  }
-  
-  .mainHeader__logo__img {
-    width: 150px;
-    padding: 0 1rem;
-  }
-  
-  .market__search {
-  }
-  
-  .market__searchInput {
-    width: 40rem;
-    height: 3rem;
-    align-items: center;
-    padding: 0;
-    font-size: 1.5rem;
-    border-radius: 4px;
-  }
-  
-  .market__searchButton {
-    width: 3rem;
-    height: 3rem;
-    padding: 0;
-    border: none;
-    font-size: 1.5rem;
-    background-color: white;
-  }
-  
-  .market__searchButton:hover {
-    color: var(--color-accent);
-  }
-  
-  .mainHeader__menu {
-    display: flex;
-    gap: 4px;
-  }
-  
-  .mainHeader__menu__item {
-    display: block;
-    font-size: 1.5rem;
-    padding: 8px 16px;
-    border-bottom: 1px solid transparent;
-  }
-  
-  .mainHeader__menu__item:hover {
-    border-bottom: 1px solid var(--color-accent);
-  }
-  
-  .mainHeader__menu__item.active {
-    border: 1px solid var(--color-accent);
-    border-radius: 4px;
-  } */
-  /* ---------------------- header */
-
-
+ 
 
 #busanExplain{
     color: white;
@@ -169,8 +103,7 @@ ul {
   top: 30%;
   left: 30%;
   font-size: 2rem;
-   /* margin-left: -150px;  */
-  /* margin-top: -50px;  */
+  
 }
 #btnGroup a{
  color: white;
@@ -186,8 +119,7 @@ ul {
     background-color: #0188CC;
     border: 0px;
     color: white;
-    /* font-size: 2.5em; */
-
+    
 }
 .category:hover{
     
@@ -195,6 +127,7 @@ ul {
     
 
 }
+/*옆에서 나오는 카테고리 */
 .listCategory{
   display: flex;
   justify-content: flex-end;
@@ -207,21 +140,25 @@ ul {
         color: white;
         right: 0;
         text-align: right;
-      /*  애니메이션시작화면 */
+        
         transition : all 0.5s;
         transform: translateX(550px);
 }
 .goCategory{
   line-height: 80px;
-  border: 1px solid #ffffff;
+  
   padding: 10px;
 }
-.goCategory:hover{
-  transform: translateX(-50px);
+.goCategory a{
+  display: inline-block;
+  border: 0;
+  background-color: transparent;
+  color: white;
+}
+.goCategory li {
+    list-style-type: none;
+}
 
-}
-.left:hover{
-}
 
 .show-list{
   transition : all 0.5s;
@@ -229,47 +166,10 @@ ul {
 }
 .listCategoryContent{
   font-size: 2.5rem;
-  /* float: right; */
-}
-/* Footer */
-#information {
-  position: relative;
-  text-align: center;
-  /* background-color: #d9d9d9; */
-  /* color: grey; */
-  color: white;
-  background-color: #333333;
-  opacity: 0.9;
-  padding: 1rem;
-  font-size: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#information a{
-  color: white;
-}
-.information__title {
-  /* margin-top: 3rem; */
-  margin: 0;
-  padding: 0.5rem 10rem;
   
 }
-.information__located{
-  width: 1000px;
-}
-.information__contents {
-  /* display: flex; */
-  /* justify-content: space-between; */
-}
-.footer__logo_img{
-    width: 200px;
-    padding: 0 1rem;
-}
-.bi-arrow-up-circle-fill {
-  font-size: 3rem;
-}
-/* Footer End========================================*/
+
+/*옆에서 나오는 카테고리 */
 
 
 #submit {
@@ -368,32 +268,54 @@ ul {
 }
 
 /*========================= section2===================================== */
-.information__title{
-
-}
-.dropdown{
-  width: 280px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-.btnDrop{
-  border: 1px solid white;
-  padding: 4px;
+/* Footer */
+#information {
+  position: relative;
+  text-align: center;
   color: white;
   background-color: #333333;
   opacity: 0.9;
+  padding: 1rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.dropDownMenu{
-  text-align: left;
-  font-size: 1.5rem;
-  visibility:  hidden;
+
+.information__title {
+  
+  margin: 0;
+  padding: 0.5rem 10rem;
+  
 }
+.information__located{
+  width: 1000px;
+}
+
+.footer__logo_img{
+    width: 200px;
+    padding: 0 1rem;
+}
+.bi-arrow-up-circle-fill {
+  font-size: 3rem;
+}
+/* Footer End========================================*/
+
+ .dropdown{
+  margin: 0 auto;
+} 
+.fa-github{
+  color: white;
+}
+.bi-arrow-up-circle-fill{
+  color: white;
+
+}
+
 .dropDownMenu a{
   color: #333333;
 }
-.show-dropDown{
-  visibility:  visible;
-}
+
 .swiper {
   width: 100%;
   height: 600px;

@@ -6,7 +6,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -21,17 +21,18 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/loginHeader.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/storeInsertAndUpdate.css" />
+    <link rel="stylesheet" href="../css/loginHeader.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/storeInsertAndUpdate.css" />
 
     <!-- JavaScript -->
+    <script defer src="../js/storeInsertAndUpdate.js"></script>
   </head>
   <body>
     <!-- Header -->
     <header class="mainHeader">
       <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="images/logo.ico" alt="logo" />
+        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
       </div>
 
       <form id="searchForm" method="get" action="SearchController">
@@ -74,7 +75,7 @@
                 class="store__input"
                 type="text"
                 id="store__name"
-                placeholder="점포 이름"
+                placeholder="점포의 이름을 지어주세요 !"
               />
               <button class="change__location">위치 수정</button>
             </label>
@@ -92,19 +93,14 @@
               </div>
               <div class="store__category">
                 <h2 class="store__category__title siau__h2">취급 품목</h2>
-                <button class="store__category__button">농산물</button>
-                <button class="store__category__button">음식점</button>
-                <button class="store__category__button">가공식품</button>
-              </div>
-              <div class="store__category2">
-                <button class="store__category__button">수산물</button>
-                <button class="store__category__button">축산물</button>
-                <button class="store__category__button">가정용품</button>
-              </div>
-              <div class="store__category3">
-                <button class="store__category__button">의류</button>
-                <button class="store__category__button2">신발</button>
-                <button class="store__category__button2">기타</button>
+                <label for="store__category__contents" class="category__label">
+                  <input
+                    class="category__input"
+                    type="text"
+                    id="store__category__contents"
+                    placeholder="점포의 취급품목을 알려주세요 !"
+                  />
+                </label>
               </div>
               <div class="store__photo">
                 <h2 class="store__photo__title siau__h2">점포 사진</h2>

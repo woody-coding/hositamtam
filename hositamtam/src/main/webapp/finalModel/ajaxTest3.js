@@ -2,13 +2,22 @@ let xhr = new XMLHttpRequest();
 let xhr2 = new XMLHttpRequest();
 let currentmno = '';
 let currentpno = '';
+let currentid;
+let currentnickname;
+
+// 좋아요 버튼 상태를 나타내는 변수 추가
+let likeButtonClickedMap = {};
+
+
+
+
 
 
 // 해당 시장의 글을 받아와서 동적으로 구현	(그냥 최신순, 인기글, 시장질문, 사건사고, 일상, 실종/분실)
 function postAjaxHandler() {
     if (xhr.readyState === 4 && xhr.status === 200) {
         let allPost = JSON.parse(xhr.responseText);
-        //console.log(xhr.responseText);
+        console.log(xhr.responseText);
 
         let posts = '';
 
@@ -107,19 +116,97 @@ function marketAjaxHandler() {
 
 
 
+/*
+function increaseLikeCountHandler() {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+        let getPlikecount = JSON.parse(xhr.responseText);
 
+        let plikecounts = '';
+        for (let i in getPlikecount) {
+            plikecounts += '<button id=' + getPlikecount[i].pno + '>' + getPlikecount[i].plikecount + '</button>';
+        }
+
+        document.querySelector('#pcontent').innerHTML = plikecounts;
+	}
+}
+*/
+
+
+function increaseLikeCountHandler() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+        let getPlikecount = JSON.parse(xhr.responseText);
+
+        let plikecounts = '';
+        for (let i in getPlikecount) {
+            plikecounts += '<button id=' + getPlikecount[i].pno + ' class="plikecount-button">' + getPlikecount[i].plikecount + '</button>';
+        }
+
+        document.querySelector('#pcontent').innerHTML = plikecounts;
+	console.log(pno);
+        likeButtonClickedMap[pno] = false; // 클릭 완료
+    }
+}
+
+
+
+
+function increaseLikeCount(event) {
+	pno = event.target.getAttribute("id");
+	
+    if (!likeButtonClickedMap[pno]) {
+        likeButtonClickedMap[pno] = true; // 해당 pno 게시물에 대한 클릭 중
+
+        xhr.onload = increaseLikeCountHandler;
+
+        let param = '?command=updateLike&pno=' + pno + '&id=' + currentid;
+        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+        xhr.send();
+    }
+}
+
+
+
+
+function commentModifyHandler() {
+	
+}
+
+
+
+function commentDeleteHandler() {
+	
+}
+
+
+
+
+function commentDelete(event) {
+		let cno = event.target.getAttribute("cno");
+	
+	    xhr.onload = commentDeleteHandler;
+
+        let param = '?command=commentDelete&cno=' + cno + '&id=' + currentid;
+        xhr.open('GET', 'toAjaxController.jsp' + param, true);
+        xhr.send();
+}
+
+
+
+
+// 해당 pno에 해당되는 [글 전체 내용 + 댓글들] 동적 구현
 function getCommentsAndPnoPostHandler() {
     if (xhr.readyState === 4 && xhr.status === 200 && xhr2.readyState === 4 && xhr2.status === 200) {
         let allPost = JSON.parse(xhr.responseText);
         let allComments = JSON.parse(xhr2.responseText);
-		console.log(xhr.responseText);
-		console.log(xhr2.responseText);
+		//console.log(xhr.responseText);
+		//console.log(xhr2.responseText);
+		
         // 개별 게시물 정보를 가져와서 HTML 형식으로 가공
         let postsHTML = '';
     
         for (let i in allPost) {
             postsHTML += '<div>닉네임: ' + allPost[i].nickname + ', 카테고리: ' + allPost[i].pcategory + ', 제목: ' + allPost[i].ptitle + ', 내용: ' + allPost[i].pcontent + 
-            ', 이미지: ' + allPost[i].pphoto + ', 작성시간: ' + allPost[i].pregdate + ', 좋아요: ' + allPost[i].plikecount + 
+            ', 이미지: ' + allPost[i].pphoto + ', 작성시간: ' + allPost[i].pregdate + '<button class="plikecounts" id="'+  +'">좋아요' + allPost[i].plikecount +'</button>' + 
             ', 댓글수: ' + allPost[i].countcomments + '</div>';
         }
         
@@ -128,11 +215,25 @@ function getCommentsAndPnoPostHandler() {
 
         for (let i in allComments) {
             commentsHTML += '<div id="'+ allComments[i].cno +'" class="personalCcontent">닉네임: ' + allComments[i].cnickname + ', 내용: ' +
-                allComments[i].ccontent + ', 작성시간: ' + allComments[i].cregdate + '</div>';
+                allComments[i].ccontent + ', 작성시간: ' + allComments[i].cregdate;
+                
+                
+                if(currentnickname === allComments[i].cnickname) {
+					commentsHTML += '<button class="cmodify" id="'+ allComments[i].cno +'">수정</button><button class="cdelete" id="'+ allComments[i].cno +'">삭제</button>'
+				}
+ 
+                commentsHTML += '</div>';
+
         }
 
         // 개별 게시물과 댓글을 #pcontent에 함께 표시
         document.querySelector('#pcontent').innerHTML = postsHTML + commentsHTML;
+        
+        
+        
+        // 게시물의 "좋아요" 버튼에 이벤트 리스너 추가
+        document.querySelector('.plikecount-button').addEventListener('click', increaseLikeCount);
+        document.querySelector('.cdelete').addEventListener('click', commentDelete);
     }
 }
 
@@ -145,7 +246,7 @@ function getCommentsAndPnoPostHandler() {
 
 
 
-
+// 해당 pno에 해당되는 댓글들 내용 요청
 function getComments() {
 	xhr2.onload = getCommentsAndPnoPostHandler;
 
@@ -154,7 +255,7 @@ function getComments() {
     xhr2.send();
 }
 
-
+// 해당 pno에 해당되는 글 전체 내용 요청
 function getPnoPost() {
 	xhr.onload = getCommentsAndPnoPostHandler;
 
@@ -194,14 +295,51 @@ function personalPcontentHandler(event) {
 	currentpno = event.target.getAttribute('id');
 	getComments();
 	getPnoPost();
+	
+	if (event.target.className === 'cmodify') {
+	    let cno = event.target.getAttribute("id");
+	
+	    xhr.onload = commentModifyHandler;
+	
+	    let param = '?command=commentModify&cno=' + cno + '&id=' + currentid;
+	    xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	    xhr.send();
+	}
+	
+	
+	if (event.target.className === 'cdelete') {
+	    let cno = event.target.getAttribute("id");
+	
+	    xhr.onload = commentDeleteHandler;
+	
+	    let param = '?command=commentDelete&cno=' + cno + '&id=' + currentid;
+	    xhr.open('GET', 'toAjaxController.jsp' + param, true);
+	    xhr.send();
+	}
 }
 
 
 function init() {
+	
+	
+	const memberInfo = window.localStorage.getItem('memberInfo');
+   
+	if (memberInfo) {
+	    const member = JSON.parse(memberInfo);
+	    console.log('id:', member.id);
+	    console.log('nickname:', member.nickname);
+	    
+	    currentid = member.id;
+	    currentnickname = member.nickname;
+	} else {
+	    console.log('로컬 스토리지에 멤버 정보가 없습니다.');
+	}
+	
+	
+	
 	document.querySelector('#whatMarket').addEventListener('click', whatMarketHandler);
 	document.querySelector('#markets').addEventListener('click', buttonHandler);
 	document.querySelector('#pcontent').addEventListener('click', personalPcontentHandler);
 }
 
 window.addEventListener('load', init);
-

@@ -6,8 +6,7 @@ import java.util.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import model.MemberDO;
-
+//import model.MemberDO;
 
 public class PostDAO {
 
@@ -28,7 +27,10 @@ public class PostDAO {
 	private ResultSet rs;
 	private String sql;
 
+	
+	
 	public PostDAO() {
+		
 		String jdbc_driver = "oracle.jdbc.driver.OracleDriver";
 		String jdbc_url = "jdbc:oracle:thin:@localhost:1521:XE";
 
@@ -41,6 +43,7 @@ public class PostDAO {
 			}
 		}
 	}
+
 
 	// 전체 글 조회 (최신순)
 	public String getAllPost(int mno) {
@@ -587,8 +590,6 @@ public class PostDAO {
 		
 		
 		
-		
-		
 		// 해당 pno에 해당되는 글의 모든 댓글 정보 최신순으로 가져오기
 		public String getComments(int pno) {
 			ArrayList<PostDO> postList = new ArrayList<PostDO>();
@@ -648,4 +649,209 @@ public class PostDAO {
 			return jsonArray.toJSONString();
 		}
 		
+		
+		
+		
+		
+		// 해당 pno의 글에 id값을 받아서 좋아요 수 업데이트
+		public String updateLike(int pno, String id) {
+		    JSONArray jsonArray = new JSONArray();
+		    JSONObject jsonObject = new JSONObject();
+
+		    try {
+		        // 좋아요 상태 확인
+		        String sqlCheck = "SELECT 1 FROM member_post_like WHERE pno = ? AND id = ?";
+		        pstmt = conn.prepareStatement(sqlCheck);
+		        pstmt.setInt(1, pno);
+		        pstmt.setString(2, id);
+		        ResultSet rs = pstmt.executeQuery();
+
+		        if (rs.next()) {
+		            // 이미 좋아요를 클릭한 경우: 좋아요 취소
+		            // 좋아요 수 감소 쿼리 실행
+		            String sqlUpdate = "UPDATE post SET plikecount = plikecount - 1 WHERE pno = ?";
+		            pstmt = conn.prepareStatement(sqlUpdate);
+		            pstmt.setInt(1, pno);
+		            pstmt.executeUpdate();
+
+		            // 좋아요 정보 삭제 쿼리 실행
+		            String sqlDelete = "DELETE FROM member_post_like WHERE pno = ? AND id = ?";
+		            pstmt = conn.prepareStatement(sqlDelete);
+		            pstmt.setInt(1, pno);
+		            pstmt.setString(2, id);
+		            pstmt.executeUpdate();
+		        } 
+		        else {
+		            // 좋아요가 없는 경우 또는 취소된 경우: 좋아요 추가
+		            // 좋아요 수 증가 쿼리 실행
+		            String sqlUpdate = "UPDATE post SET plikecount = plikecount + 1 WHERE pno = ?";
+		            pstmt = conn.prepareStatement(sqlUpdate);
+		            pstmt.setInt(1, pno);
+		            pstmt.executeUpdate();
+
+		            // 좋아요 정보 추가 쿼리 실행
+		            String sqlInsert = "INSERT INTO member_post_like VALUES (?, ?)";
+		            pstmt = conn.prepareStatement(sqlInsert);
+		            pstmt.setInt(1, pno);
+		            pstmt.setString(2, id);
+		            pstmt.executeUpdate();
+		        }
+
+		        // 결과 JSON 객체 생성
+		        jsonObject.put("pno", pno);
+		        jsonObject.put("id", id);
+
+		        // 좋아요 수 조회
+		        String sqlCount = "SELECT plikecount FROM post WHERE pno = ?";
+		        pstmt = conn.prepareStatement(sqlCount);
+		        pstmt.setInt(1, pno);
+		        rs = pstmt.executeQuery();
+
+		        if (rs.next()) {
+		            int plikecount = rs.getInt("plikecount");
+		            jsonObject.put("plikecount", plikecount);
+		        }
+
+		        jsonArray.add(jsonObject);
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (pstmt != null) {
+		                pstmt.close();
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return jsonArray.toJSONString();
+		}
+		
+		
+/*		
+		
+		// 해당 cno를 작성한 본인이 해당 댓글 삭제하기
+		public String commentModify(int pno, String id) {
+			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+			
+			JSONArray jsonArray = new JSONArray();
+			JSONObject jsonObject = null;
+			
+			sql = "SELECT pno, cno, (SELECT nickname FROM member WHERE comments.id = member.id) AS cnickname, ccontent, cregdate "
+					+ "FROM comments "
+					+ "WHERE pno = ? "
+					+ "ORDER BY cregdate DESC";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, pno);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+					// PostDO 객체의 속성을 설정
+					postDO.setPno(rs.getInt("pno"));
+					postDO.setCno(rs.getInt("cno"));
+					postDO.setCcontent(rs.getString("ccontent"));
+					postDO.setCregdate(rs.getString("cregdate"));
+					postDO.setCnickname(rs.getString("cnickname"));
+
+					// 수정된 PostDO 객체를 리스트에 추가
+					postList.add(postDO);
+				}
+				
+				for(PostDO post : postList) {
+					jsonObject = new JSONObject(); // jsonObject 초기화
+					
+					jsonObject.put("pno", post.getPno());
+					jsonObject.put("cno", post.getCno());
+					jsonObject.put("ccontent", post.getCcontent());
+					jsonObject.put("cregdate", post.getCregdate());
+					jsonObject.put("cnickname", post.getCnickname());
+					
+					jsonArray.add(jsonObject);
+				}
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return jsonArray.toJSONString();
+		}
+		
+		
+		
+		
+		
+		// 해당 cno를 작성한 본인이 해당 댓글 삭제하기
+		public String commentDelete(int pno, String id) {
+			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+			
+			JSONArray jsonArray = new JSONArray();
+			JSONObject jsonObject = null;
+			
+			sql = "SELECT pno, cno, (SELECT nickname FROM member WHERE comments.id = member.id) AS cnickname, ccontent, cregdate "
+					+ "FROM comments "
+					+ "WHERE pno = ? "
+					+ "ORDER BY cregdate DESC";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, pno);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+					// PostDO 객체의 속성을 설정
+					postDO.setPno(rs.getInt("pno"));
+					postDO.setCno(rs.getInt("cno"));
+					postDO.setCcontent(rs.getString("ccontent"));
+					postDO.setCregdate(rs.getString("cregdate"));
+					postDO.setCnickname(rs.getString("cnickname"));
+
+					// 수정된 PostDO 객체를 리스트에 추가
+					postList.add(postDO);
+				}
+				
+				for(PostDO post : postList) {
+					jsonObject = new JSONObject(); // jsonObject 초기화
+					
+					jsonObject.put("pno", post.getPno());
+					jsonObject.put("cno", post.getCno());
+					jsonObject.put("ccontent", post.getCcontent());
+					jsonObject.put("cregdate", post.getCregdate());
+					jsonObject.put("cnickname", post.getCnickname());
+					
+					jsonArray.add(jsonObject);
+				}
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return jsonArray.toJSONString();
+		}
+		
+*/
 }

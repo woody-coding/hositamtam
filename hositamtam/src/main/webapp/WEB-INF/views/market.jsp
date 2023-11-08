@@ -1,52 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>호시탐탐</title>
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+
+<!-- G-Market Fonts -->
+<link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
+	rel="stylesheet" />
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/89490613c7.js"
+	crossorigin="anonymous"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/footer.css" />
+<link rel="stylesheet" href="../css/marketList.css" />
+
+
+<!-- JavaScript -->
+<!-- 경인키 51l0xj0874 -->
+<!-- 동영키 e9fw481dyk 5502 동작-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
+<script>
+
+	function init() {
+		
+		// 로컬 스토리지를 활용해서 파라미터 keyword 혹은 cateno값 읽어오기
+	    let keyword = '<%= request.getAttribute("keyword") %>';
+	    let cateno = '<%= request.getAttribute("cateno") %>';
+	    let msg = '<%= request.getAttribute("msg") %>';
+	
+	    
+	    keyword = (keyword === 'null') ? null : keyword;
+	    cateno = (cateno === 'null') ? null : cateno;
+	    msg = (msg === 'null') ? null : msg;
+	    
+	    console.log('keyword : ' + keyword + '    /    typeof : ' + typeof(keyword));
+	    console.log('cateno : ' + cateno + '    /    typeof : ' + typeof(cateno));
+	
+	    // 기존의 로컬은 무조건 삭제 후, 다시 등록
+		window.localStorage.removeItem('KeywordAndCateno');
+	    	
+	    const keyCateno = { keyword: keyword, cateno: cateno, msg: msg };
+	    const KeywordAndCateno = JSON.stringify(keyCateno);
+	    window.localStorage.setItem('KeywordAndCateno', KeywordAndCateno);
+	
+	
+	}
+	
+	window.addEventListener('load', init);
+
+</script>
+<script src="/finalProject/js/marketList.js"></script>
 </head>
+
 <body>
+	<%@ include file="navi.jsp" %>
 
-	<a href="/finalProject/views/main">메인</a>
-	<a href="/finalProject/views/login">로그인</a>
-	<a href="/finalProject/views/join">회원가입</a>
-	<a href="/finalProject/views/post">시끌시끌</a>
+	<div class="section">
+	<div id="map" ></div>
 
-	<h2>호시탐탐의 시장리스트 페이지입니다</h2>
 	
-	<h3>[시장조회]</h3>
 	
-	<table id="listTable">
-		<tr>
-			<th>시장번호:</th>
-			<th>시장명:</th>
-			<th>구분:</th>
-			<th>주소:</th>
-			<th>위도:</th>
-			<th>경도:</th>
-			<th>화장실 유무:</th>
-			<th>주차 가능 유무:</th>
-			<th>전화번호:</th>
-			<th>업데이트 일자:</th>
-		</tr>
-	<c:forEach items="${marketList}" var="market" varStatus="status">
-
-		<tr>
-			<td>${status.count}</td>
-			<td>${market.mname}</td>
-			<td>${market.mtype}</td>
-			<td>${market.maddr}</td>
-			<td>${market.mlat}</td>
-			<td>${market.mlng}</td>
-			<td>${market.mtoilet}</td>
-			<td>${market.mparking}</td>
-			<td>${market.mtel}</td>
-			<td>${market.mupdateday}</td>
-		</tr>
-	</c:forEach>
-	</table>
+	<div id="howGetMarket"></div>
+	<div id="marketErrorMsg"></div>
+	<div id="mkListResult" class="row">
+	<div id="marketContent"></div>
+	</div>
+	
+	</div>
+<%@ include file="footer.jsp"%>
 	
 </body>
 </html>

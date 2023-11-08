@@ -1,17 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "GmarketSans";
+  margin: 0;
+   overflow: auto;
+}
+
+
+/* Chrome, Whale, Edge */
+
+/*.right::-webkit-scrollbar {
+    width: 8px;   스크롤바의 너비 
+}
+
+.right::-webkit-scrollbar-thumb {
+    height: 30%;  스크롤바의 길이 
+    background: #0e4194;  스크롤바의 색상 
+    
+    border-radius: 10px;
+}
+
+.right::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  스크롤바 뒷 배경 색상
+}*/
 .section {
     margin-top: 75px;
     width: 100%;
     height: 100%;
     position: relative;
+   
   }
-.app{
-    display: flex;
-    height:820px;   
 
-}
-#map{
-    width:70%; 
-    float: left;
+
+
+#map {
+	min-width: 500px;
+	min-height: 500px;
+	width: 70%;
+	height: 93vh;
+	float: left;
 }
 .plusStore{
     width: 50px;
@@ -25,51 +58,43 @@
     z-index: 9;
     position: absolute;
     right: 10px;
-    bottom: 10px;
+    bottom: 30px;
     transition: all 0.5s;
 }
-.plusStore:hover{
-    
-  
-}
+
 button{
     display: inline-block;
     cursor: pointer;
-
+	
 }
+ 
+
+
 .right{
-    border-left: 2px solid #0e4194;
-    width: 30%;
-    max-height: 820px;
-    overflow: auto;
+   /* border-left: 2px solid #0e4194;
+  
+   */ 
+	width: 30%;
+	height: 100%;
+	min-width: 500px;
+	max-height: 90vh;
+	overflow: auto;
+     overflow-x: hidden;
     /* background-color: #eeeeee; */
 }
-/* Footer */
-#information {
-    position: relative;
-    text-align: center;
-    background-color: #d9d9d9;
-    color: white;
-    padding: 1rem;
-    /* transform : translateY(-100%); */
-  }
-  
-  .information__title {
-    margin: 0;
-    padding: 0.5rem 10rem;
-  }
-  
-  .information__contents {
-    display: flex;
-    justify-content: space-between;
-  }
-  
+
 #information{
-    clear: both;
+	clear: both;
 }
+
 .mkcontainer{
     display: flex;
     border-bottom: 2px solid #0e4194;
+    min-height: 180px;
+	padding: 5px;
+}
+.mkcontainer:hover{
+    background-color: #eeeeee;
 }
 #mkSearchName{
     font-size: 2rem;
@@ -86,19 +111,19 @@ button{
     align-items: center;
     height: 100px;
 
-    /* width: 500px; */
-    /* background-color: #eeeeee; */
+   
 
 }
 .searchResultName h4{
     font-size: 40px;
 }
 
-.searchResultName button{
+#toPost{
     padding: 5px;
-    color: white;
+    
     border-radius: 10px;
-    font-size: 35px;
+    
+    width: 150px;
     height: 50px;
     background-color: #e6007e;
     border: 0;
@@ -106,10 +131,14 @@ button{
     transition: transform 0.5s ease-in-out;
     box-shadow: 0px 5px 0px 0px pink;
 }
+#toPost a{
+	font-size: 35px;
+	color: white;
+	text-decoration: none;
+}
 
 
-
-.searchResultName button:hover{
+#toPost:hover{
     transform: rotate(15deg);
     animation: rotateAnimation 0.5s ease-in-out infinite;
 }
@@ -130,6 +159,7 @@ button{
     display: flex;
     justify-content: center;
     border-bottom: 2px solid #0e4194;
+    
 }
 .btnSort button {
     padding: 2px;
@@ -141,6 +171,13 @@ button{
     border: 0px;
     border-radius: 10px;
     margin-bottom: 10px;
+    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
+}
+
+.btnSort button:active {
+  box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+  position: relative;
+  top:2px;
 }
 
 .insertStoreContainer{
@@ -148,24 +185,6 @@ button{
    justify-content: center;
     
 }
-
-/* .insertStoreContainer button{
-    background-color: #e6007e;
-    box-shadow: 0px 5px 0px 0px pink;
-    color: white;
-    border: 0;
-    font-size: 2.5rem;
-    border-radius: 10px;
-    transform: scale(0.8);
-
-}
-#insertStore:hover{
-    transition: all 1s;
-
-    transform: scale(1);
-    
-
-} */
 
 #mkImg img{
     width: 300px;
@@ -175,7 +194,7 @@ button{
     overflow: auto;
 }
 .iwContent{
-    width: 100px;
+    width: 120px;
     height: 40px;
     /* background-color: #e6007e; */
     position: relative;
@@ -193,7 +212,8 @@ button{
 .up {
     position: absolute;
     top: 0;
-    left: 35px;
+    left: 45px;
+    
     transition: top 100ms;
     transition: transform 0.5s ease-in-out;
     animation: rotateAnimation 0.5s ease-in-out infinite;
@@ -201,7 +221,9 @@ button{
   
   .down {
     position: absolute;
+    left: 10px;
     font-size: 1.5rem;
+    
     top: 40px; /* 초기에 숨겨진 상태 */
     transition: top 100ms;
 
@@ -222,7 +244,7 @@ button{
 .infoContent h4{
     text-align: center;
 }
-.infoContent button{
+.infoContent a{
     display: inline-block;
     /* font-family: 'GmarketSans'; */
     margin-left: 5px;
@@ -230,7 +252,11 @@ button{
     color: white;
     border: 0px;
     font-size: 14px;
+    width: 100px;
+    height: 40px;
     border-radius: 10px;
+    line-height: 40px;
+    text-decoration: none;
 }
 .countContainer{
     display: flex;

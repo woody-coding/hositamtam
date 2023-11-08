@@ -1,251 +1,91 @@
-
-/*// 지도 생성 --------------------------------------------------------
-var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(35.11363, 129.0377),
-    zoom: 16,
-    mapOptions
-});
-//--------------------------------------------------------
-*/
-
-
-// 지도 생성 (+ 일반, 위성 지도 선택할 수 있도록 토글 버튼 생성) -------------------------------------------
-var mapOptions = {
-    center: new naver.maps.LatLng(35.11363, 129.0377),
-    zoom: 16,
-    mapTypeControl: true, // 위성 지도 토글 버튼을 표시
-    mapTypeControlOptions: {
-        style: naver.maps.MapTypeControlStyle.BUTTON,
-        position: naver.maps.Position.TOP_RIGHT
-    }
-};
-
-var map = new naver.maps.Map('map', mapOptions);
-//-------------------------------------------------------------------------------------
+let xhr = new XMLHttpRequest();
+let locations = [];
+let mapOptions;
+let map;
+let markers = [];
+let currentMno;
+let currentId = null;
+let currentSno;
+let mname;
 
 
 
 
-
-
-
-// 더미 데이터 : 나중에 DB에서 가져올 데이터--------------------------------------------
-const locations = [
-            // 이렇게 위도, 경도 값 받아오면 됨! DB로 부터
-            { place:"신발원", lat: 35.11494, lng: 129.0387 },
-            { place:"평산옥", lat: 35.11441, lng: 129.0371 },
-            { place:"장성향", lat: 35.11363, lng: 129.0377 },
-            //{ place:"BHC치킨", lat: 35.11482, lng: 129.0371 },
-];
-//--------------------------------------------------------
-
-
-
-
-
-
-
-// 지도 위에 마커 여러개 표시하기--------------------------------------------------------
-for (var i = 0; i < locations.length; i++) {
-    
-        //  마커 아이콘 변경(부트스트랩)
-        var markerImage = {
-            content: '<i class="bi bi-geo-fill" style="width: 20px; height: 20px;"></i>',
-            size: new naver.maps.Size(100, 100),
-            anchor: new naver.maps.Point(16, 32),
-        };
+// mno 값을 매개변수로 해당 시장의 중심좌표, 시장명 반환
+function latLngAjaxHandler() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		
+		const latLng = JSON.parse(xhr.responseText);
+		
+		
+			
+		
+        // storeErrorMsg 값(내용)을 가져옵니다.
+        const storeErrorMsg = latLng[0].storeErrorMsg;
         
-
-
-        // 마커 생성 및 부트스트랩 아이콘 적용
-        var marker = new naver.maps.Marker({
-            map: map,
-            position: new naver.maps.LatLng(locations[i].lat, locations[i].lng),
-            //icon: markerImage, // 마커 이미지 설정
-        });
-        
-
-        var infowindow = new naver.maps.InfoWindow({
-            content: 
-            // content: '<div style="background-color: red; width: 20px; height: 20px; border-radius: 50%;"></div>'
-            '<div class="infoContent">'+ 
-        '<h4>'+ locations[i].place + '</h4>'+
-            '<div class="countContainer"><div class="rating"><img src="./images/2b50.png" alt="">별점</div><div class="reviewCount"><img src="./images/review.png" alt="">리뷰개수</div><div class="likeCount"><i class="fa-solid fa-heart"></i>찜 개수</div></div>'+
-            '<div class="infoContent-addr">주소</div><div class="btnContainer">'+
-                '<button>점포 상세페이지</button><button>점포 정보 수정</button><button>폐업 제보</button></div></div>'
-
-        });
-
-
-    // 마커를 클릭했을 때, 인포윈도우창이 뜨고 지도 다른 부분을 다시 클릭하면 인포윈도우창이 꺼짐
-    (function(marker, infowindow) {
-        naver.maps.Event.addListener(marker, "click", function (e) {
-            infowindow.open(map, marker);
-        });
-
-        naver.maps.Event.addListener(map, "click", function (mouseEvent) {
-            infowindow.close();
-        });
-    })(marker, infowindow);
-
-
-
-
-
-
-
-
-
-
-    /*// 위,경도 값을 통해 해당 위치의 지번 or 도로명 주소 가져와서 인포윈도우창에 뿌리기
-    function searchCoordinateToAddress(latlng) {
-
-        infoWindow.close();
-
-        naver.maps.Service.reverseGeocode({
-            coords: latlng,
-            orders: [
-                naver.maps.Service.OrderType.ADDR,
-                naver.maps.Service.OrderType.ROAD_ADDR
-            ].join(',')
-        }, function(status, response) {
-            if (status === naver.maps.Service.Status.ERROR) {
-                return alert('Something Wrong!');
-            }
-
-            var items = response.v2.results,
-                address = '',
-                htmlAddresses = [];
-
-            for (var i=0, ii=items.length, item, addrType; i<ii; i++) {
-                item = items[i];
-                address = makeAddress(item) || '';
-                addrType = item.name === 'roadaddr' ? '[도로명 주소]' : '[지번 주소]';
-
-                htmlAddresses.push((i+1) +'. '+ addrType +' '+ address);
-            }
-
-            infoWindow.setContent([
-                '<div style="padding:10px;min-width:200px;line-height:150%;">',
-                '<h4 style="margin-top:5px;">검색 좌표</h4><br />',
-                htmlAddresses.join('<br />'),
-                '</div>'
-            ].join('\n'));
-
-            infoWindow.open(map, latlng);
-        });
-    }
-  */    
-}
-//--------------------------------------------------------
-
-
-
-
-
-
-
-
-// GPS 기능 구현 -------------------------------------------------------------------
-{
-    let latitude;
-    let longitude;
-
-    // 현재 나의 위치에 GPS전용 마커 생성
-    const gpsMarker = new naver.maps.Marker({
-                position: new naver.maps.LatLng(latitude, longitude),
-                map: map,
-                icon: {
-                    content: '<div style="background-color: red; width: 20px; height: 20px; border-radius: 50%;"></div>',
-                    anchor: new naver.maps.Point(15, 15)
-                }
-            });
-
-            // GPS 위치 업데이트 함수
-            function updateLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(success, error);
-                }
-
-                function success(position) {
-                    latitude = position.coords.latitude;
-                    longitude = position.coords.longitude;
-                    const newLatLng = new naver.maps.LatLng(latitude, longitude);
-                    gpsMarker.setPosition(newLatLng);
-                }
-
-                function error() {
-                    // 에러 처리
-                }
-            }
-
-            // 일정 주기로 GPS 위치 업데이트
-            setInterval(updateLocation, 2000); // 2초마다 업데이트
-}
-//--------------------------------------------------------------------------------------
-
-
-
-
-
-// GPS 기능 구현2 : '현재 내 위치를 중심'으로 지도 보기
-function gpsHandler() {
-    // GPS 기능 구현 -------------------------------------------------------------------
-    let latitude = 37.4979517;
-    let longitude = 127.0276188;
-
-    // 현재 나의 위치 마커 생성
-    const gpsMarker = new naver.maps.Marker({
-            position: new naver.maps.LatLng(latitude, longitude),
-            map: map,
-            icon: {
-                content: '<div style="background-color: red; width: 15px; height: 15px; border-radius: 50%;"></div>',
-                anchor: new naver.maps.Point(15, 15)
-            }
-        });
-
-        // GPS 위치 업데이트 함수
-        function updateLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(success, error);
-            }
-
-            function success(position) {
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                const newLatLng = new naver.maps.LatLng(latitude, longitude);
-                gpsMarker.setPosition(newLatLng);
-                map.setCenter(newLatLng);  // 현재 내 위치가 중심이 되어서 지도가 움직임
-            }
-
-            function error() {
-                // 에러 처리
-            }
+        // 에러 메시지가 있는지 확인하고 화면에 표시
+        if (storeErrorMsg) {
+			
+			// 기존 jsp에 있던 div 태그들 숨기기
+			document.querySelector("#map").style.display = "none";
+            document.querySelector("#marketName").style.display = "none";
+            document.querySelector("#manyReview").style.display = "none";
+            document.querySelector("#manyRating").style.display = "none";
+            document.querySelector("#manyStoreLike").style.display = "none";
+            document.querySelector("#storeContent").style.display = "none";
+			
+            // 에러 메시지를 표시할 요소 선택
+            document.querySelector("#storeErrorMsg").innerHTML = storeErrorMsg;
+            
+            // 마커 및 기존 컨텐츠를 지우기
+            removeMarker();
         }
+		
+		
+	
+		
+		
+		mlat = latLng[0].mlat;
+		mlng = latLng[0].mlng;
+		mname = latLng[0].mname;
+		
+		// 페이지가 로드되자마자 mlat, mlng 값으로 지도 중심을 설정
+        //map.setCenter(new naver.maps.LatLng(mlat, mlng));
+        
+        
+        // 지도 생성 (+ 일반, 위성 지도 선택할 수 있도록 토글 버튼 생성)
+		mapOptions = {
+		    center: new naver.maps.LatLng(mlat, mlng), // 초기 좌표 설정
+		    zoom: 16,
+		    mapTypeControl: false, // 위성 지도 토글 버튼을 표시
+		    mapTypeControlOptions: {
+		        style: naver.maps.MapTypeControlStyle.BUTTON,
+		        position: naver.maps.Position.BOTTOM_LEFT
+		    }
+		};
+		
+		map = new naver.maps.Map('map', mapOptions);
 
-        // 일정 주기로 GPS 위치 업데이트
-        setInterval(updateLocation, 2000); // 2초마다 업데이트   
+		markers = [];
+        
+        // 지도 생성 후, 해당 시장명 + 해당 시장 커뮤니티 버튼 생성
+        document.querySelector('#marketName').innerHTML ='<div class="searchResultName"><h4>' + mname + '</h4>'+ '  <div id="toPost"><a href="/finalProject/views/postMain?mno='+ currentMno +'">시끌시끌</a></div></div>';
+        
+        getStoreInfo();
+    }
 }
 
 
 
 
-
-
-
-// id 값이 gpsCancel 인 버튼을 클릭 시 '현재 내 위치 중심으로' 지도 보기 중지 ----------- 수정해야함 !!!(10/12 오전 10시)
-function gpsCancelHandler() {
-    // GPS 업데이트를 중지하기 위해 setInterval의 반환 값을 변수로 저장
-    const updateInterval = setInterval(updateLocation, 2000);
-    // 이전에 실행했던 setInterval을 clearInterval을 사용해 중지
-    clearInterval(updateInterval);
-    // 지도의 중심을 고정
-    map.setCenter(37.4979517, 127.0276188);
+// mno로 점포 정보들을 요청하는 함수
+function getStoreInfo() {
+	xhr.onreadystatechange = storeAjaxHandler;
+	
+    let param = '?command=getStoreInMarket&mno=' + currentMno;
+    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+    xhr.send();
 }
-
-
-
-
 
 
 
@@ -255,96 +95,402 @@ function gpsCancelHandler() {
 
 
 function init() {
-// '새 점포 등록' 버튼 클릭 이벤트
-let insertStore = document.querySelector('#insertStore');
-insertStore.addEventListener('click', insertStoreHandler);
 
-// '현재 내 위치 중심으로 보기' 버튼 클릭 이벤트
-let gps = document.querySelector('#gps');
-gps.addEventListener('click', gpsHandler);
+	// 로컬스토리지에서 파라미터 mno값 읽어오기
+	const mnoToStore = window.localStorage.getItem('mnoToStore');
+	const currentmno = JSON.parse(mnoToStore);
+	
+	currentMno = currentmno.mno;
+	let errMsg = currentmno.msg;
+	
+	if(errMsg) {
+		// 기존 jsp에 있던 div 태그들 숨기기
+		document.querySelector("#map").style.display = "none";
+        document.querySelector("#marketName").style.display = "none";
+        document.querySelector("#manyReview").style.display = "none";
+        document.querySelector("#manyRating").style.display = "none";
+        document.querySelector("#manyStoreLike").style.display = "none";
+        document.querySelector("#storeContent").style.display = "none";
+        document.querySelector("#storeErrorMsg").style.display = "none";
+		
+        // 에러 메시지를 표시할 요소 선택
+        document.querySelector("#errMsg").innerHTML = errMsg;
+        
+        // 마커 및 기존 컨텐츠를 지우기
+        removeMarker();
+	}
+	
+	
+	
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
+	   
+	if (member) {
+	    currentId = member.id;
+	    console.log("현재 접속한 사용자의 id: " + currentId);
+	} else {
+	    console.log('현재 접속한 사용자는 비회원입니다.');
+	}
 
-// '현재 내 위치 중심 해제' 버튼 클릭 이벤트
-let gpsCancel = document.querySelector('#gpsCancel');
-gpsCancel.addEventListener('click', gpsCancelHandler);
+	
+	
+	
+	
+	
+	xhr.onreadystatechange = latLngAjaxHandler;
+	
+	let param = '?command=getMarketLatLng&mno=' + currentMno;
+	xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+	xhr.send();
+
+
+
+
+    document.querySelector('#manyReview').addEventListener('click', function(){
+		xhr.onreadystatechange = storeAjaxHandler;
+		
+		let param = '?command=getManyReview&mno=' + currentMno;
+        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+        xhr.send();
+	});
+	
+	
+    document.querySelector('#manyRating').addEventListener('click', function(){
+		xhr.onreadystatechange = storeAjaxHandler;
+		
+	    let param = '?command=getManyRating&mno=' + currentMno;
+        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+        xhr.send();
+	});
+	
+	
+    document.querySelector('#manyStoreLike').addEventListener('click', function(){
+		xhr.onreadystatechange = storeAjaxHandler;
+		
+	    let param = '?command=getManyStoreLike&mno=' + currentMno;
+        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+        xhr.send();
+	});
+
+
+
+
+	// '새 점포 등록' 버튼 클릭 이벤트
+	document.querySelector('#insertStore').addEventListener('click', insertStoreHandler);
+	
+	
+    // 점포 정보 클릭 시, 해당 점포와 연동된 지도 상의 인포윈도우창 띄우기
+    document.querySelector('#storeContent').addEventListener('click', function(event) {
+        if (event.target.getAttribute('class') === 'personalScontent') {
+			currentSno = event.target.getAttribute('id');
+            
+            openInfo();
+        }
+    });
+  
+}
+	
+
+
+// 해당 점포 정보에 연동된 인포윈도우창을 지도 상에서 띄우기
+function openInfo() {
+	
+    for (var i = 0; i < locations.length; i++) {
+        if (parseFloat(currentSno) === locations[i].sno) {
+			
+            let marker = markers[i]; // 이미 생성된 마커를 가져옵니다.
+            
+
+	        let infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
+	            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
+                   '<p>취급품목: ' + locations[i].scategory + '</p>' +
+                   '<p>점포형태: ' +  locations[i].stype + '</p>' +
+                   '<div class="countContainer">' +
+                   '<img src="../images/2b50.png" alt="평균별점">' + locations[i].savgrating + '(' + locations[i].sreviewcount + ')' +
+                   '<i class="fa-solid fa-heart"></i>: ' +  locations[i].sfavoritecount +
+                   '</div>' +
+                   '<div class="imgContainer">' +
+                   '<img src="' + locations[i].sphoto  + '">' +
+                   '</div></div>' +
+                   '<div class="btnContainer">' +
+                   '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '</div></div>'   });
+
+	        
+            infowindow.open(map, marker);
+            
+            naver.maps.Event.addListener(map, "click", function (mouseEvent) {
+                infowindow.close();
+            });
+            infowindow.open(map, marker);
+        }
+    }
 }
 
 
 
 
 
-// '새 점포 등록' 버튼 클릭 시 ------------------------------------------------
+
+
+// '새 점포 등록' 버튼 클릭 시
 function insertStoreHandler() {
+	
+	// 회원이라면 새 점포 등록 버튼 이용 가능
+	if(currentId !== null) {
+		
 
-//마커 생성
-var marker = new naver.maps.Marker({
-    position: new naver.maps.LatLng(37.3595894, 127.105399),
-    map: map,
-    // icon: {
-    //     content: '<div style="background-color: red; width: 15px; height: 15px; border-radius: 50%;"></div>',
-    //     anchor: new naver.maps.Point(15, 15)
-    // }
-});
-
-
-
-
-
-
-
-
-var marker; // 클릭 이벤트로 생성한 마커를 저장할 변수
-var infowindow; // 인포윈도우 컨텐츠를 저장할 변수
-var prevClickCoord; // 이전 클릭한 위치를 저장할 변수
-var clickEventListener; // 클릭 이벤트 리스너
-
-// 클릭 이벤트 핸들러
-function handleMapClick(e) {
-    if (marker) {
-        marker.setMap(null); // 이전 마커 삭제
-        if (infowindow) {
-            infowindow.close(); // 이전 인포윈도우 닫기
-        }
-    }
-    marker = new naver.maps.Marker({
-        position: e.coord,
-        map: map
-    });
-    prevClickCoord = e.coord;
-
-    // 마커를 클릭했을 때 인포윈도우를 생성하고 표시(위도, 경도 값 a태그 파라미터로 넣어주기)
-    var latitude = e.coord.lat();9
-    var longitude = e.coord.lng();
-    var iwContent = '<div class="iwContent" style="padding:5px;">' +
-        '<a href="/naverMapApi/insert.html?lat=' + latitude + '&lng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
-    infowindow = new naver.maps.InfoWindow({
-        content: iwContent
-    });
-    infowindow.open(map, marker);
+	    //마커 생성
+	    var marker = new naver.maps.Marker({
+	        position: new naver.maps.LatLng(37.3595894, 127.105399),
+	        map: map,
+	    });
+	
+	    var marker; // 클릭 이벤트로 생성한 마커를 저장할 변수
+	    var infowindow; // 인포윈도우 컨텐츠를 저장할 변수
+	    var prevClickCoord; // 이전 클릭한 위치를 저장할 변수
+	    var clickEventListener; // 클릭 이벤트 리스너
+	
+	    // 클릭 이벤트 핸들러
+	    function handleMapClick(e) {
+	        if (marker) {
+	            marker.setMap(null); // 이전 마커 삭제
+	            if (infowindow) {
+	                infowindow.close(); // 이전 인포윈도우 닫기
+	            }
+	        }
+	        marker = new naver.maps.Marker({
+	            position: e.coord,
+	            map: map
+	        });
+	        prevClickCoord = e.coord;
+	
+	        // 마커를 클릭했을 때 인포윈도우를 생성하고 표시(위도, 경도 값 a태그 파라미터로 넣어주기)
+	        var latitude = e.coord.lat();
+	        var longitude = e.coord.lng();
+	        var iwContent = '<div class="iwContent" style="padding:5px;">' +
+	            '<a href="../ajaxController/toAjaxController.jsp?command=insertStore&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
+	        infowindow = new naver.maps.InfoWindow({
+	            content: iwContent
+	        });
+	        infowindow.open(map, marker);
+	    }
+	
+	    // 마우스 우클릭 이벤트 처리
+	    naver.maps.Event.addListener(map, 'rightclick', function (e) {
+	        if (clickEventListener) {
+	            // 클릭 이벤트 리스너가 존재하면 삭제
+	            naver.maps.Event.removeListener(clickEventListener);
+	            clickEventListener = null;
+	        }
+	        if (marker) {
+	            marker.setMap(null); // 클릭 이벤트로 생성한 마커 삭제
+	            if (infowindow) {
+	                infowindow.close(); // 인포윈도우 닫기
+	            }
+	            marker = null;
+	        }
+	    });
+	
+	    // 클릭 이벤트 리스너 등록
+	    clickEventListener = naver.maps.Event.addListener(map, 'click', handleMapClick);
+	
+	
+	    
+    } 
+    // 비회원이라면 새 점포 등록 버튼 이용 못하고 로그인 페이지로 리디렉션
+    else {
+		alert('로그인 하시면 새 점포 등록이 가능합니다!');
+		window.location.href = '/finalProject/views/login';
+	}
 }
 
-// 마우스 우클릭 이벤트 처리
-naver.maps.Event.addListener(map, 'rightclick', function (e) {
-    if (clickEventListener) {
-        // 클릭 이벤트 리스너가 존재하면 삭제
-        naver.maps.Event.removeListener(clickEventListener);
-        clickEventListener = null;
-    }
-    if (marker) {
-        marker.setMap(null); // 클릭 이벤트로 생성한 마커 삭제
-        if (infowindow) {
-            infowindow.close(); // 인포윈도우 닫기
+
+
+
+
+
+
+
+
+function storeAjaxHandler() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        // 기존 마커들을 모두 제거
+        removeMarker();
+
+        const allStoreList = JSON.parse(xhr.responseText);
+
+
+        let storeContents ='';
+        
+        
+        if (allStoreList.length === 0) {
+            storeContents = '점포 정보가 없습니다!';
+        } 
+        
+        
+		for(let i=0; i < allStoreList.length; i++) {
+			storeContents += '<div class="mkcontainer row">' +
+'<div id="' + allStoreList[i].sno + '" class="personalScontent">' +
+    '<p>'+
+    '점포명: ' + allStoreList[i].sname +
+    '</p>' +
+    '<p>취급품목: ' + allStoreList[i].scategory + '</p>' +
+    '<p>점포형태: ' +  allStoreList[i].stype + '</p>' +
+    '<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' +
+    ' <i class="fa-solid fa-heart"></i>: ' + allStoreList[i].sfavoritecount +
+    '<div class="imgContainer">' +
+    '<img src="' + allStoreList[i].sphoto  + '">' +
+    '</div>'+
+'</div>'+
+'</div>';
+
+		}
+		
+		document.querySelector('#storeContent').innerHTML = storeContents;
+
+
+
+
+
+        for (let i in allStoreList) {
+			const savgrating = parseFloat(allStoreList[i].savgrating);
+			const sreviewcount = parseFloat(allStoreList[i].sreviewcount);
+            const sno = parseFloat(allStoreList[i].sno);
+            const sname = allStoreList[i].sname;
+            const slat = parseFloat(allStoreList[i].slat);
+            const slng = parseFloat(allStoreList[i].slng);
+            const stype = allStoreList[i].stype;
+            const sphoto = allStoreList[i].sphoto;
+            const sfavoritecount = parseFloat(allStoreList[i].sfavoritecount);
+            const scategory = allStoreList[i].scategory;
+            const nickname = allStoreList[i].nickname;
+
+            const slocation = {
+				savgrating: savgrating,
+				sreviewcount: sreviewcount,
+                sno: sno,
+                sname: sname,
+                slat: slat,
+                slng: slng,
+                stype: stype,
+                sphoto: sphoto,
+                sfavoritecount: sfavoritecount,
+                scategory: scategory,
+                nickname: nickname
+            };
+
+            locations.push(slocation);
         }
-        marker = null;
+        
+        // 마커를 다시 생성하고 표시
+        showMarkers();
     }
-});
-
-// 클릭 이벤트 리스너 등록
-clickEventListener = naver.maps.Event.addListener(map, 'click', handleMapClick);
-
-
 }
-//-------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+// GPS 기능 구현
+{
+    let latitude;
+    let longitude;
+
+    // 현재 나의 위치에 GPS전용 마커 생성
+    const gpsMarker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(latitude, longitude),
+        map: map,
+        icon: {
+            content: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>',
+            anchor: new naver.maps.Point(15, 15)
+        }
+    });
+
+    // GPS 위치 업데이트 함수
+    function updateLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+
+        function success(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            const newLatLng = new naver.maps.LatLng(latitude, longitude);
+            gpsMarker.setPosition(newLatLng);
+        }
+
+        function error() {
+            // 에러 처리
+        }
+    }
+
+    // 일정 주기로 GPS 위치 업데이트
+    setInterval(updateLocation, 2000); // 2초마다 업데이트
+}
+
+
+
+
+
+// 지도 위에 마커를 표시하는 함수
+function showMarkers() {
+	
+    for (var i = 0; i < locations.length; i++) {
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: new naver.maps.LatLng(locations[i].slat, locations[i].slng)
+        });
+
+        var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
+
+
+            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
+                   '<p>취급품목: ' + locations[i].scategory + '</p>' +
+                   '<p>점포형태: ' +  locations[i].stype + '</p>' +
+                   '<div class="countContainer">' +
+                   '<img src="../images/2b50.png" alt="평균별점">' + locations[i].savgrating + '(' + locations[i].sreviewcount + ')' +
+                   '<i class="fa-solid fa-heart"></i>: ' +  locations[i].sfavoritecount +
+                   '</div>' +
+                   '<div class="imgContainer">' +
+                   '<img src="' + locations[i].sphoto  + '">' +
+                   '</div></div>' +
+                   '<div class="btnContainer">' +
+                   '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '</div></div>'
+        });
+
+        (function (marker, infowindow) {
+		    naver.maps.Event.addListener(marker, "click", function (e) {
+		        infowindow.open(map, marker);
+		    });
+
+            naver.maps.Event.addListener(map, "click", function (mouseEvent) {
+                infowindow.close();
+            });
+        })(marker, infowindow);
+
+        markers.push(marker);
+    }
+}
+
+
+
+
+
+// 지도 위에 표시되고 있는 마커를 모두 제거하는 함수
+function removeMarker() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+}
 
 window.addEventListener('load', init);

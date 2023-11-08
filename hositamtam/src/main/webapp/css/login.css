@@ -34,30 +34,9 @@ body {
   margin: auto;
 }
 
-/* Category */
-/* .category {
-  ;
-}
-
-.category__menu {
-  width: 260px;
-  margin-top: 6rem;
-  display: flex;
-  border: 3px solid var(--color-accent);
-}
-
-.category__list {
-  margin: 1rem 1rem;
-}
-
-.category__contents {
-  padding: 0 1rem;
-} */
-
 /* Login */
 #login {
   display: flex;
-  /* height: 745px; */
   height: 1116px;
   width: 100%;
 }
