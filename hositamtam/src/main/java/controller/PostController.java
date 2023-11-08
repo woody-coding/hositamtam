@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -17,20 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 
-
 import model.PostDO;
 import model.PostDAO;
+
 @Controller
 public class PostController {
-	
+
 	private PostDAO postDAO = new PostDAO();
+
 	public PostController() {
 	}
-	
+
 	public PostController(PostDAO postDAO) {
 		this.postDAO = postDAO;
 	}
-	
+
 	@GetMapping("/views/postForMarketList")
 	public String postForMarketList(Model model) {
 		model.addAttribute("marketList", postDAO.getAllMarket());
@@ -44,6 +44,7 @@ public class PostController {
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
+
 	// 인기글
 	@GetMapping("/views/postHot")
 	public String postHot(@RequestParam int mno, Model model) {
@@ -51,58 +52,79 @@ public class PostController {
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
+
 	// 카테고리별
 	@GetMapping("/views/postCategory")
-	public String postCategory(@RequestParam int mno,@RequestParam String pCategory, Model model) {
+	public String postCategory(@RequestParam int mno, @RequestParam String pCategory, Model model) {
 		model.addAttribute("postList", postDAO.getPostCategory(mno, pCategory));
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
+
 	// 글 등록 이동
 	@GetMapping("/views/toPostUpdate")
 	public String toPostUpdate(@RequestParam int mno, Model model, HttpSession session) {
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postUpdate";
 	}
+
+	// 글 수정 이동
+	@GetMapping("/views/toPostUpdateModify")
+	public String toPostUpdateModify(@RequestParam int mno, @RequestParam int pno, Model model, HttpSession session) {
+		model.addAttribute("market", postDAO.getSelectedMarket(mno));
+		model.addAttribute("post", postDAO.getAllPostInfo(pno));
+		return "postUpdate";
+	}
+
+	// 글 삭제
+	@GetMapping("/views/deletePost")
+	public String deletePost(@RequestParam int pno, @RequestParam int mno, Model model) {
+		model.addAttribute("post", postDAO.getAllPostInfo(pno));
+		model.addAttribute("postList", postDAO.getAllPost(mno));
+		model.addAttribute("market", postDAO.getSelectedMarket(mno));
+		return "postList";
+	}
+
 	// 글 등록 기능
 	@PostMapping("/views/postUpdate")
-	public String insertPost(@ModelAttribute PostDO command, Model model, HttpServletRequest request) throws IOException {
-        String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
-        int sizeLimit = 1024 * 1024 * 5;
-        MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit,
-                "UTF-8", new DefaultFileRenamePolicy());
+	public String insertPost(@ModelAttribute PostDO command, Model model, HttpServletRequest request)
+			throws IOException {
+		String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
+		int sizeLimit = 1024 * 1024 * 5;
+		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8",
+				new DefaultFileRenamePolicy());
 
-    	File uploadDir = new File(directory);	
-            if (!uploadDir.exists()) {
-                uploadDir.mkdirs();
-            }
-            String savedName = "";
-            @SuppressWarnings("unchecked")
-            Enumeration<String> fileNames = multi.getFileNames();
-            if (fileNames.hasMoreElements()) {
-                String paramName = fileNames.nextElement();
-                savedName = multi.getFilesystemName(paramName);
-            }
-            // 파일 정보를 photo 변수에 저장
-            String postImg = "/finalProject/upload/" + savedName; // 웹 경로로 수정
-            // 세션이메일을 받아서 판매자 이메일로 저장
-            int mno = Integer.parseInt(multi.getParameter("mno"));
-            String id = multi.getParameter("id");
-            String ptitle = multi.getParameter("ptitle");
-            String pcontent = multi.getParameter("pcontent");
-            String pcategory = multi.getParameter("pcategory");
-            // 게시물 생성
-            PostDO post = new PostDO();
-            post.setMno(mno);
-            post.setId(id);
-            post.setPtitle(ptitle);
-            post.setPcontent(pcontent);
-            post.setPphoto(postImg);
-            post.setPcategory(pcategory);
-            postDAO.insertPost(post);
-            
-            model.addAttribute("postList", postDAO.getAllPost(mno));
-    		model.addAttribute("market", postDAO.getSelectedMarket(mno));
+		File uploadDir = new File(directory);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdirs();
+		}
+		String savedName = "";
+		@SuppressWarnings("unchecked")
+		Enumeration<String> fileNames = multi.getFileNames();
+		if (fileNames.hasMoreElements()) {
+			String paramName = fileNames.nextElement();
+			savedName = multi.getFilesystemName(paramName);
+		}
+		// 파일 정보를 photo 변수에 저장
+		String postImg = "/finalProject/upload/" + savedName; // 웹 경로로 수정
+		// 세션이메일을 받아서 판매자 이메일로 저장
+		int mno = Integer.parseInt(multi.getParameter("mno"));
+		String id = multi.getParameter("id");
+		String ptitle = multi.getParameter("ptitle");
+		String pcontent = multi.getParameter("pcontent");
+		String pcategory = multi.getParameter("pcategory");
+		// 게시물 생성
+		PostDO post = new PostDO();
+		post.setMno(mno);
+		post.setId(id);
+		post.setPtitle(ptitle);
+		post.setPcontent(pcontent);
+		post.setPphoto(postImg);
+		post.setPcategory(pcategory);
+		postDAO.insertPost(post);
+
+		model.addAttribute("postList", postDAO.getAllPost(mno));
+		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
 
@@ -114,14 +136,14 @@ public class PostController {
 		model.addAttribute("commentList", postDAO.getComment(pno));
 		return "postDetail";
 	}
-	// 댓글 등록 시 
+
+	// 댓글 등록 시
 	@PostMapping("/views/InsertComment")
 	public String InsertComment(@ModelAttribute PostDO command, Model model) {
 		postDAO.InsertComment(command);
-		return "redirect:/views/toPostDetail?pno=" + command.getPno();	
+		return "redirect:/views/toPostDetail?pno=" + command.getPno();
 	}
 
-		
 	@GetMapping("/views/postCatrgoryList")
 	public String MarketList(@RequestParam String pCategory, Model model) {
 //		model.addAttribute("postList", postDAO.getAllPost(pCategory));

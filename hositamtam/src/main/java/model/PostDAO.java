@@ -77,7 +77,7 @@ public class PostDAO {
 	public ArrayList<PostDO> getAllPost(int mno) {
 		ArrayList<PostDO> postList = new ArrayList<PostDO>();
 		
-		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+		sql = "SELECT id, pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 				+ "(select nickname from member where post.id = member.id) as nickname "
 				+ "FROM post "
 				+ "WHERE mno = ? "
@@ -92,6 +92,7 @@ public class PostDAO {
 				PostDO postDO = new PostDO(); // PostDO 객체 생성
 
 				// PostDO 객체의 속성을 설정
+				postDO.setId(rs.getString("id"));
 				postDO.setPno(rs.getInt("pno"));
 				postDO.setPtitle(rs.getString("ptitle"));
 				postDO.setPcontent(rs.getString("pcontent"));
@@ -122,7 +123,7 @@ public class PostDAO {
 	public ArrayList<PostDO> getPostHot(int mno) {
 		ArrayList<PostDO> postList = new ArrayList<PostDO>();
 		
-		sql = "SELECT pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+		sql = "SELECT id, pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 				+ "(select nickname from member where post.id = member.id) as nickname "
 				+ "FROM post "
 				+ "WHERE mno = ?"
@@ -137,6 +138,7 @@ public class PostDAO {
 				PostDO postDO = new PostDO(); // PostDO 객체 생성
 
 				// PostDO 객체의 속성을 설정
+				postDO.setId(rs.getString("id"));
 				postDO.setPno(rs.getInt("pno"));
 				postDO.setPtitle(rs.getString("ptitle"));
 				postDO.setPcontent(rs.getString("pcontent"));
@@ -167,7 +169,7 @@ public class PostDAO {
 		public ArrayList<PostDO> getPostCategory(int mno, String pCategory) {
 			ArrayList<PostDO> postList = new ArrayList<PostDO>();
 			
-			sql = "select pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+			sql = "select id, pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 					+ "(select nickname from member where post.id = member.id) as nickname "
 					+ "from post "
 					+ "where mno = ? and pcategory = ? "
@@ -183,6 +185,7 @@ public class PostDAO {
 					PostDO postDO = new PostDO(); // PostDO 객체 생성
 
 					// PostDO 객체의 속성을 설정
+					postDO.setId(rs.getString("id"));
 					postDO.setPno(rs.getInt("pno"));
 					postDO.setPtitle(rs.getString("ptitle"));
 					postDO.setPcontent(rs.getString("pcontent"));
@@ -342,6 +345,29 @@ public class PostDAO {
 			}
 			return rowCount;
 		}
+		// 글 삭제
+		public void deletePost(int pno) {
+			PostDO psoDo = new PostDO();
+			
+			sql = "delete from from where pno = ?";
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, pno);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		
 		
 		// 해당 pno에 해당되는 글의 모든 댓글 정보 최신순으로 가져오기
 		public ArrayList<PostDO> getComment(int pno) {
