@@ -64,7 +64,7 @@ function init() {
 	
 	
 	// 로그인되어 있는지 아닌지 로컬스토리지 존재 유무로 판단하기
-	const memberId = window.localStorage.getItem('memberId');
+	const memberId = window.sessionStorage.getItem('memberId');
 	const member = JSON.parse(memberId);
 	
 	
