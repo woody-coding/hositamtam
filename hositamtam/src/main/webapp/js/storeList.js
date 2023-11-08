@@ -216,6 +216,7 @@ function openInfo() {
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
                    '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '<a href="/finalProject/ajaxController/toAjaxController.jsp?command=notStore&sno=' +locations[i].sno  + '&id='+ currentId +'">이곳에 없어요! 제보하기</a>' +
                    '</div></div>'   });
 
 	        

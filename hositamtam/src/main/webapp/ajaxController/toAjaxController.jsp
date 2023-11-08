@@ -67,6 +67,14 @@
 		out.println(storeDAO.updateLikeStoreStatus((Integer.parseInt(sno)), id));
 	}
 	
+	// 점포 제보
+	else if(command != null && command.equals("notStore")) {
+		out.println(storeDAO.notStore((Integer.parseInt(sno)), id));
+	}
+	// 점포 제보 상태 확인
+	else if(command != null && command.equals("notStoreStatus")) {
+		out.println(storeDAO.notStoreStatus((Integer.parseInt(sno)), id));
+	}
 	
 	out.flush();
 %>
