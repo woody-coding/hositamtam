@@ -3,7 +3,18 @@ let currentPno;
 let currentId;
 
 
+var count = 1;
+function likeHandler() {
+  if(count % 2 == 1){
+  document.querySelector('#plikecountUpdate').classList.add('click-heart');
+  }
+  else {
+    document.querySelector('#plikecountUpdate').classList.remove('click-heart');
 
+  }
+  count++;
+
+}
 
 
 function plikecountHandler() {
@@ -11,6 +22,7 @@ function plikecountHandler() {
 		
 		const postLike = JSON.parse(xhr.responseText);
 		let postLikeCount = postLike[0].plikecount;
+
 
 		if(postLike[0].likeStatus === 'x') {
 			//검은색 하트
@@ -21,6 +33,21 @@ function plikecountHandler() {
 		
 		document.querySelector('#plikecountView').innerHTML = '좋아요 ' + postLikeCount + '개';
     }
+
+  
+  
+/*  동영님 작업 중이던거
+		const plikecountView = document.querySelector('#plikecountView');
+		const plikecountUpdate = document.querySelector('#plikecountUpdate');
+
+        plikecountView.innerHTML = '좋아요 ' + postLikeCount + '개';
+
+       
+       /* plikecountUpdate.style.color = 'red';*/
+		document.querySelector('#plikecountView').innerHTML = '좋아요 ' + postLikeCount + '개';
+  }
+*/
+
 }
 
 
@@ -40,7 +67,7 @@ function init() {
 	const memberId = window.localStorage.getItem('memberId');
 	const member = JSON.parse(memberId);
 	   
-
+document.querySelector('#plikecountUpdate').addEventListener('click', likeHandler);
 	
 	document.querySelector('#plikecountUpdate').addEventListener('click', function() {
 
