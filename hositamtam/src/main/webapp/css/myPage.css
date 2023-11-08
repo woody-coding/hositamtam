@@ -292,13 +292,11 @@ a {
 
 .myReview__th__name,
 .myReview__td__name {
-  /* width: 25%; */
   width: 27%;
 }
 
 .myReview__th__star,
 .myReview__td__star {
-  /* width: 10%; */
   width: 10%;
 }
 
