@@ -58,9 +58,14 @@
 	</div>
 	<hr>
 	<div class="firstShow">
+<<<<<<< HEAD
+	
+	</div>
+=======
 	 
 	</div>
 	
+>>>>>>> 4f7cafe02ff5656af45401c97a7639d26655586e
 	</div>
 	</div>
 	

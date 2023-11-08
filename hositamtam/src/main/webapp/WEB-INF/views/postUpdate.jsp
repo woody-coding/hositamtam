@@ -52,7 +52,7 @@
 	<form method="POST" action="/finalProject/views/postUpdate" enctype="multipart/form-data">
 	<div class="postCategory-radio">
 
-	<label for="pcategory">카테고리</label> 	
+	<!-- <label for="pcategory">카테고리</label> --> 	
 	<!-- <input class="radioBox" type="radio" name="pcategory" value="궁금해요" />궁금해요
 	<input class="radioBox" type="radio" name="pcategory" value="도와주세요" />도와주세요
 	<input class="radioBox" type="radio" name="pcategory" value="소통해요" />소통해요
