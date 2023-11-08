@@ -3,26 +3,11 @@ let currentPno;
 let currentId;
 
 
-/*var count = 1;
-function likeHandler() {
-  if(count % 2 == 1){
-  document.querySelector('#plikecountUpdate').classList.add('click-heart');
-  }
-  else {
-    document.querySelector('#plikecountUpdate').classList.remove('click-heart');
-
-  }
-  count++;
-document.querySelector('#plikecountUpdate').addEventListener('click', likeHandler);
-}
-*/
-
 function plikecountHandler() {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 		
 		const postLike = JSON.parse(xhr.responseText);
 		let postLikeCount = postLike[0].plikecount;
-		const plikecountUpdate = document.querySelector('#plikecountUpdate');
 
 
 		if(postLike[0].likeStatus === 'x') {
@@ -36,20 +21,6 @@ function plikecountHandler() {
 		
 		document.querySelector('#plikecountView').innerHTML = '좋아요 ' + postLikeCount + '개';
     }
-
-  
-  
-/*  동영님 작업 중이던거
-		const plikecountView = document.querySelector('#plikecountView');
-		const plikecountUpdate = document.querySelector('#plikecountUpdate');
-
-        plikecountView.innerHTML = '좋아요 ' + postLikeCount + '개';
-
-       
-       // plikecountUpdate.style.color = 'red';
-		document.querySelector('#plikecountView').innerHTML = '좋아요 ' + postLikeCount + '개';
-  }
-*/
 
 }
 
@@ -83,7 +54,6 @@ function plikecountStatusHandler() {
 
 
 
-
 function init() {
 	
 	// 현재 글의 고유 번호 pno 값 가져오기
@@ -108,14 +78,7 @@ function init() {
 	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
 	    xhr.send();		
 	}
-	else {
-	    alert('로그인이 필요한 서비스 입니다.');
-	    window.location.href = '/finalProject/views/login';
-	}
 	
-
-
-	document.querySelector('#plikecountUpdate').addEventListener('click', likeHandler);
 
 	
 	document.querySelector('#plikecountUpdate').addEventListener('click', function() {
