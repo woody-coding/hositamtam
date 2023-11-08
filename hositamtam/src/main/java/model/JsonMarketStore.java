@@ -67,6 +67,34 @@ public class JsonMarketStore {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
+	public String getChangeProfile(MemberDO memberDO) {
+	    JSONObject jsonObject = new JSONObject();
+	    
+	    try {
+	        int rowCount = memberDAO.changeProfile(memberDO);
+
+	        if (rowCount > 0) {
+	            // 변경된 닉네임 또는 비밀번호를 JSON 객체에 추가
+	            jsonObject.put("newNickname", memberDO.getNickname());
+	            jsonObject.put("newPassword", memberDO.getPasswd());
+	            jsonObject.put("success", true);
+	            jsonObject.put("message", "닉네임 또는 비밀번호가 성공적으로 변경되었습니다.");
+	        } else {
+	            jsonObject.put("success", false);
+	            jsonObject.put("message", "닉네임 또는 비밀번호 변경 중 오류가 발생했습니다.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // 예외 처리를 위한 오류 메시지를 JSON 객체에 추가
+	        jsonObject.put("success", false);
+	        jsonObject.put("message", "닉네임 또는 비밀번호 변경 중 오류가 발생했습니다.");
+	    }
+
+	    // JSON 객체를 문자열로 변환하여 반환
+	    return jsonObject.toJSONString();
+	}
+
 	
 	
 	
