@@ -98,10 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 */
 
+function goPostHandler() {
+	alert('안들어오나?');
+	window.location.href = '/finalProject/views/post';
+}
+
+
    function init() {
 document.querySelector('#mkList').addEventListener("click", displayHandler);
 document.querySelector('.close').addEventListener("click", displayCloseHandler);
-document.querySelector(".btnDrop").addEventListener("click",dropDownHandler);  
+document.querySelector(".btnDrop").addEventListener("click",dropDownHandler);
+document.querySelector('#goPost').addEventListener('click', goPostHandler);
 }
  
 window.addEventListener('load', init);
