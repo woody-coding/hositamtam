@@ -52,7 +52,7 @@
 				<span id="mkName">호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
 			</div>
 			<br />
-			<form method="GET" action="/finalProject/views/toPostUpdate" id="insert">
+			<form method="GET" action="/finalProject/views/toPostInsert" id="insert">
 				<label for="mno"></label>
 				<button id="writePost">
 					<i class="bi bi-pencil-square"></i>글 등록
@@ -88,28 +88,30 @@
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
+					<th>내용</th>
 					<th>작성일자</th>
 					<th>좋아요</th>
 					<th>작성자</th>
-					<th>댓글</th>
+					<th>댓글 수</th>
 					<th>카테고리</th>
+					<th></th>
 
 				</tr>
 				<c:forEach items="${postList}" var="post" varStatus="status">
 					<tr>
-						<td id="${post.pno}">${status.count}</td>
-						<td id="${post.pno}">${post.ptitle}</td>
-						<td id="${post.pno}">${post.pcontent}</td>
-						<td id="${post.pno}">${post.pregdate}</td>
-						<td id="${post.pno}">${post.plikecount}</td>
-						<td id="${post.pno}">${post.nickname}</td>
-						<td id="${post.pno}">${post.countcomments}</td>
-						<td id="${post.pno}">${post.pcategory}</td>
-						<c:if test="${post.id == userId}">
-						<th><button type="button" onclick="location.href='/finalProject/views/toPostUpdateModify?mno=${market.mno}&pno=${post.pno}'">수정</button></th>
-						</c:if>
+						<td>${status.count}</td>
+						<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
+						<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.pcontent}</a></td>
+						<td>${post.pregdate}</td>
+						<td>${post.plikecount}</td>
+						<td>${post.nickname}</td>
+						<td>${post.countcomments}</td>
+						<td>${post.pcategory}</td>
 						<c:if test="${post.id != userId}">
-						<th><button>글 숨기기</button></th>
+						<td></td>
+						</c:if>
+						<c:if test="${post.id == userId}">
+						<th><button type="button" onclick="location.href='/finalProject/views/toPostUpdate?mno=${market.mno}&pno=${post.pno}'">글수정</button></th>
 						</c:if>
 					</tr>
 				</c:forEach>
