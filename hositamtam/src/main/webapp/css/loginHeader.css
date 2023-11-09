@@ -99,7 +99,8 @@ ul {
 }
 
 .mainHeader__menu__item:hover {
-  border-bottom: 1px solid var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  border-radius: 0.5rem;
 }
 
 .mainHeader__menu__item.active {
