@@ -49,30 +49,26 @@
 <body>
 
 	<%@ include file="navi.jsp" %>
-	<div  class="section" id="section1">
-	<div class="container mt-5">
-	<h3>호시탐탐의 시끌시끌 페이지 입니다</h3>
-	<button id="whatMarket">시장 선택하기</button>
-	<hr/>
-	<div class="mkNameList">
-	<form method="GET" action="/finalProject/views/postMain">
-	<c:forEach items="${marketList}" var="market">
-	<label for="mno"></label>
-	<button id="mno" name="mno" value="${market.mno}">${market.mname}</button>
-	</c:forEach>
-	</form>
+	<div class="section" id="section1">
+		<div class="container mt-5">
+			<h3>호시탐탐의 시끌시끌 페이지 입니다</h3>
+			<button id="whatMarket">시장 선택하기</button>
+			<hr />
+			<div class="mkNameList">
+				<form class="market_form" method="GET" action="/finalProject/views/postMain">
+					<c:forEach items="${marketList}" var="market">
+						<label for="mno"></label>
+						<button id="mno" name="mno" value="${market.mno}" class="flex-container">${market.mname}</button>
+					</c:forEach>
+				</form>
+			</div>
+			<hr>
+			
+			<div class="firstShow"></div>
+			
+		</div>
 	</div>
-	<hr>
-	<div class="firstShow">
 
-	
-	</div>
-
-	 
-	</div>
-	
-	</div>
-	
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
