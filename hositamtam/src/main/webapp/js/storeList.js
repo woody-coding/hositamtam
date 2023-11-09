@@ -289,7 +289,7 @@ function openInfo() {
                    '<i class="fa-solid fa-heart"></i>: ' +  locations[i].sfavoritecount +
                    '</div>' +
                    '<div class="imgContainer">' +
-                   '<img src="' + locations[i].sphoto  + '">' +
+                   '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
                    '</div></div>' +
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
@@ -410,19 +410,19 @@ function storeAjaxHandler() {
         
 		for(let i=0; i < allStoreList.length; i++) {
 			storeContents += '<div class="mkcontainer row">' +
-'<div id="' + allStoreList[i].sno + '" class="personalScontent">' +
-    '<p>'+
-    '점포명: ' + allStoreList[i].sname +
-    '</p>' +
-    '<p>취급품목: ' + allStoreList[i].scategory + '</p>' +
-    '<p>점포형태: ' +  allStoreList[i].stype + '</p>' +
-    '<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' +
-    ' <i class="fa-solid fa-heart"></i>: ' + allStoreList[i].sfavoritecount +
-    '<div class="imgContainer">' +
-    '<img src="' + allStoreList[i].sphoto  + '">' +
-    '</div>'+
-'</div>'+
-'</div>';
+				'<div id="' + allStoreList[i].sno + '" class="personalScontent">' +
+				    '<p>'+
+				    '점포명: ' + allStoreList[i].sname +
+				    '</p>' +
+				    '<p>취급품목: ' + allStoreList[i].scategory + '</p>' +
+				    '<p>점포형태: ' +  allStoreList[i].stype + '</p>' +
+				    '<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' +
+				    ' <i class="fa-solid fa-heart"></i>: ' + allStoreList[i].sfavoritecount +
+				    '<div class="imgContainer">' +
+				    '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '">' +
+				    '</div>'+
+				'</div>'+
+				'</div>';
 
 		}
 		
@@ -537,7 +537,7 @@ function showMarkers() {
                    '<i class="fa-solid fa-heart"></i>: ' +  locations[i].sfavoritecount +
                    '</div>' +
                    '<div class="imgContainer">' +
-                   '<img src="' + locations[i].sphoto  + '">' +
+                   '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
                    '</div></div>' +
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
