@@ -74,7 +74,7 @@
       <div class="storeDetail__star__name">
         <span>
           <h4 class="storeDetail__h4 storeDetail__star">
-            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; 4.0
+            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
           </h4>
         </span>
         <span>
