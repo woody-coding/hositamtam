@@ -9,23 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>호시탐탐</title>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-
-    <!-- G-Market Fonts -->
-    <link
-      href="https://webfontworld.github.io/gmarket/GmarketSans.css"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/89490613c7.js"
-      crossorigin="anonymous"
-    ></script>
+   
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/error.css" />
 
     <!-- JavaScript -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -33,7 +20,23 @@
       
   </head>
   <body>
-  
+   
+<header class="mainHeader">
+  <div class="mainHeader__logo">
+    <a href="/finalProject/views/main"><img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" /></a>
+  </div>
+ </header>
+ <div class="section">
+  <div class="error">
+    <img  src="../images/err.png">
+    <div class="msg">
+      <h1>잘못된 접근입니다</h1>
+      <p>해당 시장이 없거나, <br>
+      검색창에 입력이 없어서 시장을 찾을수가 없었습니다.</p>
+      <button class="prevPage">이전 페이지로</button>
+    </div>
     
+    </div>
+ </div>
   </body>
 </html>
