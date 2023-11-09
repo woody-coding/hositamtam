@@ -13,6 +13,9 @@
 
 	// nickname 파라미터 값을 가져와서 newNickname에 담음
 	String newNickname = request.getParameter("nickname");
+	
+	String id = request.getParameter("id");
+	
 	// newPassword 파라미터 값을 가져와서 newNickname에 담음
 	String newPassword = request.getParameter("password");
 	
@@ -26,14 +29,9 @@
 	
 	// 비밀번호 중복확인에 대한 파라미터 가져오기
 	if(command != null && command.equals("checkPassword")){
-		String userId = (String) session.getAttribute("userId");
 
-	    MemberDO user = memberDAO.getMember(userId);
-	    
-        memberDO.setPasswd(newPassword);
-        
     	 // JSON 형태의 응답 생성
-        out.println(jsonMarketStore.getCheckPasswd(memberDO));
+        out.println(jsonMarketStore.getCheckPasswd(newPassword, id));
 		out.flush();
 	}
 	

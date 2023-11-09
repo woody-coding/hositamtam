@@ -4,6 +4,18 @@ var updateXhr = new XMLHttpRequest();
 // 닉네임, 비밀번호 중복 확인 및 에러 처리 상태 변수
 var nicknameValid = false;
 var passwdValid = false;
+var currentId;
+
+
+
+if(nicknameValid === true || passwdValid === true) {
+	// 수정하기 버튼 클릭 가능 -> DB바꾸기
+}
+else {
+	// 수정하기 버튼 비활성화 => 에러메시지창에 둘중에 하나는 수정해야한다고 알리기
+}
+
+
 
 
 function ajaxNicknameChangeHandler() {
@@ -66,24 +78,41 @@ function checkPasswdHandler() {
     // AJAX를 사용하여 서버에 중복 확인 요청
     xhr.onreadystatechange = ajaxPasswdChangeHandler;
     
-    xhr.open('POST', '/finalProject/AjaxController.jsp?command=checkPassword&password=' + newPassword, true);
+    xhr.open('POST', '/finalProject/AjaxController.jsp?command=checkPassword&password=' + newPassword + '&id=' + currentId, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    xhr.send(newPassword);
+    xhr.send(newPassword, currentId);
 }
 
 
 //===========================================================================================================
 
+function memberUpdateHandler() {
+	
+}
+
+
+
 
 // 최종 수정하기 요청하는 JavaScript 함수
 function updateHandler() {
-    if (nicknameValid == true || passwdValid == true) {
-        var newNickname = document.getElementById('change-nickname').value;
-        var newPassword = document.getElementById('change-password').value;
-        var confirmPassword = document.getElementById('confirm__password').value;
+    if (nicknameValid === true || passwdValid === true) {
+        let newNickname = document.getElementById('change-nickname').value;
+        let newPassword = document.getElementById('change-password').value;
 
-		if(newPassword == confirmPassword){
+
+	    // AJAX를 사용하여 서버에 회원 정보 수정 요청
+	    xhr.onreadystatechange = memberUpdateHandler;
+	    
+	    xhr.open('POST', '/finalProject/AjaxController.jsp?command=닉넴이나비번DB에서변경해라&password=' + newPassword + '&id=' + currentId, true);
+	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	
+	    xhr.send(newPassword, currentId);
+
+
+
+
+		/*if(newPassword == confirmPassword){
 			document.querySelector('#error_msg').innerHTML = '비밀번호와 비밀번호 확인란이 동일합니다';
 			// 서버로의 수정 요청 데이터를 준비
        	 	var data = {
@@ -93,7 +122,7 @@ function updateHandler() {
         	};
 		}else{
 			document.querySelector('#error_msg').innerHTML = '비밀번호와 비밀번호 확인란이 일치하지 않습니다. 다시 입력해주세요.';
-		}
+		}*/
 		
 		
         
@@ -127,7 +156,22 @@ function updateHandler() {
     }
 }
 
+
+
 function init() {
+	
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
+	   
+	if (member) {
+	    currentId = member.id;
+	}
+
+	
+	
+	
+	
     // 닉네임 중복확인 버튼 클릭 시
     document.querySelector('#nickname_check').addEventListener('click', checkNicknameHandler);
 
