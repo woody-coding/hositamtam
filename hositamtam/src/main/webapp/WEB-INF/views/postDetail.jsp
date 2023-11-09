@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>호시탐탐</title>
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -40,7 +40,29 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src=".../js/plikecountTest.js"></script>
+	
+	<script>
+		function init() {
+			
+			let pno = '<%= request.getAttribute("pno") %>';
+			
+			pno = (pno === 'null') ? null : pno;
+		    
+		    console.log('pno : ' + pno + '    /    typeof : ' + typeof(pno));
+		    
+		    // 로컬 스토리지에 저장되어 있는 데이터를 가져옴
+
+	        window.localStorage.removeItem('postNumber');
+  	
+            const postNum = { pno: pno };
+            const postNumber = JSON.stringify(postNum);
+            window.localStorage.setItem('postNumber', postNumber);
+	     
+		}
+	
+		window.addEventListener('load', init);
+	</script>
+<script src="../js/plikecountUpdate.js"></script>
 </head>
 <body>	
 
@@ -58,9 +80,10 @@
 	<div>
 	<h4>${post.ptitle}</h4>
 	${market.mname} | ${post.nickname} | ${post.pregdate}
-	<span class="likeComment">
-	좋아요  ${post.plikecount} | 댓글  ${post.countcomments}
-	</span>
+	
+	<button id="plikecountUpdate"><i class="fa-solid fa-heart"></i></button>
+	<span class="likeComment"><span id="plikecountView"></span> | 댓글  ${post.countcomments}</span>
+	
 	</div>
 	
 	</div>
@@ -69,9 +92,13 @@
 		${post.pcontent}
 	</div>
 	<br/>
-	<image src="${post.pphoto}"></image>
+	<img src="${post.pphoto}"></img>
 	<br/>
 	<hr/>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 432085e43c02f37eb0054f3d37e39fd4478ee9d3
 	<div class="commentInsert row">
 	<form method="POST" action="/finalProject/views/InsertComment">
 	<label for="pno"></label>
@@ -83,7 +110,16 @@
 	<input class="col-1"  type="submit" value="등록">
 	</form>
 	</div>
+<<<<<<< HEAD
 	<c:forEach items="${commentList}" var="comment" varStatus="status">	
+=======
+	<c:forEach items="${commentList}" var="comment">	
+	
+	<div class="commentBox row">
+	<div class="col-2">${comment.cnickname}</div>
+	<div class="col-8">${comment.ccontent}</div>
+	<div class="col-2">${comment.cregdate}</div>
+>>>>>>> 432085e43c02f37eb0054f3d37e39fd4478ee9d3
 	
 	<div class="commentBox row">
 	<div class="col-1">${status.count}</div>

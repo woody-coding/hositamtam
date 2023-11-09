@@ -4,10 +4,13 @@
 
 <!DOCTYPE html>
 <html>
-<head>>
-<title>postForMarketList.jsp</title>
+
+<head>
+<meta charset="EUC-KR">
+<title>호시탐탐</title>
+
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -43,26 +46,31 @@
 
 </head>
 <body>
-	<%@ include file="navi.jsp"%>
-	<div class="section" id="section1">
-		<div class="container mt-5">
-			<div id="mkNameBox">
-				<span id="mkName">호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
-				<button id="whatMarket">시장 선택하기</button>
-				<div class="mkNameList">
-					<form method="GET" action="/finalProject/views/postMain">
-						<c:forEach items="${marketList}" var="market">
-							<label for="mno"></label>
-							<button id="mno" name="mno" value="${market.mno}">${market.mname}</button>
-						</c:forEach>
-					</form>
-				</div>
-			</div>
-			<br />
-			<!-- 차이나는 부분 -->
-			<img src="../images/보고.PNG">
-			<!-- 차이나는 부분 -->
-		</div>
+
+	<%@ include file="navi.jsp" %>
+	<div  class="section" id="section1">
+	<div class="container mt-5">
+	<h3>호시탐탐의 시끌시끌 페이지 입니다</h3>
+	<button id="whatMarket">시장 선택하기</button>
+	<hr/>
+	<div class="mkNameList">
+	<form method="GET" action="/finalProject/views/postMain">
+	<c:forEach items="${marketList}" var="market">
+	<label for="mno"></label>
+	<button id="mno" name="mno" value="${market.mno}">${market.mname}</button>
+	</c:forEach>
+	</form>
+	</div>
+	<hr>
+	<div class="firstShow">
+
+	
+	</div>
+
+	 
+	</div>
+	
+	</div>
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>

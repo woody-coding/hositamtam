@@ -162,6 +162,9 @@ public class OpenMarketToDB {
                     mno++;
                 }
             }
+            
+            System.out.println("DB에 넣기 성공~");
+            
         } catch (Exception e) {	//ParseException | IOException | SQLException e
             e.printStackTrace();
         }

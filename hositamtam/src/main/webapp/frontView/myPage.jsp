@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" import="model.MemberDO" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -16,6 +16,17 @@
       href="https://webfontworld.github.io/gmarket/GmarketSans.css"
       rel="stylesheet"
     />
+    
+    <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+	
+	<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
 
     <!-- Font Awesome -->
     <script
@@ -100,17 +111,17 @@
             <img src="/finalProject/images/icons8-병아리-60.png" />
           </div>
           <div class="mylevel__name">
-            <div class="mylevel__grade">${memberDO.nickname}님의 등급</div>
-            <div>${memberDO.grade}</div>
+            <div class="mylevel__grade">${memberInfo.nickname}님의 등급</div>
+            <div>${gradeName}</div>
           </div>
         </section>
         <div id="mylevel__gage">
           <section class="mylevel__gage">
             <div
               class="mylevel__gage__value"
-              style="width: ${memberDO.exp}%; background-color: #e6007e"
+              style="width: ${memberInfo.exp}%; background-color: #e6007e"
             >
-              ${memberDO.exp}%
+              ${memberInfo.exp}%
             </div>
           </section>
         </div>
@@ -126,10 +137,18 @@
 
       <!-- Profile -->
       <div class="myprofile">
-        <div class="myprofile__name">${memberDO.nickname} 님 (${memberDO.id})</div>
+        <div class="myprofile__name">${memberInfo.nickname} 님 (${userId})</div>
         <div class="modify__delete__button">
-          <button class="myprofile__modify__button">정보수정</button>
-          <button class="myprofile__delete__button">회원탈퇴</button>
+        
+          <form id="updateForm" class="myprofile__modify__form" action="/finalProject/views/myPageUpdate" method="GET">
+          	<input type="hidden" name="id" value="${userId}" />
+          	<button class="myprofile__modify__button" type="submit" id="mypageedit_button" >정보수정</button>
+          </form>
+          
+          <form id="deleteForm" class="myprofile__delete__form" action="/finalProject/views/myPage/deleteMember" method="POST">
+            <input type="hidden" name="id" value="${userId}" />
+            <button class="myprofile__delete__button" type="submit" id="delete_button" >회원탈퇴</button>
+          </form>
         </div>
 
         <section class="myprofile__activity">
@@ -390,7 +409,8 @@
               <i class="fa-solid fa-star myReview__star"></i> 5.0
             </td>
             <td class="myReview__td__contents">
-              핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열핫둘셋넷다여일여아열
+              여기보다 맛있는 집이 있을 수가 없어요 ! 여기보다 맛있는 데가
+              있으면 저한테 한번만 말해주세요 나 진짜 거기 가볼래요
             </td>
             <td class="myReview__td">2023-10-04</td>
           </tr>

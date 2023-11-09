@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="/finalProject/css/login.css" />
 
     <!-- JavaScript -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
     <script src="/finalProject/js/login.js" charset="UTF-8"></script>
     <script>
     
@@ -91,25 +94,6 @@
  -->
 
     <!-- Main -->
-    <!-- Category -->
-    <!-- <section class="category">
-      <div class="category__menu">
-        <ul class="category__list">
-          <li><a class="category__contents">농산물</a></li>
-          <li><a class="category__contents">가공식품</a></li>
-          <li><a class="category__contents">축산물</a></li>
-          <li><a class="category__contents">의류</a></li>
-          <li><a class="category__contents">신발</a></li>
-        </ul>
-        <ul class="category__list">
-          <li><a class="category__contents">음식점</a></li>
-          <li><a class="category__contents">수산물</a></li>
-          <li><a class="category__contents">가정용품</a></li>
-          <li><a class="category__contents">기타</a></li>
-        </ul>
-      </div>
-    </section> -->
-
     <!-- Login -->
     <section id="login" class="section">
       <div class="max-container">
