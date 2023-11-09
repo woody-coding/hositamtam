@@ -26,7 +26,10 @@
 	
 	// 비밀번호 중복확인에 대한 파라미터 가져오기
 	if(command != null && command.equals("checkPassword")){
-		
+		String userId = (String) session.getAttribute("userId");
+
+	    MemberDO user = memberDAO.getMember(userId);
+	    
         memberDO.setPasswd(newPassword);
         
     	 // JSON 형태의 응답 생성
