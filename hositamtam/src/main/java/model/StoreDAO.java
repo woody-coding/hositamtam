@@ -1053,85 +1053,182 @@ public class StoreDAO {
 	
 	
 	
-	// 해당 점포에 폐업제보 수 +1 하고, 누적 폐업 제보 수 반환하기
-	public String notStore(int sno) {
-		ArrayList<StoreDO> storeList = new ArrayList<StoreDO>();
-		
-		JSONArray jsonArray = new JSONArray();
-		JSONObject jsonObject = null;
-		
-		sql = "SELECT s.sno, s.sname, s.slat, s.slng, s.stype, s.sphoto, s.sfavoritecount, s.scategory,\r\n"
-				+ "  (SELECT nickname FROM member WHERE member.id = s.id) AS nickname,\r\n"
-				+ "  r.savgrating,\r\n"
-				+ "  c.sreviewcount\r\n"
-				+ "FROM store s\r\n"
-				+ "LEFT JOIN (\r\n"
-				+ "  SELECT sno, AVG(rrating) AS savgrating\r\n"
-				+ "  FROM review\r\n"
-				+ "  GROUP BY sno\r\n"
-				+ ") r ON s.sno = r.sno\r\n"
-				+ "LEFT JOIN (\r\n"
-				+ "  SELECT sno, COUNT(rno) AS sreviewcount\r\n"
-				+ "  FROM review\r\n"
-				+ "  GROUP BY sno\r\n"
-				+ ") c ON s.sno = c.sno\r\n"
-				+ "WHERE s.mno = ?\r\n"
-				+ "order by nvl(s.sfavoritecount, 0) desc";
+	// 해당 점포에 폐업제보 수 +1 하고 해당 id가 해당 점포에 폐업 제보했는지 여부 반환하기
+	public String notStore(int sno, String id) {
+	    JSONArray jsonArray = new JSONArray();
+	    JSONObject jsonObject = new JSONObject();
 
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, sno);
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				StoreDO storeDO = new StoreDO();
-				
-				storeDO.setSavgrating(rs.getDouble("savgrating"));
-				storeDO.setSreviewcount(rs.getInt("sreviewcount"));
-				storeDO.setSno(rs.getInt("sno"));
-				storeDO.setSname(rs.getString("sname"));
-				storeDO.setSlat(rs.getString("slat"));
-				storeDO.setSlng(rs.getString("slng"));
-				storeDO.setStype(rs.getString("stype"));	
-				storeDO.setSphoto(rs.getString("sphoto"));
-				storeDO.setSfavoritecount(rs.getInt("sfavoritecount"));
-				storeDO.setScategory(rs.getString("scategory"));
-				storeDO.setNickname(rs.getString("nickname"));
+	    try {
+	        // 제보 상태 확인
+	        String sqlCheck = "SELECT 1 FROM member_store_close WHERE sno = ? AND id = ?";
+	        pstmt = conn.prepareStatement(sqlCheck);
+	        pstmt.setInt(1, sno);
+	        pstmt.setString(2, id);
+	        ResultSet rs = pstmt.executeQuery();
 
-				storeList.add(storeDO);
+	        if (rs.next()) {
+	            // 이미 제보를 클릭한 경우: 제보 취소
+	            // 제보 수 감소 쿼리 실행
+	            String sqlUpdate = "UPDATE store SET sclosecount = sclosecount - 1 WHERE sno = ?";
+	            pstmt = conn.prepareStatement(sqlUpdate);
+	            pstmt.setInt(1, sno);
+	            pstmt.executeUpdate();
+
+	            // 제보 정보 삭제 쿼리 실행
+	            String sqlDelete = "DELETE FROM member_store_close WHERE sno = ? AND id = ?";
+	            pstmt = conn.prepareStatement(sqlDelete);
+	            pstmt.setInt(1, sno);
+	            pstmt.setString(2, id);
+	            pstmt.executeUpdate();
+	            
+	            jsonObject.put("closeStatus", "x");
+	        } 
+	        else {
+		        // 제보 수 조회
+	        	
+		        String sqlCount = "SELECT sclosecount FROM store WHERE sno = ?";
+		        pstmt = conn.prepareStatement(sqlCount);
+		        pstmt.setInt(1, sno);
+		        rs = pstmt.executeQuery();
+
+		        if (rs.next()) {
+		            int sclosecount = rs.getInt("sclosecount");
+		                     
+		            if(sclosecount < 2) {
+			            // 제보 안한 경우 또는 취소된 경우: 제보 추가
+			            // 제보 수 증가 쿼리 실행
+			            String sqlUpdate = "UPDATE store SET sclosecount = sclosecount + 1 WHERE sno = ?";
+			            pstmt = conn.prepareStatement(sqlUpdate);
+			            pstmt.setInt(1, sno);
+			            pstmt.executeUpdate();
+
+			            // 제보 정보 추가 쿼리 실행
+			            String sqlInsert = "INSERT INTO member_store_close VALUES (?, ?)";
+			            pstmt = conn.prepareStatement(sqlInsert);
+			            pstmt.setInt(1, sno);
+			            pstmt.setString(2, id);
+			            pstmt.executeUpdate();
+			            
+			            jsonObject.put("closeStatus", "o");    	
+			        } 
+		            else {
+		            	String sql1 = "delete from store_payment where sno = ?";
+			            pstmt = conn.prepareStatement(sql1);
+			            pstmt.setInt(1, sno);
+			            pstmt.executeUpdate();
+			            
+		            	String sql2 = "delete from review where sno = ?";
+			            pstmt = conn.prepareStatement(sql2);
+			            pstmt.setInt(1, sno);
+			            pstmt.executeUpdate();
+			            
+            			String sql3 = "delete from member_store_favorite where sno = ?";
+			            pstmt = conn.prepareStatement(sql3);
+			            pstmt.setInt(1, sno);
+			            pstmt.executeUpdate();
+			            
+    					String sql4 = "delete from member_store_close where sno = ?";
+			            pstmt = conn.prepareStatement(sql4);
+			            pstmt.setInt(1, sno);
+			            pstmt.executeUpdate();
+			            
+						String sql5 = "delete from store where sno = ?";
+			            pstmt = conn.prepareStatement(sql5);
+			            pstmt.setInt(1, sno);
+			            pstmt.executeUpdate();
+			        }
+		        }
+	        	
+		        // 최종 카운트 세기
+		        pstmt = conn.prepareStatement(sqlCount);
+		        pstmt.setInt(1, sno);
+		        rs = pstmt.executeQuery();
+		     
+		        if(rs.next()) {
+		        	jsonObject.put("sclosecount", rs.getInt("sclosecount"));
+		        }
+		        
+	            
+	        }
+
+	        // 결과 JSON 객체 생성
+	        jsonObject.put("sno", sno);
+	        jsonObject.put("id", id);
+
+
+
+	        jsonArray.add(jsonObject);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
 	            }
-			
-				for(StoreDO store : storeList) {
-					jsonObject = new JSONObject(); // jsonObject 초기화
-					
-					jsonObject.put("savgrating", store.getSavgrating());
-					jsonObject.put("sreviewcount", store.getSreviewcount());
-					jsonObject.put("sno", store.getSno());
-					jsonObject.put("sname", store.getSname());
-					jsonObject.put("slat", store.getSlat());
-					jsonObject.put("slng", store.getSlng());
-					jsonObject.put("stype", store.getStype());
-					jsonObject.put("sphoto", store.getSphoto());
-					jsonObject.put("sfavoritecount", store.getSfavoritecount());
-					jsonObject.put("scategory", store.getScategory());
-					jsonObject.put("nickname", store.getNickname());
-					
-					jsonArray.add(jsonObject);
-				}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return jsonArray.toJSONString();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return jsonArray.toJSONString();
+	}
+	
+	
+	
+	
+	
+	
+	// 현재 접속한 id가 해당 sno점포에 제보를 했는지 안했는지 여부 판단 + 해당 sno점포의 최신 제보 개수 가져오기
+	public String notStoreStatus(int sno, String id) {
+	    JSONArray jsonArray = new JSONArray();
+	    JSONObject jsonObject = new JSONObject();
+
+	    try {
+	        // 제보 상태 확인
+	        String sqlCheck = "SELECT 1 FROM member_store_close WHERE sno = ? AND id = ?";
+	        pstmt = conn.prepareStatement(sqlCheck);
+	        pstmt.setInt(1, sno);
+	        pstmt.setString(2, id);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            // 이미 제보를 클릭한 경우
+	            jsonObject.put("closeStatus", "o");
+	        } 
+	        else {
+	            // 제보 안한 경우 또는 취소된 경우
+	            jsonObject.put("closeStatus", "x");
+	        }
+
+	        // 결과 JSON 객체 생성
+	        jsonObject.put("sno", sno);
+	        jsonObject.put("id", id);
+
+	        // 제보 수 조회
+	        String sqlCount = "SELECT sclosecount FROM store WHERE sno = ?";
+	        pstmt = conn.prepareStatement(sqlCount);
+	        pstmt.setInt(1, sno);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            int sclosecount = rs.getInt("sclosecount");
+	            jsonObject.put("sclosecount", sclosecount);
+	        }
+
+	        jsonArray.add(jsonObject);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return jsonArray.toJSONString();
 	}
 	
 	

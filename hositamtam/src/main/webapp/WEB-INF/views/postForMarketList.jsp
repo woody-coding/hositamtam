@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="EUC-KR">
 <title>호시탐탐</title>
+
 <!-- Favicon -->
 <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
@@ -40,8 +42,11 @@
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../js/postMain.js"></script>
+<script src="../js/postList.js"></script>
+
 </head>
 <body>
+
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
@@ -67,7 +72,6 @@
 	
 	</div>
 	</div>
-	
-	<%@ include file="footer.jsp" %>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

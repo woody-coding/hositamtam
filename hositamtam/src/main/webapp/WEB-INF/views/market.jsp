@@ -57,8 +57,8 @@
 	    cateno = (cateno === 'null') ? null : cateno;
 	    msg = (msg === 'null') ? null : msg;
 	    
-	    console.log('keyword : ' + keyword + '    /    typeof : ' + typeof(keyword));
-	    console.log('cateno : ' + cateno + '    /    typeof : ' + typeof(cateno));
+	    //console.log('keyword : ' + keyword + '    /    typeof : ' + typeof(keyword));
+	    //console.log('cateno : ' + cateno + '    /    typeof : ' + typeof(cateno));
 	
 	    // 기존의 로컬은 무조건 삭제 후, 다시 등록
 		window.localStorage.removeItem('KeywordAndCateno');
