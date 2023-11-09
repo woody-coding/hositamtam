@@ -208,8 +208,12 @@ button{
 }
 
 .imgContainer img{
-    width: 300px;
-
+    width: 450px;
+	height: 260px;
+}
+.infoImgContainer img {
+	width: 370px;
+	height: 260px;
 }
 #mkListResult{
     overflow: auto;
@@ -258,7 +262,7 @@ button{
     top: 0; /* hover 상태에서 down을 아래로 이동하여 표시 */
   }
 .infoContent{
-    width: 350px;
+    width: 380px;
     padding: 5px;
     /* background-color: #eeeeee; */
 }
