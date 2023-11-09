@@ -186,7 +186,7 @@ button{
     
 }
 
-#mkImg img{
+.imgContainer img{
     width: 300px;
 
 }
@@ -258,6 +258,7 @@ button{
     line-height: 40px;
     text-decoration: none;
 }
+
 .countContainer{
     display: flex;
 }
