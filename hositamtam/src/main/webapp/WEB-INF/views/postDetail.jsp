@@ -69,7 +69,6 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	<c:forEach items="${post}" var="post">	
 	<h2>${market.mname}의 게시글 상세 페이지입니다.</h2>
 	<hr/>
 	<div>커뮤니티 > ${post.pcategory}</div>
@@ -95,10 +94,6 @@
 	<img src="${post.pphoto}"></img>
 	<br/>
 	<hr/>
-<<<<<<< HEAD
-=======
-	
->>>>>>> 432085e43c02f37eb0054f3d37e39fd4478ee9d3
 	<div class="commentInsert row">
 	<form method="POST" action="/finalProject/views/InsertComment">
 	<label for="pno"></label>
@@ -110,16 +105,13 @@
 	<input class="col-1"  type="submit" value="등록">
 	</form>
 	</div>
-<<<<<<< HEAD
 	<c:forEach items="${commentList}" var="comment" varStatus="status">	
-=======
 	<c:forEach items="${commentList}" var="comment">	
 	
 	<div class="commentBox row">
 	<div class="col-2">${comment.cnickname}</div>
 	<div class="col-8">${comment.ccontent}</div>
 	<div class="col-2">${comment.cregdate}</div>
->>>>>>> 432085e43c02f37eb0054f3d37e39fd4478ee9d3
 	
 	<div class="commentBox row">
 	<div class="col-1">${status.count}</div>
@@ -130,7 +122,7 @@
 	<div class="col-1"><button onclick="location.href='/finalProject/views/deleteComment?cno=${comment.cno}&pno=${post.pno}'">삭제</button></div>
 	</c:if>
 	</div>
-
+	</div>
 	</c:forEach>
 	<!-- <%@ include file="commentList.jsp" %> -->
 	</c:forEach>
