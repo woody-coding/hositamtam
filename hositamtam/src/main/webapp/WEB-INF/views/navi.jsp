@@ -28,7 +28,7 @@
 
       <nav class="mainHeader__nav">
         <ul class="mainHeader__menu">
-          <li><a class="mainHeader__menu__item">서비스안내</a></li>
+          <li><a href="#section2" class="mainHeader__menu__item">서비스안내</a></li>
           <li><a href="/finalProject/views/post" class="mainHeader__menu__item">시끌시끌</a></li>
           <li><a href="#" class="mainHeader__menu__item dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             카테고리

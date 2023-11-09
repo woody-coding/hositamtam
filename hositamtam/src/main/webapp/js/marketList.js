@@ -216,7 +216,7 @@ function marketAjaxHandler() {
 					            '<div class="row">' +
 					                '<p class="mkName" id="'+ allMarketList[i].mno +'">' + allMarketList[i].mname + '</p>' +
 					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
-					                '<p>화장실 ' + allMarketList[i].mtoilet + ' 주차장 ' + allMarketList[i].mparking + '<p>' +
+					                '<p class="mkEtc">화장실 ' + allMarketList[i].mtoilet + ' 주차장 ' + allMarketList[i].mparking + '<p>' +
 					            '</div>' +
 					        '</div>'
 		}
