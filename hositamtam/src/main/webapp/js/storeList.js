@@ -10,6 +10,30 @@ let mname;
 
 
 
+function notStoreConfirm() {
+  Swal.fire({
+    title: "정말 제보를 하시겠습니까?",
+    text: "제보 후 다시 되돌릴 수 없습니다. 신중하세요.",
+    icon: "warning",
+    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+    confirmButtonColor: "#3085D6", // confrim 버튼 색깔 지정
+    cancelButtonColor: "#d33", // cancel 버튼 색깔 지정
+    confirmButtonText: "진행", // confirm 버튼 텍스트 지정
+    cancelButtonText: "취소", // cancel 버튼 텍스트 지정
+    reverseButtons: true, // 버튼 순서 거꾸로
+  }).then((result) => {
+    // 만약 Promise리턴을 받으면,
+    if (result.isConfirmed) {
+      // 만약 모달창에서 confirm 버튼을 눌렀다면
+      Swal.fire("감사합니다. 정상적으로 제보가 접수되었습니다!", "success");
+    }
+  });
+}
+
+
+
+
+
 
 // mno 값을 매개변수로 해당 시장의 중심좌표, 시장명 반환
 function latLngAjaxHandler() {
@@ -124,7 +148,7 @@ function notStore() {
 	xhr.onreadystatechange = notStoreHandler;
 	
 	if(currentId) {
-		if (confirm('정말로 제보를 하시겠습니까? 제보 수 합계 3건에 도달 시 자동으로 해당 점포에 대한 정보는 삭제됩니다. 한번 제보 시 취소가 불가능하니 신중하게 결정해주세요!')) {
+		if (notStoreConfirm()) {
 			
 	    // 사용자가 확인 버튼을 클릭한 경우
 	    let param = '?command=notStore&sno=' + currentSno + '&id=' + currentId;

@@ -47,7 +47,7 @@ public class JsonMarketStore {
 	
 	
 	@SuppressWarnings("unchecked")
-	public String getCheckPasswd(MemberDO memberDO) {
+	public String getCheckPasswd(String newPassword, String id) {
 		JSONObject jsonObject = new JSONObject();
 		// MemberDAO를 사용하여 닉네임 중복 확인
 		boolean isPasswdDuplicate = false;
