@@ -1,13 +1,18 @@
+<%@page import="model.PostDO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<% String userId = (String)session.getAttribute("userId"); 
+	String url = "/finalProject/views/toPostUpdate";
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>호시탐탐</title>
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -34,88 +39,84 @@
 ​
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="../js/postMain.js"></script>
-	<script src="../js/postList.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="../js/postMain.js"></script>
+<script src="../js/postList.js"></script>
 </head>
-<body>
-	<%@ include file="navi.jsp" %>
-	<div  class="section" id="section1">
-	<div class="container mt-5">
-	<div id="mkNameBox">
-	<span id="mkName">호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
-	<button id="whatMarket">시장 선택하기</button>
-	<div class="mkNameList">
-	<form method="GET" action="/finalProject/views/postMain">
-	<c:forEach items="${marketList}" var="market">
-	<label for="mno"></label>
-	<button id="mno" name="mno" value="${market.mno}">${market.mname}</button>
-	</c:forEach>
-	</form>
+
+	<body>
+		<%@ include file="navi.jsp"%>
+	<div class="section" id="section1">
+		<div class="container mt-5">
+			<div id="mkNameBox">
+				<span id="mkName">호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
+			</div>
+			<br />
+			<form method="GET" action="/finalProject/views/toPostUpdate" id="insert">
+				<label for="mno"></label>
+				<button id="writePost">
+					<i class="bi bi-pencil-square"></i>글 등록
+				</button>
+				<input type="hidden" name="mno" value="${market.mno}">
+			</form>
+			<hr />
+
+			<div class="list">
+				<form method="GET" action="/finalProject/views/postMain">
+					<label for="mno"></label>
+					<button class="tab-button blue" >전체글</button>
+					<input type="hidden" name="mno" value="${market.mno}">
+				</form>
+
+				<form method="GET" action="/finalProject/views/postHot">
+					<label for="mno"></label>
+					<button class="tab-button" >인기글</button>
+					<input type="hidden" name="mno" value="${market.mno}">
+				</form>
+
+				<form method="GET" action="/finalProject/views/postCategory">
+					<label for="pCategory"></label>
+					<button  class="tab-button" name="pCategory" value="궁금해요" data-id="2">궁금해요</button>
+					<button  class="tab-button" name="pCategory" value="도와주세요" data-id="3">도와주세요</button>
+					<button  class="tab-button" name="pCategory" value="소통해요" data-id="4">소통해요</button>
+					<button class="tab-button" name="pCategory" value="시장소식" data-id="5"> 시장소식</button>
+					<input type="hidden" name="mno" value="${market.mno}">
+				</form>
+			</div>
+
+			<table id="postlistTable">
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성일자</th>
+					<th>좋아요</th>
+					<th>작성자</th>
+					<th>댓글</th>
+					<th>카테고리</th>
+
+				</tr>
+				<c:forEach items="${postList}" var="post" varStatus="status">
+					<tr>
+						<td id="${post.pno}">${status.count}</td>
+						<td id="${post.pno}">${post.ptitle}</td>
+						<td id="${post.pno}">${post.pcontent}</td>
+						<td id="${post.pno}">${post.pregdate}</td>
+						<td id="${post.pno}">${post.plikecount}</td>
+						<td id="${post.pno}">${post.nickname}</td>
+						<td id="${post.pno}">${post.countcomments}</td>
+						<td id="${post.pno}">${post.pcategory}</td>
+						<c:if test="${post.id == userId}">
+						<th><button type="button" onclick="location.href='/finalProject/views/toPostUpdateModify?mno=${market.mno}&pno=${post.pno}'">수정</button></th>
+						</c:if>
+						<c:if test="${post.id != userId}">
+						<th><button>글 숨기기</button></th>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+
 	</div>
-	</div>
-	<br/>
-	<form method="GET" action="/finalProject/views/toPostUpdate" id="insertPost">
-	<label for="mno"></label>
-	<button id="writePost"><i class="bi bi-pencil-square"></i>글쓰기</button>
-	<input type="hidden">
-	</form>
-	<hr/>
-	
-	<div class="list">
-	<form method="GET" action="/finalProject/views/postMain">
-	<label for="mno"></label>
-	<button>전체글</button>
-	<input type="hidden" name="mno" value="${market.mno}">
-	</form>
-	
-	<form method="GET" action="/finalProject/views/postHot">
-	<label for="mno"></label>
-	<button>인기글</button>
-	<input type="hidden" name="mno" value="${market.mno}">
-	</form>
-	
-	<form  method="GET" action="/finalProject/views/postCategory">
-	<label for="pCategory"></label>
-	<button id="pCategory" name="pCategory" value="궁금해요">궁금해요</button>
-	<button id="pCategory" name="pCategory" value="도와주세요">도와주세요</button>
-	<button id="pCategory" name="pCategory" value="소통해요">소통해요</button>
-	<button id="pCategory" name="pCategory" value="시장소식">시장소식</button>
-	<input type="hidden" name="mno" value="${market.mno}">
-	</form>
-	</div>
-	
-	<table id="postlistTable">
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성일자</th>
-			<th>좋아요</th>
-			<th>작성자</th>
-			<th>댓글</th>
-			<th>카테고리</th>
-			
-		</tr>
-	<c:forEach items="${postList}" var="post" varStatus="status">
-		<tr >
-			<td id="${post.pno}">${status.count}</td>
-			<td id="${post.pno}">${post.ptitle}</td>
-			<td id="${post.pno}">${post.pcontent}</td>
-			<td id="${post.pno}">${post.pregdate}</td>
-			<td id="${post.pno}">${post.plikecount}</td>
-			<td id="${post.pno}">${post.nickname}</td>
-			<td id="${post.pno}">${post.countcomments}</td>
-			<td id="${post.pno}">${post.pcategory}</td>
-			<th id="postOrHide">⁝</th>
-		</tr>
-	</c:forEach>
-	</table>
-	</div>
-	</div>
-	
-	<%@ include file="footer.jsp" %>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

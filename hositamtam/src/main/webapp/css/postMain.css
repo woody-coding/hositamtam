@@ -53,7 +53,6 @@ button {
 .list {
     display: flex;
    
-   
     margin: 0;
     padding: 0;
     border-bottom: 2px solid #0188CC;
@@ -63,43 +62,34 @@ button {
     display: block;
     clear: both;
 }*/
-.list button{
+.tab-button{
 	 display: block;
-    padding: 10px 20px 10px 20px;
+	 width: 120px;
+    padding: 5px 5px 5px 5px;
     float: left;
    margin-bottom: 2px;
     margin-left: 2px;
-    color: grey;
+    color: black;
     text-decoration: none;
-    border: 0px;
+    border: 1px solid black;
     font-weight: bold;
+    background-color: white;
     
 }
 .list button:hover{
-    background-color: #0188CC;
-    border-radius: 10px;
-    color: black;
+    
+    border: 1px solid #0188CC;
     
 }
-
-.tab-content {
-    display: none;
-    padding: 10px;
+.blue{
     
-
-}
-#tab-contentBox{
-    border-bottom: 1px solid #0188CC;
-  
+     background-color: #0188CC;
+     color: white;
 }
 .commentBox{
     display: flex;
 }
 
-.show-more{
-    display: block;
-
-}
 
 .firstShow{
     width: 700px;
@@ -110,13 +100,6 @@ button {
 
 }
 
-.form-hide{
-    display: none;
-}
-
-#tabCategory{
-    color: gray;
-}
 
 
 #commentInput{

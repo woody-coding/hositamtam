@@ -45,6 +45,7 @@ sno 		number(5)
 , constraint 	store_photo_ck 		check (substr(sphoto, -3) in ('png', 'jpg') or substr(sphoto, -4) = 'jpeg')
 , constraint 	store_category_ck 		check (length(scategory) between 2 and 10)
 , constraint 	store_sfavoritecount_ck 	check (sfavoritecount >= 0)
+, constraint 	store_sclosecount_ck 	check (sclosecount between 0 and 3)
 );
 
 --* 더미 데이터)

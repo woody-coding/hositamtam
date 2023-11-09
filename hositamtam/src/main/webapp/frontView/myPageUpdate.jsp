@@ -115,6 +115,7 @@
                   type="text"
                   id="change-nickname"
                   name="change-nickname"
+                  maxlength="8"
                   placeholder="닉네임"
                 />
                 <button class="duplication__check" id="nickname_check">중복확인</button>

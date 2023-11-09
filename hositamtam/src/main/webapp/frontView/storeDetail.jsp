@@ -81,31 +81,25 @@
     <!-- Store Detail -->
     <section id="storeDetail" class="max-container">
       <div class="storeDetail__info">
+      	<h4 class="storeDetail__h4 storeDetail__star">
+           <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
+        </h4>
         <button class="storeDetail__like">
           <i class="fa-solid fa-heart"></i>
+          <div class="storeDetail__like__count">124</div>
         </button>
-        <p id="storeLikeCount"></p>
+        <!-- <p id="storeLikeCount"></p> -->
         
-        ${store.nickname} 님이 등록한 점포입니다.
+        <span class="storeDetail__title">${store.sname}</span>
+        
         <button class="storeDetail__modify">점포 수정</button>
       </div>
-      <div class="storeDetail__star__name">
-        <span>
-          <h4 class="storeDetail__h4 storeDetail__star">
-            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; 4.0
-          </h4>
-        </span>
-        <span>
-          <h4 class="storeDetail__h4 storeDetail__name">
-            ${store.sname}
-          </h4>
-        </span>
-      </div>
+      
       <div class="storeDetail__storeType">
         <span class="storeDetail__storeType__title">
           <h4 class="storeDetail__h4">점포 형태</h4>
         </span>
-        <%-- <span>${storeDO.stype}</span> --%>
+        <%-- <span>${store.stype}</span> --%>
         <input type="checkbox" name="stype" value="좌판" <c:if test="${store.stype eq '좌판'}">checked="checked"</c:if>><span>좌판</span>
         <input type="checkbox" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if>><span>매장</span>
       </div>
@@ -113,7 +107,7 @@
         <span class="storeDetail__payment__title">
           <h4 class="storeDetail__h4">결제 방식</h4>
         </span>
-        <%-- <span>${storeDO.payno}</span> --%>
+        <%-- <span>${storePayment.paytype}</span> --%>
         <c:forEach var="storePayment" items="${storePaymentList}">
         	<input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked"><span>${storePayment.paytype}</span>
         </c:forEach>
@@ -123,6 +117,12 @@
           <h4 class="storeDetail__h4">취급 품목</h4>
         </span>
         <span>${store.scategory}</span>
+      </div>
+      <div class="storeDetail__storeType">
+        <span class="storeDetail__storeInsert__name">
+          <h4 class="storeDetail__h4">점포 등록자</h4>
+        </span>
+        <span>'${store.nickname}' 님</span>
       </div>
       <div>
         <img src="../images/${store.sphoto}" class="storeDetail__photo"/>
@@ -152,12 +152,13 @@
         <form id="review__form" style="display: none">
           <div class="review__form">
             <label class="review__label">
-              <input
+              <textarea
                 class="review__input"
-                type="text"
                 id=""
-                placeholder="리뷰를 남겨주세요."
-              />
+                name="review"
+                maxlength="100"
+                placeholder="리뷰를 남겨주세요.(최대 100자)"
+              ></textarea>
             </label>
           </div>
 

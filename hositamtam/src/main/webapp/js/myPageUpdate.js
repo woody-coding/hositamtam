@@ -46,13 +46,13 @@ function ajaxPasswdChangeHandler() {
 	    var response = JSON.parse(xhr.responseText);
 	    if (response.isDuplicate === true) {
 	        // 전에 사용하던 비밀번호일 경우 메시지 표시
-	        nicknameValid = false;
-	        document.querySelector('#error_msg').innerHTML += '전에 사용하던 비밀번호입니다. 다른 비밀번호를 입력해주세요.';
+	        passwdValid = false;
+	        document.querySelector('#error_msg').innerHTML = '전에 사용하던 비밀번호입니다. 다른 비밀번호를 입력해주세요.';
 	        
 	    } else {
 	        // 중복되지 않은 닉네임일 경우 닉네임 사용가능 표시
-	        nicknameValid = true;
-	        document.querySelector('#error_msg').innerHTML += '사용 가능한 비밀번호입니다.';
+	        passwdValid = true;
+	        document.querySelector('#error_msg').innerHTML = '사용 가능한 비밀번호입니다.';
 	        
 	    }
 	}
@@ -66,13 +66,14 @@ function checkPasswdHandler() {
     // AJAX를 사용하여 서버에 중복 확인 요청
     xhr.onreadystatechange = ajaxPasswdChangeHandler;
     
-    xhr.open('POST', '/finalProject/AjaxController.jsp?command=updateProfile&passwd=' + newPassword, true);
+    xhr.open('POST', '/finalProject/AjaxController.jsp?command=checkPassword&password=' + newPassword, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.send(newPassword);
 }
 
 
+//===========================================================================================================
 
 
 // 최종 수정하기 요청하는 JavaScript 함수
@@ -82,24 +83,32 @@ function updateHandler() {
         var newPassword = document.getElementById('change-password').value;
         var confirmPassword = document.getElementById('confirm__password').value;
 
-        // 서버로의 수정 요청 데이터를 준비
-        var data = {
-            newNickname: newNickname,
-            newPassword: newPassword,
-            confirmPassword: confirmPassword
-        };
+		if(newPassword == confirmPassword){
+			document.querySelector('#error_msg').innerHTML = '비밀번호와 비밀번호 확인란이 동일합니다';
+			// 서버로의 수정 요청 데이터를 준비
+       	 	var data = {
+            	newNickname: newNickname,
+           	 	newPassword: newPassword,
+            	confirmPassword: confirmPassword
+        	};
+		}else{
+			document.querySelector('#error_msg').innerHTML = '비밀번호와 비밀번호 확인란이 일치하지 않습니다. 다시 입력해주세요.';
+		}
+		
+		
+        
 
         // 서버로 최종 수정 요청을 보내는 AJAX 요청
         
-        updateXhr.open('POST', '/finalProject/AjaxController.jsp', true);
+        updateXhr.open('POST', '/finalProject/AjaxController.jsp?command=changeProfile', true);
         updateXhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         updateXhr.onreadystatechange = function () {
-            if (updateXhr.readyState === 4) {
-                if (updateXhr.status === 200) {
+            if (updateXhr.readyState === 4 && updateXhr.status === 200) {
                     // 수정 성공 시, 서버 응답 처리
                     var response = JSON.parse(updateXhr.responseText);
-                    if (response.success) {
+                    if (response.success == true) {
                         // 수정 성공 시의 동작을 수행 (예: 메시지 출력 또는 리다이렉트)
+                        window.location.href = '/finalProject/views/myPage';
                     } else {
                         // 수정 실패 시의 동작을 수행 (예: 에러 메시지 출력)
                         console.log(response.message);
@@ -107,7 +116,6 @@ function updateHandler() {
                 } else {
                     // 서버 응답 오류 처리
                     console.error('서버 응답 오류');
-                }
             }
         };
 
@@ -122,6 +130,9 @@ function updateHandler() {
 function init() {
     // 닉네임 중복확인 버튼 클릭 시
     document.querySelector('#nickname_check').addEventListener('click', checkNicknameHandler);
+
+	// 비밀번호 입력후 확인란 포커스 맞춰질때 비밀번호 중복확인
+	document.querySelector('#confirm__password').addEventListener('focus', checkPasswdHandler);
 
     // 수정하기 버튼 클릭 시
     document.querySelector('#update_button').addEventListener('click', updateHandler);
