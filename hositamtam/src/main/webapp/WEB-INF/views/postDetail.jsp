@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% String userId = (String)session.getAttribute("userId"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,31 +72,33 @@
 	<image src="${post.pphoto}"></image>
 	<br/>
 	<hr/>
-	<div id="plikecountUpdate">좋아요 수 : ${post.plikecount}</div>
-	<div>댓글 수 : ${post.countcomments}</div>
-
+	<div class="commentInsert row">
 	<form method="POST" action="/finalProject/views/InsertComment">
 	<label for="pno"></label>
 	<input type="hidden" name="pno" value="${post.pno}">
 	<label for="id"></label>
-	<input type="hidden" name="id" value="${post.id}">
-	<label for="ccontent">댓글</label>
-	<input type="text" name="ccontent" placeholder="댓글을 남겨보세요.">
-	<input type="submit" value="등록">
+	<input  type="hidden" name="id" value="${post.id}">
+	<label class="col-2"  for="ccontent">댓글</label>
+	<input class="col-8" type="text" name="ccontent" placeholder="댓글을 남겨보세요.">
+	<input class="col-1"  type="submit" value="등록">
 	</form>
-	<c:forEach items="${commentList}" var="comment">	
-	<br/>
-	<br/>
-	<div class="commentBox">
-	<div>${comment.cnickname}</div>
-	<div>${comment.ccontent}</div>
-	<div>${comment.cregdate}</div>
+	</div>
+	<c:forEach items="${commentList}" var="comment" varStatus="status">	
 	
+	<div class="commentBox row">
+	<div class="col-1">${status.count}</div>
+	<div class="col-1">${comment.cnickname}</div>
+	<div class="col-6">${comment.ccontent}</div>
+	<div class="col-2">${comment.cregdate}</div>
+	<c:if test="${post.id == userId}">
+	<div class="col-1"><button onclick="location.href='/finalProject/views/deleteComment?cno=${comment.cno}&pno=${post.pno}'">삭제</button></div>
+	</c:if>
 	</div>
-	<hr/>
+
 	</c:forEach>
+	<!-- <%@ include file="commentList.jsp" %> -->
 	</c:forEach>
-	</div>
+	</div><hr/>
 	</div>
 	<%@ include file="footer.jsp" %>
 </body>

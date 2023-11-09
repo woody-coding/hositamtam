@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>postUpdate.jsp</title>
+<title>postInsert.jsp</title>
 <!-- Favicon -->
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
@@ -42,35 +42,30 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	<c:forEach items="${post}" var="post">
 	<h2>${market.mname}의 게시글 등록 페이지입니다.</h2>
-	<form method="POST" action="/finalProject/views/postUpdate" enctype="multipart/form-data">
-	<label for="pcategory">카테고리</label>
-		<input type="radio" name="pcategory" value="궁금해요" ${post.pcategory eq '궁금해요' ? 'checked' : ''}/>궁금해요
-		<input type="radio" name="pcategory" value="도와주세요" ${post.pcategory eq '도와주세요' ? 'checked' : ''}/>도와주세요
-		<input type="radio" name="pcategory" value="소통해요" ${post.pcategory eq '소통해요' ? 'checked' : ''}/>소통해요
-		<input type="radio" name="pcategory" value="시장소식" ${post.pcategory eq '시장소식' ? 'checked' : ''}/>시장소식
+	<form method="POST" action="/finalProject/views/postInsert" enctype="multipart/form-data">
+	<label for="pcategory">카테고리</label> 	
+	<input type="radio" name="pcategory" value="궁금해요" />궁금해요
+	<input type="radio" name="pcategory" value="도와주세요" />도와주세요
+	<input type="radio" name="pcategory" value="소통해요" />소통해요
+	<input type="radio" name="pcategory" value="시장소식" />시장소식
 	<br>
 	<label for="ptitle">제목</label>
-		<input type="text" name="ptitle" value="${post.ptitle}" placeholder="제목을 입력하세요" />
+	<input type="text" name="ptitle" placeholder="제목을 입력하세요" />
 	<br>
 	<label for="pcontent">내용</label>
-		<input type="text" name="pcontent" value="${post.pcontent}" placeholder="내용을 입력하세요" />
+	<input type="text" name="pcontent" placeholder="내용을 입력하세요" />
 	<br>
 	<label for="pphoto">사진</label>
-		<input type="file" name="pphoto" value="${post.pphoto}" />
+	<input type="file" name="pphoto" />
 	<br>
 	<label for="mno"></label>
-		<input type="hidden" name="mno" value="${market.mno}"/>
+	<input type="hidden" name="mno" value="${market.mno}"/>
 	<label for="id"></label>
-		<input type="hidden" name="id" value="${userId}"/>
-	<label for="pno"></label>
-		<input type="hidden" name="pno" value="${post.pno}"/>
-	<input type="submit" value="수정하기">
-		<input type="button" onclick="location.href='/finalProject/views/deletePost?pno=${post.pno}&mno=${market.mno}'" value="삭제하기">
+	<input type="hidden" name="id" value="${userId}"/>
+	<input type="submit" value="등록하기">
 	
 	</form>
-	</c:forEach>
 	</div>
 	
 	</div>

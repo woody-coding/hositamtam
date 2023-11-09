@@ -345,16 +345,54 @@ public class PostDAO {
 			}
 			return rowCount;
 		}
+		// 글 수정 기능
+		public int updatePost(PostDO post) {
+		    int rowCount = 0;
+		    this.sql = "UPDATE post SET mno=?, ptitle=?, pcontent=?, pphoto=?, pcategory=? WHERE pno=?";
+		    
+		    try {
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setInt(1, post.getMno());
+		        pstmt.setString(2, post.getPtitle());
+		        pstmt.setString(3, post.getPcontent());
+		        pstmt.setString(4, post.getPphoto());
+		        pstmt.setString(5, post.getPcategory());
+		        pstmt.setInt(6, post.getPno());
+		        
+		        rowCount = pstmt.executeUpdate();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (!pstmt.isClosed()) {
+		                pstmt.close();
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return rowCount;
+		}
 		// 글 삭제
-		public void deletePost(int pno) {
-			PostDO psoDo = new PostDO();
-			
-			sql = "delete from from where pno = ?";
-			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, pno);
-				
+		public int deletePost(int pno) {
+		    int rowCount = 0;
+
+		    // 댓글 삭제
+		    String deleteCommentsSQL = "DELETE FROM comments WHERE pno = (SELECT pno FROM post WHERE pno = ?)";
+
+		    // 글 삭제
+		    String deletePostSQL = "DELETE FROM post WHERE pno = ?";
+
+		    try {
+		        // 댓글 삭제
+		        pstmt = conn.prepareStatement(deleteCommentsSQL);
+		        pstmt.setInt(1, pno);
+		        rowCount = pstmt.executeUpdate();
+
+		        // 글 삭제
+		        pstmt = conn.prepareStatement(deletePostSQL);
+		        pstmt.setInt(1, pno);
+		        rowCount += pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -366,6 +404,7 @@ public class PostDAO {
 					}
 				}
 			}
+			return rowCount;
 		}
 		
 		
@@ -434,6 +473,30 @@ public class PostDAO {
 					catch(Exception e) {
 						e.printStackTrace();
 					}
+			}
+			return rowCount;
+		}
+		// 댓글 삭제시 
+		public int deleteComment(int cno) {
+			int rowCount = 0;
+			this.sql = "delete from comments where cno = ?";
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cno);
+				
+				rowCount = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(!pstmt.isClosed()) {
+						pstmt.close();
+					}
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 			return rowCount;
 		}
