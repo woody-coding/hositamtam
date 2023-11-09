@@ -93,6 +93,94 @@ function getStoreInfo() {
 
 
 
+function notStoreHandler() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		
+		const sclose = JSON.parse(xhr.responseText);
+		
+		console.log('sclosecount type : ' + typeof(sclose[0].sclosecount));
+		
+		let notStoreButton = document.querySelector('.notStore');
+		
+		if (sclose[0].closeStatus === 'x') {
+            // 제보할 수 있도록 버튼 활성화
+            notStoreButton.disabled = false;
+        } else {
+			alert('감사합니다. 정상적으로 제보가 접수되었습니다!');
+			
+            // 제보할 수 없도록 버튼 비활성화
+            notStoreButton.disabled = true;
+        }	
+
+    }
+}
+
+
+
+
+
+
+function notStore() {
+	xhr.onreadystatechange = notStoreHandler;
+	
+	if(currentId) {
+		if (confirm('정말로 제보를 하시겠습니까? 제보 수 합계 3건에 도달 시 자동으로 해당 점포에 대한 정보는 삭제됩니다. 한번 제보 시 취소가 불가능하니 신중하게 결정해주세요!')) {
+			
+	    // 사용자가 확인 버튼을 클릭한 경우
+	    let param = '?command=notStore&sno=' + currentSno + '&id=' + currentId;
+	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+	    xhr.send();
+		} 
+		else {
+		}
+
+	} 
+	else {
+		alert('로그인이 필요한 서비스 입니다!');
+		window.location.href = '/finalProject/views/login';
+	}
+}
+
+
+
+
+
+
+function notStoreStatusHandler() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		
+		const sclose = JSON.parse(xhr.responseText);
+		
+		
+		let notStoreButton = document.querySelector('.notStore');
+		
+		if (sclose[0].closeStatus === 'x') {
+            // 제보할 수 있도록 버튼 활성화
+            notStoreButton.disabled = false;
+        }
+    }
+}
+
+
+
+
+
+function notStoreStatus(sno) {
+	
+	if(currentId) {
+		currentSno = sno;
+	
+		xhr.onreadystatechange = notStoreStatusHandler;
+		
+		let param = '?command=notStoreStatus&sno=' + currentSno + '&id=' + currentId;
+		xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+		xhr.send();
+	}
+}
+
+
+
+
 
 function init() {
 
@@ -128,6 +216,15 @@ function init() {
 	   
 	if (member) {
 	    currentId = member.id;
+	    
+		document.addEventListener('DOMContentLoaded', function () {
+		    const notStoreButton = document.querySelector('.notStore');
+		    
+		        notStoreButton.disabled = true;
+		    
+		});
+
+	    
 	    console.log("현재 접속한 사용자의 id: " + currentId);
 	} else {
 	    console.log('현재 접속한 사용자는 비회원입니다.');
@@ -143,6 +240,9 @@ function init() {
 	let param = '?command=getMarketLatLng&mno=' + currentMno;
 	xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
 	xhr.send();
+
+
+
 
 
 
@@ -203,7 +303,7 @@ function openInfo() {
             
 
 	        let infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
-	            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
+	            content: '<div id="'+ locations[i].sno +'" class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
                    '<p>취급품목: ' + locations[i].scategory + '</p>' +
                    '<p>점포형태: ' +  locations[i].stype + '</p>' +
                    '<div class="countContainer">' +
@@ -216,11 +316,12 @@ function openInfo() {
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
                    '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
-                   '<a href="/finalProject/ajaxController/toAjaxController.jsp?command=notStore&sno=' +locations[i].sno  + '&id='+ currentId +'">이곳에 없어요! 제보하기</a>' +
+                   '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
                    '</div></div>'   });
 
 	        
             infowindow.open(map, marker);
+            notStoreStatus(locations[i].sno);
             
             naver.maps.Event.addListener(map, "click", function (mouseEvent) {
                 infowindow.close();
@@ -446,13 +547,14 @@ function showMarkers() {
     for (var i = 0; i < locations.length; i++) {
         var marker = new naver.maps.Marker({
             map: map,
+            sno: locations[i].sno,
             position: new naver.maps.LatLng(locations[i].slat, locations[i].slng)
         });
 
         var infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
 
 
-            content: '<div class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
+            content: '<div id="'+ locations[i].sno +'" class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
                    '<p>취급품목: ' + locations[i].scategory + '</p>' +
                    '<p>점포형태: ' +  locations[i].stype + '</p>' +
                    '<div class="countContainer">' +
@@ -465,12 +567,15 @@ function showMarkers() {
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
                    '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
                    '</div></div>'
         });
+        
 
         (function (marker, infowindow) {
 		    naver.maps.Event.addListener(marker, "click", function (e) {
 		        infowindow.open(map, marker);
+		        notStoreStatus(marker.sno);
 		    });
 
             naver.maps.Event.addListener(map, "click", function (mouseEvent) {
@@ -481,6 +586,8 @@ function showMarkers() {
         markers.push(marker);
     }
 }
+
+
 
 
 
