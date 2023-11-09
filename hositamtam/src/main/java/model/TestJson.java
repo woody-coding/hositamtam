@@ -20,7 +20,14 @@ public class TestJson {
 //		MemberDO memberDO = new MemberDO();
 //		JsonMarketStore jsonMarketStore = new JsonMarketStore();
 //		System.out.println(jsonMarketStore.getCheckNickName(memberDO));
-		System.out.println(storeDAO.notStore(2, "shortlee"));
+//		System.out.println(storeDAO.notStore(2, "shortlee"));
+		
+		JsonMarketStore jsonMarketStore = new JsonMarketStore();
+	//	System.out.println(jsonMarketStore.getCheckPasswd("123456789", "longlee"));
+		System.out.println(jsonMarketStore.getChangeProfile("123456789", "shortlee", ""));
+	
+	//	String result = jsonMarketStore.getChangeProfile("1234567899", "shortlee", "숏다리걸");
+	//	System.out.println("Result: " + result);
 
 	}
 }
