@@ -68,7 +68,7 @@ ul {
   height: 3rem;
   align-items: center;
   padding: 0;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   border: none;
 }
 
@@ -77,7 +77,7 @@ ul {
   height: 3rem;
   padding: 0;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--color-gray);
   background-color: white;
 }
@@ -93,7 +93,7 @@ ul {
 
 .mainHeader__menu__item {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   padding: 8px 20px;
   border-bottom: 1px solid transparent;
 }

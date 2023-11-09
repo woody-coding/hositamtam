@@ -42,17 +42,34 @@ body {
 #map {
 	min-width: 500px;
 	min-height: 500px;
-	width: 70%;
+	width: 75%;
 	height: 93vh;
 	float: left;
 }
+#map {
+	min-width: 500px;
+	min-height: 500px;
+	width: 75%;
+	height: 93vh;
+	float: left;
+}
+
+#mkListResult {
+	
+	height: 100%;
+	min-width: 450px;
+	max-height: 90vh;
+	overflow: auto;
+	/* background-color: #eeeeee; */
+}
+
 .plusStore{
     width: 50px;
     height: 50px;
     border: 0;
     border-radius: 50%;
     color: white;
-    font-size: 35px;
+    font-size: 2rem;
     line-height: 35px;
     background-color: #e6007e;
     z-index: 9;
@@ -71,16 +88,13 @@ button{
 
 
 .right{
-   /* border-left: 2px solid #0e4194;
-  
-   */ 
-	width: 30%;
-	height: 100%;
-	min-width: 500px;
+   
+   	height: 100%;
+	min-width: 450px;
 	max-height: 90vh;
 	overflow: auto;
-     overflow-x: hidden;
-    /* background-color: #eeeeee; */
+	
+    
 }
 
 #information{
@@ -102,8 +116,14 @@ button{
     border-bottom: 2px solid #0e4194;
 
 }
-#mkName, #mkaddr{
-    font-size: 1.5rem;
+
+
+#mkName {
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+#mkaddr {
+	font-size: 1.1rem;
 }
 .searchResultName{
     display: flex;
@@ -115,7 +135,8 @@ button{
 
 }
 .searchResultName h4{
-    font-size: 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 #toPost{
@@ -132,13 +153,13 @@ button{
     box-shadow: 0px 5px 0px 0px pink;
 }
 #toPost a{
-	font-size: 35px;
+	font-size: 1rem;
 	color: white;
 	text-decoration: none;
 }
 
 
-#toPost:hover{
+/*#toPost:hover{
     transform: rotate(15deg);
     animation: rotateAnimation 0.5s ease-in-out infinite;
 }
@@ -153,7 +174,7 @@ button{
     100% {
         transform: rotate(15deg);
     }
-}
+}*/
 
 .btnSort{
     display: flex;
@@ -163,11 +184,11 @@ button{
 }
 .btnSort button {
     padding: 2px;
-    width: 200px;
+    width: 150px;
     background-color: #0e4194;
     color: white;
     margin-left: 20px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     border: 0px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -199,7 +220,7 @@ button{
     /* background-color: #e6007e; */
     position: relative;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.2rem;
     overflow: hidden;
    
     line-height: 40px;
@@ -222,7 +243,7 @@ button{
   .down {
     position: absolute;
     left: 10px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     
     top: 40px; /* 초기에 숨겨진 상태 */
     transition: top 100ms;
@@ -251,7 +272,7 @@ button{
     background-color: #0e4194;
     color: white;
     border: 0px;
-    font-size: 14px;
+    font-size: 1rem;
     width: 100px;
     height: 40px;
     border-radius: 10px;
@@ -266,6 +287,6 @@ button{
 }
 
 .fa-heart{
-    font-size: 33px;
+    font-size: 2rem;
     color: #e6007e;
 }

@@ -93,6 +93,7 @@
           
             <p>어떤 시장이 궁금한가요?</p>
             <div class="goCategory">
+            <ul>
 	            <li><a href="/finalProject/views/marketList?cateno=1">농산물</a></li>
 	            <li><a href="/finalProject/views/marketList?cateno=2">음식점</a></li>
 	            <li><a href="/finalProject/views/marketList?cateno=3">가공식품</a></li>
@@ -102,23 +103,24 @@
 	            <li><a href="/finalProject/views/marketList?cateno=7">의류</a></li>
 	            <li><a href="/finalProject/views/marketList?cateno=8">신발</a></li>
 	            <li><a href="/finalProject/views/marketList?cateno=9">기타</a></li>
+           </ul>
             </div>	
         </div>  
       </div> 
      
       
       <div id="btnGroup">
-          <button id="mkList" class="category"><i class="bi bi-basket-fill"></i><br> 시장 리스트 </button>
-          <button id="goPost" class="category"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
-         <!--  <button class="category">
-
-          <a class="category" href="/finalProject/views/post" ><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</a>
+          <button id="mkList" class="category">
           
-          </button> -->
-
-			<button id="category" class="category">
+          <i class="bi bi-basket-fill"></i><br>
+           시장 리스트 
+     
+           </button>
+          <button id="goPost" class="category" onclick="location.href='/finalProject/views/post'"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
+     
+			<button id="service" class="category" onclick="location.href='#section2'">
 				<i class="bi bi-info-circle-fill"></i><br>
-				<a href="#goService">서비스 안내</a>
+				서비스 안내
 			</button>
 			<!-- 서비스안내 조정 -->
 		</div>

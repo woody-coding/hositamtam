@@ -1,4 +1,4 @@
-for (let i = 0; i < $('.tab-button').length; i++){
+/*for (let i = 0; i < $('.tab-button').length; i++){
 
   $('.tab-button').eq(i).on('click', function(){
     $('.tab-button').removeClass('blue');
@@ -6,7 +6,35 @@ for (let i = 0; i < $('.tab-button').length; i++){
     
   })
 
-};
+};*/
+/*document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // 모든 탭 버튼에서 'blue' 클래스 제거
+      tabButtons.forEach(btn => btn.classList.remove('blue'));
+      // 클릭한 탭 버튼에 'blue' 클래스 추가
+      button.classList.add('blue');
+    });
+  });
+});*/
+
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function(event) {
+      // 모든 탭 버튼에서 'blue' 클래스 제거
+      tabButtons.forEach(btn => btn.classList.remove('blue'));
+      // 클릭한 탭 버튼에 'blue' 클래스 추가
+      button.classList.add('blue');
+
+      // 페이지 전환 방지
+      event.preventDefault();
+    });
+  });
+});
 
 
 
@@ -51,8 +79,12 @@ radioButtons.forEach(function(radioButton) {
 
    function init() {
 
+
 document.querySelector("#whatMarket").addEventListener("click",dropDownHandler);  
+
 }
+
+
  
 window.addEventListener('load', init);
 

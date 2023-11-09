@@ -49,13 +49,13 @@
 	<div class="section" id="section1">
 		<div class="container mt-5">
 			<div id="mkNameBox">
-				<span id="mkName">호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
+				<span id="mkName">호시탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
 			</div>
 			<br />
 			<form method="GET" action="/finalProject/views/toPostUpdate" id="insert">
 				<label for="mno"></label>
 				<button id="writePost">
-					<i class="bi bi-pencil-square"></i>글 등록
+					<i class="bi bi-pencil-square"></i>글쓰기
 				</button>
 				<input type="hidden" name="mno" value="${market.mno}">
 			</form>
@@ -64,7 +64,7 @@
 			<div class="list">
 				<form method="GET" action="/finalProject/views/postMain">
 					<label for="mno"></label>
-					<button class="tab-button blue" >전체글</button>
+					<button class="tab-button " >전체글</button>
 					<input type="hidden" name="mno" value="${market.mno}">
 				</form>
 
@@ -76,10 +76,10 @@
 
 				<form method="GET" action="/finalProject/views/postCategory">
 					<label for="pCategory"></label>
-					<button  class="tab-button" name="pCategory" value="궁금해요" data-id="2">궁금해요</button>
-					<button  class="tab-button" name="pCategory" value="도와주세요" data-id="3">도와주세요</button>
-					<button  class="tab-button" name="pCategory" value="소통해요" data-id="4">소통해요</button>
-					<button class="tab-button" name="pCategory" value="시장소식" data-id="5"> 시장소식</button>
+					<button  class="tab-button" name="pCategory" value="궁금해요" >궁금해요</button>
+					<button  class="tab-button" name="pCategory" value="도와주세요" >도와주세요</button>
+					<button  class="tab-button" name="pCategory" value="소통해요">소통해요</button>
+					<button class="tab-button" name="pCategory" value="시장소식"> 시장소식</button>
 					<input type="hidden" name="mno" value="${market.mno}">
 				</form>
 			</div>

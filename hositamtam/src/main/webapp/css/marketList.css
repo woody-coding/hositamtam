@@ -24,18 +24,18 @@ body {
 #map {
 	min-width: 500px;
 	min-height: 500px;
-	width: 70%;
+	width: 75%;
 	height: 93vh;
 	float: left;
 }
 
 #mkListResult {
-	width: 30%;
+	
 	height: 100%;
-	min-width: 500px;
+	min-width: 450px;
 	max-height: 90vh;
 	overflow: auto;
-	/* background-color: #eeeeee; */
+	
 }
 /* Chrome, Whale, Edge */
 
@@ -56,9 +56,10 @@ body {
 
 
 .mkcontainer {
+	max-width: 450px;
 	box-sizing: border-box;
 	border-bottom: 1px solid #0e4194;
-	min-height: 180px;
+	min-height: 150px;
 	/*padding: 5px;*/
 }
 .mkcontainer:hover{
@@ -72,15 +73,17 @@ body {
 
 }
 
-/*.mkName,
-#mkaddr {
-	font-size: 1.5rem;
-}*/
-
-.row {
-	font-size: 1.5rem;
+.mkName {
+	font-size: 1.2rem;
+	font-weight: bold;
 }
-
+#mkaddr {
+	font-size: 1.1rem;
+}
+.mkEtc {
+	color: gray;
+	font-size: 1rem;
+}
 .mainHeader__nav a {
 	color: black;
 	text-decoration: none;
