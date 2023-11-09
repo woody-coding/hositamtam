@@ -45,7 +45,7 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	
+	<c:forEach items="${post}" var="post">
 	<h2>${market.mname}의 게시글 등록 페이지입니다.</h2>
 
 	<hr/>
@@ -78,22 +78,31 @@
 	</div>
 	 <div class="postHead row">
 	<label for="ptitle">제목</label>
-	<input type="text" name="ptitle" placeholder="제목을 입력하세요" />
-	</div>
-	 <div class="postContent row">
+
+	<input type="text" name="ptitle" value="${post.ptitle}" placeholder="제목을 입력하세요" />
+	<br>
+     <div class="postContent row">
 	<label for="pcontent">내용</label>
-	<textarea  name="pcontent" placeholder="내용을 입력하세요" ></textarea>
-	</div>
+	<textarea  name="pcontent" value="${post.pcontent}" placeholder="내용을 입력하세요" />
+	<br>
+
 	<label for="pphoto">사진</label>
-	<input type="file" name="pphoto" placeholder="내용을 입력하세요" />
+	<input type="file" name="pphoto" value="${post.pphoto}" />
 	<br>
 	<label for="mno"></label>
 	<input type="hidden" name="mno" value="${market.mno}"/>
 	<label for="id"></label>
 	<input type="hidden" name="id" value="${userId}"/>
+
 	<input class="btn btn-primary" type="submit" value="등록하기">
+	<c:if test="${post.pno != null}">	
+	<input type="button" onclick="location.href='/finalProject/views/deletePost?pno=${post.pno}&mno=${market.mno}'" value="삭제하기">
+	</c:if>s="btn btn-primary" type="submit" value="등록하기">
+
 	</form>
+	</c:forEach>
 	</div>
+	
 	</div>
 	
 	<%@ include file="footer.jsp" %>

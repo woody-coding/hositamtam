@@ -71,7 +71,7 @@ body {
 .store__input {
   display: block;
   /* width: 63%; */
-  width: 75%;
+  width: 100%;
   padding: 0.5rem;
   border: 3px solid var(--color-primary);
   border-radius: 4px;
@@ -80,14 +80,14 @@ body {
 
 .change__location {
   /* width: 17%; */
-  width: 21%;
+  width: 15%;
   border: none;
   border-radius: 4px;
   color: var(--color-background);
   background-color: #d9d9d9;
   font-size: 1rem;
   margin-left: 1rem;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   cursor: pointer;
 }
 

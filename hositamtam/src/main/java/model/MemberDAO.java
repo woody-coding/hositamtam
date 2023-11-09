@@ -258,31 +258,29 @@ public class MemberDAO {
 	
 	// 4-2.회원 정보 수정(비밀번호 중복확인)
 	public boolean checkPasswd(MemberDO memberDO) throws Exception {
-	    boolean isPasswdDuplicate = false; // 닉네임 중복검사 불통
+	    boolean isPasswdDuplicate = false; // 비밀번호 중복검사 불통
 
 	    try {
-	        // 기존의 닉네임 가져오기
+	        // 해당 회원의 아이디로부터 기존의 비밀번호 가져오기
 	        this.sql = "SELECT passwd FROM member WHERE id = ?";
 	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1, memberDO.getPasswd());
+	        pstmt.setString(1, memberDO.getId());
 	        rs = pstmt.executeQuery();
 
 	        if (rs.next()) {
 	            String oldPasswd = rs.getString("passwd");
 
 	            if (oldPasswd == null) {
-	                // 아이디에 해당하는 닉네임을 찾을 수 없음
+	                // 아이디에 해당하는 비밀번호를 찾을 수 없음
 	                throw new Exception("사용자를 찾을 수 없습니다.");
 	            }
-
-	            // 입력한 닉네임과 기존 닉네임 비교
+	            
+	            // 입력한 비밀번호와 기존 비밀번호 비교
 	            if (!oldPasswd.equals(memberDO.getPasswd())) {
-	                // 새로 입력한 닉네임과 기존 닉네임이 다르면 중복 확인 통과
-	                isPasswdDuplicate = true;
+	                // 새로 입력한 비밀번호과 기존 비밀번호가 다르면 중복 확인 통과
+	                isPasswdDuplicate = true; // 비밀번호가 서로 다르니 중복검사 통과
+	                
 	            }
-	        } else {
-	            // 아이디에 해당하는 닉네임을 찾을 수 없음
-	            throw new Exception("사용자를 찾을 수 없습니다.");
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
@@ -297,7 +295,7 @@ public class MemberDAO {
 	    }
 
 	    if (isPasswdDuplicate == false) {
-	        // 닉네임이 중복되어 수정 불가능
+	        // 비밀번호가 중복되어 수정 불가능
 	        throw new Exception("이전의 패스워드가 지금의 패스워드와 중복됩니다. 다른 비밀번호를 선택해주세요.");
 	    }
 

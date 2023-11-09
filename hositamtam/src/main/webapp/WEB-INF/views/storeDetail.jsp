@@ -83,19 +83,22 @@
           </h4>
         </span>
       </div>
-      <div class="storeDetail__storeType">
-        <span class="storeDetail__storeType__title">
-        <h4 class="storeDetail__h4">점포 형태</h4></span>
-        <input type="checkbox" name="stype" value="좌판" <c:if test="${store.stype eq '좌판'}">checked="checked"</c:if>><span>좌판</span>
-        <input type="checkbox" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if>><span>매장</span>
-      </div>
+	<div class="storeDetail__storeType">
+	    <span class="storeDetail__storeType__title">
+	        <h4 class="storeDetail__h4">점포 형태</h4>
+	    </span>
+	    <input type="checkbox" name="stype" value="좌판" <c:if test="${store.stype eq '좌판'}">checked="checked"</c:if> disabled><span>좌판</span>
+	    <input type="checkbox" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if> disabled><span>매장</span>
+	</div>
+
       <div class="storeDetail__payment">
         <span class="storeDetail__payment__title">
         <h4 class="storeDetail__h4">결제 방식</h4></span>
         
-		<c:forEach var="storePayment" items="${storePaymentList}">
-        	<input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked"><span>${storePayment.paytype}</span>
-        </c:forEach>
+	<c:forEach var="storePayment" items="${storePaymentList}">
+	    <input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked" disabled><span>${storePayment.paytype}</span>
+	</c:forEach>
+
         
       </div>
       <div class="storeDetail__category">

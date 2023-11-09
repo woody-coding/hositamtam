@@ -66,7 +66,8 @@
                 class="store__input"
                 type="text"
                 id="store__name"
-                placeholder="점포의 이름을 지어주세요 !"
+                maxlength="15"
+                placeholder="점포의 이름을 지어주세요! (최대15자)"
               />
               <button class="change__location">위치 수정</button>
             </label>
