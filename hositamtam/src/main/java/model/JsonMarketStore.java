@@ -95,7 +95,17 @@ public class JsonMarketStore {
 	    return jsonObject.toJSONString();
 	}
 
-	
+	// checkPassword 중복확인 테스트(java application test)
+	public static void main(String [] args) {
+		JsonMarketStore jms = new JsonMarketStore();
+		MemberDAO memberDAO = new MemberDAO();
+		jms.setMemberDAO(memberDAO);
+		
+		MemberDO member = new MemberDO();
+		member.setPasswd("teste");
+		
+		System.out.println(jms.getCheckPasswd(member));
+	}
 	
 	
 }
