@@ -131,13 +131,6 @@ function notStore() {
 	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
 	    xhr.send();
 		} 
-		else {
-		}
-
-	} 
-	else {
-		alert('로그인이 필요한 서비스 입니다!');
-		window.location.href = '/finalProject/views/login';
 	}
 }
 
@@ -216,25 +209,10 @@ function init() {
 	   
 	if (member) {
 	    currentId = member.id;
-	    
-		document.addEventListener('DOMContentLoaded', function () {
-		    const notStoreButton = document.querySelector('.notStore');
-		    
-		        notStoreButton.disabled = true;
-		    
-		});
-
-	    
-	    console.log("현재 접속한 사용자의 id: " + currentId);
-	} else {
-	    console.log('현재 접속한 사용자는 비회원입니다.');
 	}
 
 	
-	
-	
-	
-	
+
 	xhr.onreadystatechange = latLngAjaxHandler;
 	
 	let param = '?command=getMarketLatLng&mno=' + currentMno;
@@ -330,9 +308,6 @@ function openInfo() {
         }
     }
 }
-
-
-
 
 
 
