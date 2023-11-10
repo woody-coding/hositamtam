@@ -55,7 +55,7 @@
                 ${userId}
               </label>
               
-              <label for="change-nickname" class="mypage__update__label">
+              <label for="change__nickname" class="mypage__update__label">
                 <input
                   class="mypage__update__input"
                   type="text"

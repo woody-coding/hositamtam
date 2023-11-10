@@ -33,6 +33,7 @@
 		function init() {
 			
 			let sno = '<%= request.getAttribute("sno") %>';
+			alert('sno값 들어오나?  ' + sno);
 			
 			sno = (sno === 'null') ? null : sno;
 		    
