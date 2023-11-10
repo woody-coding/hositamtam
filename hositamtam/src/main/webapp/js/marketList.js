@@ -88,7 +88,7 @@ function init() {
 		}
 		
 		if(currentCateno !== '1' && currentCateno !== '2' && currentCateno !== '3' && currentCateno !== '4' && currentCateno !== '5' && currentCateno !== '6' && currentCateno !== '7' && currentCateno !== '8' && currentCateno !== '9') {
-			document.querySelector('#marketErrorMsg').innerHTML = "잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!";
+			document.querySelector('#marketErrorMsg').innerHTML = "잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!"+ currentCateno + "추가";
 		} else {
 			document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'에 특화된 전통시장 목록 입니다.";
 
@@ -116,10 +116,16 @@ function openInfo() {
             
 	         var infowindow = new naver.maps.InfoWindow({
 	       /*     content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
-	     	 */ content: '<div class="goMarket"><div class="up">' + locations[i].mname + '</div><div class="down"><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a></div></div>', 
-	                    maxWidth: 300,
-	                    borderWidth: 0,
-	                    disableAnchor: true, 
+	     	 */ content:    '<div class="goMarket">' +
+        '<div class="row">' +
+            '<p class="mkName" id="'+ locations[i].mno +'">' + locations[i].mname + '</p>' +
+            '<p id="mkaddr">' + locations[i].maddr + '</p>' +
+            '<p class="mkEtc"><i class="fa-solid fa-restroom"></i> ' + locations[i].mtoilet + ' <i class="fa-solid fa-square-parking"></i> ' + locations[i].mparking + '<p>' +
+            '<a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>' +
+        '</div>' +
+    '</div>',
+
+  
 		 	});
 		 	
             infowindow.open(map, marker);
@@ -209,14 +215,12 @@ function marketAjaxHandler() {
 				allMarketList[i].mtel = '';
 			}
 			
-			//marketContents += '<div id="'+ allMarketList[i].mno +'" class="personalMcontent">' + allMarketList[i].mname + '|' + allMarketList[i].mtype + 
-			//'|' + allMarketList[i].maddr + '| 화장실 여부: ' + allMarketList[i].mtoilet + '| 주차가능 여부: ' + allMarketList[i].mparking + '|' + allMarketList[i].mtel + '</div>';
 			
 			marketContents += '<div id="'+ allMarketList[i].mno +'" class="mkcontainer">' +
 					            '<div class="row">' +
 					                '<p class="mkName" id="'+ allMarketList[i].mno +'">' + allMarketList[i].mname + '</p>' +
 					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
-					                '<p class="mkEtc">화장실 ' + allMarketList[i].mtoilet + ' 주차장 ' + allMarketList[i].mparking + '<p>' +
+					                '<p class="mkEtc"><i class="fa-solid fa-restroom"></i> ' + allMarketList[i].mtoilet + ' <i class="fa-solid fa-square-parking"></i> ' + allMarketList[i].mparking + '<p>' +
 					            '</div>' +
 					        '</div>'
 		}
@@ -283,10 +287,14 @@ function showMarkers() {
 
         var infowindow = new naver.maps.InfoWindow({
        /*     content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
-      */ content: '<div class="goMarket"><div class="up">' + locations[i].mname + '</div><div class="down"><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a></div></div>', 
-                    maxWidth: 300,
-                    borderWidth: 0,
-                    disableAnchor: true, 
+      */ content: '<div class="goMarket">' +
+        '<div class="row">' +
+            '<p class="mkName" id="'+ locations[i].mno +'">' + locations[i].mname + '</p>' +
+            '<p id="mkaddr">' + locations[i].maddr + '</p>' +
+            '<p class="mkEtc"><i class="fa-solid fa-restroom"></i> ' + locations[i].mtoilet + ' <i class="fa-solid fa-square-parking"></i> ' + locations[i].mparking + '<p>' +
+            '<a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>' +
+        '</div>' +
+    '</div>',
 	  });
 
         (function (marker, infowindow) {

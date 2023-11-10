@@ -99,20 +99,22 @@ body {
 }
 
 .goMarket{
-    max-width: 300px;
-    width: 160px;
-    height: 40px;
+    width: 300px;
+    padding: 5px;
+    height: 160px;
     font-family: 'GmarketSans';
     position: relative;
-    font-size: 20px;
-    overflow: hidden;
-    line-height: 40px;
+    font-size: 1rem;
+    line-height: 20px;
+    
+    
 }
+
 .goMarket a{
     text-decoration: none;
     color: #e6007e;
 }
-.up {
+/*.up {
     position: absolute;
     top: 0;
     left: 10px;
@@ -128,23 +130,20 @@ body {
     position: absolute;
     left: 30px;
     font-size: 1.5rem;
-    top: 40px; /* 초기에 숨겨진 상태 */
+    top: 40px;  초기에 숨겨진 상태 
     transition: top 100ms;
 
   }
   
   .goMarket:hover .up {
-    top: -40px; /* hover 상태에서 up을 위로 이동하여 숨김 */
+    top: -40px;  hover 상태에서 up을 위로 이동하여 숨김 
   }
   
   .goMarket:hover .down {
-    top: 0; /* hover 상태에서 down을 아래로 이동하여 표시 */
+    top: 0;  hover 상태에서 down을 아래로 이동하여 표시 
   }	
+  */
   
-  .personalMcontent {
-	border: 2px solid gray;
-	border-collapse: collapse;
-}
 #information{
 	clear: both;
 }

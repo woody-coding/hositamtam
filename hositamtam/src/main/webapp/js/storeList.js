@@ -290,6 +290,15 @@ function init() {
             openInfo();
         }
     });
+    
+    
+    
+     /*document.querySelector('#clickButton').addEventListener('click', function() {
+        // #storeContent 클릭 이벤트 발생
+        var event = new Event('click');
+        document.querySelector('#storeContent').dispatchEvent(event);
+    });*/
+
   
 }
 	
@@ -305,16 +314,24 @@ function openInfo() {
             
 
 	        let infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
-	            content: '<div id="'+ locations[i].sno +'" class="infoContent"><div id="'+ locations[i].sno +'" class="personalInfowindowScontent"><h4>점포명: ' + locations[i].sname + '</h4>' +
-                   '<p>취급품목: ' + locations[i].scategory + '</p>' +
-                   '<p>점포형태: ' +  locations[i].stype + '</p>' +
-                   '<div class="countContainer">' +
-                   '<img src="../images/2b50.png" alt="평균별점">' + locations[i].savgrating + '(' + locations[i].sreviewcount + ')' +
-                   '<i class="fa-solid fa-heart"></i>: ' +  locations[i].sfavoritecount +
-                   '</div>' +
-                   '<div class="imgContainer">' +
+	            content: '<div id="'+ locations[i].sno +'" class="infoContent">' + 
+	            '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">' + 
+	             '<div class="infoImgContainer">' +
                    '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
-                   '</div></div>' +
+                   '</div>' +
+                   '<div class="sName">'+
+                    	'<img src="../images/2b50.png" alt="평균별점">' + locations[i].savgrating + '(' + locations[i].sreviewcount + ')' + '&nbsp;' +
+                  		'<span> ' + locations[i].sname + '</span>' + '&nbsp;' +
+                  		 	  '<i class="fa-solid fa-heart"></i> ' +  locations[i].sfavoritecount +
+                 
+                  	'</div>' +
+                   '<div class="categoryAndType">' +
+	            
+                   '<span> ' + locations[i].scategory + ' | </span>' +
+                   '<span> ' +  locations[i].stype + '</span>' +
+                   '</div>' +
+                  
+                  '</div>' +
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
                    '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
@@ -435,16 +452,23 @@ function storeAjaxHandler() {
 		for(let i=0; i < allStoreList.length; i++) {
 			storeContents += '<div class="mkcontainer row">' +
 				'<div id="' + allStoreList[i].sno + '" class="personalScontent">' +
-				    '<p>'+
-				    '점포명: ' + allStoreList[i].sname +
-				    '</p>' +
-				    '<p>취급품목: ' + allStoreList[i].scategory + '</p>' +
-				    '<p>점포형태: ' +  allStoreList[i].stype + '</p>' +
-				    '<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' +
-				    ' <i class="fa-solid fa-heart"></i>: ' + allStoreList[i].sfavoritecount +
 				    '<div class="imgContainer">' +
-				    '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '">' +
+				   	 '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '">' +
 				    '</div>'+
+				    '<div class="sName">'+
+                    	'<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' + '&nbsp;' +
+                  		'<span> ' + allStoreList[i].sname + '</span>' + '&nbsp;' +
+                  		 	  '<i class="fa-solid fa-heart"></i> ' +  '&nbsp;' + allStoreList[i].sfavoritecount +
+                 
+                  	'</div>' +
+                  	
+				  	'<div class="categoryAndType">' +
+	            
+	                   '<span> ' + allStoreList[i].scategory + ' | </span>' +
+	                   '<span> ' +  allStoreList[i].stype + '</span>' +
+	                      '<button id="clickButton">Click me</button>' +
+                   '</div>' +
+				    
 				'</div>'+
 				'</div>';
 
@@ -558,7 +582,7 @@ function showMarkers() {
                    '<p>점포형태: ' +  locations[i].stype + '</p>' +
                    '<div class="countContainer">' +
                    '<img src="../images/2b50.png" alt="평균별점">' + locations[i].savgrating + '(' + locations[i].sreviewcount + ')' +
-                   '<i class="fa-solid fa-heart"></i>: ' +  locations[i].sfavoritecount +
+                   '<i class="fa-solid fa-heart"></i>: ' + '&nbsp;' + locations[i].sfavoritecount +
                    '</div>' +
                    '<div class="imgContainer">' +
                    '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +

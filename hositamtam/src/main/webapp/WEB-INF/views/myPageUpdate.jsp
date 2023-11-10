@@ -59,8 +59,8 @@
                 <input
                   class="mypage__update__input"
                   type="text"
-                  id="change-nickname"
-                  name="change-nickname"
+                  id="change__nickname"
+                  name="nickname"
                   placeholder="닉네임"
                 />
                 <button class="duplication__check" id="nickname_check" type="button">중복확인</button>
@@ -70,8 +70,8 @@
                 <input
                   class="mypage__update__input"
                   type="password"
-                  id="change-password"
-                  name="change-password"
+                  id="change__password"
+                  name="password"
                   placeholder="변경할 비밀번호"
                 />
               </label>
