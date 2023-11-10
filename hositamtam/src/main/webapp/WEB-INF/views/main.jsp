@@ -158,7 +158,7 @@
 		<div class="gradeInfo">
 			<div class="gradeIcon">
 				<div class="gradeImage">
-					<img src="../images/icons8-아가-64.png">
+					<img src="../images/icons8-병아리-60.png">
 
 				</div>
 				<div class="gradeImage">
@@ -188,11 +188,11 @@
 
 			</div>
 			<div class="gradeNameBox">
+				<div class="gradeName">시장 삐약이</div>
 				<div class="gradeName">시장 왕초보</div>
-				<div class="gradeName">시장 햇병아리</div>
 				<div class="gradeName">시장 탐험가</div>
 				<div class="gradeName">시장 지킴이</div>
-				<div class="gradeName">시장 지박령</div>
+				<div class="gradeName">시장 개척자</div>
 
 			</div>
 

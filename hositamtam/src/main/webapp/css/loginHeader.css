@@ -53,13 +53,20 @@ ul {
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
+/*.mainHeader__logo__img {*/
+/*  width: 150px;*/
+/*  padding: 0 1rem;*/
+/*}*/
+
 .mainHeader__logo__img {
-  width: 150px;
+  width: 180px;
   padding: 0 1rem;
 }
 
+/* 원본
 .market__search {
   border: 2px solid var(--color-gray);
+  height: 3rem;
   border-radius: 4px;
 }
 
@@ -71,7 +78,6 @@ ul {
   font-size: 1.1rem;
   border: none;
 }
-
 .market__searchButton {
   width: 3rem;
   height: 3rem;
@@ -81,6 +87,43 @@ ul {
   color: var(--color-gray);
   background-color: white;
 }
+*/
+
+.market__search {
+  position: relative;
+  width: 25rem;
+  border: 2px solid var(--color-gray);
+  height: 3rem;
+  border-radius: 4px;
+}
+
+.market__searchInput {
+  position: absolute;
+  top: 0;
+  left: 3rem; /* searchButton의 너비만큼 왼쪽으로 이동 */
+  width: calc(100% - 3rem);
+  height: 3rem;
+  align-items: center;
+  padding: 0;
+  font-size: 0.9rem;
+  border: none;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
+.market__searchButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--color-gray);
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
+
 
 .market__searchButton:hover {
   color: var(--color-accent);
