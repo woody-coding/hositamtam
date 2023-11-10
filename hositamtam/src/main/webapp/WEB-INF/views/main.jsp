@@ -159,42 +159,39 @@
 			<div class="gradeIcon">
 				<div class="gradeImage">
 					<img src="../images/icons8-아가-64.png">
-
 				</div>
+				
 				<div class="gradeImage">
 					<img src="../images/icons8-caveman-64.png" >
-
 				</div>
 				<div class="gradeImage">
 					<img src="../images/icons8-explorer-60.png" >
-
 				</div>
+				
 				<div class="gradeImage">
 					<img src="../images/icons8-기사-64.png" >
-
 				</div>
+				
 				<div class="gradeImage">
 					<img src="../images/icons8-spaceman-66.png" >
-
 				</div>
-
 			</div>
+			
 			<div class="gradeLine">
-				<div class="grade1"></div>
-				<div class="grade2"></div>
-				<div class="grade3"></div>
-				<div class="grade4"></div>
-				<div class="grade5"></div>
-
+				<div class="grade1">시장 삐약이</div>
+				<div class="grade2">시장 왕초보</div>
+				<div class="grade3">시장 탐험가</div>
+				<div class="grade4">시장 지킴이</div>
+				<div class="grade5">시장 개척자</div>
 			</div>
-			<div class="gradeNameBox">
+			
+			<!-- <div class="gradeNameBox">
 				<div class="gradeName">시장 왕초보</div>
 				<div class="gradeName">시장 햇병아리</div>
 				<div class="gradeName">시장 탐험가</div>
 				<div class="gradeName">시장 지킴이</div>
 				<div class="gradeName">시장 지박령</div>
-
-			</div>
+			</div> -->
 
 		</div>
 

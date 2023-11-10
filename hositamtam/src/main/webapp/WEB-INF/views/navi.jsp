@@ -34,15 +34,15 @@
             카테고리
           </a>
            <ul class="dropdown-menu">
-             <li><a href="/finalProject/views/marketList?cateno=1">농산물</a></li>
-             <li><a href="/finalProject/views/marketList?cateno=2">음식점</a></li>
-             <li><a href="/finalProject/views/marketList?cateno=3">가공식품</a></li>
-             <li><a href="/finalProject/views/marketList?cateno=4">수산물</a></li>
-             <li><a href="/finalProject/views/marketList?cateno=5">축산물</a></li>
-             <li><a href="/finalProject/views/marketList?cateno=6">가정용품</a></li>
-             <li><a href="/finalProject/views/marketList?cateno=7">의류</a></li>
-             <li><a href="/finalProject/views/marketList?cateno=8">신발</a></li>
-             <li><a href="/finalProject/views/marketList?cateno=9">기타</a></li>    
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=1" class="mainHeader__menu__category">농산물</a></li>
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=2" class="mainHeader__menu__category">음식점</a></li>
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=3" class="mainHeader__menu__category">가공식품</a></li>
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=4" class="mainHeader__menu__category">수산물</a></li>
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=5" class="mainHeader__menu__category">축산물</a></li>
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=6" class="mainHeader__menu__category">가정용품</a></li>
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=7" class="mainHeader__menu__category">의류</a></li>
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=8" class="mainHeader__menu__category">신발</a></li>
+             <li class="mainHeader__menu__li"><a href="/finalProject/views/marketList?cateno=9" class="mainHeader__menu__category">기타</a></li>    
 
            </ul>
            </li>
