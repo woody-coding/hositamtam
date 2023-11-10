@@ -9,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -26,6 +26,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
+	
     <!-- Font Awesome -->
     <script
       src="https://kit.fontawesome.com/89490613c7.js"
@@ -61,6 +62,7 @@
                   type="text"
                   id="change__nickname"
                   name="nickname"
+                  maxlength="8"
                   placeholder="닉네임"
                 />
                 <button class="duplication__check" id="nickname_check" type="button">중복확인</button>
