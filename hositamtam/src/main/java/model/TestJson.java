@@ -20,7 +20,11 @@ public class TestJson {
 //		MemberDO memberDO = new MemberDO();
 //		JsonMarketStore jsonMarketStore = new JsonMarketStore();
 //		System.out.println(jsonMarketStore.getCheckNickName(memberDO));
-		System.out.println(storeDAO.notStore(2, "shortlee"));
+//		System.out.println(storeDAO.notStore(2, "shortlee"));
 
+		
+		PostDAO postDAO2 = new PostDAO();
+		System.out.println(postDAO2.getAllPostInfo(100));
+		
 	}
 }

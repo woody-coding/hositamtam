@@ -69,8 +69,6 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	<h2>${market.mname}의 게시글 상세 페이지입니다.</h2>
-	<hr/>
 	<div>커뮤니티 > ${post.pcategory}</div>
 	<hr/>
 	
@@ -105,13 +103,7 @@
 	<input class="col-1"  type="submit" value="등록">
 	</form>
 	</div>
-	<c:forEach items="${commentList}" var="comment" varStatus="status">	
-	<c:forEach items="${commentList}" var="comment">	
-	
-	<div class="commentBox row">
-	<div class="col-2">${comment.cnickname}</div>
-	<div class="col-8">${comment.ccontent}</div>
-	<div class="col-2">${comment.cregdate}</div>
+	<c:forEach items="${commentList}" var="comment" varStatus="status">		
 	
 	<div class="commentBox row">
 	<div class="col-1">${status.count}</div>
@@ -122,10 +114,8 @@
 	<div class="col-1"><button onclick="location.href='/finalProject/views/deleteComment?cno=${comment.cno}&pno=${post.pno}'">삭제</button></div>
 	</c:if>
 	</div>
+	</c:forEach>
 	</div>
-	</c:forEach>
-	<!-- <%@ include file="commentList.jsp" %> -->
-	</c:forEach>
 	</div><hr/>
 	</div>
 	<%@ include file="footer.jsp" %>
