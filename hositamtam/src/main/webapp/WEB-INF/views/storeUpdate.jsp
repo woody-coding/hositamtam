@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,39 +26,34 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/storeInsertAndUpdate.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/storeInsertAndUpdate.css" />
 
     <!-- JavaScript -->
-    <script defer src="../js/storeInsertAndUpdate.js"></script>
+    <script defer src="/finalProject/js/storeInsertAndUpdate.js"></script>
+    <script>
+    
+	    // 검색어 입력 필드에서 Enter 키를 눌렀을 때 검색 실행
+	    document.getElementById("searchInput").addEventListener("keyup", function (event) {
+	        if (event.key === "Enter") { // Enter 키가 눌렸을 때
+	        
+	            const searchInput = document.querySelector("#searchInput").value;
+	            const encodedSearchInput = encodeURIComponent(searchInput);
+	            const newURL = "market.jsp?command=search&query=" + encodedSearchInput;
+	            window.location.href = newURL;
+	        }
+	  	  });
+		}
+
+		window.addEventListener('load', init);
+    
+    </script>
   </head>
   <body>
-    <!-- Header -->
-    <header class="mainHeader">
-      <div class="mainHeader__logo">
-        <img class="mainHeader__logo__img" src="../images/logo.ico" alt="logo" />
-      </div>
-
-      <form id="searchForm" method="get" action="SearchController">
-        <div class="market__search">
-          <input
-            type="text"
-            class="market__searchInput"
-            name="market"
-            id="searchInput"
-            placeholder="   궁금한 시장 이름을 입력하세요. Ex.부평깡통시장"
-          />
-          <button
-            class="market__searchButton"
-            type="submit"
-            name="action"
-            value="search"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </form>
+  
+      <%@ include file="navi.jsp" %>
+ 
 
       <nav class="mainHeader__nav">
         <ul class="mainHeader__menu">
@@ -78,21 +75,28 @@
                 class="store__input"
                 type="text"
                 id="store__name"
-                placeholder="점포의 이름을 지어주세요 !"
+                maxlength="15"
+                placeholder="점포의 이름을 지어주세요! (최대15자)"
               />
               <button class="change__location">위치 수정</button>
             </label>
             <div class="store__update__form">
               <div class="store__type">
                 <h2 class="store__type__title siau__h2">점포 형태</h2>
-                <button class="store__type__button">좌판</button>
-                <button class="store__type__button">매장</button>
+                <button class="store__type__button1" type="button">좌판</button>
+                <button class="store__type__button2" type="button">매장</button>
               </div>
               <div class="store__payment">
                 <h2 class="store__payment__title siau__h2">결제 방식</h2>
-                <button class="store__payment__button">현금</button>
-                <button class="store__payment__button">카드</button>
-                <button class="store__payment__button">계좌이체</button>
+                <button class="store__payment__button1" type="button">
+                  현금
+                </button>
+                <button class="store__payment__button2" type="button">
+                  카드
+                </button>
+                <button class="store__payment__button3" type="button">
+                  계좌이체
+                </button>
               </div>
               <div class="store__category">
                 <h2 class="store__category__title siau__h2">취급 품목</h2>
@@ -121,25 +125,7 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="information" class="section">
-      <div class="information__located">
-        <div class="max-container">
-          <h2 class="information__title">&copy; TMI - All rights reserved</h2>
-          <div class="information__contents">
-            <p class="information__title">
-              Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br />
-              팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br />
-              팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진
-            </p>
-            <p class="information__title">
-              <br />
-              <i class="fa-brands fa-github"></i>
-              https://github.com/wlstjd3398/TMI.git
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+
+	<%@ include file="footer.jsp" %>
   </body>
 </html>

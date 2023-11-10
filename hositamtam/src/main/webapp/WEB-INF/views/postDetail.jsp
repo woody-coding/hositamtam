@@ -90,7 +90,8 @@
 		${post.pcontent}
 	</div>
 	<br/>
-	<img src="${post.pphoto}"></img>
+	<!-- "/finalProject/images/' + locations[i].sphoto  + '" -->
+	<img src="../images/${post.pphoto}"></img>
 	<br/>
 	<hr/>
 	<div class="commentInsert row">

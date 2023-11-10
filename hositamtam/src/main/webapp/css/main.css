@@ -24,7 +24,7 @@
     margin: 0;
     padding: 0;
     letter-spacing: 1.5px;
-    font-family: 'GmarketSans', serif;
+    
 }
 html {
   overflow: hidden;
@@ -39,6 +39,11 @@ html, body {
 body {
   font-family: "GmarketSans";
   margin: 0;
+  height: 100vh;
+  background-image: url('../images/busanposter.png');
+  background-size: cover; /* 이미지를 화면에 맞게 늘리거나 축소합니다 */
+  background-position: center; /* 이미지를 가운데 정렬합니다 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 제거 */
 }
 
 button {
@@ -72,7 +77,7 @@ body a {
   position: relative;
 }
 #section1{
-    margin-top: 45px;
+/*    margin-top: 45px;*/
     /* 3rem 나중에 바꾸기 */
     
     background-size: 100% 100%;
@@ -99,41 +104,69 @@ ul {
 
 #busanExplain{
     color: white;
-    font-size: 50px;
+    font-size: 2.5rem;
     position: absolute;
-    top: 50%;
-    left: 10%;
+    top: 62%;
+    left: 20%;
+    text-shadow: 2px 2px 2px black;
 }
 #btnGroup{
   position: absolute;
   top: 30%;
-  left: 30%;
-  font-size: 1.5rem;
+  right: 1%;
+  font-size: 0.2rem;
   
 }
 #btnGroup i{
-font-size: 2.5rem;
+font-size: 2rem;
 }
 #btnGroup a{
  color: white;
  text-decoration: none;
+}    
+
+.category {
+  display: block;
+  margin-top: 1rem;
+  width: 5rem;
+  height: 5rem;
+  padding: 0;
+  border-radius: 50%;
+/*  background: radial-gradient(rgb(255, 255, 255, 0.7), rgba(1, 136, 204, 0.2));*/
+  border: 0;
+  border: 2px solid black;
+  color: black;
+  background-color: transparent;
 }
-.category{
-    margin-top: 10px;
-    margin-left: 50px;
-    width: 200px;
-    height: 200px;
-    padding: 5px;
-    border-radius: 50%;
-    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
-    background: radial-gradient( #0E4194, #0188CC  );
-    /*opacity: 0.9;*/
-    /*background-color: radial-gradient( circle, #0188CC, white, #0188CC);
-*/    border: 0px;
-    color: white;
- 	
-    
-}
+
+/*.category {*/
+/*    margin-top: 0.5rem;  rem 단위로 조정 */
+/*    margin-left: 2.5rem;  rem 단위로 조정 */
+/*    width: 5rem;  rem 단위로 조정 */
+/*    height: 5rem;  rem 단위로 조정 */
+/*    padding: 0.2rem;  rem 단위로 조정 */
+/*    border-radius: 50%;*/
+/*    text-shadow: 1px 4px 0 2px rgba(0, 0, 255, 1);  파란 그림자를 추가하고 투명도 조정 */
+/*    background: radial-gradient(rgba(14, 65, 148, 0.1), rgba(1, 136, 204, 0.7));  투명한 배경 적용 */
+/*    border: 0;  테두리 제거 */
+/*    color: white;*/
+/*}*/
+
+/*.category{*/
+/*    margin-top: 10px;*/
+/*    margin-left: 50px;*/
+/*    width: 200px;*/
+/*    height: 200px;*/
+/*    padding: 5px;*/
+/*    border-radius: 50%;*/
+/*    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);*/
+/*    background: radial-gradient( #0E4194, #0188CC  );*/
+/*    opacity: 0.9;*/
+/*    background-color: radial-gradient( circle, #0188CC, white, #0188CC);*/
+/*    border: 0px;*/
+/*    color: white;}*/ 	
+
+
 .category:active {
   box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
   position: relative;
@@ -275,11 +308,10 @@ font-size: 2.5rem;
 }
 .grade4{
   background-color: #0E4194;
-  
 }
 .grade5{
   background-color: gold;
-  
+  font-weight: bold;
 }
 .gradeNameBox{
   display: flex;
@@ -300,7 +332,7 @@ font-size: 2.5rem;
   background-color: #333333;
   opacity: 0.9;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -17,7 +17,7 @@
 	          >
 	            <i class="fa-solid fa-magnifying-glass"></i>
 	          </button>
-		    <input type="text" id="searchInput" name="keyword" class="market__searchInput" placeholder="시장명 또는 주소를 입력하세요.  ex)부평" " />
+		    <input type="text" id="searchInput" name="keyword" class="market__searchInput" placeholder="시장명 또는 주소를 입력하세요.  ex)부평" />
 
           </div>
 		</form>

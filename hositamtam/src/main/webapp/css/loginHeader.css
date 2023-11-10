@@ -43,23 +43,20 @@ ul {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 0;
+  padding: 1rem 1rem 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  background-color: var(--color-background);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+/*  background-color: var(--color-background);*/
+/*  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,*/
+/*    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;*/
+  background-color: transparent;
+  box-shadow:none;
 }
 
-/*.mainHeader__logo__img {*/
-/*  width: 150px;*/
-/*  padding: 0 1rem;*/
-/*}*/
-
 .mainHeader__logo__img {
-  width: 180px;
+  width: 200px;
   padding: 0 1rem;
 }
 
@@ -91,7 +88,7 @@ ul {
 
 .market__search {
   position: relative;
-  width: 25rem;
+  width: 30rem;
   border: 2px solid var(--color-gray);
   height: 3rem;
   border-radius: 4px;
@@ -100,12 +97,13 @@ ul {
 .market__searchInput {
   position: absolute;
   top: 0;
-  left: 3rem; /* searchButton의 너비만큼 왼쪽으로 이동 */
-  width: calc(100% - 3rem);
-  height: 3rem;
+/*  left: 3rem;  searchButton의 너비만큼 왼쪽으로 이동 */
+/*  width: calc(100% - 3rem);*/
+  width: calc(100%);
+  height: 2.92rem;
   align-items: center;
-  padding: 0;
-  font-size: 0.9rem;
+  padding: 0 0 0 3rem;
+  font-size: 1rem;
   border: none;
   background-color: transparent; /* 배경색을 투명으로 설정 */
 }
@@ -118,7 +116,7 @@ ul {
   height: 3rem;
   padding: 0;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--color-gray);
   background-color: transparent; /* 배경색을 투명으로 설정 */
 }
@@ -157,7 +155,6 @@ ul {
 }
 
 .mainHeader__menu__category:hover {
-	text-align: center;
 	color: var(--color-accent);
 }
 

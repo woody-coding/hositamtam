@@ -20,7 +20,7 @@
 <!-- CSS -->
 <link rel="stylesheet" href="../css/loginHeader.css" />
 <link rel="stylesheet" href="../css/footer.css" />
-<!-- <link rel="stylesheet" href="../css/postMain.css" /> -->
+
 <link rel="stylesheet" href="../css/postUpdate.css" />
 <!-- JavaScript -->
 <link
@@ -51,34 +51,46 @@
 
 	<div class="postCategory-radio">
 	            <div class="radioBox">
-                <label for="pcategory">카테고리</label>
-				<input type="radio" name="pcategory" value="궁금해요" ${post.pcategory eq '궁금해요' ? 'checked' : ''}/>궁금해요
+                <label for="pcategory">카테고리</label><br/>
+				<select  id="pcategory">
+                  <option value="궁금해요" >궁금해요</option>
+                  <option value="도와주세요" >도와주세요</option>
+                  <option value="소통해요" >소통해요</option>
+                  <option value="시장소식" >시장소식</option>
+                </select>
+                <!--
+                
+<input type="radio" name="pcategory" value="궁금해요" ${post.pcategory eq '궁금해요' ? 'checked' : ''}/>궁금해요
 				<input type="radio" name="pcategory" value="도와주세요" ${post.pcategory eq '도와주세요' ? 'checked' : ''}/>도와주세요
 				<input type="radio" name="pcategory" value="소통해요" ${post.pcategory eq '소통해요' ? 'checked' : ''}/>소통해요
 				<input type="radio" name="pcategory" value="시장소식" ${post.pcategory eq '시장소식' ? 'checked' : ''}/>시장소식
-                </div> 
+    -->
+                  </div> 
 	</div>
 	 <div class="postHead row">
 	<label for="ptitle">제목</label>
 	<input type="text" name="ptitle" value="${post.ptitle}" placeholder="제목을 입력하세요" />
 	</div> 
-	<br>
+	
      <div class="postContent row">
 	<label for="pcontent">내용</label>
-	</div>  
 	<textarea name="pcontent" placeholder="내용을 입력하세요" >${post.pcontent}</textarea>
-	<br>
+	</div>  
+	
 	<label for="pphoto">사진</label>
 		<input type="file" name="pphoto" value="${post.pphoto}" />
-	<br>
+	
 	<label for="mno"></label>
 		<input type="hidden" name="mno" value="${market.mno}"/>
 	<label for="id"></label>
 		<input type="hidden" name="id" value="${userId}"/>
 	<label for="pno"></label>
 		<input type="hidden" name="pno" value="${post.pno}"/>
-	<input type="submit" value="수정하기">
-		<input type="button" onclick="location.href='/finalProject/views/deletePost?pno=${post.pno}&mno=${market.mno}'" value="삭제하기">
+	<div class=btnBox>
+	<input class="modify" type="submit" value="수정하기">
+		<input class="submit" type="button" onclick="location.href='/finalProject/views/deletePost?pno=${post.pno}&mno=${market.mno}'" value="삭제하기">
+	
+	</div>
 	</form>
 	</div>
 	</div>

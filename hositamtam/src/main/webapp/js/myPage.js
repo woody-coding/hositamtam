@@ -17,7 +17,7 @@ function editHandler(event) {
 }
 
 function deleteHandler(event){
-	if(confirm('현재 회원을 정말 삭제하시겠습니까?')){
+	if(confirm('정말 탈퇴하시겠습니까? 신중하게 결정해주세요. (탈퇴후 기존 아이디로 재가입 불가)')){
 		 document.getElementById('deleteForm').submit();
 		
 	}else{

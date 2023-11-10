@@ -13,13 +13,23 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
       href="https://webfontworld.github.io/gmarket/GmarketSans.css"
       rel="stylesheet"
     />
+    
+    <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+	<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
 
     <!-- Font Awesome -->
     <script
@@ -28,15 +38,16 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/storeDetail.css" />
+    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/storeDetail.css" />
 
     <!-- JavaScript -->
 	<script>
 		function init() {
 			
 			let sno = '<%= request.getAttribute("sno") %>';
+			alert('sno값 들어오나?  ' + sno);
 			
 			sno = (sno === 'null') ? null : sno;
 		    
@@ -54,35 +65,28 @@
 	
 		window.addEventListener('load', init);
 	</script>
-    <script src="../js/anchor.js"></script>
-    <script src="../js/storeDetailReview.js"></script>
+    <script defer src="/finalProject/js/storeDetailReview.js"></script>
+    <script defer src="/finalProject/js/anchor.js"></script>
 </head>
 <body>
-
-	<%-- <%@ include file="navi.jsp" %>	 --%>
+	<%@ include file="navi.jsp" %>
     <!-- Main -->
     <!-- Store Detail -->
     <section id="storeDetail" class="max-container">
       <div class="storeDetail__info">
+      	<h4 class="storeDetail__h4 storeDetail__star">
+           <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
+        </h4>
         <button class="storeDetail__like">
-          <i class="fa-solid fa-heart"></i><div class="storeDetail__like__count" id="storeLikeCount"></div>
+          <i class="fa-solid fa-heart"></i>
+          <div class="storeDetail__like__count" id="storeLikeCount"></div>
         </button>
+      
+        <span class="storeDetail__title">${store.sname}</span>
         
-        ${store.nickname} 님이 등록한 점포입니다.
         <button class="storeDetail__modify">점포 수정</button>
       </div>
-      <div class="storeDetail__star__name">
-        <span>
-          <h4 class="storeDetail__h4 storeDetail__star">
-            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
-          </h4>
-        </span>
-        <span>
-          <h4 class="storeDetail__h4 storeDetail__name">
-            ${store.sname}
-          </h4>
-        </span>
-      </div>
+      
 	<div class="storeDetail__storeType">
 	    <span class="storeDetail__storeType__title">
 	        <h4 class="storeDetail__h4">점포 형태</h4>
@@ -93,22 +97,31 @@
 
       <div class="storeDetail__payment">
         <span class="storeDetail__payment__title">
-        <h4 class="storeDetail__h4">결제 방식</h4></span>
+        	<h4 class="storeDetail__h4">결제 방식</h4>
+        </span>
         
-	<c:forEach var="storePayment" items="${storePaymentList}">
-	    <input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked" disabled><span>${storePayment.paytype}</span>
-	</c:forEach>
-
-        
+		<c:forEach var="storePayment" items="${storePaymentList}">
+		    <input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked" disabled><span>${storePayment.paytype}</span>
+		</c:forEach>
       </div>
+      
       <div class="storeDetail__category">
         <span class="storeDetail__category__title">
-        <h4 class="storeDetail__h4">취급 품목</h4></span>
+        	<h4 class="storeDetail__h4">취급 품목</h4>
+        </span>
         <span>${store.scategory}</span>
       </div>
-      <div class="storeDetail__photo">
+      
+      <div class="storeDetail__storeType">
+      	<span class="storeDetail__storeInsert__name">
+          <h4 class="storeDetail__h4">점포 등록자</h4>
+        </span>
+        <span>'${store.nickname}' 님</span>
+      </div>
+      
+      <div>
         <!-- 등록된 점포 사진 -->
-        <img src="../images/${store.sphoto}" style="width:300px; height: 150px;"/>
+        <img src="../images/${store.sphoto}" class="storeDetail__photo" />
       </div>
     </section>
 
@@ -118,16 +131,16 @@
           <img src="images/icons8-병아리-60.png" class="review__level__photo" />
         </span> -->
       <div class="review__info">
-        <img src="../images/icons8-병아리-60.png" class="review__level__photo" />
+        <img src="/finalProject/images/icons8-병아리-60.png" class="review__level__photo" />
         <span class="review__ask">
-          탐탐 님 해당 점포에 리뷰를 남겨주세요.
+          ${memberInfo.nickname}님 해당 점포에 리뷰를 남겨주세요.
         </span>
         <span class="review__star">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star review__star1"></i>
+          <i class="fa-solid fa-star review__star2"></i>
+          <i class="fa-solid fa-star review__star3"></i>
+          <i class="fa-solid fa-star review__star4"></i>
+          <i class="fa-solid fa-star review__star5"></i>
         </span>
       </div>
 
@@ -142,6 +155,15 @@
         	</select>
           <div class="review__form">
             <input class="review__input" type="text" name="rcontent" placeholder="리뷰를 남겨주세요."/>
+           <!-- <label class="review__label">
+              <textarea
+                class="review__input"
+                id=""
+                name="review"
+                maxlength="100"
+                placeholder="리뷰를 남겨주세요.(최대 100자)"
+              ></textarea>
+            </label> -->
           </div>
           <input type="hidden" name="sno" value="${store.sno}"/>
           <input type="hidden" name="id" value="king123"/>
@@ -162,20 +184,23 @@
         </span>
       </div>
       
-      
       <hr class="storeDetail__hr" />
-      
       
       <c:forEach var="storeReview" items="${storeReviewList}">
       	<div class="review__contents__list">
-	        <section class="review__contents__photo" style="color: #0188cc">
+	        <section class="review__contents__photo">
 	          <img
 	            src="../images/icons8-caveman-64.png"
 	            class="review__contents__img"
 	          />
 	        </section>
 	        <section class="review__contents__main">
-	          <div class="review__contents__name">${storeReview.nickname}</div>
+                 <div class="review__contents__name">${storeReview.nickname}</div>
+	          <!--<div class="review__contents__name">
+            	${storeReview.id}<br /><br />
+            	<i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;사용자가 점포리뷰 때 남긴 별점
+             </div>
+              -->
 	          <div class="review__contents__ownerInfo">
 	            리뷰 ${storeReview.review } &nbsp; 별점평균 ${storeReview.rating} &nbsp; | &nbsp; ${storeReview.rregdate}
 	            <c:if test="${storeReview.id == userId}">
@@ -264,6 +289,6 @@
     </aside>
 		
 		
-		<%@ include file="footer.jsp" %>
+	<%@ include file="footer.jsp" %>
 </body>
 </html>
