@@ -100,12 +100,13 @@ ul {
 .market__searchInput {
   position: absolute;
   top: 0;
-  left: 3rem; /* searchButton의 너비만큼 왼쪽으로 이동 */
-  width: calc(100% - 3rem);
-  height: 3rem;
+/*  left: 3rem;  searchButton의 너비만큼 왼쪽으로 이동 */
+/*  width: calc(100% - 3rem);*/
+  width: calc(100%);
+  height: 2.92rem;
   align-items: center;
-  padding: 0;
-  font-size: 0.9rem;
+  padding: 0 0 0 3rem;
+  font-size: 1rem;
   border: none;
   background-color: transparent; /* 배경색을 투명으로 설정 */
 }
@@ -118,7 +119,7 @@ ul {
   height: 3rem;
   padding: 0;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--color-gray);
   background-color: transparent; /* 배경색을 투명으로 설정 */
 }

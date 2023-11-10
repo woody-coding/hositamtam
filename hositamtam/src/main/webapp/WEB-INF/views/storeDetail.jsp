@@ -119,7 +119,7 @@
       <div class="review__info">
         <img src="../images/icons8-병아리-60.png" class="review__level__photo" />
         <span class="review__ask">
-          탐탐 님 해당 점포에 리뷰를 남겨주세요.
+          ${memberInfo.nickname}님 해당 점포에 리뷰를 남겨주세요.
         </span>
         <span class="review__star">
           <i class="fa-solid fa-star"></i>
