@@ -73,11 +73,16 @@
         </div>
 
         <div class="mylevel__gage__data">
-          <span>시장 <br />왕초보</span>
-          <span>시장 <br />햇병아리</span>
-          <span>시장 <br />탐험가</span>
-          <span>시장 <br />지킴이</span>
-          <span>시장 <br />지박령</span>
+<!--           <span>시장 <br />삐약이</span> -->
+<!--           <span>시장 <br />왕초보</span> -->
+<!--           <span>시장 <br />탐험가</span> -->
+<!--           <span>시장 <br />지킴이</span> -->
+<!--           <span>시장 <br />개척자</span> -->
+          <span>삐약이</span>
+          <span>왕초보</span>
+          <span>탐험가</span>
+          <span>지킴이</span>
+          <span>개척자</span>
         </div>
       </div>
 
