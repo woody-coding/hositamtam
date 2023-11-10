@@ -290,6 +290,12 @@ function init() {
             openInfo();
         }
     });
+     /*document.querySelector('#clickButton').addEventListener('click', function() {
+        // #storeContent 클릭 이벤트 발생
+        var event = new Event('click');
+        document.querySelector('#storeContent').dispatchEvent(event);
+    });*/
+
   
 }
 	
@@ -453,10 +459,11 @@ function storeAjaxHandler() {
                  
                   	'</div>' +
                   	
-				  	'<div class="categoryAndType"">' +
+				  	'<div class="categoryAndType">' +
 	            
 	                   '<span> ' + allStoreList[i].scategory + ' | </span>' +
 	                   '<span> ' +  allStoreList[i].stype + '</span>' +
+	                      '<button id="clickButton">Click me</button>' +
                    '</div>' +
 				    
 				'</div>'+
