@@ -96,7 +96,7 @@ function memberUpdateHandler() {
 	        // 업데이트 성공 시
 	        alert('회원 정보가 정상적으로 수정되었습니다. 재로그인을 해주세요!');
 	        window.sessionStorage.removeItem('memberId');
-	        window.location.href = '/finalProject/views/logout';	        
+	        window.location.href = '/finalProject/views/loginAgain';	        
 	    } else {
 	        // 업데이트 실패 시
 	        alert('회원 정보 수정에 실패하였습니다.');

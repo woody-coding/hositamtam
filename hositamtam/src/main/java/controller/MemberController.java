@@ -82,6 +82,17 @@ public class MemberController {
 		return "login";
 	}
 	
+	
+	@GetMapping("/views/loginAgain")
+	public String loginAgain(HttpSession session) {
+        // 로그아웃 처리
+		session.removeAttribute("memberInfo"); // 세션에서 사용자 정보 삭제
+	    session.removeAttribute("userId"); // 세션에서 사용자 아이디도 삭제
+        session.invalidate(); // 세션 초기화
+        return "redirect:/views/login"; // 로그아웃 후 메인 페이지로 리다이렉트
+    }
+	
+	
 	@GetMapping("/views/logout")
 	public String logout(HttpSession session) {
         // 로그아웃 처리
