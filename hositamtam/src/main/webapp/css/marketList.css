@@ -91,7 +91,7 @@ body {
 }
 .mkEtc {
 	color: gray;
-	font-size: 1rem;
+	font-size: 1.1rem;
 }
 .mainHeader__nav a {
 	color: black;
@@ -100,7 +100,7 @@ body {
 
 .goMarket{
     width: 300px;
-    padding: 5px;
+    padding: 8px;
     height: 160px;
     font-family: 'GmarketSans';
     position: relative;
@@ -143,7 +143,9 @@ body {
     top: 0;  hover 상태에서 down을 아래로 이동하여 표시 
   }	
   */
-  
+.mkEtc i {
+	color: #0188cc;
+}  
 #information{
 	clear: both;
 }

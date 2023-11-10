@@ -144,13 +144,28 @@ ul {
 }
 
 .mainHeader__menu__item:hover {
+  color: var(--color-primary);
   border: 1.5px solid var(--color-accent);
   border-radius: 0.5rem;
 }
 
+.dropdown-menu.show {
+	text-align: center;
+}
+
+.mainHeader__menu__li {
+	margin: 0.3rem 0;
+}
+
+.mainHeader__menu__category:hover {
+	text-align: center;
+	color: var(--color-accent);
+}
+
 .mainHeader__menu__item.active {
-  border: 1px solid var(--color-accent);
-  border-radius: 4px;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-accent);
+  border-radius: 0.5rem;
 }
 
 
