@@ -15,14 +15,14 @@ function slikecountHandler() {
 		
 		if(storeLike[0].likeStatus === 'x') {
 			//검은색 하트
-			//storeDetail__like.style.color = 'black';
+			//document.querySelector('.storeDetail__like').style.color = 'black';
 		} else if (storeLike[0].likeStatus === 'o') {
 			//빨간색 하트
-			//storeDetail__like.style.color = 'red';
+			//document.querySelector('.storeDetail__like').style.color = 'red';
 		}
 
 
-		document.querySelector('#storeLikeCount').innerHTML = '찜 ' + storeLikeCount + '개';
+		document.querySelector('#storeLikeCount').innerHTML = storeLikeCount;
     }
 }
 
@@ -39,14 +39,14 @@ function slikecountStatusHandler() {
 		
 		if(storeLike[0].likeStatus === 'x') {
 			//검은색 하트
-			//storeDetail__like.style.color = 'black';
+			//document.querySelector('.storeDetail__like').style.color = 'black';
 		} else if (storeLike[0].likeStatus === 'o') {
 			//빨간색 하트
-			//storeDetail__like.style.color = 'red';
+			//document.querySelector('.storeDetail__like').style.color = 'red';
 		}
 		
 
-		document.querySelector('#storeLikeCount').innerHTML = '찜 ' + storeLikeCount + '개';
+		document.querySelector('#storeLikeCount').innerHTML = storeLikeCount;
     }
 }
 

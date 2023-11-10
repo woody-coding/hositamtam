@@ -17,7 +17,7 @@
 	          >
 	            <i class="fa-solid fa-magnifying-glass"></i>
 	          </button>
-		    <input type="text" id="searchInput" name="keyword" class="market__searchInput" placeholder="탐험하고싶은 시장명 또는 주소를 입력해주세요. ex)부평깡통시장" " />
+		    <input type="text" id="searchInput" name="keyword" class="market__searchInput" placeholder="시장명 또는 주소를 입력해주세요. ex)부평깡통시장" />
           </div>
 		</form>
 
@@ -28,7 +28,7 @@
 
       <nav class="mainHeader__nav">
         <ul class="mainHeader__menu">
-          <li><a class="mainHeader__menu__item">서비스안내</a></li>
+          <li><a href="#section2" class="mainHeader__menu__item">서비스안내</a></li>
           <li><a href="/finalProject/views/post" class="mainHeader__menu__item">시끌시끌</a></li>
           <li><a href="#" class="mainHeader__menu__item dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             카테고리

@@ -80,17 +80,19 @@
 	<%@ include file="navi.jsp" %>
 
 	<div class="section">
-	<div id="map" ></div>
+		
+		 	<div id="map" ></div>
 
-	
-	
-	<div id="howGetMarket"></div>
-	<div id="marketErrorMsg"></div>
-	<div id="mkListResult" class="row">
-	<div id="marketContent"></div>
+				<div id="howGetMarket"></div>
+				<div id="marketErrorMsg"></div>
+				<div id="mkListResult" class="row">
+				<div id="marketContent"></div>
+				</div> 
+		
 	</div>
 	
-	</div>
+	
+	
 <%@ include file="footer.jsp"%>
 	
 </body>

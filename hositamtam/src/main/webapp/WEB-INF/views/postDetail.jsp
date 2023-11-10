@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% String userId = (String)session.getAttribute("userId"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>호시탐탐</title>
 <!-- Favicon -->
 <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
@@ -68,9 +70,6 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	<c:forEach items="${post}" var="post">	
-	<h2>${market.mname}의 게시글 상세 페이지입니다.</h2>
-	<hr/>
 	<div>커뮤니티 > ${post.pcategory}</div>
 	<hr/>
 	
@@ -94,7 +93,6 @@
 	<img src="${post.pphoto}"></img>
 	<br/>
 	<hr/>
-	
 	<div class="commentInsert row">
 	<form method="POST" action="/finalProject/views/InsertComment">
 	<label for="pno"></label>
@@ -106,18 +104,20 @@
 	<input class="col-1"  type="submit" value="등록">
 	</form>
 	</div>
-	<c:forEach items="${commentList}" var="comment">	
+	<c:forEach items="${commentList}" var="comment" varStatus="status">		
 	
 	<div class="commentBox row">
-	<div class="col-2">${comment.cnickname}</div>
-	<div class="col-8">${comment.ccontent}</div>
+	<div class="col-1">${status.count}</div>
+	<div class="col-1">${comment.cnickname}</div>
+	<div class="col-6">${comment.ccontent}</div>
 	<div class="col-2">${comment.cregdate}</div>
-	
+	<c:if test="${post.id == userId}">
+	<div class="col-1"><button onclick="location.href='/finalProject/views/deleteComment?cno=${comment.cno}&pno=${post.pno}'">삭제</button></div>
+	</c:if>
 	</div>
-
-	</c:forEach>
 	</c:forEach>
 	</div>
+	</div><hr/>
 	</div>
 	<%@ include file="footer.jsp" %>
 </body>

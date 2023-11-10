@@ -8,6 +8,8 @@ public class MemberDO {
     private String gender;
     private int exp;
     private int grade;
+    private String newPasswd;
+    private String newNickname;
     
     public MemberDO() {
     	
@@ -54,5 +56,21 @@ public class MemberDO {
 	}
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+
+	public String getNewPasswd() {
+		return newPasswd;
+	}
+
+	public void setNewPasswd(String newPasswd) {
+		this.newPasswd = newPasswd;
+	}
+
+	public String getNewNickname() {
+		return newNickname;
+	}
+
+	public void setNewNickname(String newNickname) {
+		this.newNickname = newNickname;
 	}
 }

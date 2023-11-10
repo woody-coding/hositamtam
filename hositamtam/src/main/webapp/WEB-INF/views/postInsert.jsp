@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-
 <head>
+<title>postInsert.jsp</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>호시탐탐</title>
-
 <!-- Favicon -->
-<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -35,38 +32,46 @@
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
 
+​
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="../js/postMain.js"></script>
-<script src="../js/postList.js"></script>
-
 </head>
 <body>
-
 	<%@ include file="navi.jsp" %>
-
-	<div class="section" id="section1">
-		<div class="container mt-5">
-			<h3>호시탐탐의 시끌시끌 페이지 입니다</h3>
-			<button id="whatMarket">시장 선택하기</button>
-			<hr />
-			<div class="mkNameList">
-				<form class="market_form" method="GET" action="/finalProject/views/postMain">
-					<c:forEach items="${marketList}" var="market">
-						<label for="mno"></label>
-						<button id="mno" name="mno" value="${market.mno}" class="flex-container">${market.mname}</button>
-					</c:forEach>
-				</form>
-			</div>
-			<hr>
-			<div class="firstShow"></div>
-		</div>
+	<div  class="section" id="section1">
+	<div class="container mt-5">
+	<h2>${market.mname}의 게시글 등록 페이지입니다.</h2>
+	<form method="POST" action="/finalProject/views/postInsert" enctype="multipart/form-data">
+	<label for="pcategory">카테고리</label> 	
+	<input type="radio" name="pcategory" value="궁금해요" />궁금해요
+	<input type="radio" name="pcategory" value="도와주세요" />도와주세요
+	<input type="radio" name="pcategory" value="소통해요" />소통해요
+	<input type="radio" name="pcategory" value="시장소식" />시장소식
+	<br>
+	<label for="ptitle">제목</label>
+	<input type="text" name="ptitle" placeholder="제목을 입력하세요" />
+	<br>
+	<label for="pcontent">내용</label>
+	<input type="text" name="pcontent" placeholder="내용을 입력하세요" />
+	<br>
+	<label for="pphoto">사진</label>
+	<input type="file" name="pphoto" />
+	<br>
+	<label for="mno"></label>
+	<input type="hidden" name="mno" value="${market.mno}"/>
+	<label for="id"></label>
+	<input type="hidden" name="id" value="${userId}"/>
+	<input type="submit" value="등록하기">
+	
+	</form>
 	</div>
-
-	<%@ include file="footer.jsp"%>
+	
+	</div>
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

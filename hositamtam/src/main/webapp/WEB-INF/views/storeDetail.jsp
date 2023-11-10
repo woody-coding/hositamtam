@@ -64,9 +64,8 @@
     <section id="storeDetail" class="max-container">
       <div class="storeDetail__info">
         <button class="storeDetail__like">
-          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-heart"></i><div class="storeDetail__like__count" id="storeLikeCount"></div>
         </button>
-        <p id="storeLikeCount"></p>
         
         ${store.nickname} 님이 등록한 점포입니다.
         <button class="storeDetail__modify">점포 수정</button>
@@ -74,7 +73,7 @@
       <div class="storeDetail__star__name">
         <span>
           <h4 class="storeDetail__h4 storeDetail__star">
-            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; 4.0
+            <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
           </h4>
         </span>
         <span>
