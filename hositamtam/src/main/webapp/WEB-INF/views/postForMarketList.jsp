@@ -35,7 +35,6 @@
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
 
-​
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <script
@@ -49,6 +48,7 @@
 <body>
 
 	<%@ include file="navi.jsp" %>
+
 	<div class="section" id="section1">
 		<div class="container mt-5">
 			<h3>호시탐탐의 시끌시끌 페이지 입니다</h3>
@@ -63,9 +63,7 @@
 				</form>
 			</div>
 			<hr>
-			
 			<div class="firstShow"></div>
-			
 		</div>
 	</div>
 

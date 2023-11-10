@@ -29,5 +29,9 @@ public class TestJson {
 	//	String result = jsonMarketStore.getChangeProfile("1234567899", "shortlee", "숏다리걸");
 	//	System.out.println("Result: " + result);
 
+		
+		PostDAO postDAO2 = new PostDAO();
+		System.out.println(postDAO2.getAllPostInfo(100));
+		
 	}
 }
