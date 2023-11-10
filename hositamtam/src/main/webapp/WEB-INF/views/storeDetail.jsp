@@ -16,6 +16,16 @@
       href="https://webfontworld.github.io/gmarket/GmarketSans.css"
       rel="stylesheet"
     />
+    
+    <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+	<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
 
     <!-- Font Awesome -->
     <script
@@ -106,7 +116,7 @@
         <span>'${store.nickname}' 님</span>
       </div>
       
-      <div class="storeDetail__photo">
+      <div>
         <!-- 등록된 점포 사진 -->
         <img src="../images/${store.sphoto}" class="storeDetail__photo" />
       </div>
@@ -173,7 +183,10 @@
 	          />
 	        </section>
 	        <section class="review__contents__main">
-	          <div class="review__contents__name">${storeReview.id}</div>
+	          <div class="review__contents__name">
+            	${storeReview.id}<br /><br />
+            	<i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;사용자가 점포리뷰 때 남긴 별점
+          	  </div>
 	          <div class="review__contents__ownerInfo">
 	            리뷰 ${storeReview.review } &nbsp; 별점평균 ${storeReview.rating} &nbsp; | &nbsp; ${storeReview.rregdate}
 	          </div>
