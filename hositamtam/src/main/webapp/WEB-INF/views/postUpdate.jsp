@@ -64,7 +64,8 @@
 	</div> 
 	<br>
      <div class="postContent row">
-	<label for="pcontent">내용</label></div>  
+	<label for="pcontent">내용</label>
+	</div>  
 	<textarea name="pcontent" placeholder="내용을 입력하세요" >${post.pcontent}</textarea>
 	<br>
 	<label for="pphoto">사진</label>
