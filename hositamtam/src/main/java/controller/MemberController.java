@@ -247,6 +247,16 @@ public class MemberController {
 	        String gradeName = getGradeName(userGrade);
 	        model.addAttribute("gradeName", gradeName);
 
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 	        return "myPage"; // 마이페이지 뷰로 이동
 	    } else {
 	        // 로그인하지 않은 경우 처리

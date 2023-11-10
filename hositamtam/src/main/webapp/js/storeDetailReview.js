@@ -66,7 +66,7 @@ function init() {
 	const storeNo = JSON.parse(storeNumber);
 	currentSno = storeNo.sno;
 	
-	
+	alert('sno : ' + currentSno);
 	
 	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
 	const memberId = window.sessionStorage.getItem('memberId');
