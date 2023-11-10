@@ -89,6 +89,7 @@ ul {
 .mainHeader__menu {
   display: flex;
   gap: 4px;
+  margin-top: 1rem;
 }
 
 .mainHeader__menu__item {
