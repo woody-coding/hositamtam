@@ -44,7 +44,7 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	<h2>${market.mname}의 시끌시끌</h2>
+	<h2>${market.mname} <span>시끌시끌</span></h2>
 	<form method="POST" action="/finalProject/views/postInsert" enctype="multipart/form-data">
 	<div class="postCategory-radio">
 	            <div class="radioBox">
@@ -61,21 +61,22 @@
 	<label for="ptitle">제목</label>
 	<input type="text" name="ptitle" placeholder="제목을 입력하세요" />
 	</div> 
-	<br>
+	
 	<div class="postContent row">
 	<label for="pcontent">내용</label>
-	<textarea name="pcontent" placeholder="내용을 입력하세요" ></textarea>
+	<textarea id="myTextarea" name="pcontent" placeholder="내용을 입력하세요" ></textarea>
 	</div>  
-	<br>
+	
 	<label for="pphoto">사진</label>
 	<input type="file" name="pphoto" />
-	<br>
+	
 	<label for="mno"></label>
 	<input type="hidden" name="mno" value="${market.mno}"/>
 	<label for="id"></label>
 	<input type="hidden" name="id" value="${userId}"/>
+	<div class=btnBox>
 	<input class="submit" type="submit" value="등록하기">
-	
+	</div>
 	</form>
 	</div>
 	</div>

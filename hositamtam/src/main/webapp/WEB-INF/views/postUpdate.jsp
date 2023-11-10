@@ -71,15 +71,15 @@
 	<label for="ptitle">제목</label>
 	<input type="text" name="ptitle" value="${post.ptitle}" placeholder="제목을 입력하세요" />
 	</div> 
-	<br>
+	
      <div class="postContent row">
 	<label for="pcontent">내용</label>
 	<textarea name="pcontent" placeholder="내용을 입력하세요" >${post.pcontent}</textarea>
 	</div>  
-	<br>
+	
 	<label for="pphoto">사진</label>
 		<input type="file" name="pphoto" value="${post.pphoto}" />
-	<br>
+	
 	<label for="mno"></label>
 		<input type="hidden" name="mno" value="${market.mno}"/>
 	<label for="id"></label>
