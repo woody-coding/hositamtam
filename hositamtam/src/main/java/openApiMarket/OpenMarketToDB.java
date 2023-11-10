@@ -165,7 +165,7 @@ public class OpenMarketToDB {
             
             System.out.println("DB에 넣기 성공~");
             
-        } catch (Exception e) {	//ParseException | IOException | SQLException e
+        } catch (ParseException | IOException | SQLException e) {
             e.printStackTrace();
         }
     }

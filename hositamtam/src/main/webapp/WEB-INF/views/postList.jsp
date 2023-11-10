@@ -11,6 +11,8 @@
 <html>
 <head>
 <title>호시탐탐</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
 <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
@@ -49,13 +51,13 @@
 	<div class="section" id="section1">
 		<div class="container mt-5">
 			<div id="mkNameBox">
-				<span id="mkName">호심탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
+				<span id="mkName">호시탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
 			</div>
 			<br />
-			<form method="GET" action="/finalProject/views/toPostUpdate" id="insert">
+			<form method="GET" action="/finalProject/views/toPostInsert" id="insert">
 				<label for="mno"></label>
 				<button id="writePost">
-					<i class="bi bi-pencil-square"></i>글 등록
+					<i class="bi bi-pencil-square"></i>글쓰기
 				</button>
 				<input type="hidden" name="mno" value="${market.mno}">
 			</form>
@@ -64,7 +66,7 @@
 			<div class="list">
 				<form method="GET" action="/finalProject/views/postMain">
 					<label for="mno"></label>
-					<button class="tab-button blue" >전체글</button>
+					<button class="tab-button " >전체글</button>
 					<input type="hidden" name="mno" value="${market.mno}">
 				</form>
 
@@ -76,10 +78,10 @@
 
 				<form method="GET" action="/finalProject/views/postCategory">
 					<label for="pCategory"></label>
-					<button  class="tab-button" name="pCategory" value="궁금해요" data-id="2">궁금해요</button>
-					<button  class="tab-button" name="pCategory" value="도와주세요" data-id="3">도와주세요</button>
-					<button  class="tab-button" name="pCategory" value="소통해요" data-id="4">소통해요</button>
-					<button class="tab-button" name="pCategory" value="시장소식" data-id="5"> 시장소식</button>
+					<button  class="tab-button" name="pCategory" value="궁금해요" >궁금해요</button>
+					<button  class="tab-button" name="pCategory" value="도와주세요" >도와주세요</button>
+					<button  class="tab-button" name="pCategory" value="소통해요">소통해요</button>
+					<button class="tab-button" name="pCategory" value="시장소식"> 시장소식</button>
 					<input type="hidden" name="mno" value="${market.mno}">
 				</form>
 			</div>
@@ -88,28 +90,30 @@
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
+					<th>내용</th>
 					<th>작성일자</th>
 					<th>좋아요</th>
 					<th>작성자</th>
-					<th>댓글</th>
+					<th>댓글 수</th>
 					<th>카테고리</th>
+					<th></th>
 
 				</tr>
 				<c:forEach items="${postList}" var="post" varStatus="status">
 					<tr>
-						<td id="${post.pno}">${status.count}</td>
-						<td id="${post.pno}">${post.ptitle}</td>
-						<td id="${post.pno}">${post.pcontent}</td>
-						<td id="${post.pno}">${post.pregdate}</td>
-						<td id="${post.pno}">${post.plikecount}</td>
-						<td id="${post.pno}">${post.nickname}</td>
-						<td id="${post.pno}">${post.countcomments}</td>
-						<td id="${post.pno}">${post.pcategory}</td>
-						<c:if test="${post.id == userId}">
-						<th><button type="button" onclick="location.href='/finalProject/views/toPostUpdateModify?mno=${market.mno}&pno=${post.pno}'">수정</button></th>
-						</c:if>
+						<td>${status.count}</td>
+						<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
+						<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.pcontent}</a></td>
+						<td>${post.pregdate}</td>
+						<td>${post.plikecount}</td>
+						<td>${post.nickname}</td>
+						<td>${post.countcomments}</td>
+						<td>${post.pcategory}</td>
 						<c:if test="${post.id != userId}">
-						<th><button>글 숨기기</button></th>
+						<td></td>
+						</c:if>
+						<c:if test="${post.id == userId}">
+						<th><button type="button" onclick="location.href='/finalProject/views/toPostUpdate?mno=${market.mno}&pno=${post.pno}'">글수정</button></th>
 						</c:if>
 					</tr>
 				</c:forEach>

@@ -82,13 +82,19 @@ body a {
     
 }
 #section2 {
+	
+	 width: 100%;
+    height: 100%;
+    position: relative;
   background-color: #eeeeee;
 }
 ul {
     list-style: none;
     padding: 0;
   }
-  
+#goService{
+	padding-top: 3rem;
+}  
  
 
 #busanExplain{
@@ -102,8 +108,11 @@ ul {
   position: absolute;
   top: 30%;
   left: 30%;
-  font-size: 2rem;
+  font-size: 1.5rem;
   
+}
+#btnGroup i{
+font-size: 2.5rem;
 }
 #btnGroup a{
  color: white;
@@ -116,17 +125,25 @@ ul {
     height: 200px;
     padding: 5px;
     border-radius: 50%;
-    background-color: #0188CC;
-    border: 0px;
+    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
+    background: radial-gradient( #0E4194, #0188CC  );
+    /*opacity: 0.9;*/
+    /*background-color: radial-gradient( circle, #0188CC, white, #0188CC);
+*/    border: 0px;
     color: white;
+ 	
     
+}
+.category:active {
+  box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+  position: relative;
+  top:2px;
 }
 .category:hover{
-    
-    background-color: #0E4194;
-    
+	animation: rotateAnimation 1s ease-in-out infinite;
 
 }
+
 /*옆에서 나오는 카테고리 */
 .listCategory{
   display: flex;
@@ -134,7 +151,8 @@ ul {
   padding-right: 20px;
         width: 550px; 
         height: 100vh; 
-        background: #0E4194; 
+        background: radial-gradient( #0E4194, #0188CC  );
+   
         position: fixed; 
         z-index: 5;
         color: white;
@@ -272,7 +290,7 @@ ul {
 #information {
   position: relative;
   text-align: center;
-  color: white;
+  color:  #808b97;
   background-color: #333333;
   opacity: 0.9;
   padding: 1rem;
@@ -320,10 +338,37 @@ ul {
   width: 100%;
   height: 600px;
 }
+/*====================================================================*/
+@keyframes pong {
+  from {
+	
+	background-color: #0E4194;
+    
+  }
+}
 
-
-
-
+/*#goPost:hover{
+	
+    animation: rotateAnimation 0.5s ease-in-out infinite;
+	
+    
+}
+#mkList:hover {
+    animation: rotateAnimation 0.5s ease-in-out infinite;
+  
+}*/
+ 
+@keyframes rotateAnimation {
+   0% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(15deg);
+    }
+}
 
 
 

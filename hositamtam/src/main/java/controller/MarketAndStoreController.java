@@ -56,7 +56,7 @@ public class MarketAndStoreController {
 	@GetMapping("/views/storeDetail")
 	public String StoreDetail(@RequestParam int sno, Model model) {
 
-		model.addAttribute("sno", sno);
+//		model.addAttribute("sno", sno);
 		
 		StoreDO storeDO = new StoreDO();
 		storeDO.setSno(sno);
@@ -75,8 +75,8 @@ public class MarketAndStoreController {
 		model.addAttribute("storeReviewAvg", storeReviewAvg);
 //		
 //		// 점포리뷰 리스트
-//		List<StoreDO> storeReviewList = storeDAO.getStoreReviewList(storeDO);
-//		model.addAttribute("storeReviewList", storeReviewList);
+		List<StoreDO> storeReviewList = storeDAO.getStoreReviewList(storeDO);
+		model.addAttribute("storeReviewList", storeReviewList);
 
 		return "storeDetail";
 	}

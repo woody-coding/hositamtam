@@ -62,15 +62,15 @@ public class PostController {
 	}
 
 	// 글 등록 이동
-	@GetMapping("/views/toPostUpdate")
-	public String toPostUpdate(@RequestParam int mno, Model model, HttpSession session) {
+	@GetMapping("/views/toPostInsert")
+	public String toPostInsert(@RequestParam int mno, Model model, HttpSession session) {
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
-		return "postUpdate";
+		return "postInsert";
 	}
 
 	// 글 수정 이동
-	@GetMapping("/views/toPostUpdateModify")
-	public String toPostUpdateModify(@RequestParam int mno, @RequestParam int pno, Model model, HttpSession session) {
+	@GetMapping("/views/toPostUpdate")
+	public String toPostUpdate(@RequestParam int mno, @RequestParam int pno, Model model, HttpSession session) {
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		model.addAttribute("post", postDAO.getAllPostInfo(pno));
 		return "postUpdate";
@@ -79,14 +79,14 @@ public class PostController {
 	// 글 삭제
 	@GetMapping("/views/deletePost")
 	public String deletePost(@RequestParam int pno, @RequestParam int mno, Model model) {
-		model.addAttribute("post", postDAO.getAllPostInfo(pno));
+		model.addAttribute("post", postDAO.deletePost(pno));
 		model.addAttribute("postList", postDAO.getAllPost(mno));
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		return "postList";
 	}
 
 	// 글 등록 기능
-	@PostMapping("/views/postUpdate")
+	@PostMapping("/views/postInsert")
 	public String insertPost(@ModelAttribute PostDO command, Model model, HttpServletRequest request)
 			throws IOException {
 		String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
@@ -107,7 +107,7 @@ public class PostController {
 		}
 		// 파일 정보를 photo 변수에 저장
 		String postImg = "/finalProject/upload/" + savedName; // 웹 경로로 수정
-		// 세션이메일을 받아서 판매자 이메일로 저장
+
 		int mno = Integer.parseInt(multi.getParameter("mno"));
 		String id = multi.getParameter("id");
 		String ptitle = multi.getParameter("ptitle");
@@ -122,6 +122,51 @@ public class PostController {
 		post.setPphoto(postImg);
 		post.setPcategory(pcategory);
 		postDAO.insertPost(post);
+
+		model.addAttribute("postList", postDAO.getAllPost(mno));
+		model.addAttribute("market", postDAO.getSelectedMarket(mno));
+		return "postList";
+	}
+
+	// 글 수정 기능
+	@PostMapping("/views/postUpdate")
+	public String updatePost(@ModelAttribute PostDO command, Model model, HttpServletRequest request)
+			throws IOException {
+		String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
+		int sizeLimit = 1024 * 1024 * 5;
+		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8",
+				new DefaultFileRenamePolicy());
+
+		File uploadDir = new File(directory);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdirs();
+		}
+		String savedName = "";
+		@SuppressWarnings("unchecked")
+		Enumeration<String> fileNames = multi.getFileNames();
+		if (fileNames.hasMoreElements()) {
+			String paramName = fileNames.nextElement();
+			savedName = multi.getFilesystemName(paramName);
+		}
+		// 파일 정보를 photo 변수에 저장
+		String postImg = "/finalProject/upload/" + savedName; // 웹 경로로 수정
+
+		int pno = Integer.parseInt(multi.getParameter("pno"));
+		int mno = Integer.parseInt(multi.getParameter("mno"));
+		String id = multi.getParameter("id");
+		String ptitle = multi.getParameter("ptitle");
+		String pcontent = multi.getParameter("pcontent");
+		String pcategory = multi.getParameter("pcategory");
+		// 게시물 생성
+		PostDO post = new PostDO();
+		post.setPno(pno);
+		post.setMno(mno);
+		post.setId(id);
+		post.setPtitle(ptitle);
+		post.setPcontent(pcontent);
+		post.setPphoto(postImg);
+		post.setPcategory(pcategory);
+		postDAO.updatePost(post);
 
 		model.addAttribute("postList", postDAO.getAllPost(mno));
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
@@ -143,6 +188,13 @@ public class PostController {
 	public String InsertComment(@ModelAttribute PostDO command, Model model) {
 		postDAO.InsertComment(command);
 		return "redirect:/views/toPostDetail?pno=" + command.getPno();
+	}
+
+	// 댓글 삭제 시
+	@GetMapping("/views/deleteComment")
+	public String deleteComment(@RequestParam int pno, @RequestParam int cno, Model model) {
+		postDAO.deleteComment(cno);
+		return "redirect:/views/toPostDetail?pno=" + pno;
 	}
 
 	@GetMapping("/views/postCatrgoryList")
