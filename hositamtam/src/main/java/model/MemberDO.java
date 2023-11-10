@@ -10,6 +10,7 @@ public class MemberDO {
     private int grade;
     private String newPasswd;
     private String newNickname;
+    private int exist;
     
     public MemberDO() {
     	
@@ -72,5 +73,11 @@ public class MemberDO {
 
 	public void setNewNickname(String newNickname) {
 		this.newNickname = newNickname;
+	}
+	public int getExist() {
+		return exist;
+	}
+	public void setExist(int exist) {
+		this.exist = exist;
 	}
 }

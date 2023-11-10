@@ -20,7 +20,7 @@
 <!-- CSS -->
 <link rel="stylesheet" href="../css/loginHeader.css" />
 <link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/postMain.css" />
+<link rel="stylesheet" href="../css/postDetail.css" />
 <!-- JavaScript -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"

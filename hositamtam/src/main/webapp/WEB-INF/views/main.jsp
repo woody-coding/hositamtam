@@ -33,7 +33,7 @@
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
 
-​
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <script
@@ -158,7 +158,7 @@
 		<div class="gradeInfo">
 			<div class="gradeIcon">
 				<div class="gradeImage">
-					<img src="../images/icons8-아가-64.png">
+					<img src="../images/icons8-병아리-60.png">
 				</div>
 				
 				<div class="gradeImage">
@@ -184,14 +184,7 @@
 				<div class="grade4">시장 지킴이</div>
 				<div class="grade5">시장 개척자</div>
 			</div>
-			
-			<!-- <div class="gradeNameBox">
-				<div class="gradeName">시장 왕초보</div>
-				<div class="gradeName">시장 햇병아리</div>
-				<div class="gradeName">시장 탐험가</div>
-				<div class="gradeName">시장 지킴이</div>
-				<div class="gradeName">시장 지박령</div>
-			</div> -->
+
 
 		</div>
 

@@ -60,29 +60,38 @@ body {
 	box-sizing: border-box;
 	border-bottom: 1px solid #0e4194;
 	min-height: 150px;
+	padding: 10px 0px 5px 0px;
 	/*padding: 5px;*/
 }
+/*.mkcontainer:hover{*/
+/*    background-color: #eeeeee;*/
+/*}*/
 .mkcontainer:hover{
-    background-color: #eeeeee;
+    background-color: #e5f0f9;
 }
 #howGetMarket {
 	font-size: 1.5rem;
 	padding: 5px;
 	font-weight: bold;
 	border-bottom: 2px solid #0e4194;
-
 }
 
 .mkName {
 	font-size: 1.2rem;
 	font-weight: bold;
 }
+.mkName:hover {
+	font-size: 1.2rem;
+	font-weight: bold;
+/*	color: #0e4194;*/
+	color: #e6007e;
+}
 #mkaddr {
 	font-size: 1.1rem;
 }
 .mkEtc {
 	color: gray;
-	font-size: 1rem;
+	font-size: 1.1rem;
 }
 .mainHeader__nav a {
 	color: black;
@@ -90,20 +99,22 @@ body {
 }
 
 .goMarket{
-    max-width: 300px;
-    width: 160px;
-    height: 40px;
+    width: 300px;
+    padding: 8px;
+    height: 160px;
     font-family: 'GmarketSans';
     position: relative;
-    font-size: 20px;
-    overflow: hidden;
-    line-height: 40px;
+    font-size: 1rem;
+    line-height: 20px;
+    
+    
 }
+
 .goMarket a{
     text-decoration: none;
     color: #e6007e;
 }
-.up {
+/*.up {
     position: absolute;
     top: 0;
     left: 10px;
@@ -119,23 +130,22 @@ body {
     position: absolute;
     left: 30px;
     font-size: 1.5rem;
-    top: 40px; /* 초기에 숨겨진 상태 */
+    top: 40px;  초기에 숨겨진 상태 
     transition: top 100ms;
 
   }
   
   .goMarket:hover .up {
-    top: -40px; /* hover 상태에서 up을 위로 이동하여 숨김 */
+    top: -40px;  hover 상태에서 up을 위로 이동하여 숨김 
   }
   
   .goMarket:hover .down {
-    top: 0; /* hover 상태에서 down을 아래로 이동하여 표시 */
+    top: 0;  hover 상태에서 down을 아래로 이동하여 표시 
   }	
-  
-  .personalMcontent {
-	border: 2px solid gray;
-	border-collapse: collapse;
-}
+  */
+.mkEtc i {
+	color: #0188cc;
+}  
 #information{
 	clear: both;
 }

@@ -290,6 +290,9 @@ function init() {
             openInfo();
         }
     });
+    
+    
+    
      /*document.querySelector('#clickButton').addEventListener('click', function() {
         // #storeContent 클릭 이벤트 발생
         var event = new Event('click');
