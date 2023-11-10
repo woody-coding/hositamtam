@@ -157,7 +157,6 @@ ul {
 }
 
 .mainHeader__menu__category:hover {
-	text-align: center;
 	color: var(--color-accent);
 }
 
