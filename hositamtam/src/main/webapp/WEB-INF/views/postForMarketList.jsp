@@ -55,12 +55,125 @@
 			<button id="whatMarket">시장 선택하기</button>
 			<hr />
 			<div class="mkNameList">
-				<form class="market_form" method="GET" action="/finalProject/views/postMain">
-					<c:forEach items="${marketList}" var="market">
-						<label for="mno"></label>
-						<button id="mno" name="mno" value="${market.mno}" class="flex-container">${market.mname}</button>
-					</c:forEach>
-				</form>
+				<table>
+					<tr>
+						<th>ㄱ - </th>
+					</tr>
+					<tr>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>ㄴ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㄷ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㄹ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅁ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅂ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅅ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅇ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅈ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅊ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅋ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅌ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅍ - </th>
+					</tr>
+					<tr>
+						<td>
+						
+						</td>
+					</tr>
+					<tr>
+						<th>ㅎ - </th>
+					</tr>
+					<tr>
+						<td>
+							<form class="market_form" method="GET" action="/finalProject/views/postMain">
+								<c:forEach items="${marketList}" var="market">
+									<label for="mno"></label>
+									<button id="mno" name="mno" value="${market.mno}" class="flex-container">${market.mname}</button>
+								</c:forEach>
+							</form>
+						</td>
+					</tr>
+				</table>
 			</div>
 			<hr>
 			<div class="firstShow"></div>
