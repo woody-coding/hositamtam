@@ -13,7 +13,7 @@ function ajaxNicknameChangeHandler() {
 	    if (response.isDuplicate === true) {
 	        // 중복된 닉네임일 경우 메시지 표시
 	        nicknameValid = false;
-	        document.querySelector('#error_msg').innerHTML = '이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해주세요.';
+	        document.querySelector('#error_msg').innerHTML = '이미 사용 중인 닉네임입니다. <br/>다른 닉네임을 입력해주세요.';
 	        
 	    } else {
 	        // 중복되지 않은 닉네임일 경우 닉네임 사용가능 표시
