@@ -2,7 +2,7 @@ package model;
 
 public class TestJson {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		PostDAO postDAO = new PostDAO();
 	//	System.out.println(postDAO.getAllPost(100));
@@ -24,10 +24,14 @@ public class TestJson {
 		
 		JsonMarketStore jsonMarketStore = new JsonMarketStore();
 	//	System.out.println(jsonMarketStore.getCheckPasswd("123456789", "longlee"));
-		System.out.println(jsonMarketStore.getChangeProfile("123456789", "shortlee", ""));
+	//	System.out.println(jsonMarketStore.getChangeProfile("123456789", "shortlee", ""));
 	
 	//	String result = jsonMarketStore.getChangeProfile("1234567899", "shortlee", "숏다리걸");
 	//	System.out.println("Result: " + result);
+
+		MemberDAO memberDAO = new MemberDAO();
+	//	System.out.println(memberDAO.deleteMember("shortlee"));
+		System.out.println(memberDAO.loginMember("longlee", "1234567891"));
 
 	}
 }

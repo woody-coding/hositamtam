@@ -49,7 +49,7 @@
     <section id="mypage__update" class="section">
       <div class="max-container">
         <div class="mypage__update">
-          <form id="mypage__update__form" action="/finalProject/AjaxController.jsp" method="POST">
+          <!--  <form id="mypage__update__form" action="/finalProject/AjaxController.jsp" method="POST">-->
             <div class="mypage__update__form">
               <label for="new-username" class="mypage__update__id">
                 ${userId}
@@ -93,7 +93,7 @@
 	            <button class="mypage__update__button" type="submit" id="update_button">
 	              수정하기
 	            </button>
-         	</form>
+         	<!-- </form> -->
         </div>
       </div>
     </section>
