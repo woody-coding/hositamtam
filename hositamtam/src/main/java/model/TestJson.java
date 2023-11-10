@@ -29,6 +29,7 @@ public class TestJson {
 	//	String result = jsonMarketStore.getChangeProfile("1234567899", "shortlee", "숏다리걸");
 	//	System.out.println("Result: " + result);
 
+
 		MemberDAO memberDAO = new MemberDAO();
 	//	System.out.println(memberDAO.deleteMember("shortlee"));
 		System.out.println(memberDAO.loginMember("longlee", "1234567891"));

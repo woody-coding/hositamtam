@@ -29,9 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
       tabButtons.forEach(btn => btn.classList.remove('blue'));
       // 클릭한 탭 버튼에 'blue' 클래스 추가
       button.classList.add('blue');
-
-      // 페이지 전환 방지
-      event.preventDefault();
     });
   });
 });

@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 public class PostDAO {
 
+
 	// ㄱ. 전체글 조회 : 인기순, 제목 출력
 	// ㄴ. 시장을 선택 후 전체 글 조회 : 인기순, 제목 출력
 	// ㄷ. 시장을 선택 후 카테고리에 따른 글 조회
@@ -215,9 +216,9 @@ public class PostDAO {
 		// 시장 번호로 시장 이름 가져오기
 		
 		// pno에 해당되는 글의 모든 정보 가져오기
-		public ArrayList<PostDO> getAllPostInfo(int pno) {
-			ArrayList<PostDO> postList = new ArrayList<PostDO>();
-			
+		public PostDO getAllPostInfo(int pno) {
+			PostDO postDO = new PostDO(); 
+
 			sql = "select id, pno, ptitle, pcontent, pphoto, plikecount, pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 					+ "(select nickname from member where post.id = member.id) as nickname "
 					+ "from post "
@@ -227,9 +228,8 @@ public class PostDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, pno);
 				rs = pstmt.executeQuery();
-
+				
 				while (rs.next()) {
-					PostDO postDO = new PostDO(); 
 					
 					postDO.setId(rs.getString("id"));
 					postDO.setPno(rs.getInt("pno"));
@@ -241,8 +241,6 @@ public class PostDAO {
 					postDO.setNickname(rs.getString("nickname"));
 					postDO.setCountcomments(rs.getInt("countcomments"));
 					postDO.setPcategory(rs.getString("pcategory"));
-
-					postList.add(postDO);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -255,7 +253,7 @@ public class PostDAO {
 					}
 				}
 			}
-			return postList;
+			return postDO;
 		}
 		// mno로 mname 불러오기
 		public MarketDO getSelectedMarket(int mno) {
