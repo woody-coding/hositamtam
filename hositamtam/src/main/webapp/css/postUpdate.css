@@ -84,16 +84,6 @@ textarea {
     margin: 1.3rem;
 
 }
-#image_container{
-    max-width: 900px;
-    max-height: 400px;
-}
-
-
-#image_container img {
-    max-width: 100%; /* 이미지를 컨테이너의 가로 크기에 맞게 조정 */
-    max-height: 100%; /* 이미지를 컨테이너의 세로 크기에 맞게 조정 */
-}
 
 #submit{
     width: 100px;
@@ -104,20 +94,14 @@ textarea {
     text-align: center;
 
 }
-.btn-primary{
-	float: right;
-}
-.btn-primary::after{
-	clear: both;
-}
 
 .postHead, .postContent {
 	padding: 5px;
 }
-.postContent input{
-	width: 1200px;
-	height: 500px;
-}
+#myTextarea {
+        width: 1300px;
+        height: 400px;
+    }
 
 
 .submit{
@@ -129,24 +113,27 @@ textarea {
     background-color: #0188CC;
 
 }
-.modify{
-	width: 80px;
-    height: 40px;
-    border: 0;
-    
-     color: black;
-    background-color: #eeeeee;
-}
+
 .container h2 {
+	font-weight: bold;
 	text-align: center;
 }
+span{
+	color: #0188CC;
+}
 .container {
-	
+	border: 2px solid #0188CC;
+	padding-top: 5px;
+	border-radius: 20px;	
 	background-color: white;
-	height: 85vh;
+	height: 90vh;
+	padding: 10px;
 }
 .btnBox{
 	float: right;
+}
+.container label{
+	font-size: bold;
 }
 
 
