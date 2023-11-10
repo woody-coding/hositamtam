@@ -82,7 +82,7 @@
 	<%@ include file="navi.jsp" %>
 
     <div  class="section" id="section1">
-     <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
+<!--      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video> -->
 
       
 
@@ -125,8 +125,8 @@
 			<!-- 서비스안내 조정 -->
 		</div>
 		<div id="busanExplain">
-			<p>부산 전통 시장</p>
-			<p>부산의 맛과 문화를 만나다!</p>
+			<p>부산 전통시장<br/>
+			문화와 맛을 즐기다!</p>
 		</div>
 	</div>
 

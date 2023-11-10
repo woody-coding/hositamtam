@@ -53,13 +53,8 @@ ul {
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-/*.mainHeader__logo__img {*/
-/*  width: 150px;*/
-/*  padding: 0 1rem;*/
-/*}*/
-
 .mainHeader__logo__img {
-  width: 180px;
+  width: 200px;
   padding: 0 1rem;
 }
 
@@ -91,7 +86,7 @@ ul {
 
 .market__search {
   position: relative;
-  width: 25rem;
+  width: 30rem;
   border: 2px solid var(--color-gray);
   height: 3rem;
   border-radius: 4px;

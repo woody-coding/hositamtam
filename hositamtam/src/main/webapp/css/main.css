@@ -39,6 +39,10 @@ html, body {
 body {
   font-family: "GmarketSans";
   margin: 0;
+  background-image: url('../images/busanposter.png');
+  background-size: cover; /* 이미지를 화면에 맞게 늘리거나 축소합니다 */
+  background-position: center; /* 이미지를 가운데 정렬합니다 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 제거 */
 }
 
 button {
@@ -99,10 +103,11 @@ ul {
 
 #busanExplain{
     color: white;
-    font-size: 50px;
+    font-size: 2.5rem;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 10%;
+    text-shadow: 2px 2px 4px black;
 }
 #btnGroup{
   position: absolute;
@@ -300,7 +305,7 @@ font-size: 2.5rem;
   background-color: #333333;
   opacity: 0.9;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
