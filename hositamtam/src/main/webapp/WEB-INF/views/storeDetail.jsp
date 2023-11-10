@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<% String userId = (String)session.getAttribute("userId"); %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,10 +59,7 @@
 </head>
 <body>
 
-<%-- 	<%@ include file="navi.jsp" %> --%>
-
-	<h2>호시탐탐의 점포 상세 페이지입니다</h2>
-
+	<%-- <%@ include file="navi.jsp" %>	 --%>
     <!-- Main -->
     <!-- Store Detail -->
     <section id="storeDetail" class="max-container">
@@ -131,18 +132,19 @@
       </div>
 
       <div>
-        <form id="review__form" style="display: none">
+        <form id="review__form" method="GET" action="/finalProject/views/reviewInsert">
+        	<select name="rrating">
+        		<option value="1">1</option>
+        		<option value="2">2</option>
+        		<option value="3">3</option>
+        		<option value="4">4</option>
+        		<option value="5">5</option>
+        	</select>
           <div class="review__form">
-            <label class="review__label">
-              <input
-                class="review__input"
-                type="text"
-                id=""
-                placeholder="리뷰를 남겨주세요."
-              />
-            </label>
+            <input class="review__input" type="text" name="rcontent" placeholder="리뷰를 남겨주세요."/>
           </div>
-
+          <input type="hidden" name="sno" value="${store.sno}"/>
+          <input type="hidden" name="id" value="king123"/>
           <button class="review__button" type="submit">작성하기</button>
         </form>
       </div>
@@ -173,9 +175,12 @@
 	          />
 	        </section>
 	        <section class="review__contents__main">
-	          <div class="review__contents__name">${storeReview.id}</div>
+	          <div class="review__contents__name">${storeReview.nickname}</div>
 	          <div class="review__contents__ownerInfo">
 	            리뷰 ${storeReview.review } &nbsp; 별점평균 ${storeReview.rating} &nbsp; | &nbsp; ${storeReview.rregdate}
+	            <c:if test="${storeReview.id == userId}">
+	            <button type="button" onclick="location.href='/finalProject/views/deleteReview?sno=${store.sno}&rno=${storeReview.rno}'">삭제</button>
+	            </c:if>
 	          </div>
 	        </section>
 	        <section class="review__contents__value">

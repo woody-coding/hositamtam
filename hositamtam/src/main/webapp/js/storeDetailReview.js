@@ -97,12 +97,6 @@ function init() {
 	    }
 	});
 
-	
-	
-	
-
-
-
 	// 별점 메기기
 	document.addEventListener("DOMContentLoaded", function () {
 	  var stars = document.querySelectorAll(".review__star i");
@@ -124,8 +118,6 @@ function init() {
 	    });
 	  });
 	});
-	
-	
 	
 	
 	// 별점 누르면 리뷰 창 나오게

@@ -24,7 +24,6 @@
 		if(!cateno.equals("1") && !cateno.equals("2") && !cateno.equals("3") && !cateno.equals("4") && !cateno.equals("5") && !cateno.equals("6") && !cateno.equals("7") && !cateno.equals("8") && !cateno.equals("9")) {
 			cateno = "11";
 		}
-		
 		out.println(marketDAO.getMarketListByItem((Integer.parseInt(cateno))));
 	}
 	else if(command != null && command.equals("getMarketListBySearch")) {
