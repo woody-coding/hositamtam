@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>postInsert.jsp</title>
+<title>호시탐탐</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 <!-- G-Market Fonts -->
 <link href="https://webfontworld.github.io/gmarket/GmarketSans.css"
@@ -20,7 +20,7 @@
 <!-- CSS -->
 <link rel="stylesheet" href="../css/loginHeader.css" />
 <link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/postDetail.css" />
+<link rel="stylesheet" href="../css/postUpdate.css" />
 <!-- JavaScript -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -46,16 +46,23 @@
 	<div class="container mt-5">
 	<h2>${market.mname}의 게시글 등록 페이지입니다.</h2>
 	<form method="POST" action="/finalProject/views/postInsert" enctype="multipart/form-data">
-	<label for="pcategory">카테고리</label> 	
-	<input type="radio" name="pcategory" value="궁금해요" />궁금해요
-	<input type="radio" name="pcategory" value="도와주세요" />도와주세요
-	<input type="radio" name="pcategory" value="소통해요" />소통해요
-	<input type="radio" name="pcategory" value="시장소식" />시장소식
-	<br>
+	<div class="postCategory-radio">
+	            <div class="radioBox">
+                <label for="pcategory">카테고리</label>
+				<input type="radio" name="pcategory" value="궁금해요" ${post.pcategory eq '궁금해요' ? 'checked' : ''}/>궁금해요
+				<input type="radio" name="pcategory" value="도와주세요" ${post.pcategory eq '도와주세요' ? 'checked' : ''}/>도와주세요
+				<input type="radio" name="pcategory" value="소통해요" ${post.pcategory eq '소통해요' ? 'checked' : ''}/>소통해요
+				<input type="radio" name="pcategory" value="시장소식" ${post.pcategory eq '시장소식' ? 'checked' : ''}/>시장소식
+                </div> 
+	</div>
+	 <div class="postHead row">
 	<label for="ptitle">제목</label>
 	<input type="text" name="ptitle" placeholder="제목을 입력하세요" />
+	</div> 
 	<br>
+	<div class="postContent row">
 	<label for="pcontent">내용</label>
+	</div>  
 	<input type="text" name="pcontent" placeholder="내용을 입력하세요" />
 	<br>
 	<label for="pphoto">사진</label>
@@ -69,7 +76,6 @@
 	
 	</form>
 	</div>
-	
 	</div>
 	
 	<%@ include file="footer.jsp" %>
