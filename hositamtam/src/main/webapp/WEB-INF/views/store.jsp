@@ -70,6 +70,7 @@
 	<%@ include file="navi.jsp" %>
 	
 	<div class="section">
+	
 	<div id="map">
 	<button id="insertStore" class="plusStore"><i class="bi bi-plus-circle-fill"></i></button>
 	</div>
@@ -84,6 +85,7 @@
 	<div id="storeErrorMsg"></div>
 	<div id="errMsg"></div>
 	</div>
+	
 	</div>
 	 <%@ include file="footer.jsp" %> 
 </body>

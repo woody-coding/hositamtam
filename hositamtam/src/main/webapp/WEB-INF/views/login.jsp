@@ -10,7 +10,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -31,7 +31,7 @@
 
     <!-- JavaScript -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
       
     <script src="/finalProject/js/login.js" charset="UTF-8"></script>
     <script>
@@ -47,25 +47,6 @@
     <%@ include file="navi.jsp" %>
 
     <!-- Main -->
-    <!-- Category -->
-    <!-- <section class="category">
-      <div class="category__menu">
-        <ul class="category__list">
-          <li><a class="category__contents">농산물</a></li>
-          <li><a class="category__contents">가공식품</a></li>
-          <li><a class="category__contents">축산물</a></li>
-          <li><a class="category__contents">의류</a></li>
-          <li><a class="category__contents">신발</a></li>
-        </ul>
-        <ul class="category__list">
-          <li><a class="category__contents">음식점</a></li>
-          <li><a class="category__contents">수산물</a></li>
-          <li><a class="category__contents">가정용품</a></li>
-          <li><a class="category__contents">기타</a></li>
-        </ul>
-      </div>
-    </section> -->
-
     <!-- Login -->
     <section id="login" class="section">
       <div class="max-container">
@@ -94,7 +75,7 @@
                 <br />
               </label>
 
-              <div class="login__error" id="msg">${error}</div>
+              <div class="login__error" id="msg">${msg}</div>
 
               <div class="login__signup__button">
                 <button class="login__button" type="submit" id="login_button">로그인</button>

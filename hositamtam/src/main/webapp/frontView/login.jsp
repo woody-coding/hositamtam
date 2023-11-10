@@ -122,7 +122,7 @@
                 <br />
               </label>
 
-              <div class="login__error" id="msg">${error }</div>
+              <div class="login__error" id="msg">${msg}</div>
 
               <div class="login__signup__button">
                 <button class="login__button" type="submit" id="login_button">로그인</button>

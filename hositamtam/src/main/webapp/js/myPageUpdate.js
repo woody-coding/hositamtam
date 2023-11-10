@@ -13,14 +13,17 @@ function ajaxNicknameChangeHandler() {
 	    if (response.isDuplicate === true) {
 	        // 중복된 닉네임일 경우 메시지 표시
 	        nicknameValid = false;
-	        document.querySelector('#error_msg').innerHTML = '이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해주세요.';
+	        document.querySelector('#error_msg').style.color = 'red';
+	        document.querySelector('#error_msg').innerHTML = '이미 사용 중인 닉네임입니다. <br/>다른 닉네임을 입력해주세요.';
 	        
 	    } else {
 	        // 중복되지 않은 닉네임일 경우 닉네임 사용가능 표시
 	        nicknameValid = true;
+	        document.querySelector('#error_msg').style.color = 'green';
 	        document.querySelector('#error_msg').innerHTML = '사용 가능한 닉네임입니다.';
 	        
 	    }
+	    
 	}
 }
 
@@ -45,17 +48,20 @@ function checkNicknameHandler() {
 function ajaxPasswdChangeHandler() {
 	if (xhr.readyState === 4 && xhr.status === 200) {
 	    var response = JSON.parse(xhr.responseText);
-	    if (response[0].isDuplicate === true) {
+	    if (response.isDuplicate === true) {
 	        // 전에 사용하던 비밀번호일 경우 메시지 표시
 	        passwdValid = false;
+	        document.querySelector('#error_msg').style.color = 'red';
 	        document.querySelector('#error_msg').innerHTML = '이전에 사용하시던 비밀번호입니다. <br/>다른 비밀번호를 입력해주세요.';
 	        
 	    } else {
 	        // 중복되지 않은 닉네임일 경우 닉네임 사용가능 표시
 	        passwdValid = true;
+	        document.querySelector('#error_msg').style.color = 'green';
 	        document.querySelector('#error_msg').innerHTML = '변경 가능한 비밀번호입니다.';
         }
-
+        
+        
 	}
 }
 
@@ -76,8 +82,10 @@ function checkPasswdHandler() {
 	}
 	else {
 		if(newPassword.length < 8 || newPassword.length > 16) {
+	        document.querySelector('#error_msg').style.color = 'red';
 			document.querySelector('#error_msg').innerHTML = '비밀번호는 8자리 이상, 16자리 이하여야 합니다.';
 		} else {
+	        document.querySelector('#error_msg').style.color = 'red';
 			document.querySelector('#error_msg').innerHTML = '비밀번호가 일치하지 않습니다.';
 		}
         
@@ -96,7 +104,7 @@ function memberUpdateHandler() {
 	        // 업데이트 성공 시
 	        alert('회원 정보가 정상적으로 수정되었습니다. 재로그인을 해주세요!');
 	        window.sessionStorage.removeItem('memberId');
-	        window.location.href = '/finalProject/views/logout';	        
+	        window.location.href = '/finalProject/views/loginAgain';	        
 	    } else {
 	        // 업데이트 실패 시
 	        alert('회원 정보 수정에 실패하였습니다.');

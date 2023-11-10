@@ -52,10 +52,6 @@ body {
   border-radius: 50px;
 }
 
-#mypage__update__form {
-  margin: 0;
-}
-
 .mypage__update__id {
   font-size: 20px;
   color: var(--color-gray);
@@ -108,4 +104,8 @@ body {
 
 .mypage__update__button:hover {
   background-color: var(--color-accent);
+}
+
+#error_msg {
+	color: red;
 }
