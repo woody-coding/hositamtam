@@ -9,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -62,6 +62,7 @@
                   type="text"
                   id="nickname"
                   name="nickname"
+                  maxlength="8"
                   placeholder="닉네임" required
                 />
                 <button type="button" class="duplication__check" id="nickname_check" onclick="checkNicknameDuplicate()">중복확인</button>
