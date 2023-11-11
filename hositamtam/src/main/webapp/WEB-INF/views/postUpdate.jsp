@@ -53,10 +53,10 @@
 	            <div class="radioBox">
                 <label for="pcategory">카테고리</label><br/>
 				<select  id="pcategory">
-                  <option value="궁금해요" >궁금해요</option>
-                  <option value="도와주세요" >도와주세요</option>
-                  <option value="소통해요" >소통해요</option>
-                  <option value="시장소식" >시장소식</option>
+                  <option value="궁금해요"  ${post.pcategory eq '궁금해요' ? 'selected' : ''}>궁금해요</option>
+                  <option value="도와주세요" ${post.pcategory eq '도와주세요' ? 'selected' : ''}>도와주세요</option>
+                  <option value="소통해요" ${post.pcategory eq '소통해요' ? 'selected' : ''}>소통해요</option>
+                  <option value="시장소식" ${post.pcategory eq '시장소식' ? 'selected' : ''}>시장소식</option>
                 </select>
                 <!--
                 

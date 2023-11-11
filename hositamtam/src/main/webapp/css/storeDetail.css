@@ -23,6 +23,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 html {
@@ -30,7 +31,6 @@ html {
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
 }
 
