@@ -21,10 +21,10 @@
 
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
 }
 

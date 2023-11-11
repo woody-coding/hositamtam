@@ -114,7 +114,7 @@
 						<td></td>
 						</c:if>
 						<c:if test="${post.id == userId}">
-						<th><button type="button" onclick="location.href='/finalProject/views/toPostUpdate?mno=${market.mno}&pno=${post.pno}'">글수정</button></th>
+						<th><button class="modify" type="button" onclick="location.href='/finalProject/views/toPostUpdate?mno=${market.mno}&pno=${post.pno}'">글수정</button></th>
 						</c:if>
 					</tr>
 				</c:forEach>

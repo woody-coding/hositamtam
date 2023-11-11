@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 html {
@@ -7,7 +8,6 @@ html {
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
    overflow: auto;
 }
@@ -105,7 +105,8 @@ textarea {
 
 .submit{
 	 width: 80px;
-    height: 40px;
+    height: 30px;
+    line-height: 30px;
     border: 0;
     border-radius: 10px;
      color: white;
