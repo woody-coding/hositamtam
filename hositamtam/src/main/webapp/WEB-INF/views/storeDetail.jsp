@@ -38,7 +38,7 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
     <link rel="stylesheet" href="/finalProject/css/footer.css" />
     <link rel="stylesheet" href="/finalProject/css/storeDetail.css" />
 
@@ -73,17 +73,34 @@
     <!-- Store Detail -->
     <section id="storeDetail" class="max-container">
       <div class="storeDetail__info">
-      	<h4 class="storeDetail__h4 storeDetail__star">
-           <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
-        </h4>
-        <button class="storeDetail__like">
-          <i class="fa-solid fa-heart"></i>
-          <div class="storeDetail__like__count" id="storeLikeCount"></div>
-        </button>
+      	
+        
       
         <span class="storeDetail__title">${store.sname}</span>
         
         <button class="storeDetail__modify">점포 수정</button>
+        
+        <%-- <h4 class="storeDetail__h4 storeDetail__star">
+           <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
+        </h4> --%>
+        <!-- <button class="storeDetail__like">
+          <i class="fa-solid fa-heart">  </i>
+          <span class="storeDetail__like__count" id="storeLikeCount"></span>
+        </button> -->
+      </div>
+    
+    <div class="storeDetail__star__like">
+        <span class="storeDetail__category__title">
+        	<h4 class="storeDetail__h4 storeDetail__star">
+           		<i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
+        	</h4>
+        </span>
+        <span>
+        	<button class="storeDetail__like">
+          <i class="fa-solid fa-heart">  </i>
+          <span class="storeDetail__like__count" id="storeLikeCount"></span>
+        </button>
+        </span>
       </div>
       
 	<div class="storeDetail__storeType">
