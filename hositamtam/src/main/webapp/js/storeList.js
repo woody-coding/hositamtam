@@ -453,12 +453,11 @@ function storeAjaxHandler() {
 		for(let i=0; i < allStoreList.length; i++) {
 			storeContents += '<div class="mkcontainer row">' +
 				'<div id="' + allStoreList[i].sno + '" class="personalScontent">' +
-				    '<div class="imgContainer">' +
-				   	 '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '">' +
-				    '</div>'+
+				    
+				    '<div class="storeEtc">' +
 				    '<div class="sName">'+
+                    	'<span> ' + allStoreList[i].sname + '</span>' + '&nbsp;' +
                     	'<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' + '&nbsp;' +
-                  		'<span> ' + allStoreList[i].sname + '</span>' + '&nbsp;' +
                   		 	  '<i class="fa-solid fa-heart"></i> ' +  '&nbsp;' + allStoreList[i].sfavoritecount +
                  
                   	'</div>' +
@@ -469,6 +468,10 @@ function storeAjaxHandler() {
 	                   '<span> ' +  allStoreList[i].stype + '</span>' +
 	                      '<button class="listLinkInfowindow" id="' + allStoreList[i].sno + '" onclick="listLinkInfowindow(event)" >이동하기<i class="fa-solid fa-arrow-up-right-from-square"></i></button>' +
                    '</div>' +
+                   '</div>'+
+                   '<div class="storeImgContainer">' +
+				   	 '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '" >' +
+				    '</div>'+
 				    /*<i class="fa-solid fa-arrow-up-right-from-square"></i> 이동하기 아이콘*/
 				'</div>'+
 				'</div>';
