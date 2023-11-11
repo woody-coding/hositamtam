@@ -467,9 +467,9 @@ function storeAjaxHandler() {
 	            
 	                   '<span> ' + allStoreList[i].scategory + ' | </span>' +
 	                   '<span> ' +  allStoreList[i].stype + '</span>' +
-	                      '<button class="listLinkInfowindow" id="' + allStoreList[i].sno + '" onclick="listLinkInfowindow(event)" >Click me</button>' +
+	                      '<button class="listLinkInfowindow" id="' + allStoreList[i].sno + '" onclick="listLinkInfowindow(event)" >이동하기<i class="fa-solid fa-arrow-up-right-from-square"></i></button>' +
                    '</div>' +
-				    
+				    /*<i class="fa-solid fa-arrow-up-right-from-square"></i> 이동하기 아이콘*/
 				'</div>'+
 				'</div>';
 

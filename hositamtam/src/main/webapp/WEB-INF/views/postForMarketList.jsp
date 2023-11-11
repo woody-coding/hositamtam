@@ -51,9 +51,9 @@
 
 	<div class="section" id="section1">
 		<div class="container mt-5">
-			<h3>호시탐탐의 시끌시끌 페이지 입니다</h3>
+			<h3>시끌시끌</h3>
 			<button id="whatMarket">시장 선택하기</button>
-			<hr />
+		
 			<div class="mkNameList">
 				<table>
 					<tr>
@@ -180,6 +180,6 @@
 		</div>
 	</div>
 
-	<%@ include file="footer.jsp"%>
+	<%-- <%@ include file="footer.jsp"%> --%>
 </body>
 </html>

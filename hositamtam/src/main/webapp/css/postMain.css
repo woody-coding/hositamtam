@@ -42,6 +42,9 @@ button {
 	text-align: center;
 	
 }
+.container {
+	margin-bottom: 2rem;
+}
 #postlistTable th,
 #postlistTable td {
   border-bottom: 1px solid #0e4194;
@@ -52,8 +55,8 @@ button {
 }
 .list {
     display: flex;
+   clear: both;
    
-    margin: 0;
     padding: 0;
     border-bottom: 2px solid #0188CC;
 }
@@ -67,10 +70,8 @@ button {
 	width: 120px;
     padding: 5px 5px 5px 5px;
     float: left;
-
-   margin-bottom: 2px;
-    /*margin-left: 2px;*/
-
+   	margin-bottom: 5px;
+  	margin-right: 2px;
     color: black;
     text-decoration: none;
     border: 1px solid black;
@@ -124,6 +125,9 @@ button {
 #mkName{
     font-size: 40px;
 }
+#mkNameBox{
+	color: #0188CC;
+}
 #submit{
     width: 100px;
     height: 40px;
@@ -141,6 +145,7 @@ button {
     border-radius: 5px;
     background-color: #0188CC;
     color: white;
+   
 }
 
 .mkNameList{
