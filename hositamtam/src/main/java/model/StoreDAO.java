@@ -943,6 +943,7 @@ public class StoreDAO {
 	    JSONObject jsonObject = new JSONObject();
 
 	    try {
+/*
 	        // 제보 상태 확인
 	        String sqlCheck = "SELECT 1 FROM member_store_close WHERE sno = ? AND id = ?";
 	        pstmt = conn.prepareStatement(sqlCheck);
@@ -951,7 +952,7 @@ public class StoreDAO {
 	        ResultSet rs = pstmt.executeQuery();
 
 	        if (rs.next()) {
-	            // 이미 제보를 클릭한 경우: 제보 취소
+	            
 	            // 제보 수 감소 쿼리 실행
 	            String sqlUpdate = "UPDATE store SET sclosecount = sclosecount - 1 WHERE sno = ?";
 	            pstmt = conn.prepareStatement(sqlUpdate);
@@ -967,7 +968,7 @@ public class StoreDAO {
 	            
 	            jsonObject.put("closeStatus", "x");
 	        } 
-	        else {
+*/	        
 		        // 제보 수 조회
 	        	
 		        String sqlCount = "SELECT sclosecount FROM store WHERE sno = ?";
@@ -979,7 +980,7 @@ public class StoreDAO {
 		            int sclosecount = rs.getInt("sclosecount");
 		                     
 		            if(sclosecount < 2) {
-			            // 제보 안한 경우 또는 취소된 경우: 제보 추가
+			            // 제보 안한 경우 제보 추가
 			            // 제보 수 증가 쿼리 실행
 			            String sqlUpdate = "UPDATE store SET sclosecount = sclosecount + 1 WHERE sno = ?";
 			            pstmt = conn.prepareStatement(sqlUpdate);
@@ -991,9 +992,7 @@ public class StoreDAO {
 			            pstmt = conn.prepareStatement(sqlInsert);
 			            pstmt.setInt(1, sno);
 			            pstmt.setString(2, id);
-			            pstmt.executeUpdate();
-			            
-			            jsonObject.put("closeStatus", "o");    	
+			            pstmt.executeUpdate(); 	
 			        } 
 		            else {
 		            	String sql1 = "delete from store_payment where sno = ?";
@@ -1033,7 +1032,7 @@ public class StoreDAO {
 		        }
 		        
 	            
-	        }
+	        
 
 	        // 결과 JSON 객체 생성
 	        jsonObject.put("sno", sno);
@@ -1080,7 +1079,7 @@ public class StoreDAO {
 	            jsonObject.put("closeStatus", "o");
 	        } 
 	        else {
-	            // 제보 안한 경우 또는 취소된 경우
+	            // 제보 안한 경우 (이때만 disabled를 해제하면 됨 -> 버튼 클릭 가능하도록)
 	            jsonObject.put("closeStatus", "x");
 	        }
 
@@ -1206,31 +1205,11 @@ public class StoreDAO {
 	
 	
 	// 현재 접속한 id가 해당 sno점포에 찜을 했는지 안했는지 여부 판단 + 해당 sno점포의 최신 찜 개수 가져오기
-	public String updateLikeStoreStatus(int sno, String id) {
+	public String updateLikeStoreStatus(int sno) {
 	    JSONArray jsonArray = new JSONArray();
 	    JSONObject jsonObject = new JSONObject();
 
 	    try {
-	        // 좋아요 상태 확인
-	        String sqlCheck = "SELECT 1 FROM member_store_favorite WHERE sno = ? AND id = ?";
-	        pstmt = conn.prepareStatement(sqlCheck);
-	        pstmt.setInt(1, sno);
-	        pstmt.setString(2, id);
-	        ResultSet rs = pstmt.executeQuery();
-
-	        if (rs.next()) {
-	            // 이미 찜을 클릭한 경우
-	            jsonObject.put("likeStatus", "o");
-	        } 
-	        else {
-	            // 찜이 없는 경우 또는 취소된 경우
-	            jsonObject.put("likeStatus", "x");
-	        }
-
-	        // 결과 JSON 객체 생성
-	        jsonObject.put("sno", sno);
-	        jsonObject.put("id", id);
-
 	        // 좋아요 수 조회
 	        String sqlCount = "SELECT sfavoritecount FROM store WHERE sno = ?";
 	        pstmt = conn.prepareStatement(sqlCount);

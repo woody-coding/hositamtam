@@ -124,39 +124,39 @@ function notStoreHandler() {
 		
 		console.log('sclosecount type : ' + typeof(sclose[0].sclosecount));
 		
-		let notStoreButton = document.querySelector('.notStore');
+		alert('감사합니다. 정상적으로 제보가 접수되었습니다!');
 		
-		if (sclose[0].closeStatus === 'x') {
-            // 제보할 수 있도록 버튼 활성화
-            notStoreButton.disabled = false;
-        } else {
-			alert('감사합니다. 정상적으로 제보가 접수되었습니다!');
-			
-            // 제보할 수 없도록 버튼 비활성화
-            notStoreButton.disabled = true;
-        }	
-
+		let notStoreButton = document.querySelector('.notStore');
+		// 제보할 수 없도록 버튼 비활성화
+		notStoreButton.disabled = true;
     }
 }
 
 
 
 
+function confirmAndSend() {
+    // 사용자에게 확인을 요청
+    let userConfirmed = window.confirm("정말로 제보하시겠습니까? 한번 제보 후 취소는 불가능하니 신중히 결정해주세요.");
+    
+    // 사용자가 확인 버튼을 클릭한 경우에만 서버로 요청을 보냄
+    if (userConfirmed) {
+        let param = '?command=notStore&sno=' + currentSno + '&id=' + currentId;
+        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+        xhr.send();
+    }
+}
+
 
 
 function notStore() {
-	xhr.onreadystatechange = notStoreHandler;
-	
-	if(currentId) {
-		if (notStoreConfirm()) {
-			
-	    // 사용자가 확인 버튼을 클릭한 경우
-	    let param = '?command=notStore&sno=' + currentSno + '&id=' + currentId;
-	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
-	    xhr.send();
-		} 
-	}
+    xhr.onreadystatechange = notStoreHandler;
+    
+    if (currentId) {
+        confirmAndSend(); // confirmAndSend 함수 호출
+    }
 }
+
 
 
 
@@ -173,8 +173,12 @@ function notStoreStatusHandler() {
 		
 		if (sclose[0].closeStatus === 'x') {
             // 제보할 수 있도록 버튼 활성화
+            notStoreButton.style.backgroundColor = '#e6007e';
             notStoreButton.disabled = false;
         }
+        else {
+			notStoreButton.disabled = true;
+		}
     }
 }
 
@@ -208,7 +212,9 @@ function init() {
 	let errMsg = currentmno.msg;
 	
 	if(errMsg) {
-		// 기존 jsp에 있던 div 태그들 숨기기
+		window.location.href = '/finalProject/views/error';
+		
+		/*// 기존 jsp에 있던 div 태그들 숨기기
 		document.querySelector("#map").style.display = "none";
         document.querySelector("#marketName").style.display = "none";
         document.querySelector("#manyReview").style.display = "none";
@@ -221,7 +227,7 @@ function init() {
         document.querySelector("#errMsg").innerHTML = errMsg;
         
         // 마커 및 기존 컨텐츠를 지우기
-        removeMarker();
+        removeMarker();*/
 	}
 	
 	
@@ -281,25 +287,20 @@ function init() {
 	document.querySelector('#insertStore').addEventListener('click', insertStoreHandler);
 	
 	
-    // 점포 정보 클릭 시, 해당 점포와 연동된 지도 상의 인포윈도우창 띄우기
-    document.querySelector('#storeContent').addEventListener('click', function(event) {
-        if (event.target.getAttribute('class') === 'personalScontent') {
-			currentSno = event.target.getAttribute('id');
-            
-            openInfo();
-        }
-    });
-    
-    
-    
-     /*document.querySelector('#clickButton').addEventListener('click', function() {
-        // #storeContent 클릭 이벤트 발생
-        var event = new Event('click');
-        document.querySelector('#storeContent').dispatchEvent(event);
-    });*/
+
 
   
 }
+	
+	
+	
+// 점포 정보 클릭 시, 해당 점포와 연동된 지도 상의 인포윈도우창 띄우기
+function listLinkInfowindow(event) {
+		currentSno = event.target.getAttribute('id');
+        openInfo();  
+}
+   
+	
 	
 
 
@@ -450,23 +451,27 @@ function storeAjaxHandler() {
 		for(let i=0; i < allStoreList.length; i++) {
 			storeContents += '<div class="mkcontainer row">' +
 				'<div id="' + allStoreList[i].sno + '" class="personalScontent">' +
-				    '<div class="imgContainer">' +
-				   	 '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '">' +
-				    '</div>'+
+				    
+				    '<div class="storeEtc">' +
 				    '<div class="sName">'+
-                    	'<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' + '&nbsp;' +
-                  		'<span> ' + allStoreList[i].sname + '</span>' + '&nbsp;' +
-                  		 	  '<i class="fa-solid fa-heart"></i> ' +  '&nbsp;' + allStoreList[i].sfavoritecount +
-                 
+                    	'<span> ' + allStoreList[i].sname + '</span>' + '&nbsp;' +
+                    	
                   	'</div>' +
-                  	
+                  	'<div class="likeHeart" style="clear: both">'+
+                  	'<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' + '&nbsp;' +
+                  	'<i class="fa-solid fa-heart"></i> ' +  '&nbsp;' + allStoreList[i].sfavoritecount +
+                 	'</div>'+
 				  	'<div class="categoryAndType">' +
 	            
 	                   '<span> ' + allStoreList[i].scategory + ' | </span>' +
 	                   '<span> ' +  allStoreList[i].stype + '</span>' +
-	                      '<button id="clickButton">Click me</button>' +
+	                      '<button class="listLinkInfowindow" id="' + allStoreList[i].sno + '" onclick="listLinkInfowindow(event)" >이동하기<i class="fa-solid fa-arrow-up-right-from-square"></i></button>' +
                    '</div>' +
-				    
+                   '</div>'+
+                   '<div class="storeImgContainer">' +
+				   	 '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '" >' +
+				    '</div>'+
+				    /*<i class="fa-solid fa-arrow-up-right-from-square"></i> 이동하기 아이콘*/
 				'</div>'+
 				'</div>';
 

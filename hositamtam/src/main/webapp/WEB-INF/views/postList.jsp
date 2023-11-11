@@ -51,17 +51,18 @@
 	<div class="section" id="section1">
 		<div class="container mt-5">
 			<div id="mkNameBox">
-				<span id="mkName">호시탐탐의 시끌시끌 ${market.mname} 페이지 입니다</span>
+				<span id="mkName">${market.mname} 시끌시끌</span>
+				
 			</div>
 			<br />
 			<form method="GET" action="/finalProject/views/toPostInsert" id="insert">
 				<label for="mno"></label>
 				<button id="writePost">
-					<i class="bi bi-pencil-square"></i>글쓰기
+					글쓰기
 				</button>
 				<input type="hidden" name="mno" value="${market.mno}">
 			</form>
-			<hr />
+			<br>
 
 			<div class="list">
 				<form method="GET" action="/finalProject/views/postMain">
@@ -113,11 +114,26 @@
 						<td></td>
 						</c:if>
 						<c:if test="${post.id == userId}">
-						<th><button type="button" onclick="location.href='/finalProject/views/toPostUpdate?mno=${market.mno}&pno=${post.pno}'">글수정</button></th>
+						<th><button class="modify" type="button" onclick="location.href='/finalProject/views/toPostUpdate?mno=${market.mno}&pno=${post.pno}'">글수정</button></th>
 						</c:if>
 					</tr>
 				</c:forEach>
+				<tfoot>
+                    <tr>
+                        <td colspan="4">
+                        	<c:if test="${searchList.currentPage > 1}">
+                        		<a href="main.jsp?command=search&query=${searchList.query}&page=${searchList.currentPage - 1}"><i class="bi bi-caret-left-fill"></i></a>
+                        	</c:if>
+                        	
+		                    <c:if test="${searchList.currentPage < searchList.maxPageNum}">
+                        		<a href="main.jsp?command=search&query=${searchList.query}&page=${searchList.currentPage + 1}"><i class="bi bi-caret-right-fill"></i></a>
+                        	</c:if>
+                        	
+                        </td>
+                    </tr>
+                </tfoot>
 			</table>
+			
 		</div>
 
 	</div>
