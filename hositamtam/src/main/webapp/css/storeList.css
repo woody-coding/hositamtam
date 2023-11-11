@@ -359,6 +359,7 @@ button{
 	width: 30%;
 	float: left;
 	border-radius: 20px;
+	line-height: 140px;
 }
 .storeImgContainer img{
 	border-radius: 20px;
