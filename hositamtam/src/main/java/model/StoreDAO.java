@@ -6,6 +6,10 @@ import java.util.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import model.MarketDO;
 
 public class StoreDAO {
@@ -452,90 +456,78 @@ public class StoreDAO {
 		}
 		
 	
-	// ㅁ.점포 등록
-	public int insertStore(StoreDO storeDO, String[] paytype) {
-	    int rowCount = 0;
-	    PreparedStatement storePstmt = null;
-	    PreparedStatement paymentPstmt = null;
+		// ㅁ.점포 등록
+		public int insertStore(StoreDO storeDO, String[] paytype) {
+		    int rowCount = 0;
+		    PreparedStatement storePstmt = null;
+		    PreparedStatement paymentPstmt = null;
 
-	    try {
-	    	// 다음 시퀀스 구하기
-	    	String nextVal = "SELECT SEQ_SNO.NEXTVAL AS SEQ FROM DUAL";
-	    	stmt = conn.createStatement();
-			rs = stmt.executeQuery(nextVal);
-			while (rs.next()) {
-				storeDO.setSno(rs.getInt("SEQ"));
-			}
-			
-	    	
-	        // store 테이블에 정보 입력
-	        String storeSql = "INSERT INTO store (sno, mno, id, sname, slat, slng, stype, sphoto, payno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	        storePstmt = conn.prepareStatement(storeSql);
+		    try {
+		    	// 다음 시퀀스 구하기
+		    	String nextVal = "SELECT SEQ_SNO.NEXTVAL AS SEQ FROM DUAL";
+		    	stmt = conn.createStatement();
+				rs = stmt.executeQuery(nextVal);
+				while (rs.next()) {
+					storeDO.setSno(rs.getInt("SEQ"));
+				}
+				
+		    	
+		        // store 테이블에 정보 입력
+		        String storeSql = "INSERT INTO store (sno, mno, id, sname, slat, slng, stype, sphoto, scategory) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		        storePstmt = conn.prepareStatement(storeSql);
 
-	        // store 테이블에 값 설정
-	        storePstmt.setInt(1, storeDO.getSno());
-	        storePstmt.setInt(2, storeDO.getMno());
-	        storePstmt.setString(3, storeDO.getId());
-	        storePstmt.setString(4, storeDO.getSname());
-	        storePstmt.setString(5, storeDO.getSlat());
-	        storePstmt.setString(6, storeDO.getSlng());
-	        storePstmt.setString(7, storeDO.getStype());
-	        storePstmt.setString(8, storeDO.getSphoto());
-	        storePstmt.setInt(9, storeDO.getPayno());
+		        // store 테이블에 값 설정
+		        storePstmt.setInt(1, storeDO.getSno());
+		        storePstmt.setInt(2, storeDO.getMno());
+		        storePstmt.setString(3, storeDO.getId());
+		        storePstmt.setString(4, storeDO.getSname());
+		        storePstmt.setString(5, storeDO.getSlat());
+		        storePstmt.setString(6, storeDO.getSlng());
+		        storePstmt.setString(7, storeDO.getStype());
+		        storePstmt.setString(8, storeDO.getSphoto());
+		        storePstmt.setString(9, storeDO.getScategory());
 
-	        rowCount = storePstmt.executeUpdate();
+		        rowCount = storePstmt.executeUpdate();
+		        
+		        // store_payment 테이블에 정보 입력
+		        String paymentSql = "INSERT INTO store_payment (sno, payno) VALUES (?, ?)";
+		        paymentPstmt = conn.prepareStatement(paymentSql);
 
-	        // store_payment 테이블에 정보 입력
-//	        String paymentSql = "INSERT INTO store_payment (payno, paytype) VALUES (?, ?)";
-//	        paymentPstmt = conn.prepareStatement(paymentSql);
+		        // paytype는 최대 3개까지 입력 가능
+		        for (String pay : paytype) {
+		            paymentPstmt.setInt(1, storeDO.getSno());
+		            paymentPstmt.setString(2, pay);
+		            paymentPstmt.executeUpdate();
+		        }
 
-	        // paytype는 최대 3개까지 입력 가능
-//	        for (String pay : paytype) {
-//	            paymentPstmt.setInt(1, storeDO.getPayno());
-//	            paymentPstmt.setString(2, pay);
-//	            paymentPstmt.executeUpdate();
-//	        }
-	        
-	        // store_payment 테이블에 정보 입력
-	        String paymentSql = "INSERT INTO store_payment (sno, payno) VALUES (?, ?)";
-	        paymentPstmt = conn.prepareStatement(paymentSql);
+		        // 모든 작업이 완료되면 커밋을 수행합니다.
+		        conn.commit();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		        // 에러가 발생했을 경우 롤백을 수행합니다.
+		        try {
+		            if (conn != null) {
+		                conn.rollback();
+		            }
+		        } catch (SQLException ex) {
+		            ex.printStackTrace();
+		        }
+		    } finally {
+		        // PreparedStatement 및 연결을 닫습니다.
+		        try {
+		            if (storePstmt != null) {
+		                storePstmt.close();
+		            }
+		            if (paymentPstmt != null) {
+		                paymentPstmt.close();
+		            }
+		        } catch (SQLException ex) {
+		            ex.printStackTrace();
+		        }
+		    }
 
-	        // paytype는 최대 3개까지 입력 가능
-	        for (String pay : paytype) {
-	            paymentPstmt.setInt(1, storeDO.getPayno());
-	            paymentPstmt.setString(2, pay);
-	            paymentPstmt.executeUpdate();
-	        }
-
-
-	        // 모든 작업이 완료되면 커밋을 수행합니다.
-	        conn.commit();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        // 에러가 발생했을 경우 롤백을 수행합니다.
-	        try {
-	            if (conn != null) {
-	                conn.rollback();
-	            }
-	        } catch (SQLException ex) {
-	            ex.printStackTrace();
-	        }
-	    } finally {
-	        // PreparedStatement 및 연결을 닫습니다.
-	        try {
-	            if (storePstmt != null) {
-	                storePstmt.close();
-	            }
-	            if (paymentPstmt != null) {
-	                paymentPstmt.close();
-	            }
-	        } catch (SQLException ex) {
-	            ex.printStackTrace();
-	        }
-	    }
-
-	    return rowCount;
-	}
+		    return rowCount;
+		}
 
 	// ㅂ.점포 수정
 	public int updateStore(StoreDO storeDO, String[] paytype) {
@@ -638,6 +630,87 @@ public class StoreDAO {
 
 	}
 
+	
+	// 해당 시장의 점포 리스트를 최신 순서로 가져오기
+	public String getRecentInsert(int mno) {
+	    ArrayList<StoreDO> storeList = new ArrayList<StoreDO>();
+	    
+	    JSONArray jsonArray = new JSONArray();
+	    JSONObject jsonObject = null;
+	    
+	    sql = "SELECT s.sno, s.sname, s.slat, s.slng, s.stype, s.sphoto, s.sfavoritecount, s.scategory,\r\n"
+	            + "  (SELECT nickname FROM member WHERE member.id = s.id) AS nickname,\r\n"
+	            + "  r.savgrating,\r\n"
+	            + "  c.sreviewcount\r\n"
+	            + "FROM store s\r\n"
+	            + "LEFT JOIN (\r\n"
+	            + "  SELECT sno, AVG(rrating) AS savgrating\r\n"
+	            + "  FROM review\r\n"
+	            + "  GROUP BY sno\r\n"
+	            + ") r ON s.sno = r.sno\r\n"
+	            + "LEFT JOIN (\r\n"
+	            + "  SELECT sno, COUNT(rno) AS sreviewcount\r\n"
+	            + "  FROM review\r\n"
+	            + "  GROUP BY sno\r\n"
+	            + ") c ON s.sno = c.sno\r\n"
+	            + "WHERE s.mno = ?\r\n"
+	            + "ORDER BY s.sno DESC"; // 최신 순서로 변경
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, mno);
+	        rs = pstmt.executeQuery();
+	        
+	        while (rs.next()) {
+	            StoreDO storeDO = new StoreDO();
+	            
+	            storeDO.setSavgrating(rs.getDouble("savgrating"));
+	            storeDO.setSreviewcount(rs.getInt("sreviewcount"));
+	            storeDO.setSno(rs.getInt("sno"));
+	            storeDO.setSname(rs.getString("sname"));
+	            storeDO.setSlat(rs.getString("slat"));
+	            storeDO.setSlng(rs.getString("slng"));
+	            storeDO.setStype(rs.getString("stype"));    
+	            storeDO.setSphoto(rs.getString("sphoto"));
+	            storeDO.setSfavoritecount(rs.getInt("sfavoritecount"));
+	            storeDO.setScategory(rs.getString("scategory"));
+	            storeDO.setNickname(rs.getString("nickname"));
+
+	            storeList.add(storeDO);
+	        }
+	        
+	        for (StoreDO store : storeList) {
+	            jsonObject = new JSONObject(); // jsonObject 초기화
+	            
+	            jsonObject.put("savgrating", store.getSavgrating());
+	            jsonObject.put("sreviewcount", store.getSreviewcount());
+	            jsonObject.put("sno", store.getSno());
+	            jsonObject.put("sname", store.getSname());
+	            jsonObject.put("slat", store.getSlat());
+	            jsonObject.put("slng", store.getSlng());
+	            jsonObject.put("stype", store.getStype());
+	            jsonObject.put("sphoto", store.getSphoto());
+	            jsonObject.put("sfavoritecount", store.getSfavoritecount());
+	            jsonObject.put("scategory", store.getScategory());
+	            jsonObject.put("nickname", store.getNickname());
+	            
+	            jsonArray.add(jsonObject);
+	        }
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        
+	    } finally {
+	        if (pstmt != null) {
+	            try {
+	                pstmt.close();
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	    return jsonArray.toJSONString();
+	}
 
 	
 	

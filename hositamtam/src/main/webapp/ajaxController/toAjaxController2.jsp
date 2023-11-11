@@ -48,12 +48,6 @@
         	out.println(marketDAO.getMarketLatLng(0));
         }	
 	}
-	
-//신성추가 : 점포 최신 등록순	
-	else if(command != null && command.equals("getRecentInsert")) {
-		out.println(storeDAO.getRecentInsert((Integer.parseInt(mno))));
-	}
-//
 	else if(command != null && command.equals("getManyReview")) {
 		out.println(storeDAO.getManyReview((Integer.parseInt(mno))));
 	}
@@ -71,24 +65,20 @@
 	}
 	// 글 좋아요 상태 확인
 	else if(command != null && command.equals("updateLikeStatus")) {
-		out.println(postDAO.updateLikeStatus((Integer.parseInt(pno))));
+		out.println(postDAO.updateLikeStatus((Integer.parseInt(pno)), id));
 	}
 	// 점포 찜 상태 확인
 	else if(command != null && command.equals("updateLikeStoreStatus")) {
-		out.println(storeDAO.updateLikeStoreStatus((Integer.parseInt(sno))));
+		out.println(storeDAO.updateLikeStoreStatus((Integer.parseInt(sno)), id));
 	}
-	
-	// 점포 제보
-	else if(command != null && command.equals("notStore")) {
-		out.println(storeDAO.notStore((Integer.parseInt(sno)), id));
-	}
-	// 점포 제보 상태 확인
-	else if(command != null && command.equals("notStoreStatus")) {
-		out.println(storeDAO.notStoreStatus((Integer.parseInt(sno)), id));
-	}
-	
 	// 점포 등록
 	else if(command != null && command.equals("insertStore")) {
+		// 점포 등록 페이지로 포워드
+		// joke
+// 		RequestDispatcher dis = request.getRequestDispatcher("/finalProject/views/storeInsertAndUpdate.jsp");
+// 		dis.forward(request, response);
+
+// 		/views/storeInsert
 		RequestDispatcher dis = request.getRequestDispatcher("/views/storeInsert");
 		dis.forward(request, response);
 

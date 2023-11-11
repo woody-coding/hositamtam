@@ -53,6 +53,7 @@ function latLngAjaxHandler() {
 			// 기존 jsp에 있던 div 태그들 숨기기
 			document.querySelector("#map").style.display = "none";
             document.querySelector("#marketName").style.display = "none";
+            document.querySelector("#recentInsert").style.display = "none";
             document.querySelector("#manyReview").style.display = "none";
             document.querySelector("#manyRating").style.display = "none";
             document.querySelector("#manyStoreLike").style.display = "none";
@@ -250,10 +251,13 @@ function init() {
 	xhr.send();
 
 
-
-
-
-
+    document.querySelector('#recentInsert').addEventListener('click', function(){
+		xhr.onreadystatechange = storeAjaxHandler;
+		
+		let param = '?command=getRecentInsert&mno=' + currentMno;
+        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+        xhr.send();
+	});
 
     document.querySelector('#manyReview').addEventListener('click', function(){
 		xhr.onreadystatechange = storeAjaxHandler;
@@ -393,13 +397,13 @@ function insertStoreHandler() {
 	        var latitude = e.coord.lat();
 	        var longitude = e.coord.lng();
 	        var iwContent = '<div class="iwContent" style="padding:5px;">' +
-	            '<a href="../ajaxController/toAjaxController.jsp?command=insertStore&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
+	            '<a href="../ajaxController/toAjaxController.jsp?command=insertStore&mno=' + mnoToStore.mno + '&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
 	        infowindow = new naver.maps.InfoWindow({
 	            content: iwContent
 	        });
 	        infowindow.open(map, marker);
 	    }
-	
+	debugger;
 	    // 마우스 우클릭 이벤트 처리
 	    naver.maps.Event.addListener(map, 'rightclick', function (e) {
 	        if (clickEventListener) {

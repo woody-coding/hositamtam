@@ -78,6 +78,8 @@
 	<div class="right">
 	<div id="marketName"></div>
 	 <div class="btnSort">
+
+	<button id="recentInsert">최신순</button>
 	<button id="manyReview">리뷰 많은 순</button>
 	<button id="manyRating">별점 높은 순</button>
 	<button id="manyStoreLike">찜 많은 순</button>

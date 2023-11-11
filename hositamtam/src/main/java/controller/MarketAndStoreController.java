@@ -118,13 +118,13 @@ public class MarketAndStoreController {
 	    String userId = (String) session.getAttribute("userId");
 	    try {
 	    	storeDO.setId(userId);
-	    	System.out.println("등록자 : " + storeDO.getMno());
-	    	System.out.println("등록자 : " + storeDO.getId());
-	    	System.out.println("점포명 : " + storeDO.getSname());
-	    	System.out.println("점포형태 : " + storeDO.getStype());
-	    	System.out.println("결제방식 : " + storeDO.getPaytype());
-	    	System.out.println("취급품목 : " + storeDO.getScategory());
-	    	System.out.println("점포사진 : " + storeDO.getSphoto());
+	    	System.out.println("시장[mno] : " 			+ storeDO.getMno());
+	    	System.out.println("등록자[id] : " 			+ storeDO.getId());
+	    	System.out.println("점포명[sno] : " 		+ storeDO.getSname());
+	    	System.out.println("점포형태(stype] : " 	+ storeDO.getStype());
+	    	System.out.println("결제방식[paytype] : " 	+ storeDO.getPaytype());
+	    	System.out.println("취급품목[scategory] : " + storeDO.getScategory());
+	    	System.out.println("점포사진[sphoto] : "	+ storeDO.getSphoto());
 	    	
 	    	String[] payType = storeDO.getPaytype().split(",");
 	    	// 등록
@@ -133,7 +133,8 @@ public class MarketAndStoreController {
 	    	e.printStackTrace();
 	    }
 	    
-	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
+//	    return "redirect:/views/myPage"; // 점포 등록 후 마이페이지로 리다이렉트
+	    return "redirect:/views/store?mno=" + storeDO.getMno();  // 점포 등록 후 시장 화면으로
 	}
 
 	@GetMapping("/views/storeUpdate")
@@ -173,13 +174,13 @@ public class MarketAndStoreController {
 	    String userId = (String) session.getAttribute("userId");
 	    try {
 	    	storeDO.setId(userId);
-	    	System.out.println("등록자 : " + storeDO.getMno());
-	    	System.out.println("등록자 : " + storeDO.getId());
-	    	System.out.println("점포명 : " + storeDO.getSname());
-	    	System.out.println("점포형태 : " + storeDO.getStype());
-	    	System.out.println("결제방식 : " + storeDO.getPaytype());
-	    	System.out.println("취급품목 : " + storeDO.getScategory());
-	    	System.out.println("점포사진 : " + storeDO.getSphoto());
+	    	System.out.println("시장[mno] : " 			+ storeDO.getMno());
+	    	System.out.println("등록자[id] : " 			+ storeDO.getId());
+	    	System.out.println("점포명[sno] : " 		+ storeDO.getSname());
+	    	System.out.println("점포형태(stype] : " 	+ storeDO.getStype());
+	    	System.out.println("결제방식[paytype] : " 	+ storeDO.getPaytype());
+	    	System.out.println("취급품목[scategory] : " + storeDO.getScategory());
+	    	System.out.println("점포사진[sphoto] : "	+ storeDO.getSphoto());
 	    	
 	    	String[] payType = storeDO.getPaytype().split(",");
 	    	// 수정
@@ -188,7 +189,8 @@ public class MarketAndStoreController {
 	    	e.printStackTrace();
 	    }
 	    
-	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
+//	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
+	    return "redirect:/views/store?mno=" + storeDO.getMno();  // 점포수정 후 시장 화면으로
 	}
 
 }
