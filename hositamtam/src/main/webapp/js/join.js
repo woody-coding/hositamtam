@@ -62,6 +62,7 @@ function idCheckHandler() {
 
 
 function idCheck() {
+	let msg = document.querySelector('#msg');
 	let id = document.querySelector('#id').value;
 	
     if(id.length >= 4 && id.length <= 12) {
@@ -111,6 +112,7 @@ function nicknameCheckHandler() {
 
 
 function nicknameCheck() {
+	let msg = document.querySelector('#msg');
 	let nickname = document.querySelector('#nickname').value;
 	
 	if(nickname.length >= 2 && nickname.length <= 8) {
