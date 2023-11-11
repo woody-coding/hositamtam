@@ -25,11 +25,12 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
     <link rel="stylesheet" href="/finalProject/css/footer.css" />
     <link rel="stylesheet" href="/finalProject/css/login.css" />
 
     <!-- JavaScript -->
+    <script defer src="/finalProject/js/anchor.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
       
@@ -48,9 +49,10 @@
 
     <!-- Main -->
     <!-- Login -->
-    <section id="login" class="section">
+    <section id="login" class="login__section">
       <div class="max-container">
         <div class="login">
+        <img src="/finalProject/images/fontLogo.ico" alt="로고" class="login__logo" />
           <form method="POST" id="login__form" action="/finalProject/views/loginMember">
             <div class="login__form">
               <label for="id" class="login__label">
@@ -85,6 +87,11 @@
           </form>
         </div>
       </div>
+      
+      <a
+        class="loginBg__source"
+        href="https://kr.freepik.com/free-photo/delicious-food-arrangement-above-view_21745221.htm#page=8&query=market&position=3&from_view=search&track=sph"
+        >출처 Freepik</a>
     </section>
 
     <!-- Footer -->

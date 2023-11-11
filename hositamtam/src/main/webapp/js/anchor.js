@@ -43,3 +43,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// 로그인 페이지 이미지 출처
+document.addEventListener("DOMContentLoaded", function () {
+  var source = document.querySelector(".loginBg__source");
+
+  source.style.opacity = 0;
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 320) {
+      source.style.opacity = 1;
+    } else {
+      source.style.opacity = 0;
+    }
+  });
+});
+
+// 회원가입 페이지 이미지 출처
+document.addEventListener("DOMContentLoaded", function () {
+  var source = document.querySelector(".joinBg__source");
+
+  source.style.opacity = 0;
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 320) {
+      source.style.opacity = 1;
+    } else {
+      source.style.opacity = 0;
+    }
+  });
+});

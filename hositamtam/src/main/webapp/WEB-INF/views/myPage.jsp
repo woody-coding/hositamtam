@@ -36,7 +36,7 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
     <link rel="stylesheet" href="/finalProject/css/footer.css" />
     <link rel="stylesheet" href="/finalProject/css/myPage.css" />
 
