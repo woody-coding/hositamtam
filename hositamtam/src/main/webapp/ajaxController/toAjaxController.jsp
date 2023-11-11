@@ -60,7 +60,7 @@
 	}
 	// 글 좋아요 상태 확인
 	else if(command != null && command.equals("updateLikeStatus")) {
-		out.println(postDAO.updateLikeStatus((Integer.parseInt(pno)), id));
+		out.println(postDAO.updateLikeStatus((Integer.parseInt(pno))));
 	}
 	// 점포 찜 상태 확인
 	else if(command != null && command.equals("updateLikeStoreStatus")) {

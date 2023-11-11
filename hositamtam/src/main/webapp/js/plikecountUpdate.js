@@ -10,12 +10,9 @@ function plikecountHandler() {
 		let postLikeCount = postLike[0].plikecount;
 
 
-		if(postLike[0].likeStatus === 'x') {
-			//검은색 하트
-			plikecountUpdate.style.color = 'black';
-		} else if (postLike[0].likeStatus === 'o') {
-			//빨간색 하트
-			plikecountUpdate.style.color = 'red';
+		if (postLike[0].likeStatus === 'o') {
+			// 좋아요했을 때는 빨갛게~
+			//document.querySelector('#plikecountUpdate').style.color = '#E6007E';
 		}
 		
 		
@@ -33,17 +30,6 @@ function plikecountStatusHandler() {
 		const postLike = JSON.parse(xhr.responseText);
 		let postLikeCount = postLike[0].plikecount;
 
-
-		if(postLike[0].likeStatus === 'x') {
-			console.log('postLike[0].likeStatus : ' + postLike[0].likeStatus);
-			//검은색 하트
-			plikecountUpdate.style.color = 'black';
-		} else if (postLike[0].likeStatus === 'o') {
-			//빨간색 하트
-			plikecountUpdate.style.color = 'red';
-		}
-		
-		
 		document.querySelector('#plikecountView').innerHTML = '좋아요 ' + postLikeCount + '개';
     }
 }
@@ -68,16 +54,14 @@ function init() {
 	const member = JSON.parse(memberId);
 	
 	
-	// 페이지가 로드될 때도 요청하기
-	if (member) {
-		currentId = member.id;
+
 		
-		xhr.onreadystatechange = plikecountStatusHandler;
-		
-	    let param = '?command=updateLikeStatus&pno=' + currentPno + '&id=' + currentId;
-	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
-	    xhr.send();		
-	}
+	xhr.onreadystatechange = plikecountStatusHandler;
+	
+    let param = '?command=updateLikeStatus&pno=' + currentPno;
+    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+    xhr.send();		
+	
 	
 
 	
