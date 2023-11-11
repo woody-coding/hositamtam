@@ -457,11 +457,12 @@ function storeAjaxHandler() {
 				    '<div class="storeEtc">' +
 				    '<div class="sName">'+
                     	'<span> ' + allStoreList[i].sname + '</span>' + '&nbsp;' +
-                    	'<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' + '&nbsp;' +
-                  		 	  '<i class="fa-solid fa-heart"></i> ' +  '&nbsp;' + allStoreList[i].sfavoritecount +
-                 
+                    	
                   	'</div>' +
-                  	
+                  	'<div class="likeHeart" style="clear: both">'+
+                  	'<img src="../images/2b50.png" alt="평균별점">' + allStoreList[i].savgrating + '(' + allStoreList[i].sreviewcount + ')' + '&nbsp;' +
+                  	'<i class="fa-solid fa-heart"></i> ' +  '&nbsp;' + allStoreList[i].sfavoritecount +
+                 	'</div>'+
 				  	'<div class="categoryAndType">' +
 	            
 	                   '<span> ' + allStoreList[i].scategory + ' | </span>' +
