@@ -18,8 +18,10 @@
 	
 	// newPassword 파라미터 값을 가져와서 newNickname에 담음
 	String newPassword = request.getParameter("password");
-	
-	
+	String passwd = request.getParameter("passwd");
+	String nickname = request.getParameter("nickName");
+	String birthdate = request.getParameter("birthdate");
+	String gender = request.getParameter("gender");
 	
 	
 	
@@ -43,14 +45,32 @@
 	
 	// 닉네임과 비밀번호에 대한 파라미터 가져오기
 	if(command != null && command.equals("changeProfile")){
-		
-		/* memberDO.setNickname(newNickname);
-        memberDO.setPasswd(newPassword); */
-        
      // JSON 형태의 응답 생성
-     System.out.println("newPassword : " + newPassword + "   / newNickname" + newNickname);
+     //System.out.println("newPassword : " + newPassword + "   / newNickname" + newNickname);
         out.println(jsonMarketStore.getChangeProfile(newPassword, id, newNickname));
 	}
+	
+	
+	
+	
+	if(command != null && command.equals("isJoin")) {
+		 out.println(memberDAO.joinMember(id, nickname, passwd, birthdate, gender));
+	}
+	
+	
+	if(command != null && command.equals("isIdDuplicate")) {
+		out.println(memberDAO.isIdDuplicate(id));
+	}
+	
+	
+	if(command != null && command.equals("isNicknameDuplicate")) {
+		out.println(memberDAO.isNicknameDuplicate(nickname));
+	}
+	
+	
+	
+	
+	
 	
 	
 	

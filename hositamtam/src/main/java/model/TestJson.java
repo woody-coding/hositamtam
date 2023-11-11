@@ -37,6 +37,8 @@ public class TestJson {
 		MemberDAO memberDAO = new MemberDAO();
 	//	System.out.println(memberDAO.deleteMember("shortlee"));
 	//	System.out.println(memberDAO.loginMember("longlee", "1234567891"));
-
+	//	System.out.println(memberDAO.joinMember("kingright", "테스트용", "123456789", "2000-10-10", "남"));
+		System.out.println(memberDAO.isIdDuplicate("shortlee"));
+	//	System.out.println(memberDAO.isNicknameDuplicate("테스트용"));
 	}
 }
