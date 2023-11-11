@@ -122,11 +122,10 @@ span{
 }
 .container {
 	/*border: 2px solid #0188CC;*/
-	padding-top: 5px;
 	border-radius: 20px;	
 	background-color: white;
 	height: 90vh;
-	padding: 10px;
+	padding: 20px 15px 10px 15px;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .btnBox{
