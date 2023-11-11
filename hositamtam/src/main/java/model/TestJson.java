@@ -20,7 +20,11 @@ public class TestJson {
 //		MemberDO memberDO = new MemberDO();
 //		JsonMarketStore jsonMarketStore = new JsonMarketStore();
 //		System.out.println(jsonMarketStore.getCheckNickName(memberDO));
-//		System.out.println(storeDAO.notStore(2, "shortlee"));
+//		System.out.println(storeDAO.updateLikeStoreStatus(6));
+//		System.out.println(storeDAO.notStoreStatus(1, "king123"));
+//		System.out.println(storeDAO.notStore(1, "longlee"));
+		
+		
 		
 		JsonMarketStore jsonMarketStore = new JsonMarketStore();
 	//	System.out.println(jsonMarketStore.getCheckPasswd("123456789", "longlee"));
@@ -32,7 +36,7 @@ public class TestJson {
 
 		MemberDAO memberDAO = new MemberDAO();
 	//	System.out.println(memberDAO.deleteMember("shortlee"));
-		System.out.println(memberDAO.loginMember("longlee", "1234567891"));
+	//	System.out.println(memberDAO.loginMember("longlee", "1234567891"));
 
 	}
 }

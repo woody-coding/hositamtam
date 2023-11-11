@@ -289,11 +289,12 @@ button{
   position: relative;
   top:2px;
 }
+
 .notStore{
     display: inline-block;
     /* font-family: 'GmarketSans'; */
     margin-left: 5px;
-    background-color: #e6007e;
+    background-color: grey;		/* #e6007e; */
     color: white;
     border: 0px;
     font-size: 1rem;
@@ -304,7 +305,7 @@ button{
     text-decoration: none;
     box-shadow: 1px 4px 0px 0px pink;
 }
-   
+ 
 
 
 .notStore:active {

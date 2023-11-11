@@ -64,7 +64,7 @@
 	}
 	// 점포 찜 상태 확인
 	else if(command != null && command.equals("updateLikeStoreStatus")) {
-		out.println(storeDAO.updateLikeStoreStatus((Integer.parseInt(sno)), id));
+		out.println(storeDAO.updateLikeStoreStatus((Integer.parseInt(sno))));
 	}
 	
 	// 점포 제보
