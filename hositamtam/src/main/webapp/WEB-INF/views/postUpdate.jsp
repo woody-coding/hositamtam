@@ -47,8 +47,9 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
+	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div> <!-- 위치 재설정 및 css로 꾸며야 함 -->
+	<br/>
 	<form method="POST" action="/finalProject/views/postUpdate" enctype="multipart/form-data">
-
 	<div class="postCategory-radio">
 	            <div class="radioBox">
                 <label for="pcategory">카테고리</label><br/>
