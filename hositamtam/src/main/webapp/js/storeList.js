@@ -202,7 +202,6 @@ function notStoreStatus(sno) {
 
 
 
-
 function init() {
 
 	// 로컬스토리지에서 파라미터 mno값 읽어오기
@@ -385,12 +384,11 @@ function insertStoreHandler() {
 	            map: map
 	        });
 	        prevClickCoord = e.coord;
-	
 	        // 마커를 클릭했을 때 인포윈도우를 생성하고 표시(위도, 경도 값 a태그 파라미터로 넣어주기)
 	        var latitude = e.coord.lat();
-	        var longitude = e.coord.lng();
+	        var longitude = e.coord.lng();		
 	        var iwContent = '<div class="iwContent" style="padding:5px;">' +
-	            '<a href="../ajaxController/toAjaxController.jsp?command=insertStore&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
+	            '<a href="/finalProject/views/toStoreInsert?id=' + currentId + '&mno=' + currentMno + '&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
 	        infowindow = new naver.maps.InfoWindow({
 	            content: iwContent
 	        });

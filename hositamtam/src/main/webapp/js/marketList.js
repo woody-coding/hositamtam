@@ -5,10 +5,6 @@ let mapOptions = {};
 let map;
 let currentMno;
 
-
-
-
-
 // 초기화 함수
 function init() {
 
@@ -21,14 +17,10 @@ function init() {
         }
     });
 
-
-
-
-
-
 	const keyCate = window.localStorage.getItem('KeywordAndCateno');
 	const KeywordAndCateno = JSON.parse(keyCate);
 
+	
 
 	if(KeywordAndCateno.msg) {
 				
@@ -62,7 +54,10 @@ function init() {
     
     else if(KeywordAndCateno.cateno) {
 		
-		let currentCateno = KeywordAndCateno.cateno;
+		let currentCateno = KeywordAndCateno.cateno + '';
+		
+		
+		
 		let currentCate = '';
 		
 		document.querySelector('#howGetMarket').innerHTML = '';
@@ -87,8 +82,9 @@ function init() {
 			currentCate = '기타';
 		}
 		
-		if(currentCateno !== '1' && currentCateno !== '2' && currentCateno !== '3' && currentCateno !== '4' && currentCateno !== '5' && currentCateno !== '6' && currentCateno !== '7' && currentCateno !== '8' && currentCateno !== '9') {
-			document.querySelector('#marketErrorMsg').innerHTML = "잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!"+ currentCateno + "추가";
+		currentCateno = currentCateno * 1;		
+		if(currentCateno < 1 || currentCateno > 9) {
+			document.querySelector('#marketErrorMsg').innerHTML = "[수정]잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!";
 		} else {
 			document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'(으)로 조회한 결과입니다.";
 
@@ -102,8 +98,6 @@ function init() {
 	    xhr.send();
 	}
 }
-
-
 
 
 // 해당 점포 정보에 연동된 인포윈도우창을 지도 상에서 띄우기
@@ -137,15 +131,6 @@ function openInfo() {
     }
 }
 
-
-
-
-
-
-
-
-
-
 // marketAjaxHandler 함수
 function marketAjaxHandler() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -153,10 +138,6 @@ function marketAjaxHandler() {
         removeMarker();
 
         const allMarketList = JSON.parse(xhr.responseText);
-        
-        
-        
-        
         
         // marketErrorMsg 값(내용)을 가져옵니다.
         const marketErrorMsg = allMarketList[0].marketErrorMsg;
@@ -176,12 +157,6 @@ function marketAjaxHandler() {
             removeMarker();
         }
         
-        
-        
-        
-        
-        
-        
 		// 지도 생성
 		mapOptions = {  			//35.21003 129.0689
 		    center: new naver.maps.LatLng(35.17132, 129.0666),
@@ -196,11 +171,6 @@ function marketAjaxHandler() {
 		
 		map = new naver.maps.Map('map', mapOptions);
 
-
-
-
-
-        
         let marketContents ='';
         
         
@@ -226,13 +196,7 @@ function marketAjaxHandler() {
 		}
 
 		
-		
 		document.querySelector('#marketContent').innerHTML = marketContents;
-        
-        
-        
-        
-        
         
         for (let i in allMarketList) {
             const mno = parseFloat(allMarketList[i].mno);
@@ -266,15 +230,6 @@ function marketAjaxHandler() {
         showMarkers();
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 // 지도 위에 마커를 표시하는 함수
@@ -312,8 +267,6 @@ function showMarkers() {
 }
 
 
-
-
 // 지도 위에 표시되고 있는 마커를 모두 제거하는 함수
 function removeMarker() {
     for (var i = 0; i < markers.length; i++) {
@@ -321,8 +274,5 @@ function removeMarker() {
     }
     markers = [];
 }
-
-
-
 
 window.addEventListener('load', init);

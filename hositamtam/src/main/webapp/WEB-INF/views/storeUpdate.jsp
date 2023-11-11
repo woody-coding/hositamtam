@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>호시탐탐</title>
+    <title>호시탐탐 점포 수정</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -51,9 +53,16 @@
   <body>
   
       <%@ include file="navi.jsp" %>
-  
-  
+ 
 
+      <nav class="mainHeader__nav">
+        <ul class="mainHeader__menu">
+          <li><a class="mainHeader__menu__item" href="#">서비스안내</a></li>
+          <li><a class="mainHeader__menu__item" href="#">시끌시끌</a></li>
+          <li><a class="mainHeader__menu__item" href="#">카테고리</a></li>
+        </ul>
+      </nav>
+    </header>
 
     <!-- Main -->
     <!-- Store Insert And Update -->
