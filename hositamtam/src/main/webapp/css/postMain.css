@@ -214,9 +214,10 @@ button {
 
 
 #mno {
-	border-radius: 2px;
-	background-color: gray;
-	color: white;
+	font-family: "GmarketSans";
+	border-radius: 5px;
+	background-color: white;
+	color: black;
 	border: 0px;
 	padding: 2px;
 	font-size: 1.05rem;
@@ -225,6 +226,7 @@ button {
 }
 #mno:hover {
 	background-color: #0e4194;
+	color: white;
 }
 #whatMarket{
 	border-radius: 2px;
