@@ -333,23 +333,16 @@ button{
 	clear: both;
 }
 .sName {
-	display: flex;
-	justify-content: left;
-	/*float: left;
-	left: 50%;*/
-}
-.sName img{
-	width: 30px;
+	
+	float: left;
 	
 }
+
 .sName span{
 	font-size: 1.2rem;
 	font-weight: bold;
 }
-.likeHeart{
-	text-align: center;
-	clear: both;
-}
+
 
 .listLinkInfowindow{
 	background-color: white;
@@ -373,6 +366,10 @@ button{
 	height: 100px;
 }
 
+.likeHeart img{
+	width: 1.5rem;
+	padding-bottom: 10px;
+}
 
 
 
