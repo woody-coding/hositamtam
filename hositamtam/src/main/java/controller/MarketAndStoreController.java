@@ -26,6 +26,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import model.MarketDAO;
 import model.PaymentDO;
+import model.PostDAO;
+import model.ReviewDAO;
+import model.ReviewDO;
 import model.StoreDAO;
 import model.StoreDO;
 
@@ -34,6 +37,7 @@ public class MarketAndStoreController {
 
 	private MarketDAO marketDAO = new MarketDAO();
 	private StoreDAO storeDAO = new StoreDAO();
+	private ReviewDAO reviewDAO = new ReviewDAO();
 
 	public MarketAndStoreController() {
 	}
@@ -95,9 +99,19 @@ public class MarketAndStoreController {
 		List<StoreDO> storeReviewList = storeDAO.getStoreReviewList(storeDO);
 		model.addAttribute("storeReviewList", storeReviewList);
 
+
 		return "storeDetail";
 	}
-
+	// 등록 페이지로 이동
+	@GetMapping("/views/toStoreInsert")
+	public String StoreInsert(@RequestParam String id,@RequestParam String mno, @RequestParam String slat, @RequestParam String slng, Model model) {
+		model.addAttribute("id", id);
+		model.addAttribute("mno", mno);
+		model.addAttribute("slat", slat);
+		model.addAttribute("slng", slng);
+		return "storeInsert";
+	}
+	// 등록 기능
 	@GetMapping("/views/storeInsert")
 //	public String StoreInsert(@RequestParam StoreDO storeDO, Model model) { // joke
 	public String StoreInsert(HttpServletRequest request) {
@@ -192,5 +206,17 @@ public class MarketAndStoreController {
 //	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
 	    return "redirect:/views/store?mno=" + storeDO.getMno();  // 점포수정 후 시장 화면으로
 	}
-
+	
+	// 리뷰 등록
+	@GetMapping("/views/reviewInsert")
+	public String reviewInsert(@ModelAttribute ReviewDO command, Model model) {
+		reviewDAO.insertReview(command);
+		return "redirect:/views/storeDetail?sno=" + command.getSno();
+	}
+	// 리뷰 삭제
+	@GetMapping("/views/deleteReview")
+	public String deleteReview(@RequestParam int sno, @RequestParam int rno) {
+		reviewDAO.deleteReview(rno);
+		return "redirect:/views/storeDetail?sno=" + sno;
+	}
 }

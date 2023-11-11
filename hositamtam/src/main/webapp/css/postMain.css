@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 html {
@@ -7,7 +8,7 @@ html {
 }
 
 body {
-  font-family: "GmarketSans";
+ 
   margin: 0;
 }
 
@@ -171,28 +172,18 @@ button {
     border: 0;
     background-color: white;
 }
-.commentBox button{
+
+.modify{
     width: 80px;
-    border: 0;
-    background-color: #0188CC;
-}
-.commentList #submit{
-    width: 80px;
-    height: 40px;
-    border: 0;
-    background-color: #0188CC;
-}
-#delete{
-    width: 80px;
-    height: 40px;
+    height: 30px;
     border: 0;
     background-color: #eeeeee;
+    border-radius: 5px;
+    line-height: 30px;
 }
-#postModify{
-    width: 80px;
-    height: 40px;
-    border: 0;
-    background-color: #eeeeee;
+.modify:hover{
+    background-color: #0e4194;
+    color: white;
 }
 .btn-primary{
     background-color: #0e4194;
@@ -204,11 +195,6 @@ button {
 	padding:0;
 	
 }
-
-
-
-
-
 
 
 

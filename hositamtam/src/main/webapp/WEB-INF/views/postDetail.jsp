@@ -113,7 +113,7 @@
 	<div class="col-6">${comment.ccontent}</div>
 	<div class="col-2">${comment.cregdate}</div>
 	<c:if test="${post.id == userId}">
-	<div class="col-1"><button onclick="location.href='/finalProject/views/deleteComment?cno=${comment.cno}&pno=${post.pno}'">삭제</button></div>
+	<div class="col-1"><button class="modify" onclick="location.href='/finalProject/views/deleteComment?cno=${comment.cno}&pno=${post.pno}'">삭제</button></div>
 	</c:if>
 	</div>
 	</c:forEach>

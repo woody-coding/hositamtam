@@ -23,6 +23,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 html {
@@ -30,7 +31,6 @@ html {
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
 }
 
@@ -69,10 +69,19 @@ a {
   display: block;
   font-size: 2rem;
   color: var(--color-gray);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.storeDetail__star__like {
+	display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0 0 1.5rem 20rem;
 }
 
 .storeDetail__like {
+	display: flex;
+	gap: 0.7rem;
   font-size: 2rem;
   /*color: var(--color-gray);*/
   border: none;
@@ -80,9 +89,10 @@ a {
   margin-right: 1rem;
   /* pulse */
   width: 2.3rem;
-  height: 2.3rem;
+  /*height: 2.3rem;*/
   border-radius: 50%;
-  line-height: 2.3rem;
+  /*line-height: 2.3rem;*/
+  line-height: normal;
   font-size: 1.5rem;
   color: red;
 }
@@ -92,7 +102,7 @@ a {
 }
 
 /* pulse */
-.storeDetail__like {
+/*.storeDetail__like {
     &:hover {
       box-shadow: 0 0 0 18px transparent;
       animation: pulse 1s;
@@ -102,7 +112,7 @@ a {
   from {
     box-shadow: 0 0 0 0 #E6007E;
   }
-}
+}*/
 
 /* pulse */
 /*.storeDetail__like{
@@ -130,7 +140,7 @@ a {
 }*/
 
 .storeDetail__like__count {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: black;
 }
 
@@ -152,7 +162,7 @@ a {
 
 .storeDetail__star {
   color: black;
-  margin-bottom: 1rem;
+  /*margin-bottom: 1rem;*/
 }
 
 .storeDetail__starIcon {
@@ -165,7 +175,8 @@ a {
   display: flex;
   align-items: center;
   text-align: center;
-  margin: 0 0 1rem 14.5rem;
+  /*margin: 0 0 1rem 14.5rem;*/
+  margin: 0 0 1rem 16rem;
   font-size: 1.3rem;
 }
 

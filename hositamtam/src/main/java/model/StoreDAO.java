@@ -407,23 +407,21 @@ public class StoreDAO {
 		public List<StoreDO> getStoreReviewList(StoreDO storeDO) {
 			List<StoreDO> storeReviewList = new ArrayList<StoreDO>();
 			try {
-				sql = "SELECT R.*, I.REVIEW, I.RATING "
-				+ "FROM STORE S "
-				+ "LEFT JOIN ( " // 사용자가 작성한 리뷰
-				+ "SELECT R.RNO, R.SNO, R.ID, R.RREGDATE, R.RCONTENT, R.RRATING "
-				+ "FROM STORE S "
-				+ "LEFT JOIN review r ON s.sno = r.sno "
-				+ ") R "
-				+ "ON S.SNO = R.SNO "
-				+ "LEFT JOIN ( " // 사용자 리뷰 평점 정보
-				+ "SELECT R.ID, COUNT(R.SNO) AS REVIEW, ROUND(AVG(R.RRATING), 1) AS RATING "
-				+ "FROM MEMBER M "
-				+ "LEFT JOIN REVIEW R ON R.ID = M.ID "
-				+ "GROUP BY R.ID "
-				+ ") I "
-				+ "ON I.ID = R.ID "
-				+ "WHERE R.SNO = ? "
-				+ "ORDER BY R.RREGDATE DESC ";
+				sql = "SELECT R.*, I.REVIEW, I.RATING, M.NICKNAME "
+						+ "FROM STORE S "
+						+ "LEFT JOIN ("
+							+ "SELECT R.RNO, R.SNO, R.ID, R.RREGDATE, R.RCONTENT, R.RRATING "
+							+ "FROM REVIEW R"
+							+ ") R ON S.SNO = R.SNO "
+						+ "LEFT JOIN ("
+							+ "SELECT M.ID, COUNT(R.SNO) AS REVIEW, ROUND(AVG(R.RRATING), 1) AS RATING "
+							+ "FROM MEMBER M "
+							+ "LEFT JOIN REVIEW R ON R.ID = M.ID "
+							+ "GROUP BY M.ID"
+						+ ") I ON I.ID = R.ID "
+						+ "LEFT JOIN MEMBER M ON R.ID = M.ID "
+						+ "WHERE S.SNO = ? "
+						+ "ORDER BY R.RREGDATE DESC ";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, storeDO.getSno());
@@ -433,6 +431,8 @@ public class StoreDAO {
 		        while (rs.next()) {
 		        	StoreDO store = new StoreDO();
 		        	store.setId(rs.getString("id"));
+		        	store.setRno(rs.getInt("rno"));
+		        	store.setNickname(rs.getString("nickname"));
 		        	store.setRregdate(rs.getString("rregdate"));
 		        	store.setContent(rs.getString("rcontent"));
 		        	store.setRating(rs.getDouble("rrating"));
@@ -451,7 +451,7 @@ public class StoreDAO {
 		            e.printStackTrace();
 		        }
 		    }
-			
+			System.out.println(storeReviewList.size());
 			return storeReviewList;
 		}
 		

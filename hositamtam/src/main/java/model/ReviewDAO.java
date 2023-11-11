@@ -32,6 +32,58 @@ public class ReviewDAO {
 	// 		- 점포의 리뷰이력을 최신순으로 조회하고, 리뷰를 등록한 id와 일치하는
 	// 		- 사용자의 '닉네임, 총 리뷰수, 평균평점, 작성일'을 반환한다. 
 	
+	// 리뷰 등록
+	public int insertReview(ReviewDO review) {
+		int rowCount = 0;
+		this.sql = "insert into review (rno, sno, id, rregdate, rcontent, rrating)"
+				+ "values (seq_rno.nextval, ?, ?, sysdate, ?, ?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review.getSno());
+			pstmt.setString(2, review.getId());
+			pstmt.setString(3, review.getRcontent());
+			pstmt.setDouble(4, review.getRrating());
+			
+			rowCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+				try {
+					if(!pstmt.isClosed()) {
+						pstmt.close();
+					}
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+		}
+		return rowCount;
+	}
+	// 리뷰 삭제
+	public int deleteReview(int rno) {
+		int rowCount = 0;
+		this.sql = "delete from review where rno = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rno);
+			
+			rowCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(!pstmt.isClosed()) {
+					pstmt.close();
+				}
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return rowCount;
+	}
 
 	public ArrayList<ReviewDO> getReviewBySno(int sno) {
 		ArrayList<ReviewDO> storeReviewList = new ArrayList<>();

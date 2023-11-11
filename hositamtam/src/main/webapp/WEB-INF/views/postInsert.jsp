@@ -18,7 +18,7 @@
 <script src="https://kit.fontawesome.com/89490613c7.js"
 	crossorigin="anonymous"></script>
 <!-- CSS -->
-<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/postHeader.css" />
 <link rel="stylesheet" href="../css/footer.css" />
 <link rel="stylesheet" href="../css/postUpdate.css" />
 <!-- JavaScript -->
@@ -41,8 +41,9 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-	<%@ include file="navi.jsp" %>
+	
 	<div  class="section" id="section1">
+	<%@ include file="navi.jsp" %>
 	<div class="container mt-5">
 	<h2>${market.mname} <span>시끌시끌</span></h2>
 	<form method="POST" action="/finalProject/views/postInsert" enctype="multipart/form-data">
