@@ -72,7 +72,6 @@ public class MarketAndStoreController {
 	@GetMapping("/views/storeDetail")
 	public String StoreDetail(@RequestParam int sno, Model model) {
 
-		// 효철님 이거 빼니까 sno값 안넘어와서 넣어야할 거 같아요
 		model.addAttribute("sno", sno);
 		
 		StoreDO storeDO = new StoreDO();
