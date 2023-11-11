@@ -49,12 +49,12 @@ sno 		number(5)
 );
 
 --* 더미 데이터)
-insert into store values (seq_sno.nextval, 2, 'king123', '문현역 7번 출구 앞 10m', '35.13931', '129.1052', '좌판', 'testphoto.png', 1, 0, '분식');
-insert into store values (seq_sno.nextval, 99, 'longlee', '지게골역 출구 앞 5m', '35.15445', '129.1190', '좌판', 'testphoto2.jpeg', 2, 22, '야채 가게');
-insert into store values (seq_sno.nextval, 2, 'shortlee', '문현역 5번 출구 앞', '35.16046', '129.0562', '매장', 'testphoto2.jpeg', 2, 79, '과일 가게');
-insert into store values (seq_sno.nextval, 2, 'longlee', '서면역 출구 앞 5m', '35.16638', '129.0712', '좌판', 'testphoto3.jpg', 2, 39, '떡볶이 가게');
-insert into store values (seq_sno.nextval, 99, 'king123', '지게골역 출구 5m', '35.14459', '129.0285', '좌판', 'testphoto22.png', 2, 199, '잡화점');
-insert into store values (seq_sno.nextval, 152, 'king123', '역 7번 출구 앞 10m', '35.13933', '129.1051', '좌판', 'testphoto.png', 1, 0, '떡볶이집');
+insert into store values (seq_sno.nextval, 2, 'king123', '문현역 7번 출구 앞 10m', '35.13931', '129.1052', '좌판', 'testphoto.png', 0, 0, '분식');
+insert into store values (seq_sno.nextval, 99, 'longlee', '지게골역 출구 앞 5m', '35.15445', '129.1190', '좌판', 'testphoto2.jpeg', 0, 22, '야채 가게');
+insert into store values (seq_sno.nextval, 2, 'shortlee', '문현역 5번 출구 앞', '35.16046', '129.0562', '매장', 'testphoto2.jpeg', 0, 79, '과일 가게');
+insert into store values (seq_sno.nextval, 2, 'longlee', '서면역 출구 앞 5m', '35.16638', '129.0712', '좌판', 'testphoto3.jpg', 0, 39, '떡볶이 가게');
+insert into store values (seq_sno.nextval, 99, 'king123', '지게골역 출구 5m', '35.14459', '129.0285', '좌판', 'testphoto22.png', 0, 199, '잡화점');
+insert into store values (seq_sno.nextval, 152, 'king123', '역 7번 출구 앞 10m', '35.13933', '129.1051', '좌판', 'testphoto.png', 0, 0, '떡볶이집');
 
 
 --6.	POST (글 테이블)
@@ -165,8 +165,7 @@ sno 		number(5)
 
 
 --* 더미 데이터)
-insert into member_store_close values (1, 'king123');
-insert into member_store_close values (2, 'king123');
+
 
 
 

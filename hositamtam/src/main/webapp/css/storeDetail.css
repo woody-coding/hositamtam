@@ -74,7 +74,7 @@ a {
 
 .storeDetail__like {
   font-size: 2rem;
-  color: var(--color-gray);
+  /*color: var(--color-gray);*/
   border: none;
   background-color: var(--color-background);
   margin-right: 1rem;
@@ -84,6 +84,7 @@ a {
   border-radius: 50%;
   line-height: 2.3rem;
   font-size: 1.5rem;
+  color: red;
 }
 
 .storeDetail__like:hover {

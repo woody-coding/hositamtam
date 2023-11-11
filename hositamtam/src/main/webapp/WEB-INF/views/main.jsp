@@ -46,12 +46,13 @@
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script>
 	function init() {
+		window.sessionStorage.removeItem('memberId');
+		
+		
 	    // 현재 접속한 사용자가 회원인지 비회원인지 판단하기
 	    let id = '<%= session.getAttribute("userId") %>';
 	    
 	    id = (id === 'null') ? null : id;
-	    
-	    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
 	    
 	    // 세션 스토리지에 저장되어 있는 데이터를 가져옴
 	    const sessionStorageData = window.sessionStorage.getItem("memberId");

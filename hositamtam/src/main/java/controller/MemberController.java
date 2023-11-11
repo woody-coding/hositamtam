@@ -331,4 +331,11 @@ public class MemberController {
 	    
 		return "redirect:/views/main";
 	}
+	
+	
+	// 에러 페이지로 이동
+	@GetMapping("/views/error")
+	public String toError(Model model) {
+		return "error";
+	}
 }
