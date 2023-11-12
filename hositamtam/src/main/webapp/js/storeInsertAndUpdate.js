@@ -58,3 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// 최소 하나의 결제방식이 필수로 선택되어야 함
+ function validatePayment() {
+        var checkboxes = document.getElementsByName('paytype');
+        
+        // 최소한 하나의 체크박스가 선택되었는지 확인합니다.
+        var isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        
+        // 최소한 하나가 선택되지 않았다면 알림창을 띄우고 false를 반환합니다.
+        if (!isChecked) {
+            alert("적어도 하나 이상의 결제 방식을 선택해주세요.");
+            return false;
+        }
+        return true;
+    }
+
+    // 폼이 제출될 때 validatePayment 함수를 실행합니다.
+    document.querySelector('form').addEventListener('submit', validatePayment);

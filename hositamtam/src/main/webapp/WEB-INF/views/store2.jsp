@@ -39,7 +39,7 @@
 		src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=51l0xj0874"></script>
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
     <script>
 
 		function init() {
@@ -71,15 +71,12 @@
 	<%@ include file="navi.jsp" %>
 	
 	<div class="section">
-	
 	<div id="map">
 	<button id="insertStore" class="plusStore"><i class="bi bi-plus-circle-fill"></i></button>
 	</div>
 	<div class="right">
 	<div id="marketName"></div>
 	 <div class="btnSort">
-
-	<button id="recentInsert">최신순</button>
 	<button id="manyReview">리뷰 많은 순</button>
 	<button id="manyRating">별점 높은 순</button>
 	<button id="manyStoreLike">찜 많은 순</button>
@@ -88,7 +85,6 @@
 	<div id="storeErrorMsg"></div>
 	<div id="errMsg"></div>
 	</div>
-	
 	</div>
 	 <%@ include file="footer.jsp" %> 
 </body>
