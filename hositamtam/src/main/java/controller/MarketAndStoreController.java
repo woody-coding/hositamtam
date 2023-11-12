@@ -130,11 +130,17 @@ public class MarketAndStoreController {
 	public String storeInsert(HttpServletRequest request, HttpSession session, Model model, @ModelAttribute StoreDO storeDO) {
 	    // 현재 사용자 아이디 가져오기
 	    String userId = (String) session.getAttribute("userId");
+	    
+	 // sphoto가 비어있거나 공백이면 "testphoto2.png"를 대입
+        if (storeDO.getSphoto() == null || storeDO.getSphoto().trim().isEmpty()) {
+            storeDO.setSphoto("testphoto2.jpeg");
+        }
+        
 	    try {
 	    	storeDO.setId(userId);
 	    	System.out.println("시장[mno] : " 			+ storeDO.getMno());
 	    	System.out.println("등록자[id] : " 			+ storeDO.getId());
-	    	System.out.println("점포명[sno] : " 		+ storeDO.getSname());
+	    	System.out.println("점포명[snam] : " 		+ storeDO.getSname());
 	    	System.out.println("점포형태(stype] : " 	+ storeDO.getStype());
 	    	System.out.println("결제방식[paytype] : " 	+ storeDO.getPaytype());
 	    	System.out.println("취급품목[scategory] : " + storeDO.getScategory());
