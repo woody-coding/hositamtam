@@ -17,20 +17,20 @@ body {
 
 /* Chrome, Whale, Edge */
 
-/*.right::-webkit-scrollbar {
-    width: 8px;   스크롤바의 너비 
+.mkSideBox::-webkit-scrollbar {
+    width: 8px;    
 }
 
-.right::-webkit-scrollbar-thumb {
-    height: 30%;  스크롤바의 길이 
-    background: #0e4194;  스크롤바의 색상 
+.mkSideBox::-webkit-scrollbar-thumb {
+    height: 30%;   
+    background: #e6007e;   
     
     border-radius: 10px;
 }
 
-.right::-webkit-scrollbar-track {
-    background: rgba(33, 122, 244, .1);  스크롤바 뒷 배경 색상
-}*/
+.mkSideBox::-webkit-scrollbar-track {
+    background: rgba(230, 0, 126, .1);  
+}
 .section {
 	margin-top: 5rem;
 	width: 100%;
@@ -61,6 +61,8 @@ body {
 	background-color: rgb(243, 243, 243);
 	border: 2.5px solid #0e4194;
 	border-radius: 15px;  
+	overflow: auto;
+	overflow-x: hidden;
 	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);  
 	z-index: 1;	
 }
@@ -74,6 +76,7 @@ body {
 	min-width: 450px;
 	max-height: 90vh;
 	overflow: auto;
+	
 	/* background-color: #eeeeee; */
 }
 
@@ -363,7 +366,7 @@ button{
 
 
 .listLinkInfowindow{
-	background-color: white;
+	background-color: transparent;
 	color: #e6007e;
 	border: 0px;
 	font-size: 1rem;
