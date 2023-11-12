@@ -19,7 +19,7 @@
 <script src="https://kit.fontawesome.com/89490613c7.js"
 	crossorigin="anonymous"></script>
 <!-- CSS -->
-<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/mainHeader.css" />
 <link rel="stylesheet" href="../css/main.css" />
 
 <!-- JavaScript -->
@@ -84,10 +84,10 @@
 </head>
 <body>
 
-	<%@ include file="navi.jsp" %>
+	<%@ include file="mainNavi.jsp" %>
 
     <div  class="section" id="section1">
-<!--      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video> -->
+      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video> 
 
       
 
@@ -149,13 +149,25 @@
 			<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="3000">
-              <img src="../images/시끌시끌.PNG" >
-            </div>
-            <div class="carousel-item" data-bs-interval="3000">
-              <img src="../images/농산물.PNG" >
+              <img src="../images/시장리스트.PNG" >
+              <div class="carousel-caption">
+		        
+    		  </div>
+    		  <p>부산전통시장을 탐험해보세요!</p>
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-              <img src="../images/보수종합.PNG" >
+              <img src="../images/점포리스트.PNG" >
+              <div class="carousel-caption ">
+		       
+    		  </div>
+    		   <p>점포를 검색하고 등록되지 않은 점포를 등록해보세요!</p>
+   	        </div>
+            <div class="carousel-item" data-bs-interval="3000">
+   			  <img src="../images/시끌시끌.PNG" >
+              <div class="carousel-caption d-none d-md-block">
+      		  	<!-- <p>전통시장과 관련된 정보를 다른 사용자들과 나누세요!</p> -->
+  		    </div>
+  		    	<p>전통시장과 관련된 정보를 다른 사용자들과 나누세요!</p>
             </div>
           </div>
           
