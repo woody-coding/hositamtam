@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <% String userId = (String)session.getAttribute("userId"); %>
 
 
@@ -89,7 +89,8 @@
     <div class="storeDetail__star__like">
         <span class="storeDetail__category__title">
         	<h4 class="storeDetail__h4 storeDetail__star">
-           		<i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
+           		<i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; <fmt:formatNumber value="${storeReviewAvg.rating}" pattern="0.#"/>
+
         	</h4>
         </span>
         <span>
@@ -180,6 +181,7 @@
           </div>
           <input type="hidden" name="sno" value="${store.sno}"/>
           <input type="hidden" name="id" value="king123"/>
+          <div class="review__error" id="msg"></div>
           <button class="review__button" type="submit">작성하기</button>
         </form>
       </div>
@@ -190,7 +192,8 @@
     <section id="review__contents" class="max-container">
       <div class="review__contents__total">
         <span class="review__contents__star">
-          <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;${storeReviewAvg.rating}
+          <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;<fmt:formatNumber value="${storeReviewAvg.rating}" pattern="0.#"/>
+
         </span>
         <span>
           <i class="fa-regular fa-comment-dots storeDetail__review"></i>&nbsp;${storeReviewAvg.review}
