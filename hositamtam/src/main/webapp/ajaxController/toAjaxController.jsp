@@ -1,6 +1,11 @@
 <%@ page contentType="application/json; charset=UTF-8"%>
 
-
+<%
+	System.out.println("joke");
+	System.out.println("command=" + request.getParameter("command"));
+	System.out.println("slat=" + request.getParameter("slat"));
+	System.out.println("slng=" + request.getParameter("slng"));
+%>
 <jsp:useBean id="postDAO" class="model.PostDAO" />
 <jsp:useBean id="marketDAO" class="model.MarketDAO" />
 <jsp:useBean id="storeDAO" class="model.StoreDAO" />
@@ -42,6 +47,12 @@
         	out.println(marketDAO.getMarketLatLng(0));
         }	
 	}
+	
+//신성추가 : 점포 최신 등록순	
+	else if(command != null && command.equals("getRecentInsert")) {
+		out.println(storeDAO.getRecentInsert((Integer.parseInt(mno))));
+	}
+//
 	else if(command != null && command.equals("getManyReview")) {
 		out.println(storeDAO.getManyReview((Integer.parseInt(mno))));
 	}
@@ -74,6 +85,14 @@
 	else if(command != null && command.equals("notStoreStatus")) {
 		out.println(storeDAO.notStoreStatus((Integer.parseInt(sno)), id));
 	}
+	
+	// 점포 등록
+	else if(command != null && command.equals("insertStore")) {
+		RequestDispatcher dis = request.getRequestDispatcher("/views/storeInsert");
+		dis.forward(request, response);
+
+	}
+	
 	
 	out.flush();
 %>
