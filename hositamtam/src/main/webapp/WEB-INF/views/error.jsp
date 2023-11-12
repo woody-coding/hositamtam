@@ -31,9 +31,9 @@
     <img  src="../images/err.png">
     <div class="msg">
       <h1>잘못된 접근입니다</h1>
-      <p>해당 시장이 없거나, <br>
-      검색창에 입력이 없어서 시장을 찾을수가 없었습니다.</p>
-      <button class="prevPage">이전 페이지로</button>
+      <p>검색값이 올바르지 않거나, <br>
+      존재하지 않는 정보에 접근하였습니다.</p>
+      <button class="prevPage" onclick="window.location.href = '/finalProject/views/main';">메인으로 돌아가기</button>
     </div>
     
     </div>

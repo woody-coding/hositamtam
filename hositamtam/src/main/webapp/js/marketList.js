@@ -24,18 +24,7 @@ function init() {
 
 	if(KeywordAndCateno.msg) {
 				
-		let errMsg = KeywordAndCateno.msg;
-					
-		// 기존 jsp에 있던 div 태그들 숨기기
-		document.querySelector("#map").style.display = "none";
-        document.querySelector("#howGetMarket").style.display = "none";
-        document.querySelector("#marketContent").style.display = "none";
-		
-        // 에러 메시지를 표시할 요소 선택
-        document.querySelector("#marketErrorMsg").innerHTML = errMsg;
-        
-        // 마커 및 기존 컨텐츠를 지우기
-        removeMarker();
+		window.location.href = '/finalProject/views/error';
 	}
 
     else if (KeywordAndCateno.keyword) {
@@ -84,7 +73,7 @@ function init() {
 		
 		currentCateno = currentCateno * 1;		
 		if(currentCateno < 1 || currentCateno > 9) {
-			document.querySelector('#marketErrorMsg').innerHTML = "[수정]잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!";
+			window.location.href = '/finalProject/views/error';
 		} else {
 			document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'(으)로 조회한 결과입니다.";
 
@@ -145,16 +134,7 @@ function marketAjaxHandler() {
         // 에러 메시지가 있는지 확인하고 화면에 표시
         if (marketErrorMsg) {
 			
-			// 기존 jsp에 있던 div 태그들 숨기기
-			document.querySelector("#map").style.display = "none";
-            document.querySelector("#howGetMarket").style.display = "none";
-            document.querySelector("#marketContent").style.display = "none";
-			
-            // 에러 메시지를 표시할 요소 선택
-            document.querySelector("#marketErrorMsg").innerHTML = marketErrorMsg;
-            
-            // 마커 및 기존 컨텐츠를 지우기
-            removeMarker();
+			window.location.href = '/finalProject/views/error';
         }
         
 		// 지도 생성
@@ -175,7 +155,7 @@ function marketAjaxHandler() {
         
         
         if (allMarketList.length === 0) {
-            marketContents = '시장 정보가 없습니다!';
+           	window.location.href = '/finalProject/views/error';
         } 
         
         
