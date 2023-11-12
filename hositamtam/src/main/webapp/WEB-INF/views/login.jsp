@@ -26,7 +26,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
-    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer2.css" />
     <link rel="stylesheet" href="/finalProject/css/login.css" />
 
     <!-- JavaScript -->

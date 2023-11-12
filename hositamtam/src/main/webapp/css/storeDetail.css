@@ -14,6 +14,7 @@
   --color-pink: #e6007e;
   --color-purple: #662583;
   --color-gray: #a6a6a6;
+  --color-lightgray: #d9d9d9;
   --color-reviewIcon: #d4cfd8;
   --color-starIcon: #fcd53f;
 
@@ -52,7 +53,7 @@ a {
 }
 
 .storeDetail__hr {
-  background: var(--color-accent);
+  background: var(--color-lightgray);
   height: 1px;
   border: 0;
   width: 85%;
@@ -203,7 +204,7 @@ a {
 }
 
 .storeDetail__storeInsert__name {
-  margin-right: 3.8rem;
+  margin-right: 3.55rem;
 }
 
 .storeDetail__photo {
@@ -219,14 +220,15 @@ a {
   width: 60rem;
   text-align: center;
   background-color: white;
-  border-top: 2px solid var(--color-gray);
-  border-bottom: 2px solid var(--color-gray);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /*border-top: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);*/
 }
 
 .review__info {
   display: block;
   font-size: 1.7rem;
-  /*margin: 2.5rem 0;*/
+  margin: 1.5rem 0;
   padding: 1rem 0;
   
 }
@@ -271,7 +273,7 @@ a {
 }
 
 #review__form {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .review__form {
@@ -294,6 +296,7 @@ a {
   border: none;
   background-color: var(--color-primary);
   border-radius: 5px;
+  margin-bottom: 2.5rem;
 }
 
 .review__button:hover {
@@ -304,13 +307,14 @@ a {
 #review__contents {
   width: 60rem;
   background-color: white;
-  padding: 2rem 0;
+  padding: 2.5rem 0 3rem;
   margin-bottom: 5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .review__contents__total {
   font-size: 1.3rem;
-  margin: 0 0 0.5rem 10rem;
+  margin: 0 0 0.5rem 6rem;
 }
 
 .review__contents__star {
@@ -332,7 +336,6 @@ a {
   color: var(--color-gray);
   grid-row: span 2;
   font-size: 2.5rem;
-  padding: 10px 0 0 0;
 }
 
 .review__contents__img {
@@ -350,6 +353,14 @@ a {
 
 .review__contents__ownerInfo {
   font-weight: bolder;
+}
+
+.reviewDelete__button {
+	border: none;
+	border-radius: 5px;
+	padding-top: 0.2rem;
+	margin-left: 0.5rem;
+	background-color: var(--color-lightgray);
 }
 
 .review__contents__value {
