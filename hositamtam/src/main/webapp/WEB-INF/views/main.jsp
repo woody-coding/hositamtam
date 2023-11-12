@@ -175,7 +175,8 @@
 		</div>
 		<br/>
 		<br/>
-		<h4>등급 안내</h4>
+		<h4>열심히 활동해 등급을 올려보세요!</h4>
+		
 		<div class="gradeInfo">
 			<div class="gradeIcon">
 				<div class="gradeImage">
@@ -205,7 +206,9 @@
 				<div class="grade4">시장 지킴이</div>
 				<div class="grade5">시장 개척자</div>
 			</div>
-
+			<div class="expInfo">
+			<span>경험치 : 리뷰, 댓글 개당 1점 | 게시글 개당 3점 | 점포 등록 개당 5점</span>
+			</div>
 
 		</div>
 

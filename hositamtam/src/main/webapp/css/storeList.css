@@ -347,10 +347,11 @@ button{
     color: #e6007e;
 }
 .categoryAndType span{
+	font-size: 1rem;
 	color: gray;
 }
 .categoryAndType {
-	line-height: 50px;
+	line-height: 40px;
 	clear: both;
 }
 .sName {
@@ -375,6 +376,7 @@ button{
 .storeEtc{
 	width: 70%;
 	float: left;
+	line-height: 1.6;
 }
 .storeImgContainer{
 	width: 30%;
@@ -391,4 +393,8 @@ button{
 .likeHeart img{
 	width: 1.5rem;
 	padding-bottom: 10px;
+}
+
+.likeHeart {
+	height: 40px;
 }
