@@ -39,7 +39,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
-    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer2.css" />
     <link rel="stylesheet" href="/finalProject/css/storeDetail.css" />
 
     <!-- JavaScript -->
@@ -104,7 +104,7 @@
 	    <span class="storeDetail__storeType__title">
 	        <h4 class="storeDetail__h4">점포 형태</h4>
 	    </span>
-	    <input type="checkbox" name="stype" value="좌판" <c:if test="${store.stype eq '좌판'}">checked="checked"</c:if> disabled><span>좌판</span>
+	    <input type="checkbox" name="stype" value="좌판" <c:if test="${store.stype eq '좌판'}">checked="checked"</c:if> disabled><span>좌판</span> &nbsp;&nbsp;&nbsp;
 	    <input type="checkbox" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if> disabled><span>매장</span>
 	</div>
 
@@ -114,7 +114,7 @@
         </span>
         
 	<c:forEach var="storePayment" items="${storePaymentList}">
-	    <input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked" disabled><span>${storePayment.paytype}</span>
+	    <input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked" disabled><span>${storePayment.paytype}</span> &nbsp;&nbsp;&nbsp;
 	    <%-- <input type="checkbox" name="paytype" value="현금" <c:if test="${storePayment.paytype eq '현금'}">checked="checked"</c:if> disabled><span>현금</span>
 	    <input type="checkbox" name="paytype" value="카드" <c:if test="${storePayment.paytype eq '카드'}">checked="checked"</c:if> disabled><span>카드</span>
 	    <input type="checkbox" name="paytype" value="계좌이체" <c:if test="${storePayment.paytype eq '계좌이체'}">checked="checked"</c:if> disabled><span>계좌이체</span> --%>
@@ -131,7 +131,7 @@
       	<span class="storeDetail__storeInsert__name">
           <h4 class="storeDetail__h4">점포 등록자</h4>
         </span>
-        <span>'${store.nickname}' 님</span>
+        <span>${store.nickname} 님</span>
       </div>
       
       <div>
@@ -217,7 +217,7 @@
 	          <div class="review__contents__ownerInfo">
 	            리뷰 ${storeReview.review } &nbsp; 별점평균 ${storeReview.rating} &nbsp; | &nbsp; ${storeReview.rregdate}
 	            <c:if test="${storeReview.id == userId}">
-	            <button type="button" onclick="location.href='/finalProject/views/deleteReview?sno=${store.sno}&rno=${storeReview.rno}'">삭제</button>
+	            <button class="reviewDelete__button" type="button" onclick="location.href='/finalProject/views/deleteReview?sno=${store.sno}&rno=${storeReview.rno}'">삭제</button>
 	            </c:if>
 	          </div>
 	        </section>

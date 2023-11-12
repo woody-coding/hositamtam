@@ -37,12 +37,13 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
-    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer2.css" />
     <link rel="stylesheet" href="/finalProject/css/myPage.css" />
 
     <!-- JavaScript -->
     <script src="/finalProject/js/myPage.js" charset="UTF-8"></script>
     <script defer src="/finalProject/js/myPageUpdate.js"></script>
+    <script defer src="/finalProject/js/myPageHeader.js"></script>
     <script defer src="/finalProject/js/anchor.js"></script>
   </head>
   <body>

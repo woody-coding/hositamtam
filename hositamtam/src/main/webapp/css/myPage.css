@@ -103,7 +103,7 @@ a {
 }
 .mylevel__gage__value {
   height: 30px;
-  padding-top: 7px;
+  padding-top: 0.3rem;
   color: var(--color-background);
   border-radius: 5px;
 }
