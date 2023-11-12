@@ -113,7 +113,7 @@ String mno = request.getParameter("mno");
 					        <!-- 등록된 점포 사진 -->
 					        <img src="../images/${store.sphoto}" style="width:300px; height: 150px;"/>
 					      </div>
-
+							<div class="insertUpdate__error" id="msg"></div>
 							<input type="submit" class="store__update__button" value="수정하기">
 						</form>
 					</c:when>
@@ -156,7 +156,7 @@ String mno = request.getParameter("mno");
 									</label>
 								</div>
 							</div>
-
+							<div class="insertUpdate__error" id="msg"></div>
 							<input type="submit" class="store__update__button" value="등록하기">
 						</form>
 					</c:otherwise>
