@@ -101,15 +101,28 @@ ul {
 	padding-top: 3rem;
 }  
  
-
-#busanExplain{
-    color: white;
-    font-size: 2.5rem;
-    position: absolute;
-    top: 62%;
-    left: 20%;
-    text-shadow: 2px 2px 2px black;
+ 
+@keyframes narrationEffect {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+#busanExplain {
+  color: white;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 62%;
+  left: 20%;
+  text-shadow: 2px 2px 2px black;
+  animation: narrationEffect 3s ease-in-out; /* 3초 동안 나타나는 효과를 줍니다. */
+}
+
 #btnGroup{
   position: absolute;
   top: 30%;
