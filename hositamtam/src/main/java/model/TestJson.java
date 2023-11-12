@@ -21,6 +21,8 @@ public class TestJson {
 //			System.out.println(postDO.getPregdate());
 //		}
 		
+		StoreDO storeDO = new StoreDO();
+		
 		
 		MarketDAO marketDAO = new MarketDAO();
 	//	System.out.println(marketDAO.getMarketListBySearch("ㄴㅇㄹㄴㅇ"));

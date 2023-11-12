@@ -1571,8 +1571,68 @@ public class StoreDAO {
 	}
 	
 	
+	/*
 	
+	// ㅅ. sno값으로 mno 값 불러오기
+		public int getMnoBySno(int sno) {
+			int mnoBySno = 0;
+			sql = "select mno from store where sno = ?";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, sno);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					mnoBySno = rs.getInt("mno");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (pstmt != null)
+						pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return mnoBySno;
+		}
 	
-	
+		
+		
+		
+		// ㅅ. sno값으로 payment 불러오기
+		public ArrayList<String> getPaymentBySno(int sno) {
+			ArrayList<String> paymentArr;
+			
+			sql = "select p.paytype "
+					+ "FROM store s "
+					+ "JOIN store_payment sp ON s.sno = sp.sno "
+					+ "JOIN payment p ON sp.payno = p.payno "
+					+ "where s.sno = ?";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, sno);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (pstmt != null)
+						pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return paymentArr;
+		}
+*/	
 	
 }

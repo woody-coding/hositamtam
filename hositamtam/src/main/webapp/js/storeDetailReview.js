@@ -1,7 +1,7 @@
 let xhr = new XMLHttpRequest();
 let currentSno;
 let currentId;
-
+let msg = document.querySelector('#msg');
 
 
 
@@ -60,7 +60,30 @@ function slikecountStatusHandler() {
 
 
 
+function reviewButton(event) {
+	let reviewInput = document.querySelector('.review__input').value;
+	
+	if(reviewInput.length < 5 || reviewInput.length > 500) {
+		msg.style.color = 'red';
+		msg.innerHTML = '리뷰는 5글자 이상, 500글자 이하여야 합니다.';
+		event.preventDefault();
+	}
+}
 
+
+
+function reviewInput() {
+	let reviewInput = document.querySelector('.review__input').value;
+	
+	if(reviewInput.length >= 5 && reviewInput.length <= 500) {
+		msg.style.color = 'green';
+		msg.innerHTML = '등록 가능한 리뷰입니다.';
+	}
+	else {
+		msg.style.color = 'red';
+		msg.innerHTML = '리뷰는 5글자 이상, 500글자 이하여야 합니다.';
+	}
+}
 
 
 
@@ -89,7 +112,8 @@ function init() {
     xhr.send();
 	
 	
-	
+	document.querySelector('.review__button').addEventListener('click', reviewButton);
+	document.querySelector('.review__input').addEventListener('keyup', reviewInput);
 	
 	
 	document.querySelector('.storeDetail__like').addEventListener('click', function() {
