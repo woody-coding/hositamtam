@@ -218,18 +218,16 @@ public class MemberController {
 	private String getGradeName(int exp) {
 		String gradeName = "";
 		
-		if (exp < 0) {
-		    gradeName = "시장 왕초보";
-	    } else if (exp >= 0 && exp < 25) {
+		if (exp < 20) {
+		    gradeName = "시장 삐약이";
+	    } else if (exp >= 20 && exp < 40) {
 	        gradeName = "시장 왕초보";
-	    } else if (exp >= 25 && exp < 50) {
-	        gradeName = "시장 햇병아리";
-	    } else if (exp >= 50 && exp < 75) {
+	    } else if (exp >= 40 && exp < 60) {
 	        gradeName = "시장 탐험가";
-	    } else if (exp >= 75) {
+	    } else if (exp >= 60 && exp < 80) {
 	        gradeName = "시장 지킴이";
-	    } else {
-	        gradeName = "시장 지박령";
+	    } else if (exp >= 80) {
+	        gradeName = "시장 개척자";
 	    }
 
 	    return gradeName;

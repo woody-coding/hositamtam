@@ -57,7 +57,7 @@
       <div class="mylevel">
         <section class="mylevel__info">
           <div class="mylevel__picture">
-            <img src="/finalProject/images/icons8-병아리-60.png" />
+            <img src="/finalProject/images/grade${memberInfo.grade}.png" />
           </div>
           <div class="mylevel__name">
             <div class="mylevel__grade">${memberInfo.nickname}님의 등급</div>

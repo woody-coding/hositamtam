@@ -407,7 +407,7 @@ public class StoreDAO {
 		public List<StoreDO> getStoreReviewList(StoreDO storeDO) {
 			List<StoreDO> storeReviewList = new ArrayList<StoreDO>();
 			try {
-				sql = "SELECT R.*, I.REVIEW, I.RATING, M.NICKNAME "
+				sql = "SELECT R.*, I.REVIEW, I.RATING, M.NICKNAME, M.GRADE "
 						+ "FROM STORE S "
 						+ "LEFT JOIN ("
 							+ "SELECT R.RNO, R.SNO, R.ID, R.RREGDATE, R.RCONTENT, R.RRATING "
@@ -433,6 +433,7 @@ public class StoreDAO {
 		        	store.setId(rs.getString("id"));
 		        	store.setRno(rs.getInt("rno"));
 		        	store.setNickname(rs.getString("nickname"));
+		        	store.setGrade(rs.getInt("grade"));
 		        	store.setRregdate(rs.getString("rregdate"));
 		        	store.setContent(rs.getString("rcontent"));
 		        	store.setRating(rs.getDouble("rrating"));

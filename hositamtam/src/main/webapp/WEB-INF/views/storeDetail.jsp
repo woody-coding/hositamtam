@@ -132,7 +132,8 @@
       	<span class="storeDetail__storeInsert__name">
           <h4 class="storeDetail__h4">점포 등록자</h4>
         </span>
-        <span>${store.nickname} 님</span>
+        <span>${store.nickname}</span>
+        <img src="../images/grade${store.grade}.png" class="review__level__photo" />
       </div>
       
       <div>
@@ -147,9 +148,8 @@
           <img src="images/icons8-병아리-60.png" class="review__level__photo" />
         </span> -->
       <div class="review__info">
-        <img src="/finalProject/images/icons8-병아리-60.png" class="review__level__photo" />
         <span class="review__ask">
-          ${memberInfo.nickname}님 해당 점포에 리뷰를 남겨주세요.
+          ${memberInfo.nickname}님의 솔직한 리뷰를 남겨주세요!
         </span>
         <span class="review__star">
           <i class="fa-solid fa-star review__star1"></i>
@@ -159,7 +159,6 @@
           <i class="fa-solid fa-star review__star5"></i>
         </span>
       </div>
-
       <div>
         <form id="review__form" method="GET" action="/finalProject/views/reviewInsert" style="display: none">
         	<select name="rrating">
@@ -206,7 +205,7 @@
       	<div class="review__contents__list">
 	        <section class="review__contents__photo">
 	          <img
-	            src="../images/icons8-caveman-64.png"
+	            src="../images/grade${storeReview.grade}.png"
 	            class="review__contents__img"
 	          />
 	        </section>
