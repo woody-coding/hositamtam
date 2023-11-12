@@ -15,7 +15,7 @@
             <p class="information__title">
               <br />
               <i class="fa-brands fa-github"></i>
-              https://github.com/wlstjd3398/TMI.git
+              https://github.com/wlstjd3398/hositamtam.git
             </p>
           </div>
         </div>
