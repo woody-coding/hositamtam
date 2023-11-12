@@ -1,3 +1,10 @@
+let storeNameCheck = false;
+let storeCategoryCheck = false;
+
+
+
+
+
 // 항목 선택시 버튼색 변경
 document.addEventListener("DOMContentLoaded", function () {
   var typeButtons = document.querySelectorAll(".store__type__button1, .store__type__button2");
@@ -76,3 +83,67 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 폼이 제출될 때 validatePayment 함수를 실행합니다.
     document.querySelector('form').addEventListener('submit', validatePayment);
+
+    
+    
+    
+    
+    
+    
+    
+    
+function insertAndUpdateButton(event) {
+	let storeName = document.querySelector('#store__name').value;
+	let storeCategory = document.querySelector('#store__category__contents').value;
+	let checkboxes = document.getElementsByName("paytype");
+	let msg = document.querySelector('#msg');
+	let isChecked = false;
+	
+	
+	if(storeName.length >= 2 && storeName.length <= 20) {
+		storeNameCheck = true;
+	}
+	
+	if(storeCategory.length >= 2 && storeCategory.length <= 10) {
+		storeCategoryCheck = true;
+	}
+	
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            isChecked = true;
+            break;
+        }
+    }
+
+	
+	if(storeNameCheck === false) {
+		msg.style.color = 'red';
+		msg.innerHTML = '점포명은 2글자 이상, 20글자 이하여야 합니다.';
+		event.preventDefault();
+	}
+	
+	if(storeCategoryCheck === false) {
+		msg.style.color = 'red';
+		msg.innerHTML = '점포 카테고리는 2글자 이상, 10글자 이하여야 합니다.';
+		event.preventDefault();
+	}
+	
+    if (isChecked === false) {
+		msg.style.color = 'red';
+		msg.innerHTML = '1가지 이상 결제방식을 선택해야 합니다.';
+		event.preventDefault();
+    }
+}
+    
+    
+    
+    
+    
+function init() {
+	
+	document.querySelector('.store__update__button').addEventListener('click', insertAndUpdateButton);
+}
+    
+  
+    
+window.addEventListener('load', init);    
