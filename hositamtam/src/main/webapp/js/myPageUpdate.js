@@ -31,14 +31,23 @@ function ajaxNicknameChangeHandler() {
 function checkNicknameHandler() {
     // 입력한 닉네임 가져오기
     var newNickname = document.getElementById('change__nickname').value;
+    //alert(newNickname + 'typeof : ' + typeof(newNickname));
 
-    // AJAX를 사용하여 서버에 중복 확인 요청
-    xhr.onreadystatechange = ajaxNicknameChangeHandler;
-    
-    xhr.open('POST', '/finalProject/ajaxController/memberAjaxController.jsp?command=checkNickname&nickname=' + newNickname, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    xhr.send(newNickname);
+	
+	if(newNickname.length >=2 && newNickname.length <= 8) {
+	    // AJAX를 사용하여 서버에 중복 확인 요청
+	    xhr.onreadystatechange = ajaxNicknameChangeHandler;
+	    
+	    xhr.open('POST', '/finalProject/ajaxController/memberAjaxController.jsp?command=checkNickname&nickname=' + newNickname, true);
+	    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	
+	    xhr.send(newNickname);
+	}
+	else {
+		// 이 부분 왜 안되는지 모르겠음
+		document.querySelector('#error_msg').style.color = 'red';
+        document.querySelector('#error_msg').innerHTML = '닉네임은 2글자 이상, 8글자 이하여야 합니다.';
+	}
 }
 
 

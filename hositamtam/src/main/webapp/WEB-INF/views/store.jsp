@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>호시탐탐</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>호시탐탐</title>
     <!-- Favicon -->
 	<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 	
@@ -70,23 +71,27 @@
 	<%@ include file="navi.jsp" %>
 	
 	<div class="section">
+		<div class="mkSideBox store">  
+			<div id="marketName"></div>
+			 <div class="btnSort">
+
+				<button id="recentInsert">최신순</button>
+				<button id="manyReview">리뷰순</button>
+				<button id="manyRating">별점순</button>
+				<button id="manyStoreLike">찜 순</button>
+			</div>
+			<div id="storeContent"></div>
+			<div id="storeErrorMsg"></div>
+			<div id="errMsg"></div>
+		</div>
+		
+		<div class ="map store" id="map">
+			<button id="insertStore" class="plusStore">
+			<i class="bi bi-plus-circle-fill"></i></button>
+		</div>
 	
-	<div id="map">
-	<button id="insertStore" class="plusStore"><i class="bi bi-plus-circle-fill"></i></button>
 	</div>
-	<div class="right">
-	<div id="marketName"></div>
-	 <div class="btnSort">
-	<button id="manyReview">리뷰 많은 순</button>
-	<button id="manyRating">별점 높은 순</button>
-	<button id="manyStoreLike">찜 많은 순</button>
-	</div>
-	<div id="storeContent"></div>
-	<div id="storeErrorMsg"></div>
-	<div id="errMsg"></div>
-	</div>
-	
-	</div>
-	 <%@ include file="footer.jsp" %> 
+
+<%-- 	 <%@ include file="footer.jsp" %>  --%>
 </body>
 </html>

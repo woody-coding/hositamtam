@@ -40,18 +40,23 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	
 <script>
 	function init() {
+		window.sessionStorage.removeItem('memberId');
+		
+		
 	    // 현재 접속한 사용자가 회원인지 비회원인지 판단하기
 	    let id = '<%= session.getAttribute("userId") %>';
 	    
 	    id = (id === 'null') ? null : id;
-	    
-	    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
 	    
 	    // 세션 스토리지에 저장되어 있는 데이터를 가져옴
 	    const sessionStorageData = window.sessionStorage.getItem("memberId");
@@ -82,7 +87,7 @@
 	<%@ include file="navi.jsp" %>
 
     <div  class="section" id="section1">
-     <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
+<!--      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video> -->
 
       
 
@@ -112,21 +117,25 @@
       <div id="btnGroup">
           <button id="mkList" class="category">
           
-          <i class="bi bi-basket-fill"></i><br>
-           시장 리스트 
+          <i class="bi bi-basket-fill"></i>
+          <br>
+<!--            시장 리스트  -->
      
            </button>
-          <button id="goPost" class="category" onclick="location.href='/finalProject/views/post'"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
+          <button id="goPost" class="category" onclick="location.href='/finalProject/views/post'"><i class="bi bi-megaphone-fill"></i>
+<!--           <br> 시끌시끌 -->
+          </button>
      
 			<button id="service" class="category" onclick="location.href='#section2'">
-				<i class="bi bi-info-circle-fill"></i><br>
-				서비스 안내
+				<i class="bi bi-info-circle-fill"></i>
+<!-- 				<br> 서비스 안내 -->
 			</button>
 			<!-- 서비스안내 조정 -->
 		</div>
+		
 		<div id="busanExplain">
-			<p>부산 전통 시장</p>
-			<p>부산의 맛과 문화를 만나다!</p>
+			<p>부산 전통시장<br/>
+			문화와 맛을 즐기다!</p>
 		</div>
 	</div>
 
@@ -137,23 +146,23 @@
 		<div id="goService" class="hosiInfo">
 			<p>부산 전통시장에 대한 정보를 공유하고 등록되지 않은 점포를 등록해보세요!</p>
 			<!-- carosell 3초마다 이미지 변경 시장리스트사진 커뮤니티  모든 페이지 완성하면 캡쳐해서 슬라이드이미지로 넣기-->
-			<div class="swiper">
-				<!-- Additional required wrapper -->
-				<div class="swiper-wrapper">
-					<!-- Slides -->
-					<div class="swiper-slide">시끌시끌사이트이미지</div>
-					<div class="swiper-slide">시장사이트이미지</div>
-					<div class="swiper-slide">시장내부사이트이미지</div>
-
-				</div>
-				
-				<!-- If we need navigation buttons -->
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-
-
-			</div>
+			<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+              <img src="../images/시끌시끌.PNG" >
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+              <img src="../images/농산물.PNG" >
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="../images/보수종합.PNG" >
+            </div>
+          </div>
+          
+        </div>
 		</div>
+		<br/>
+		<br/>
 		<h4>등급 안내</h4>
 		<div class="gradeInfo">
 			<div class="gradeIcon">

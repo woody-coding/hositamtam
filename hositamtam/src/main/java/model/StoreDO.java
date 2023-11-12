@@ -3,6 +3,7 @@ package model;
 public class StoreDO {
     private int sno;
     private int mno;
+    private int rno;
     private String id;
     private String nickname;
     private String sname;
@@ -211,6 +212,14 @@ public class StoreDO {
 
 	public void setRregdate(String rregdate) {
 		this.rregdate = rregdate;
+	}
+
+	public int getRno() {
+		return rno;
+	}
+
+	public void setRno(int rno) {
+		this.rno = rno;
 	}
 	
 }

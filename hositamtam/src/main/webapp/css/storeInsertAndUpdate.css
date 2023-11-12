@@ -21,11 +21,18 @@
 
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
+}
+
+.section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* common */

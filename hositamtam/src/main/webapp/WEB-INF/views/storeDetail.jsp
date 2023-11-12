@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<% String userId = (String)session.getAttribute("userId"); %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +38,7 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
     <link rel="stylesheet" href="/finalProject/css/footer.css" />
     <link rel="stylesheet" href="/finalProject/css/storeDetail.css" />
 
@@ -64,24 +68,39 @@
     <script defer src="/finalProject/js/anchor.js"></script>
 </head>
 <body>
-
 	<%@ include file="navi.jsp" %>
-
     <!-- Main -->
     <!-- Store Detail -->
     <section id="storeDetail" class="max-container">
       <div class="storeDetail__info">
-      	<h4 class="storeDetail__h4 storeDetail__star">
-           <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
-        </h4>
-        <button class="storeDetail__like">
-          <i class="fa-solid fa-heart"></i>
-          <div class="storeDetail__like__count" id="storeLikeCount"></div>
-        </button>
+      	
+        
       
         <span class="storeDetail__title">${store.sname}</span>
         
         <button class="storeDetail__modify">점포 수정</button>
+        
+        <%-- <h4 class="storeDetail__h4 storeDetail__star">
+           <i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
+        </h4> --%>
+        <!-- <button class="storeDetail__like">
+          <i class="fa-solid fa-heart">  </i>
+          <span class="storeDetail__like__count" id="storeLikeCount"></span>
+        </button> -->
+      </div>
+    
+    <div class="storeDetail__star__like">
+        <span class="storeDetail__category__title">
+        	<h4 class="storeDetail__h4 storeDetail__star">
+           		<i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp; ${storeReviewAvg.rating}
+        	</h4>
+        </span>
+        <span>
+        	<button class="storeDetail__like">
+          <i class="fa-solid fa-heart">  </i>
+          <span class="storeDetail__like__count" id="storeLikeCount"></span>
+        </button>
+        </span>
       </div>
       
 	<div class="storeDetail__storeType">
@@ -94,18 +113,17 @@
 
       <div class="storeDetail__payment">
         <span class="storeDetail__payment__title">
-        	<h4 class="storeDetail__h4">결제 방식</h4>
-        </span>
+        <h4 class="storeDetail__h4">결제 방식</h4></span>
         
-		<c:forEach var="storePayment" items="${storePaymentList}">
-		    <input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked" disabled><span>${storePayment.paytype}</span>
-		</c:forEach>
+	<c:forEach var="storePayment" items="${storePaymentList}">
+	    <input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked" disabled><span>${storePayment.paytype}</span>
+	</c:forEach>
+
+        
       </div>
-      
       <div class="storeDetail__category">
         <span class="storeDetail__category__title">
-        	<h4 class="storeDetail__h4">취급 품목</h4>
-        </span>
+        <h4 class="storeDetail__h4">취급 품목</h4></span>
         <span>${store.scategory}</span>
       </div>
       
@@ -118,7 +136,7 @@
       
       <div>
         <!-- 등록된 점포 사진 -->
-        <img src="../images/${store.sphoto}" class="storeDetail__photo" />
+        <img src="/finalProject/upload/${store.sphoto}" class="storeDetail__photo" />
       </div>
     </section>
 
@@ -142,9 +160,17 @@
       </div>
 
       <div>
-        <form id="review__form" style="display: none">
+        <form id="review__form" method="GET" action="/finalProject/views/reviewInsert">
+        	<select name="rrating">
+        		<option value="1">1</option>
+        		<option value="2">2</option>
+        		<option value="3">3</option>
+        		<option value="4">4</option>
+        		<option value="5">5</option>
+        	</select>
           <div class="review__form">
-            <label class="review__label">
+            <input class="review__input" type="text" name="rcontent" placeholder="리뷰를 남겨주세요."/>
+           <!-- <label class="review__label">
               <textarea
                 class="review__input"
                 id=""
@@ -152,9 +178,10 @@
                 maxlength="100"
                 placeholder="리뷰를 남겨주세요.(최대 100자)"
               ></textarea>
-            </label>
+            </label> -->
           </div>
-
+          <input type="hidden" name="sno" value="${store.sno}"/>
+          <input type="hidden" name="id" value="king123"/>
           <button class="review__button" type="submit">작성하기</button>
         </form>
       </div>
@@ -183,12 +210,17 @@
 	          />
 	        </section>
 	        <section class="review__contents__main">
-	          <div class="review__contents__name">
+                 <div class="review__contents__name">${storeReview.nickname}</div>
+	          <!--<div class="review__contents__name">
             	${storeReview.id}<br /><br />
             	<i class="fa-solid fa-star storeDetail__starIcon"></i>&nbsp;사용자가 점포리뷰 때 남긴 별점
-          	  </div>
+             </div>
+              -->
 	          <div class="review__contents__ownerInfo">
 	            리뷰 ${storeReview.review } &nbsp; 별점평균 ${storeReview.rating} &nbsp; | &nbsp; ${storeReview.rregdate}
+	            <c:if test="${storeReview.id == userId}">
+	            <button type="button" onclick="location.href='/finalProject/views/deleteReview?sno=${store.sno}&rno=${storeReview.rno}'">삭제</button>
+	            </c:if>
 	          </div>
 	        </section>
 	        <section class="review__contents__value">

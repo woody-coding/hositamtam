@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import model.StoreDAO;
+import model.StoreDO;
 import model.MemberDAO;
 import model.MemberDO;
+import model.PostDAO;
+import model.PostDO;
+import model.ReviewDAO;
 /*
 *메인
 최초시작 => memberController.jsp 	-> main.jsp
@@ -41,6 +47,7 @@ import model.MemberDO;
 
 
 */
+import model.ReviewDO;
 
 @Controller
 public class MemberController {
@@ -126,7 +133,7 @@ public class MemberController {
 		return "redirect:/views/marketBySearch?keyword=" + keyword;
 	}
 	
-
+/*
 	// 회원가입 화면
 	@PostMapping("/views/joinMember")
 	public String insert(@ModelAttribute MemberDO command, Model model) throws Exception {
@@ -170,7 +177,7 @@ public class MemberController {
 
 	    return viewName;
 	}
-	
+*/	
 	
 	//로그인 화면
 	@PostMapping("/views/loginMember")
@@ -247,6 +254,48 @@ public class MemberController {
 	        String gradeName = getGradeName(userGrade);
 	        model.addAttribute("gradeName", gradeName);
 
+	        // 내가 등록한 점포 개수 반환
+	        StoreDAO storeDAO = new StoreDAO();
+	        int storeCount = storeDAO.getStoreCount(userId);
+	        model.addAttribute("storeCount", storeCount);
+	        
+	        // 내가 찜한 점포 개수 반환
+	        int storeLikeCount = storeDAO.getStoreLikeCount(userId);
+	        model.addAttribute("storeLikeCount", storeLikeCount);
+	        
+	        // 내가 등록한 리뷰 개수 반환
+	        ReviewDAO reviewDAO = new ReviewDAO();
+	        int reviewCount = reviewDAO.getReviewCount(userId);
+	        model.addAttribute("reviewCount", reviewCount);
+	        
+	        // 내가 등록한 글 개수 반환
+	        PostDAO postDAO = new PostDAO();
+	        int postCount = postDAO.getPostCount(userId);
+	        model.addAttribute("postCount", postCount);
+	        
+	        
+	        
+	        // 내가 등록한 모든 글에 대한 정보 조회
+	        ArrayList<PostDO> postDOList = postDAO.getAllPostById(userId);
+	        model.addAttribute("postDOList", postDOList);
+	        
+	        
+	        // 내가 등록한 모든 리뷰에 대한 정보 조회
+	        ArrayList<ReviewDO> reviewDOList = reviewDAO.getAllReviewById(userId);
+	        model.addAttribute("reviewDOList", reviewDOList);
+	        
+	        
+	        // 내가 등록한 모든 점포에 대한 정보 조회
+	        ArrayList<StoreDO> storeDOInfoList = storeDAO.getAllInfoStoreById(userId);
+	        model.addAttribute("storeDOInfoList", storeDOInfoList);
+	        
+	        
+	        // 내가 찜한 모든 점포에 대한 정보 조회
+	        ArrayList<StoreDO> storeDOLikeList = storeDAO.getAllLikeStoreById(userId);
+	        model.addAttribute("storeDOLikeList", storeDOLikeList);
+
+	        
+	        
 	        return "myPage"; // 마이페이지 뷰로 이동
 	    } else {
 	        // 로그인하지 않은 경우 처리
@@ -320,5 +369,12 @@ public class MemberController {
 	    session.invalidate();
 	    
 		return "redirect:/views/main";
+	}
+	
+	
+	// 에러 페이지로 이동
+	@GetMapping("/views/error")
+	public String toError(Model model) {
+		return "error";
 	}
 }

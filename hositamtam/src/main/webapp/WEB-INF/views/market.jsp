@@ -48,14 +48,16 @@
 	function init() {
 		
 		// 로컬 스토리지를 활용해서 파라미터 keyword 혹은 cateno값 읽어오기
-	    let keyword = '<%= request.getAttribute("keyword") %>';
-	    let cateno = '<%= request.getAttribute("cateno") %>';
-	    let msg = '<%= request.getAttribute("msg") %>';
+	    let keyword = <%= request.getAttribute("keyword") %>;
+	    let cateno = <%= request.getAttribute("cateno") %>;
+	    let msg = <%= request.getAttribute("msg") %>;
+	    
+	    //alert(cateno);
 	
 	    
-	    keyword = (keyword === 'null') ? null : keyword;
-	    cateno = (cateno === 'null') ? null : cateno;
-	    msg = (msg === 'null') ? null : msg;
+	    keyword = keyword ? keyword : null;
+	    cateno = cateno ? cateno : null;
+	    msg = msg ? msg : null;
 	    
 	    //console.log('keyword : ' + keyword + '    /    typeof : ' + typeof(keyword));
 	    //console.log('cateno : ' + cateno + '    /    typeof : ' + typeof(cateno));
@@ -67,7 +69,7 @@
 	    const KeywordAndCateno = JSON.stringify(keyCateno);
 	    window.localStorage.setItem('KeywordAndCateno', KeywordAndCateno);
 	
-	
+		//alert(localStorage.getItem('KeywordAndCateno'));
 	}
 	
 	window.addEventListener('load', init);
@@ -80,20 +82,33 @@
 	<%@ include file="navi.jsp" %>
 
 	<div class="section">
-		
-		 	<div id="map" ></div>
 
+<!-- 아래의 howGetMarket에서 출력하는 문구는 -->
+<!-- 'oo으로 조회한 결과입니다.'임. marketList.js 파일을 참고. -->
+<!-- 향후, 조회 수를 쿼리로 불러올 경우를 대비하여 -->
+<!-- 동일한 id의 class로 div를 만들어두었음. 예시문구) '총 15건 조회' -->
+ 
+				<div class="howGetMarket">
 				<div id="howGetMarket"></div>
+				</div>
+				
+				<div class="mkSideBox">
+<!-- 				<div id="howGetMarket"></div> -->
 				<div id="marketErrorMsg"></div>
+
 				<div id="mkListResult" class="row">
 				<div id="marketContent"></div>
 				</div> 
+				</div>
+				
+		 	<div id="map" ></div>
+		 
 		
 	</div>
 	
 	
 	
-<%@ include file="footer.jsp"%>
+<%-- <%@ include file="footer.jsp"%> --%>
 	
 </body>
 </html>

@@ -5,22 +5,39 @@ let currentId;
 
 
 
+/*function needLogin() {
+  Swal.fire({
+    title: "로그인이 필요하신 서비스입니다.",
+    text: "제보 후 다시 되돌릴 수 없습니다. 신중하세요.",
+    icon: "warning",
+    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+    confirmButtonColor: "#3085D6", // confrim 버튼 색깔 지정
+    cancelButtonColor: "#d33", // cancel 버튼 색깔 지정
+    confirmButtonText: "진행", // confirm 버튼 텍스트 지정
+    cancelButtonText: "취소", // cancel 버튼 텍스트 지정
+    reverseButtons: true, // 버튼 순서 거꾸로
+  }).then((result) => {
+    // 만약 Promise리턴을 받으면,
+    if (result.isConfirmed) {
+      // 만약 모달창에서 confirm 버튼을 눌렀다면
+      Swal.fire("감사합니다. 정상적으로 제보가 접수되었습니다!", "success");
+    }
+  });
+}*/
+
+
+
+
+
+
+
+
 
 function slikecountHandler() {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 		
 		const storeLike = JSON.parse(xhr.responseText);
 		let storeLikeCount = storeLike[0].sfavoritecount;
-		
-		
-		if(storeLike[0].likeStatus === 'x') {
-			//검은색 하트
-			//document.querySelector('.storeDetail__like').style.color = 'black';
-		} else if (storeLike[0].likeStatus === 'o') {
-			//빨간색 하트
-			//document.querySelector('.storeDetail__like').style.color = 'red';
-		}
-
 
 		document.querySelector('#storeLikeCount').innerHTML = storeLikeCount;
     }
@@ -36,15 +53,6 @@ function slikecountStatusHandler() {
 		
 		const storeLike = JSON.parse(xhr.responseText);
 		let storeLikeCount = storeLike[0].sfavoritecount;
-		
-		if(storeLike[0].likeStatus === 'x') {
-			//검은색 하트
-			//document.querySelector('.storeDetail__like').style.color = 'black';
-		} else if (storeLike[0].likeStatus === 'o') {
-			//빨간색 하트
-			//document.querySelector('.storeDetail__like').style.color = 'red';
-		}
-		
 
 		document.querySelector('#storeLikeCount').innerHTML = storeLikeCount;
     }
@@ -66,45 +74,44 @@ function init() {
 	const storeNo = JSON.parse(storeNumber);
 	currentSno = storeNo.sno;
 	
-	
-	
 	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
 	const memberId = window.sessionStorage.getItem('memberId');
 	const member = JSON.parse(memberId);
+
 	
-	if (member) {
-	    currentId = member.id;
 	
-	    xhr.onreadystatechange = slikecountStatusHandler;
 	
-	    let param = '?command=updateLikeStoreStatus&sno=' + currentSno + '&id=' + currentId;
-	    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
-	    xhr.send();
-	}
+	// 비회원이든 회원이든 최초 페이지 로드되었을 때 최신 찜 수가 떠있어야함
+    xhr.onreadystatechange = slikecountStatusHandler;
+
+    let param = '?command=updateLikeStoreStatus&sno=' + currentSno;
+    xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
+    xhr.send();
+	
+	
+	
+	
 	
 	document.querySelector('.storeDetail__like').addEventListener('click', function() {
+		
+		
 	    if (member) {
-	        currentId = member.id;
-	
+			currentId = member.id;
+	        
 	        xhr.onreadystatechange = slikecountHandler;
 	
 	        let param = '?command=updateLikeStore&sno=' + currentSno + '&id=' + currentId;
 	        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
 	        xhr.send();
-	    } else {
-	        alert('로그인이 필요한 서비스 입니다.');
-	        window.location.href = '/finalProject/views/login';
+	    } else if(member === null) {
+			alert('로그인이 필요한 서비스입니다.');
+			window.location.href = '/finalProject/views/login';
+/*        		if (needLogin()) {
+			
+					window.location.href = '/finalProject/views/login';
+				}*/ 
 	    }
 	});
-
-	
-	
-	
-
-
-
-
-
 
 }
 
