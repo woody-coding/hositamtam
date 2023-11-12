@@ -1239,4 +1239,193 @@ public class StoreDAO {
 	
 	
 	
+	
+	
+/*	
+	// 해당 사용자(id)가 등록한 점포에 대한 정보 조회
+	public ArrayList<StoreDO> getStorebyRating(String id) {
+		ArrayList<StoreDO> storeList = new ArrayList<StoreDO>();
+
+		try {
+			sql = "SELECT mname FROM market WHERE = ?";
+			
+			sql = "SELECT s.sname, s.stype, s.scategory, s.sphoto, COUNT(r.sno), AVG(r.rrating) AS avg_rrating, COUNT(f.sno) AS favorite_count"
+			+ "FROM store s LEFT JOIN review r ON s.sno = r.sno LEFT JOIN memver_store_favorite f ON s.sno = f.sno WHERE s.mno = ?"
+			+ "GROUP BY s.sno, s.sname, s.stype, s.scategory, s.sphoto ORDER BY avg_rrating DESC";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				StoreDO storeDO = new StoreDO();
+				storeDO.setMname(rs.getString("mname"));				// 시장명
+				storeDO.setSname(rs.getString("sname"));  				// 점포명
+				storeDO.setStype(rs.getString("stype")); 				// 점포타입 (좌판/매장)
+				storeDO.setSphoto(rs.getString("sphoto"));				// 사진
+				storeDO.setScategory(rs.getString("scategory"));		// 카테고리
+				storeDO.setReview(rs.getInt("review"));					// 리뷰 수
+				storeDO.setRating(rs.getDouble("rating"));				// 가게평점
+				storeDO.setSfavoritecount(rs.getInt("favoritecount"));	// 찜한 갯수
+
+				storeList.add(storeDO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return storeList;
+	}
+*/
+	
+	
+	// 내가 등록한 점포의 총 개수 반환
+	public int getStoreCount(String id) {
+		int storeCount = 0;
+		
+		try {
+			sql = "select count(sno) storecount from store where id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	        	storeCount = rs.getInt("storecount");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null)
+	                pstmt.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		return storeCount;
+	}
+	
+	
+	
+	// 내가 찜한 점포의 총 개수 반환
+	public int getStoreLikeCount(String id) {
+		int storeLikeCount = 0;
+		
+		try {
+			sql = "select count(sno) storelikecount from member_store_favorite where id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	        	storeLikeCount = rs.getInt("storelikecount");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null)
+	                pstmt.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		return storeLikeCount;
+	}
+	
+	
+	
+	
+	
+	// 해당 사용자가 등록한 모든 점포 정보 조회
+	public ArrayList<StoreDO> getAllInfoStoreById(String id) {
+		ArrayList<StoreDO> storeDOInfoList = new ArrayList<StoreDO>();
+		
+		sql = "";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				StoreDO storeDO = new StoreDO();
+
+				
+				storeDO.setSno(rs.getInt("sno"));
+				storeDO.setSname(rs.getString("sname"));
+				storeDO.setStype(rs.getString("stype"));
+				storeDO.setScategory(rs.getString("scategory"));
+				storeDO.setPaytype(rs.getString("paytype"));
+				
+				storeDOInfoList.add(storeDO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return storeDOInfoList;
+	}
+	
+	
+	
+	
+	
+	
+	// 해당 사용자가 찜한 모든 점포 정보 조회
+	public ArrayList<StoreDO> getAllLikeStoreById(String id) {
+		ArrayList<StoreDO> storeDOLikeList = new ArrayList<StoreDO>();
+		
+		sql = "";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				StoreDO storeDO = new StoreDO();
+
+				storeDO.setSno(rs.getInt("sno"));
+				storeDO.setSname(rs.getString("sname"));
+				storeDO.setStype(rs.getString("stype"));
+				storeDO.setScategory(rs.getString("scategory"));
+				storeDO.setPaytype(rs.getString("paytype"));
+
+				storeDOLikeList.add(storeDO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return storeDOLikeList;
+	}
+	
+	
+	
+	
+	
+	
 }

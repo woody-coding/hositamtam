@@ -9,6 +9,7 @@ public class ReviewDO {
     private double rrating;
     private String nickname;
     private int reviewcount;
+    private String sname;
     
 	public int getRno() {
 		return rno;
@@ -57,6 +58,12 @@ public class ReviewDO {
 	}
 	public void setReviewcount(int reviewcount) {
 		this.reviewcount = reviewcount;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
 	}
 
 }

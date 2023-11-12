@@ -281,8 +281,21 @@ sno 		number(5)
 
 --* 더미 데이터)
 insert into store_payment values (1, 1);
-insert into store_payment values (1, 3);
+insert into store_payment values (1, 2);
 insert into store_payment values (2, 1);
+insert into store_payment values (2, 3);
+insert into store_payment values (3, 1);
+
+BEGIN
+  FOR i IN 4..10006 LOOP
+    INSERT INTO store_payment (sno, payno)
+    SELECT i, LEVEL
+    FROM DUAL
+    CONNECT BY LEVEL <= ROUND(DBMS_RANDOM.VALUE(1, 3));
+  END LOOP;
+  COMMIT;
+END;
+/
 
 
 

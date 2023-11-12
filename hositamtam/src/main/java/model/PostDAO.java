@@ -622,7 +622,74 @@ public class PostDAO {
 		
 		
 		
+		// 내가 등록한 글 총 개수 반환
+		public int getPostCount(String id) {
+			int postCount = 0;
+			
+			try {
+				sql = "select count(pno) postcount from post where id = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+
+		        if (rs.next()) {
+		        	postCount = rs.getInt("postcount");
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (pstmt != null)
+		                pstmt.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+			return postCount;
+		}
 		
 		
+		
+		// 해당 사용자가 작성한 글 정보 전부 조회
+		public ArrayList<PostDO> getAllPostById(String id) {
+			ArrayList<PostDO> postList = new ArrayList<PostDO>();
+			
+			sql = "SELECT pno, ptitle, pcategory, plikecount, TO_CHAR(pregdate, 'YYYY-MM-DD HH24:MI') AS pregdate "
+					+ "FROM post "
+					+ "WHERE id = ? "
+					+ "order by pregdate desc";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					PostDO postDO = new PostDO(); // PostDO 객체 생성
+
+					// PostDO 객체의 속성을 설정
+					postDO.setPno(rs.getInt("pno"));
+					postDO.setPtitle(rs.getString("ptitle"));
+					postDO.setPregdate(rs.getString("pregdate"));
+					postDO.setPlikecount(rs.getInt("plikecount"));
+					postDO.setPcategory(rs.getString("pcategory"));
+
+					// 수정된 PostDO 객체를 리스트에 추가
+					postList.add(postDO);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return postList;
+		}
 
 }

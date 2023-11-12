@@ -119,6 +119,85 @@ public class ReviewDAO {
 		}
 		return storeReviewList;
 	}
+	
+	
+	
+	
+	
+	
+	// 내가 등록한 리뷰 총 개수 반환
+	public int getReviewCount(String id) {
+		int reviewCount = 0;
+		
+		try {
+			sql = "select count(rno) reviewcount from review where id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	        	reviewCount = rs.getInt("reviewcount");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null)
+	                pstmt.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		return reviewCount;
+	}
+	
+	
+	
+	
+	
+	// 해당 사용자가 작성한 글 정보 전부 조회
+	public ArrayList<ReviewDO> getAllReviewById(String id) {
+		ArrayList<ReviewDO> reviewList = new ArrayList<ReviewDO>();
+		
+		sql = "SELECT r.sno, s.sname, r.rrating, r.rcontent, TO_CHAR(r.rregdate, 'YYYY-MM-DD HH24:MI') AS rregdate "
+				+ "FROM review r join store s on r.sno = s.sno "
+				+ "WHERE r.id = ? "
+				+ "order by rregdate desc";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ReviewDO reviewDO = new ReviewDO(); // PostDO 객체 생성
+
+				// PostDO 객체의 속성을 설정
+				reviewDO.setSno(rs.getInt("sno"));
+				reviewDO.setSname(rs.getString("sname"));
+				reviewDO.setRrating(rs.getDouble("rrating"));
+				reviewDO.setRcontent(rs.getString("rcontent"));
+				reviewDO.setRregdate(rs.getString("rregdate"));
+
+				// 수정된 PostDO 객체를 리스트에 추가
+				reviewList.add(reviewDO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return reviewList;
+	}
+	
+	
 }
 //		// ㄹ-2-a. 특정 sno에 대한 id목록 저장
 //		public ArrayList<ReviewDO> getIdList(int sno) {
