@@ -97,9 +97,9 @@
         </span>
         <span>
         	<button class="storeDetail__like">
-          <i class="fa-solid fa-heart">  </i>
-          <span class="storeDetail__like__count" id="storeLikeCount"></span>
-        </button>
+	          <i class="fa-solid fa-heart">  </i>
+	          <span class="storeDetail__like__count" id="storeLikeCount"></span>
+        	</button>
         </span>
       </div>
       
