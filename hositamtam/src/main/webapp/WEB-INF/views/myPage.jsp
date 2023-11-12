@@ -155,7 +155,7 @@
           </tr>
           
             <c:forEach var="storeDO" items="${storeDOInfoList}">
-	          <tr class="myStore__tr" id="${storeDO.sno}">
+	          <tr class="myStore__tr" onclick="location.href='/finalProject/views/storeDetail?sno=' + ${storeDO.sno};">
 	            <td class="myStore__td">${storeDO.sname}</td>
 	            <td class="myStore__td">${storeDO.stype}</td>
 	            <td class="myStore__td">${storeDO.paytype}</td>
@@ -185,7 +185,7 @@
           
           
           <c:forEach var="postDO" items="${postDOList}">
-		        <tr class="myPost__tr" id="${postDO.pno}">
+		        <tr class="myPost__tr" onclick="location.href='/finalProject/views/toPostDetail?pno=' + ${postDO.pno};">
 		            <td class="myPost__td__title">${postDO.ptitle}</td>
 		            <td class="myPost__td">${postDO.pcategory}</td>
 		            <td class="myPost__td">
@@ -219,7 +219,7 @@
             <th class="myReview__th">작성일</th>
           </tr>
 			<c:forEach var="reviewDO" items="${reviewDOList}">
-			          <tr class="myReview__tr" id="${reviewDO.sno}">
+			          <tr class="myReview__tr" onclick="location.href='/finalProject/views/storeDetail?sno=' + ${reviewDO.sno};">
 			            <td class="myReview__td__name">${reviewDO.sname}</td>
 			            <td class="myReview__td__star">
 			              <i class="fa-solid fa-star myReview__star"></i> ${reviewDO.rrating}
@@ -250,7 +250,7 @@
             <th class="myStoreLike__th">취급 품목</th>
           </tr>
 	        <c:forEach var="storeDO" items="${storeDOLikeList}">
-	          <tr class="myStoreLike__tr" id="${storeDO.sno}">
+	          <tr class="myStoreLike__tr" onclick="location.href='/finalProject/views/storeDetail?sno=' + ${storeDO.sno};">
 	            <td class="myStoreLike__td">${storeDO.sname}</td>
 	            <td class="myStoreLike__td">${storeDO.stype}</td>
 	            <td class="myStoreLike__td">${storeDO.paytype}</td>
