@@ -309,7 +309,7 @@ function openInfo() {
                   '</div>' +
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
-                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '&mno=' + currentMno + '">점포 수정</a>' +
                    '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
                    '</div></div>'   });
 
@@ -581,7 +581,8 @@ function showMarkers() {
                   '</div>' +
                    '<div class="btnContainer">' +
                    '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
-                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '&mno=' + currentMno + '">점포 수정</a>' +
+//                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
                    '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
                    '</div></div>' 
         });

@@ -157,16 +157,19 @@ public class MarketAndStoreController {
 	    return "redirect:/views/store?mno=" + storeDO.getMno();  // 점포 등록 후 시장 화면으로
 	}
 
+	// 점포수정 준비
+	// (store.jsp와 연결된) store.js에서 점포 수정을 누르면,
+	// 점포정보를 불러와 storeInsertAndUpdate.jsp 화면에 띄움
 	@GetMapping("/views/storeUpdate")
-	public String StoreUpdate(@RequestParam(value = "sno", required = false) String sno, Model model) {
-		// 수정예정
-
-//		model.addAttribute("storeList", storeDAO.StoreInsert(storeDO));
-//		return "storeInsertAndUpdate";
+	public String StoreUpdate(@RequestParam(value = "sno", required = false) String sno,
+		@RequestParam(value = "mno", required = false) String mno, Model model) {
 
 		StoreDO storeDO = new StoreDO();
 		storeDO.setSno(Integer.parseInt(sno));
+		storeDO.setMno(Integer.parseInt(mno));
 		
+	    System.out.println("시장[mno] : " 			+ storeDO.getMno()); // joke
+	    
 		// 점포 정보 조회
 		storeDO = storeDAO.getStore(storeDO);
 		model.addAttribute("store", storeDO);
@@ -182,6 +185,10 @@ public class MarketAndStoreController {
 		model.addAttribute("paymentList", paymentList);
 
 		model.addAttribute("sno", sno);
+		model.addAttribute("mno", mno);
+		
+	    System.out.println("시장[mno] : " 			+ storeDO.getMno()); // joke
+		
 		model.addAttribute("update", true);
 		return "storeInsertAndUpdate"; // 수정화면
 
@@ -209,7 +216,6 @@ public class MarketAndStoreController {
 	    	e.printStackTrace();
 	    }
 	    
-//	    return "redirect:/views/myPage"; // 업데이트 성공 시 마이페이지로 리다이렉트
 	    return "redirect:/views/store?mno=" + storeDO.getMno();  // 점포수정 후 시장 화면으로
 	}
 	
