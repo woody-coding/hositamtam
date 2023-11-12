@@ -48,16 +48,16 @@
 	function init() {
 		
 		// 로컬 스토리지를 활용해서 파라미터 keyword 혹은 cateno값 읽어오기
-	    let keyword = <%= request.getAttribute("keyword") %>;
-	    let cateno = <%= request.getAttribute("cateno") %>;
-	    let msg = <%= request.getAttribute("msg") %>;
+	    let keyword = '<%= request.getAttribute("keyword") %>';
+	    let cateno = '<%= request.getAttribute("cateno") %>';
+	    let msg = '<%= request.getAttribute("msg") %>';
 	    
 	    //alert(cateno);
 	
 	    
-	    keyword = keyword ? keyword : null;
-	    cateno = cateno ? cateno : null;
-	    msg = msg ? msg : null;
+	    keyword = (keyword === 'null') ? null : keyword;
+	    cateno = (cateno === 'null') ? null : cateno;
+	    msg = (msg === 'null') ? null : msg;
 	    
 	    //console.log('keyword : ' + keyword + '    /    typeof : ' + typeof(keyword));
 	    //console.log('cateno : ' + cateno + '    /    typeof : ' + typeof(cateno));
