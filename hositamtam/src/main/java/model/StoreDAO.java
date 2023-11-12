@@ -743,7 +743,8 @@ public class StoreDAO {
 				+ "  FROM review\r\n"
 				+ "  GROUP BY sno\r\n"
 				+ ") c ON s.sno = c.sno\r\n"
-				+ "WHERE s.mno = ?";
+				+ "WHERE s.mno = ? "
+				+ "ORDER BY s.sno DESC";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1478,7 +1479,13 @@ public class StoreDAO {
 	public ArrayList<StoreDO> getAllInfoStoreById(String id) {
 		ArrayList<StoreDO> storeDOInfoList = new ArrayList<StoreDO>();
 		
-		sql = "";
+		sql = "SELECT s.sno, s.sname, s.stype, s.scategory, LISTAGG(p.paytype , ' , ') WITHIN GROUP(ORDER BY p.paytype DESC) AS paytype "
+				+ "FROM store s "
+				+ "JOIN store_payment sp ON s.sno = sp.sno "
+				+ "JOIN payment p ON sp.payno = p.payno "
+				+ "WHERE s.id = ? "
+				+ "group by s.sno, s.sname, s.stype, s.scategory "
+				+ "order by s.sno";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1520,7 +1527,18 @@ public class StoreDAO {
 	public ArrayList<StoreDO> getAllLikeStoreById(String id) {
 		ArrayList<StoreDO> storeDOLikeList = new ArrayList<StoreDO>();
 		
-		sql = "";
+		sql = "WITH member_store_favorite_sno AS ("
+				+ "  SELECT sno "
+				+ "  FROM member_store_favorite "
+				+ "  WHERE id = ?"
+				+ ") "
+				+ "SELECT s.sno, s.sname, s.stype, s.scategory, LISTAGG(p.paytype, ' , ') WITHIN GROUP(ORDER BY p.paytype DESC) AS paytype "
+				+ "FROM store s "
+				+ "JOIN store_payment sp ON s.sno = sp.sno "
+				+ "JOIN payment p ON sp.payno = p.payno "
+				+ "WHERE s.sno IN (SELECT sno FROM member_store_favorite_sno) "
+				+ "GROUP BY s.sno, s.sname, s.stype, s.scategory "
+				+ "ORDER BY s.sno";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
