@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
+/*
 var count = 1;
 function dropDownHandler() {
   if(count % 2 == 1){
@@ -56,7 +56,7 @@ function dropDownHandler() {
   count++;
 
 }
-
+*/
 var radioButtons = document.querySelectorAll('input[name="category"]');
 
 // 라디오 버튼에 이벤트 리스너 추가

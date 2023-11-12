@@ -23,7 +23,7 @@
 <!-- CSS -->
 <link rel="stylesheet" href="../css/whiteBgHeader.css" />
 <link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/postMain.css" />
+<link rel="stylesheet" href="../css/postForMarketList.css" />
 <!-- JavaScript -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -175,7 +175,7 @@
 					</tr>
 				</table>
 			</div>
-			<hr>
+			
 			<div class="firstShow"></div>
 		</div>
 	</div>
