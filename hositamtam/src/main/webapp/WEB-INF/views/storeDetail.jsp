@@ -71,11 +71,8 @@
 	<%@ include file="navi.jsp" %>
     <!-- Main -->
     <!-- Store Detail -->
-    <section id="storeDetail" class="max-container">
+    <section id="storeDetail" class="max-container storeDetail">
       <div class="storeDetail__info">
-      	
-        
-      
         <span class="storeDetail__title">${store.sname}</span>
         
         <button class="storeDetail__modify">점포 수정</button>
@@ -113,14 +110,17 @@
 
       <div class="storeDetail__payment">
         <span class="storeDetail__payment__title">
-        <h4 class="storeDetail__h4">결제 방식</h4></span>
+        	<h4 class="storeDetail__h4">결제 방식</h4>
+        </span>
         
 	<c:forEach var="storePayment" items="${storePaymentList}">
 	    <input type="checkbox" name="paytype" value="${storePayment.paytype}" checked="checked" disabled><span>${storePayment.paytype}</span>
+	    <%-- <input type="checkbox" name="paytype" value="현금" <c:if test="${storePayment.paytype eq '현금'}">checked="checked"</c:if> disabled><span>현금</span>
+	    <input type="checkbox" name="paytype" value="카드" <c:if test="${storePayment.paytype eq '카드'}">checked="checked"</c:if> disabled><span>카드</span>
+	    <input type="checkbox" name="paytype" value="계좌이체" <c:if test="${storePayment.paytype eq '계좌이체'}">checked="checked"</c:if> disabled><span>계좌이체</span> --%>
 	</c:forEach>
-
-        
       </div>
+      
       <div class="storeDetail__category">
         <span class="storeDetail__category__title">
         <h4 class="storeDetail__h4">취급 품목</h4></span>
@@ -160,7 +160,7 @@
       </div>
 
       <div>
-        <form id="review__form" method="GET" action="/finalProject/views/reviewInsert">
+        <form id="review__form" method="GET" action="/finalProject/views/reviewInsert" style="display: none">
         	<select name="rrating">
         		<option value="1">1</option>
         		<option value="2">2</option>
@@ -169,23 +169,21 @@
         		<option value="5">5</option>
         	</select>
           <div class="review__form">
-            <input class="review__input" type="text" name="rcontent" placeholder="리뷰를 남겨주세요."/>
-           <!-- <label class="review__label">
+           <label class="review__label">
               <textarea
                 class="review__input"
-                id=""
-                name="review"
+                name="rcontent"
                 maxlength="100"
                 placeholder="리뷰를 남겨주세요.(최대 100자)"
               ></textarea>
-            </label> -->
+            </label>
           </div>
           <input type="hidden" name="sno" value="${store.sno}"/>
           <input type="hidden" name="id" value="king123"/>
           <button class="review__button" type="submit">작성하기</button>
         </form>
       </div>
-      <hr class="storeDetail__hr" />
+      <!-- <hr class="storeDetail__hr" /> -->
     </section>
 
     <!-- Review Contents -->

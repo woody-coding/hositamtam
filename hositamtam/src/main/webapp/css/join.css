@@ -58,6 +58,7 @@ body {
   border: 3px solid var(--color-accent);
   border-radius: 50px;
   margin-left: 55rem;
+  /*margin-left: 115%;*/
   /* background-color: var(--color-background); */
   background-color: #faf7f7;
 }
