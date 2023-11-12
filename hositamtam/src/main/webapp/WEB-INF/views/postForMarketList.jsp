@@ -21,7 +21,7 @@
 <script src="https://kit.fontawesome.com/89490613c7.js"
 	crossorigin="anonymous"></script>
 <!-- CSS -->
-<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/whiteBgHeader.css" />
 <link rel="stylesheet" href="../css/footer.css" />
 <link rel="stylesheet" href="../css/postMain.css" />
 <!-- JavaScript -->
