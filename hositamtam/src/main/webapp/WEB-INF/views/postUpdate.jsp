@@ -53,7 +53,7 @@
 	<div class="postCategory-radio">
 	            <div class="radioBox">
                 <label for="pcategory">카테고리</label><br/>
-				<select  id="pcategory">
+				<select  id="pcategory" name="pcategory">
                   <option value="궁금해요"  ${post.pcategory eq '궁금해요' ? 'selected' : ''}>궁금해요</option>
                   <option value="도와주세요" ${post.pcategory eq '도와주세요' ? 'selected' : ''}>도와주세요</option>
                   <option value="소통해요" ${post.pcategory eq '소통해요' ? 'selected' : ''}>소통해요</option>
