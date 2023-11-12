@@ -61,6 +61,7 @@ String mno = request.getParameter("mno");
 					<c:when test="${update eq true}">
 						<!-- 수정화면 -->
 						<form id="store__update__form" action="/finalProject/storeUpdate" method="POST">
+							<input type="hidden" name="mno" value="<%=mno%>" />
 							<input type="hidden" name="sno" value="${store.sno}"/>
 							<label for="store__name" class="store__label"> 
 							<input
@@ -121,9 +122,9 @@ String mno = request.getParameter("mno");
 						<!-- 등록화면 -->
 						<form id="store__update__form" action="/finalProject/storeInsert"
 							method="POST">
-							<input type="hidden" name="mno" value="<%=mno%>" /> <input
-								type="hidden" name="slat" value="<%=slat%>" /> <input
-								type="hidden" name="slng" value="<%=slng%>" /> <label
+							<input type="hidden" name="mno" value="<%=mno%>" />
+							<input type="hidden" name="slat" value="<%=slat%>" />
+							<input type="hidden" name="slng" value="<%=slng%>" /> <label
 								for="store__name" class="store__label"> <input
 								class="store__input" type="text" id="store__name" name="sname"
 								placeholder="점포의 이름을 지어주세요 !" />

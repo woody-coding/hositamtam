@@ -146,23 +146,25 @@
 		<div id="goService" class="hosiInfo">
 			<p>부산 전통시장에 대한 정보를 공유하고 등록되지 않은 점포를 등록해보세요!</p>
 			<!-- carosell 3초마다 이미지 변경 시장리스트사진 커뮤니티  모든 페이지 완성하면 캡쳐해서 슬라이드이미지로 넣기-->
-			<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+
+			<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+  
           <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="3000">
+            <div class="carousel-item active" data-bs-interval="1500">
               <img src="../images/시장리스트.PNG" >
               <div class="carousel-caption">
 		        
     		  </div>
     		  <p>부산전통시장을 탐험해보세요!</p>
             </div>
-            <div class="carousel-item" data-bs-interval="2000">
+            <div class="carousel-item" data-bs-interval="1500">
               <img src="../images/점포리스트.PNG" >
               <div class="carousel-caption ">
 		       
     		  </div>
     		   <p>점포를 검색하고 등록되지 않은 점포를 등록해보세요!</p>
    	        </div>
-            <div class="carousel-item" data-bs-interval="3000">
+            <div class="carousel-item" data-bs-interval="1500">
    			  <img src="../images/시끌시끌.PNG" >
               <div class="carousel-caption d-none d-md-block">
       		  	<!-- <p>전통시장과 관련된 정보를 다른 사용자들과 나누세요!</p> -->

@@ -289,6 +289,7 @@ function openInfo() {
             
 
 	        let infowindow = new naver.maps.InfoWindow({	// 상세페이지로, 등록(수정)페이지로 이동하는 a태그는 해당 페이지들을 제어하는 컨트롤러로 보내기
+
 				content: '<div id="'+ locations[i].sno +'" class="infoContent">' + 
 				    '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">' + 
 				        '<div class="infoImgContainer">' +
@@ -308,11 +309,10 @@ function openInfo() {
 				    '</div>' +
 				    '<div class="btnContainer">' +
 				        '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
-				        '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+				        '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '&mno=' + currentMno + '">점포 수정</a>' +
 				        '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
 				    '</div></div>'
 				});
-
 
 	        
             infowindow.open(map, marker);
@@ -585,6 +585,23 @@ function showMarkers() {
 		        '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
 		    '</div></div>'
 		});
+
+
+                  	'</div>' +
+                   '<div class="categoryAndType">' +
+
+                   '<span> ' + locations[i].scategory + ' | </span>' +
+                   '<span> ' +  locations[i].stype + '</span>' +
+                   '</div>' +
+
+                  '</div>' +
+                   '<div class="btnContainer">' +
+                   '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
+                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '&mno=' + currentMno + '">점포 수정</a>' +
+//                   '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '">점포 수정</a>' +
+                   '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
+                   '</div></div>' 
+        });
 
         
 
