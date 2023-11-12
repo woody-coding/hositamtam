@@ -46,11 +46,13 @@
 	<%@ include file="navi.jsp" %>
 	<div class="container mt-5">
 	<h2>${market.mname} <span>시끌시끌</span></h2>
+	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div> <!-- 위치 재설정 및 css로 꾸며야 함 -->
+	<br/>	
 	<form method="POST" action="/finalProject/views/postInsert" enctype="multipart/form-data">
 	<div class="postCategory-radio">
 	            <div class="radioBox">
                 <label for="pcategory">카테고리</label>
-                <select  id="pcategory">
+                <select  id="pcategory" name="pcategory">
                   <option value="궁금해요" selected>궁금해요</option>
                   <option value="도와주세요" >도와주세요</option>
                   <option value="소통해요" >소통해요</option>
