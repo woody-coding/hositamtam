@@ -7,8 +7,8 @@ let storeCategoryCheck = false;
 
 // 항목 선택시 버튼색 변경
 document.addEventListener("DOMContentLoaded", function () {
-  var typeButtons = document.querySelectorAll(".store__type__button1, .store__type__button2");
-  var paymentButtons = document.querySelectorAll(".store__payment__button1, .store__payment__button2, .store__payment__button3");
+  var typeButtons = document.querySelectorAll(".storeType__label1, .storeType__label2");
+  var paymentButtons = document.querySelectorAll(".paymentType__label1, .paymentType__label2, .paymentType__label3");
 
   // 점포 형태 선택시 버튼색 변경(단일)
   typeButtons.forEach(function (button) {
