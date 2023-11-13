@@ -43,7 +43,7 @@ String mno = request.getParameter("mno");
     <link rel="stylesheet" href="../css/loginHeader.css" />
     <link rel="stylesheet" href="../css/footer2.css" />
     <link rel="stylesheet" href="../css/storeInsertAndUpdate.css" />
-<!--     <link rel="stylesheet" href="../css/storeDetail.css" /> -->
+    <!-- <link rel="stylesheet" href="../css/storeDetail.css" /> -->
 
     <!-- JavaScript -->
     <script defer src="../js/storeInsertAndUpdate.js"></script>
@@ -120,42 +120,66 @@ String mno = request.getParameter("mno");
 					</c:when>
 					<c:otherwise>
 						<!-- 등록화면 -->
-						<form id="store__update__form" action="/finalProject/storeInsert"
-							method="POST">
+						<form id="store__update__form" class="store__update" action="/finalProject/storeInsert" method="POST">
 							<input type="hidden" name="mno" value="<%=mno%>" />
 							<input type="hidden" name="slat" value="<%=slat%>" />
-							<input type="hidden" name="slng" value="<%=slng%>" /> <label
-								for="store__name" class="store__label"> <input
-								class="store__input" type="text" id="store__name" name="sname"
-								placeholder="점포의 이름을 지어주세요 !" />
-								<button class="change__location">위치 수정</button>
-							</label>
+							<input type="hidden" name="slng" value="<%=slng%>" />
+								<label for="store__name" class="store__label">
+									<input
+										class="store__input"
+										type="text" id="store__name"
+										name="sname"
+										placeholder="점포의 이름을 지어주세요 !"
+									/>
+									<button class="change__location">위치 수정</button>
+								</label>
 							<div class="store__update__form">
-								<div class="store__type">
+								<section class="store__type">
 									<h2 class="store__type__title siau__h2">점포 형태</h2>
-									<input type="radio" name="stype" value="좌판">좌판 <input
-										type="radio" name="stype" value="매장">매장
-								</div>
-								<div class="store__payment">
+									<div class=storeType__radio>
+										<input type="radio" name="stype" value="좌판" id="storeType1"><label for="storeType1" class="storeType__label1">좌판</label>
+									</div>
+									<div class=storeType__radio>
+										<input type="radio" name="stype" value="매장" id="storeType2"><label for="storeType2" class="storeType__label2">매장</label>
+									</div>
+								</section>
+								
+								<section class="store__payment">
 									<h2 class="store__payment__title siau__h2">결제 방식</h2>
-									<input type="checkbox" name="paytype" value="1">현금 <input
-										type="checkbox" name="paytype" value="2">카드 <input
-										type="checkbox" name="paytype" value="3">계좌이체
-								</div>
-								<div class="store__category">
+									<div class=paymentType__checkbox>
+										<input type="checkbox" name="paytype" value="1" id="storePayment1"><label for="storePayment1" class="paymentType__label1">현금</label>
+									</div>
+									<div class=paymentType__checkbox>
+										<input type="checkbox" name="paytype" value="2" id="storePayment2"><label for="storePayment2" class="paymentType__label2">카드</label>
+									</div>
+									<div class=paymentType__checkbox2>
+										<input type="checkbox" name="paytype" value="3" id="storePayment3"><label for="storePayment3" class="paymentType__label3">계좌이체</label>
+									</div>
+								</section>
+								
+								<section class="store__category">
 									<h2 class="store__category__title siau__h2">취급 품목</h2>
 									<label for="store__category__contents" class="category__label">
-										<input class="category__input" type="text"
-										id="store__category__contents" name="scategory"
-										placeholder="점포의 취급품목을 알려주세요 !" />
+										<input
+											class="category__input"
+											type="text"
+											id="store__category__contents"
+											name="scategory"
+											placeholder="점포의 취급품목을 알려주세요 !"
+										/>
 									</label>
-								</div>
-								<div class="store__photo">
+								</section>
+								
+								<section class="store__photo">
 									<h2 class="store__photo__title siau__h2">점포 사진</h2>
-									<label class="store__photo__label"> <input type="file"
-										name="sphoto" class="store__photo__input" />
+									<label class="store__photo__label">
+										<input
+											type="file"
+											name="sphoto"
+											class="store__photo__input"
+										/>
 									</label>
-								</div>
+								</section>
 							</div>
 							<div class="insertUpdate__error" id="msg"></div>
 							<input type="submit" class="store__update__button" value="등록하기">
@@ -186,6 +210,6 @@ String mno = request.getParameter("mno");
 <!--         </div> -->
 <!--       </div> -->
 <!--     </footer> -->
-<%@ include file="footer.jsp" %>
+<%-- <%@ include file="footer.jsp" %> --%>
   </body>
 </html>

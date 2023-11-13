@@ -48,6 +48,7 @@ body {
   margin: auto;
 }
 
+/* Store Update */
 .store__update {
   display: block;
   align-items: center;
@@ -108,6 +109,69 @@ body {
 
 .siau__h2 {
   margin: 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.storeType__radio {
+	width: 20%;
+	border: none;
+	padding-top: 0.2rem;
+}
+
+.storeType__radio input[type=radio] {
+	display: none;
+}
+
+.storeType__label1,
+.storeType__label2 {
+	display: block;
+	font-size: 1.3rem;
+	border-radius: 10px;
+	margin: 0 auto;
+	text-align: center;
+	height: -webkit-fill-available;
+}
+
+.storeType__label1:hover,
+.storeType__label2:hover {
+	color: var(--color-background);
+	background-color: var(--color-primary-variant);
+}
+
+.paymentType__checkbox {
+	width: 20%;
+	border: none;
+	padding-top: 0.2rem;
+}
+
+.paymentType__checkbox2 {
+	width: 28%;
+	border: none;
+	padding-top: 0.2rem;
+}
+
+.paymentType__checkbox input[type=checkbox],
+.paymentType__checkbox2 input[type=checkbox] {
+	display: none;
+}
+
+.paymentType__label1,
+.paymentType__label2,
+.paymentType__label3 {
+	display: block;
+	font-size: 1.3rem;
+	border-radius: 10px;
+	margin: 0 auto;
+	text-align: center;
+	height: -webkit-fill-available;
+}
+
+.paymentType__label1:hover,
+.paymentType__label2:hover,
+.paymentType__label3:hover {
+	color: var(--color-background);
+	background-color: var(--color-primary-variant);
 }
 
 .category__label {
@@ -117,10 +181,8 @@ body {
 
 .category__input {
   display: block;
-  /* width: 270px; */
-  width: 259px;
+  width: 16.2rem;
   padding: 0.5rem;
-  /* margin-left: 1rem; */
   margin-left: 1.5rem;
   border: 3px solid var(--color-primary);
   border-radius: 4px;
@@ -139,34 +201,6 @@ body {
   margin-right: 1.9rem;
 }
 
-.store__type__button1,
-.store__type__button2,
-.store__payment__button1,
-.store__payment__button2,
-.store__payment__button3 {
-  border: none;
-  border-radius: 4px;
-  background-color: var(--color-background);
-  font-size: 1.3rem;
-  margin-left: 1rem;
-}
-
-.store__type__button1:hover,
-.store__type__button2:hover,
-.store__payment__button1:hover,
-.store__payment__button2:hover,
-.store__payment__button3:hover {
-  color: var(--color-background);
-}
-
-.store__type__button1:hover,
-.store__type__button2:hover,
-.store__payment__button1:hover,
-.store__payment__button2:hover,
-.store__payment__button3:hover {
-  background-color: var(--color-primary-variant);
-}
-
 .active {
   background-color: var(--color-accent-variant);
   color: var(--color-background);
@@ -176,6 +210,13 @@ body {
   padding-top: 5px;
   border-bottom: 1px solid var(--color-gray);
   margin-left: 1.5rem;
+  width: 15.5rem;
+  height: 2.5rem;
+}
+
+.store__photo__input {
+  width: 15.5rem;
+  height: 2.5rem;
 }
 
 .store__photo__preview {
