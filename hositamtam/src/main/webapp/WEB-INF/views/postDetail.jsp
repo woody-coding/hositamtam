@@ -92,8 +92,8 @@
 		${post.pcontent}
 	</div>
 	<br/>
-	<!-- "/finalProject/images/' + locations[i].sphoto  + '" -->
-	<img src="${post.pphoto}"></img>
+	
+	<img src="${post.pphoto}" style="width: 400px; height: 400px;"></img>
 	<br/>
 	<p id="msg"></p>
 	<hr/>
