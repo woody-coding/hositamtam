@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="/finalProject/css/myPageUpdate.css" />
 
     <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/finalProject/js/myPageUpdate.js" charset="UTF-8"></script>
   </head>
   <body>

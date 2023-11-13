@@ -111,16 +111,32 @@ function memberUpdateHandler() {
 	    
 	    if (response[0].isUpdate === true) {
 	        // 업데이트 성공 시
-	        alert('회원 정보가 정상적으로 수정되었습니다. 재로그인을 해주세요!');
+	        memberUpdateSuccess();
 	        window.sessionStorage.removeItem('memberId');
-	        window.location.href = '/finalProject/views/loginAgain';	        
 	    } else {
 	        // 업데이트 실패 시
-	        alert('회원 정보 수정에 실패하였습니다.');
-	        window.location.href = '/finalProject/views/myPageUpdate';	  
-	        
+	        memberUpdateFail();
 	    }
 	}
+}
+
+function memberUpdateSuccess(){
+	Swal.fire({
+		title: '정상적으로 수정되었습니다 !',
+		text: '다시 로그인 해주세요.',
+		icon: 'success',
+	}).then(function() {
+		window.location.href = '/finalProject/views/loginAgain';
+	});
+}
+
+function memberUpdateFail(){
+	Swal.fire({
+		title: '정보 수정에 실패하였습니다.',
+		icon: 'error',
+	}).then(function() {
+		window.location.href = '/finalProject/views/myPageUpdate';
+	});
 }
 
 
@@ -155,9 +171,18 @@ function updateHandler() {
 	    xhr.send(newPassword, newNickname);
 	}
 	else {
-		alert('닉네임 혹은 비밀번호를 먼저 수정해주세요!');
-		window.location.href = '/finalProject/views/myPageUpdate';
+		memberUpdateNone();
+		
 	}
+}
+
+function memberUpdateNone(){
+	Swal.fire({
+		title: '닉네임 혹은 비밀번호를 <br> 먼저 수정해 주세요 !',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/myPageUpdate';
+	});
 }
 
 

@@ -7,8 +7,8 @@ let storeCategoryCheck = false;
 
 // 항목 선택시 버튼색 변경
 document.addEventListener("DOMContentLoaded", function () {
-  var typeButtons = document.querySelectorAll(".store__type__button1, .store__type__button2");
-  var paymentButtons = document.querySelectorAll(".store__payment__button1, .store__payment__button2, .store__payment__button3");
+  var typeButtons = document.querySelectorAll(".storeType__label1, .storeType__label2");
+  var paymentButtons = document.querySelectorAll(".paymentType__label1, .paymentType__label2, .paymentType__label3");
 
   // 점포 형태 선택시 버튼색 변경(단일)
   typeButtons.forEach(function (button) {
@@ -75,16 +75,23 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // 최소한 하나가 선택되지 않았다면 알림창을 띄우고 false를 반환합니다.
         if (!isChecked) {
-            alert("적어도 하나 이상의 결제 방식을 선택해주세요.");
+            notSelectPayment("적어도 하나 이상의 결제 방식을 선택해주세요.");
             return false;
         }
         return true;
-    }
+}
+
+	function notSelectPayment(){
+		Swal.fire({
+			title: '적어도 하나 이상의 <br> 결제 방식을 선택해주세요.',
+			icon: 'warning',
+		});
+	}
 
     // 폼이 제출될 때 validatePayment 함수를 실행합니다.
     document.querySelector('form').addEventListener('submit', validatePayment);
 
-    
+   
     
     
     
@@ -135,7 +142,7 @@ function insertAndUpdateButton(event) {
     }
 }
     
-    
+     
     
     
     

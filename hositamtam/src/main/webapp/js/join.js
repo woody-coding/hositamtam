@@ -140,11 +140,20 @@ function nicknameCheck() {
 
 function joinButtonHandler() {
 	if (xhr.readyState === 4 && xhr.status === 200) {
-		alert('호시탐탐에 성공적으로 가입하셨습니다! 감사합니다.');
-		window.location.href = '/finalProject/views/login';
+		joinSuccess();
 	}
 }
 
+//== 회원가입 성공시 얼럿 =================================================================
+function joinSuccess(){
+	Swal.fire({
+		title: '성공적으로 가입되었습니다 !',
+		text: '감사합니다.',
+		icon: 'success',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
+}
 
 
 

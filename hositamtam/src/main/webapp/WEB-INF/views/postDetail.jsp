@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="../css/postMain.css" />
 <link rel="stylesheet" href="../css/postDetail.css" />
 <!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -69,8 +70,8 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">	
-	<div class="col-1"><button onclick="javascript:history.back()">목록으로</button></div> <!-- 위치 재설정 및 css로 꾸며야 함 -->
-	<br/>
+	<!-- <div class="col-1"><button onclick="javascript:history.back()">목록으로</button></div> 위치 재설정 및 css로 꾸며야 함
+	<br/> -->
 	<span>커뮤니티 > ${post.pcategory}</span>
 	<hr/>
 	
@@ -91,8 +92,8 @@
 		${post.pcontent}
 	</div>
 	<br/>
-	<!-- "/finalProject/images/' + locations[i].sphoto  + '" -->
-	<img src="${post.pphoto}"></img>
+	
+	<img src="${post.pphoto}" style="width: 400px; height: 400px;"></img>
 	<br/>
 	<p id="msg"></p>
 	<hr/>

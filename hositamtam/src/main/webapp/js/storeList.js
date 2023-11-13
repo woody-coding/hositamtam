@@ -18,42 +18,19 @@ function isLogin(event) {
 	const member = JSON.parse(memberId);
 	
 	if (!member) {
-		alert('로그인이 필요한 서비스 입니다.');
+		storeListLoginCheck();
 	    event.preventDefault();
-	    window.location.href = '/finalProject/views/login';
 	}
 }
 
-
-
-
-
-
-
-function notStoreConfirm() {
-  Swal.fire({
-    title: "정말 제보를 하시겠습니까?",
-    text: "제보 후 다시 되돌릴 수 없습니다. 신중하세요.",
-    icon: "warning",
-    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-    confirmButtonColor: "#3085D6", // confrim 버튼 색깔 지정
-    cancelButtonColor: "#d33", // cancel 버튼 색깔 지정
-    confirmButtonText: "진행", // confirm 버튼 텍스트 지정
-    cancelButtonText: "취소", // cancel 버튼 텍스트 지정
-    reverseButtons: true, // 버튼 순서 거꾸로
-  }).then((result) => {
-    // 만약 Promise리턴을 받으면,
-    if (result.isConfirmed) {
-      // 만약 모달창에서 confirm 버튼을 눌렀다면
-      Swal.fire("감사합니다. 정상적으로 제보가 접수되었습니다!", "success");
-    }
-  });
+function storeListLoginCheck(){
+	Swal.fire({
+		title: '로그인이 필요한 서비스입니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
 }
-
-
-
-
-
 
 // mno 값을 매개변수로 해당 시장의 중심좌표, 시장명 반환
 function latLngAjaxHandler() {
@@ -144,7 +121,7 @@ function notStoreHandler() {
 
 function confirmAndSend() {
     // 사용자에게 확인을 요청
-    let userConfirmed = window.confirm("정말로 제보하시겠습니까? 한번 제보 후 취소는 불가능하니 신중히 결정해주세요.");
+    let userConfirmed = window.notStoreConfirm();
     
     // 사용자가 확인 버튼을 클릭한 경우에만 서버로 요청을 보냄
     if (userConfirmed) {
@@ -152,6 +129,29 @@ function confirmAndSend() {
         xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
         xhr.send();
     }
+}
+
+function notStoreConfirm() {
+  Swal.fire({
+    title: "정말 제보를 하시겠습니까?",
+    text: "제보 후 다시 되돌릴 수 없습니다. 신중하세요.",
+    icon: "warning",
+    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+    confirmButtonColor: "#3085D6", // confrim 버튼 색깔 지정
+    cancelButtonColor: "#d33", // cancel 버튼 색깔 지정
+    confirmButtonText: "진행", // confirm 버튼 텍스트 지정
+    cancelButtonText: "취소", // cancel 버튼 텍스트 지정
+  }).then((result) => {
+    // 만약 Promise리턴을 받으면,
+    if (result.isConfirmed) {
+      // 만약 모달창에서 confirm 버튼을 눌렀다면
+      Swal.fire({
+		  title: "제보가 접수되었습니다!",
+		  text: "감사합니다.",
+		  icon: "success"
+		});
+    }
+  });
 }
 
 
@@ -312,7 +312,7 @@ function openInfo() {
 				content: '<div id="'+ locations[i].sno +'" class="infoContent">' + 
 				    '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">' + 
 				        '<div class="infoImgContainer">' +
-				            '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
+				            '<img src="' + locations[i].sphoto  + '">' +
 				        '</div>' +
 				        '<div class="sName">'+
 				            '<img src="../images/2b50.png" alt="평균별점">' + 
@@ -351,7 +351,7 @@ function openInfo() {
 
 // '새 점포 등록' 버튼 클릭 시
 function insertStoreHandler() {
-	debugger;//joke
+	/*debugger;//joke*/
 	
 	// 회원이라면 새 점포 등록 버튼 이용 가능
 	if(currentId !== null) {
@@ -388,8 +388,7 @@ function insertStoreHandler() {
 	        var longitude = e.coord.lng();		
 	        var iwContent = '<div class="iwContent" style="padding:5px;">' +
 	            '<a href="../ajaxController/toAjaxController.jsp?command=insertStore&mno=' + mnoToStore.mno + '&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
-//	            '<a href="/finalProject/views/toStoreInsert?id=' + currentId + '&mno=' + currentMno + '&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
-//>>>>>>> a66775a9da679f228173c5e23795d00fae178a99
+
 	        infowindow = new naver.maps.InfoWindow({
 	            content: iwContent
 	        });
@@ -421,9 +420,18 @@ function insertStoreHandler() {
     } 
     // 비회원이라면 새 점포 등록 버튼 이용 못하고 로그인 페이지로 리디렉션
     else {
-		alert('로그인 하시면 새 점포 등록이 가능합니다!');
-		window.location.href = '/finalProject/views/login';
+		storeInsertLoginCheck();
+		
 	}
+}
+
+function storeInsertLoginCheck(){
+	Swal.fire({
+		title: '점포를 등록하시려면 <br> 로그인하셔야 합니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
 }
 
 
@@ -471,7 +479,7 @@ function storeAjaxHandler() {
                    '</div>' +
                    '</div>'+
                    '<div class="storeImgContainer">' +
-				   	 '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '" >' +
+				   	 '<img src="' + allStoreList[i].sphoto  + '" >' +
 				    '</div>'+
 				    /*<i class="fa-solid fa-arrow-up-right-from-square"></i> 이동하기 아이콘*/
 				'</div>'+
@@ -585,7 +593,7 @@ function showMarkers() {
 		content: '<div id="'+ locations[i].sno +'" class="infoContent">' + 
 		    '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">' + 
 		        '<div class="infoImgContainer">' +
-		            '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
+		            '<img src="' + locations[i].sphoto  + '">' +
 		        '</div>' +
 		        '<div class="sName">'+
 		            '<img src="../images/2b50.png" alt="평균별점">' + 

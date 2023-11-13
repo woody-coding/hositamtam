@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="../css/footer.css" />
 <link rel="stylesheet" href="../css/postMain.css" />
 <!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -103,8 +104,8 @@
 				<c:forEach items="${postList}" var="post" varStatus="status">
 					<tr>
 						<td>${status.count}</td>
-						<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
-						<td><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.pcontent}</a></td>
+						<td class="pTitle"><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.ptitle}</a></td>
+						<td class="pContent"><a href="/finalProject/views/toPostDetail?pno=${post.pno}">${post.pcontent}</a></td>
 						<td>${post.pregdate}</td>
 						<td>${post.plikecount}</td>
 						<td>${post.nickname}</td>
@@ -118,7 +119,7 @@
 						</c:if>
 					</tr>
 				</c:forEach>
-				<tfoot>
+				<%-- <tfoot> 페이지네이션 되면 쓸것
                     <tr>
                         <td colspan="4">
                         	<c:if test="${searchList.currentPage > 1}">
@@ -131,7 +132,7 @@
                         	
                         </td>
                     </tr>
-                </tfoot>
+                </tfoot> --%>
 			</table>
 			
 		</div>

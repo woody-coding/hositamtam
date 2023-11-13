@@ -62,9 +62,17 @@ function storeModify() {
 		window.location.href = '/finalProject/views/storeUpdate?sno=' + currentSno + '&mno=' + currentMno;
 	}
 	else if(!member) {
-		alert('로그인이 필요한 서비스 입니다.');
-		window.location.href = '/finalProject/views/login';
+		storeDetailUpdateLoginCheck();
 	}
+}
+
+function storeDetailUpdateLoginCheck(){
+	Swal.fire({
+		title: '로그인이 필요한 서비스 입니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
 }
 
 
@@ -178,8 +186,8 @@ function init() {
 	        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
 	        xhr.send();
 	    } else if(member === null) {
-			alert('로그인이 필요한 서비스입니다.');
-			window.location.href = '/finalProject/views/login';
+			storeDetailLikeLoginCheck();
+			
 /*        		if (needLogin()) {
 			
 					window.location.href = '/finalProject/views/login';
@@ -187,6 +195,15 @@ function init() {
 	    }
 	});
 	
+	
+	function storeDetailLikeLoginCheck(){
+		Swal.fire({
+			title: '로그인이 필요한 서비스 입니다.',
+			icon: 'warning',
+		}).then(function() {
+			window.location.href = '/finalProject/views/login';
+		});
+	}
 	
 	
 	document.querySelector('.storeDetail__modify').addEventListener('click', storeModify);
