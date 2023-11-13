@@ -161,25 +161,19 @@
 			</c:otherwise>
 		</c:choose>
         
-        <span class="review__star">
-          <i class="fa-solid fa-star review__star1"></i>
-          <i class="fa-solid fa-star review__star2"></i>
-          <i class="fa-solid fa-star review__star3"></i>
-          <i class="fa-solid fa-star review__star4"></i>
-          <i class="fa-solid fa-star review__star5"></i>
-        </span>
+
       </div>
       <div>
-        <form id="review__form" method="GET" action="/finalProject/views/reviewInsert" style="display: none">
-        	
-        	<input type="range" id="rrating" name="rrating" min="1" max="5"/>
-        	<!-- <select name="rrating">
-        		<option value="1">1</option>
-        		<option value="2">2</option>
-        		<option value="3">3</option>
-        		<option value="4">4</option>
-        		<option value="5" selected>5</option>
-        	</select> -->
+
+        <form id="review__form" method="GET" action="/finalProject/views/reviewInsert">
+	    	<div id="ratingStar">
+				<input type="radio" name="rrating" value="5" id="rate1" ><label for="rate1">★</label> 
+				<input type="radio" name="rrating" value="4" id="rate2" ><label for="rate2">★</label> 
+				<input type="radio" name="rrating" value="3" id="rate3" ><label for="rate3">★</label> 
+				<input type="radio" name="rrating" value="2" id="rate4" ><label for="rate4">★</label> 
+				<input type="radio" name="rrating" value="1" id="rate5" ><label for="rate5">★</label>
+			</div><br/>
+
           <div class="review__form">
            <label class="review__label">
               <textarea
@@ -196,7 +190,6 @@
           <button class="review__button" type="submit">작성하기</button>
         </form>
       </div>
-      <!-- <hr class="storeDetail__hr" /> -->
     </section>
 
     <!-- Review Contents -->

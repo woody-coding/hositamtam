@@ -27,6 +27,7 @@ public class ReviewDAO {
 	// 1. 리뷰 등록
 	public int insertReview(ReviewDO review) {
 		int rowCount = 0;
+
 		this.sql = "INSERT INTO review (rno, sno, id, rregdate, rcontent, rrating) " +
 		           "VALUES (seq_rno.nextval, ?, ?, sysdate, ?, ?)";
 		try {

@@ -27,6 +27,29 @@ let currentMno;
 }*/
 
 
+/* 경인 별
+
+// 선택된 별의 개수 업데이트
+function updateStars(starCount) {
+    // 별 개수를 히든 필드에 설정
+    document.getElementById('rrating').value = starCount;
+
+    // 별 디자인 업데이트
+    for (var i = 1; i <= 5; i++) {
+        var starElement = document.querySelector('.review__star' + i);
+        if (i <= starCount) {
+            starElement.classList.add('selected');
+        } else {
+            starElement.classList.remove('selected');
+        }
+    }
+}
+*/
+
+
+
+
+
 
 
 
@@ -187,9 +210,25 @@ function init() {
 
 }
 
+
+
+
+    function updateRating(value) {
+        // 레인지 값을 히든 필드에 업데이트
+        document.getElementById('rrating').value = value;
+
+        // 레인지 값 표시 업데이트
+        document.getElementById('ratingValue').innerText = value;
+    }
+
+
+
+
+/*
+
 // 별점 메기기
 document.addEventListener("DOMContentLoaded", function () {
-  var stars = document.querySelectorAll(".review__star i");
+  var stars = document.querySelectorAll("#ratingStar input");
 
   stars.forEach(function (star, index) {
     star.addEventListener("click", function () {
@@ -223,5 +262,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+*/
+
+
+
+
+
+
 
 window.addEventListener('load', init);

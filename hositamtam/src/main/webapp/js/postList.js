@@ -18,8 +18,6 @@ function writePostLoginCheck(){
 	});
 }
 
-
-
 function init() {
 	document.querySelector('#writePost').addEventListener('click', writePostHandler);
 }
