@@ -59,7 +59,6 @@ String mno = request.getParameter("mno");
 			<div class="storeDetail__info">
 				<c:choose>
 					<c:when test="${update eq true}">
-						<!-- 수정화면 -->
 						<form id="store__update__form" class="store__update" action="/finalProject/storeUpdate" method="POST">
 							<input type="hidden" name="mno" value="<%=mno%>" />
 							<input type="hidden" name="sno" value="${store.sno}"/>
@@ -78,48 +77,33 @@ String mno = request.getParameter("mno");
 								    	<input type="radio" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if> id="storeUpdate__type2"><label for="storeUpdate__type2">매장</label>
 									</div>
 								</section>
-								
-								<section class="store__payment">
-									<h2 class="store__payment__title siau__h2">결제 방식</h2>
-									<!-- 모든 결제 방식 리스트 -->
-									<div class="store__payment__update">
-										<c:forEach var="payment" items="${paymentList}">
-					       					<input type="checkbox" name="paytype" value="${payment.payno}">${payment.paytype} &nbsp;&nbsp;&nbsp;
-				        				</c:forEach>
-									</div>
-								</section>
-								
-								<section class="store__category">
-									<h2 class="store__category__title siau__h2">취급 품목</h2>
-									<label for="store__category__contents" class="category__label">
-										<input
-											class="category__input__update"
-											type="text"
-											id="store__category__contents"
-											name="scategory"
-											placeholder="점포의 취급품목을 알려주세요 !"
-											value="${store.scategory}"
-										/>
-									</label>
-								</section>
-								
-								<section class="store__photo">
-									<h2 class="store__photo__title siau__h2">점포 사진</h2>
-									<div>
-					        			<!-- 등록된 점포 사진 -->
-					        			<img src="../images/${store.sphoto}" class="storeUpdate__photo"/>
-					      			</div>
-								</section>
-							</div>
-					        
-					        <div class="insertUpdate__error" id="msg"></div>
+							<div class="storeDetail__payment">
+					        <span class="storeDetail__payment__title">
+					        <h4 class="storeDetail__h4">결제 방식</h4></span>
+					        	<label for="paytype"></label>
+									<input type="checkbox" id="paytype" name="paytype" value="1" checked>현금 
+									<input type="checkbox" id="paytype" name="paytype" value="2">카드 
+									<input type="checkbox" id="paytype" name="paytype" value="3">계좌이체
+					      </div>
+					      <div class="storeDetail__category">
+					        <span class="storeDetail__category__title">
+					        <h4 class="storeDetail__h4">취급 품목</h4></span>
+					        <input class="category__input" type="text"
+										id="store__category__contents" name="scategory"
+										placeholder="점포의 취급품목을 알려주세요 !" value="${store.scategory}" />
+					      </div>
+					      <div class="storeDetail__photo">
+					        <!-- 등록된 점포 사진 -->
+					        <img src="${store.sphoto}" style="width:300px; height: 150px;"/>
+					      </div>
+							<div class="insertUpdate__error" id="msg"></div>
 							<input type="submit" class="store__update__button" value="수정하기">
 						</form>
 					</c:when>
 					
 					<c:otherwise>
 						<!-- 등록화면 -->
-						<form id="store__update__form" class="store__insert" action="/finalProject/storeInsert" method="POST">
+						<form id="store__update__form" method="POST" action="/finalProject/storeInsert" enctype="multipart/form-data">
 							<input type="hidden" name="mno" value="<%=mno%>" />
 							<input type="hidden" name="slat" value="<%=slat%>" />
 							<input type="hidden" name="slng" value="<%=slng%>" />
@@ -145,18 +129,12 @@ String mno = request.getParameter("mno");
 								
 								<section class="store__payment">
 									<h2 class="store__payment__title siau__h2">결제 방식</h2>
-									<div class=paymentType__checkbox>
-										<input type="checkbox" name="paytype" value="1" id="storePayment1"><label for="storePayment1" class="paymentType__label1">현금</label>
-									</div>
-									<div class=paymentType__checkbox>
-										<input type="checkbox" name="paytype" value="2" id="storePayment2"><label for="storePayment2" class="paymentType__label2">카드</label>
-									</div>
-									<div class=paymentType__checkbox2>
-										<input type="checkbox" name="paytype" value="3" id="storePayment3"><label for="storePayment3" class="paymentType__label3">계좌이체</label>
-									</div>
-								</section>
-								
-								<section class="store__category">
+									<label for="paytype"></label>
+									<input type="checkbox" id="paytype" name="paytype" value="1">현금 
+									<input type="checkbox" id="paytype" name="paytype" value="2">카드 
+									<input type="checkbox" id="paytype" name="paytype" value="3">계좌이체
+								</div>
+								<div class="store__category">
 									<h2 class="store__category__title siau__h2">취급 품목</h2>
 									<label for="store__category__contents" class="category__label">
 										<input
@@ -171,12 +149,8 @@ String mno = request.getParameter("mno");
 								
 								<section class="store__photo">
 									<h2 class="store__photo__title siau__h2">점포 사진</h2>
-									<label class="store__photo__label">
-										<input
-											type="file"
-											name="sphoto"
-											class="store__photo__input"
-										/>
+									<label class="store__photo__label"> 
+										<input type="file" name="sphoto" class="store__photo__input" />
 									</label>
 								</section>
 							</div>
@@ -188,27 +162,5 @@ String mno = request.getParameter("mno");
 			</div>
 		</div>
 	</section>
-
-    <!-- Footer -->
-<!--     <footer id="information" class="section"> -->
-<!--       <div class="information__located"> -->
-<!--         <div class="max-container"> -->
-<!--           <h2 class="information__title">&copy; TMI - All rights reserved</h2> -->
-<!--           <div class="information__contents"> -->
-<!--             <p class="information__title"> -->
-<!--               Creator <br />팀장: 안효철 &nbsp;&nbsp; 팀원: 김동영 <br /> -->
-<!--               팀원: 김진성 &nbsp;&nbsp; 팀원: 남경인 <br /> -->
-<!--               팀원: 석신성 &nbsp;&nbsp; 팀원: 주영진 -->
-<!--             </p> -->
-<!--             <p class="information__title"> -->
-<!--               <br /> -->
-<!--               <i class="fa-brands fa-github"></i> -->
-<!--               https://github.com/wlstjd3398/TMI.git -->
-<!--             </p> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </footer> -->
-<%-- <%@ include file="footer.jsp" %> --%>
   </body>
 </html>

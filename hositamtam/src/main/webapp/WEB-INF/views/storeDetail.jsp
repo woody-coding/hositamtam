@@ -85,7 +85,6 @@
           <span class="storeDetail__like__count" id="storeLikeCount"></span>
         </button> -->
       </div>
-    
 	    <div class="storeDetail__star__like">
 	        <span class="storeDetail__category__title">
 	        	<h4 class="storeDetail__h4 storeDetail__star">
@@ -138,7 +137,7 @@
 	      
 	      <div>
 	        <!-- 등록된 점포 사진 -->
-	        <img src="/finalProject/upload/${store.sphoto}" class="storeDetail__photo" />
+	        <img src="${store.sphoto}" class="storeDetail__photo" />
 	      </div>
     </section>
 

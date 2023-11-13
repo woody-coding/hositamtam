@@ -87,8 +87,7 @@ public class PostController {
 
 	// 글 등록 기능
 	@PostMapping("/views/postInsert")
-	public String insertPost(@ModelAttribute PostDO command, Model model, HttpServletRequest request)
-			throws IOException {
+	public String insertPost(@ModelAttribute PostDO command, Model model, HttpServletRequest request) throws IOException {
 		System.out.print("컨트롤러 진입");
 		String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
 		int sizeLimit = 1024 * 1024 * 5;
@@ -106,8 +105,7 @@ public class PostController {
 			String paramName = fileNames.nextElement();
 			savedName = multi.getFilesystemName(paramName);
 		}
-		// 파일 정보를 photo 변수에 저장
-		String postImg = "/finalProject/upload/" + savedName; // 웹 경로로 수정
+		String postPhoto = "/finalProject/upload/" + savedName;
 		System.out.print("파일 정보 저장");
 
 		int mno = Integer.parseInt(multi.getParameter("mno"));
@@ -115,13 +113,13 @@ public class PostController {
 		String ptitle = multi.getParameter("ptitle");
 		String pcontent = multi.getParameter("pcontent");
 		String pcategory = multi.getParameter("pcategory");
-		// 게시물 생성
+
 		PostDO post = new PostDO();
 		post.setMno(mno);
 		post.setId(id);
 		post.setPtitle(ptitle);
 		post.setPcontent(pcontent);
-		post.setPphoto(postImg);
+		post.setPphoto(postPhoto);
 		post.setPcategory(pcategory);
 		postDAO.insertPost(post);
 
