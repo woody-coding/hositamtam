@@ -21,7 +21,7 @@
 <!-- CSS -->
 <link rel="stylesheet" href="../css/mainHeader.css" />
 <link rel="stylesheet" href="../css/main.css" />
-
+<link rel="stylesheet" href="../css/wave.css" />
 <!-- JavaScript -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -93,11 +93,14 @@
 
       <div class="listCategory" >
         <div class="close"></div>
+        
         <div class="listCategoryContent">
 
           
             <p>어떤 시장이 궁금한가요?</p>
             <div class="goCategory">
+         
+           
             <ul>
 	            <li><a href="/finalProject/views/marketList?cateno=1">농산물</a></li>
 	            <li><a href="/finalProject/views/marketList?cateno=2">음식점</a></li>
@@ -111,6 +114,9 @@
            </ul>
             </div>	
         </div>  
+           <div class='wave -one'></div>
+  <div class='wave -two'></div>
+  <div class='wave -three'></div>
       </div> 
      
       
