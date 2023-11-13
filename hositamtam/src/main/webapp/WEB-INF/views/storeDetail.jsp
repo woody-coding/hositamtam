@@ -171,13 +171,15 @@
       </div>
       <div>
         <form id="review__form" method="GET" action="/finalProject/views/reviewInsert" style="display: none">
-        	<select name="rrating">
+        	
+        	<input type="range" id="rrating" name="rrating" min="1" max="5"/>
+        	<!-- <select name="rrating">
         		<option value="1">1</option>
         		<option value="2">2</option>
         		<option value="3">3</option>
         		<option value="4">4</option>
         		<option value="5" selected>5</option>
-        	</select>
+        	</select> -->
           <div class="review__form">
            <label class="review__label">
               <textarea
@@ -189,7 +191,7 @@
             </label>
           </div>
           <input type="hidden" name="sno" value="${store.sno}"/>
-          <input type="hidden" name="id" value="king123"/>
+          <input type="hidden" name="id" value="${userId}"/>
           <div class="review__error" id="msg"></div>
           <button class="review__button" type="submit">작성하기</button>
         </form>
