@@ -48,8 +48,15 @@ body {
   margin: auto;
 }
 
-/* Store Update */
 .store__update {
+	padding: 40px;
+	width: 500px;
+	align-items: center;
+ 	text-align: center;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.store__insert {
   display: block;
   align-items: center;
   text-align: center;
@@ -105,6 +112,15 @@ body {
 .store__category {
   display: flex;
   margin-bottom: 2rem;
+}
+
+.store__type__update,
+.store__payment__update {
+	font-size: 1.3rem;
+}
+
+.storeUpdate__photo {
+	width: 280px;
 }
 
 .siau__h2 {
@@ -189,6 +205,16 @@ body {
   font-size: 1rem;
 }
 
+.category__input__update {
+  display: block;
+  width: 17.6rem;
+  padding: 0.5rem;
+  /*margin-left: 1.5rem;*/
+  border: 3px solid var(--color-primary);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
 .store__type__title,
 .store__payment__title,
 .store__photo__title {
@@ -227,7 +253,7 @@ body {
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
-.store__update__button {
+.store__insert__button {
   width: 25%;
   height: 40px;
   font-size: 1.3rem;
@@ -237,6 +263,17 @@ body {
   background-color: var(--color-primary);
   transition: all 0.15s linear;
   margin: 2rem 0 0;
+}
+
+.store__update__button {
+  width: 25%;
+  height: 40px;
+  font-size: 1.3rem;
+  border-radius: 4px;
+  border: none;
+  color: var(--color-background);
+  background-color: var(--color-primary);
+  transition: all 0.15s linear;
 }
 
 .store__update__button:hover {

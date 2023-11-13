@@ -60,67 +60,66 @@ String mno = request.getParameter("mno");
 				<c:choose>
 					<c:when test="${update eq true}">
 						<!-- 수정화면 -->
-						<form id="store__update__form" action="/finalProject/storeUpdate" method="POST">
+						<form id="store__update__form" class="store__update" action="/finalProject/storeUpdate" method="POST">
 							<input type="hidden" name="mno" value="<%=mno%>" />
 							<input type="hidden" name="sno" value="${store.sno}"/>
-							<label for="store__name" class="store__label"> 
-							<input
-								class="store__input" type="text" id="store__name" name="sname" value="${store.sname}"
-								placeholder="점포의 이름을 지어주세요 !" />
-								<button class="change__location">위치 수정</button>
-							</label>
-							<div class="storeDetail__storeType">
-							    <span class="storeDetail__storeType__title">
-							        <h4 class="storeDetail__h4">점포 형태</h4>
-							    </span>
-							    <input type="radio" name="stype" value="좌판" <c:if test="${store.stype eq '좌판'}">checked="checked"</c:if>><span>좌판</span>
-							    <input type="radio" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if>><span>매장</span>
+								<label for="store__name" class="store__label"> 
+									<input
+										class="store__input" type="text" id="store__name" name="sname" value="${store.sname}"
+										placeholder="점포의 이름을 지어주세요 !"
+									/>
+									<button class="change__location">위치 수정</button>
+								</label>
+							<div class="store__update__form">
+								<section class="store__type">
+									<h2 class="store__type__title siau__h2">점포 형태</h2>
+									<div class="store__type__update">
+										<input type="radio" name="stype" value="좌판" <c:if test="${store.stype eq '좌판'}">checked="checked"</c:if> id="storeUpdate__type1"><label for="storeUpdate__type1">좌판</label> &nbsp;&nbsp;&nbsp;
+								    	<input type="radio" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if> id="storeUpdate__type2"><label for="storeUpdate__type2">매장</label>
+									</div>
+								</section>
+								
+								<section class="store__payment">
+									<h2 class="store__payment__title siau__h2">결제 방식</h2>
+									<!-- 모든 결제 방식 리스트 -->
+									<div class="store__payment__update">
+										<c:forEach var="payment" items="${paymentList}">
+					       					<input type="checkbox" name="paytype" value="${payment.payno}">${payment.paytype} &nbsp;&nbsp;&nbsp;
+				        				</c:forEach>
+									</div>
+								</section>
+								
+								<section class="store__category">
+									<h2 class="store__category__title siau__h2">취급 품목</h2>
+									<label for="store__category__contents" class="category__label">
+										<input
+											class="category__input__update"
+											type="text"
+											id="store__category__contents"
+											name="scategory"
+											placeholder="점포의 취급품목을 알려주세요 !"
+											value="${store.scategory}"
+										/>
+									</label>
+								</section>
+								
+								<section class="store__photo">
+									<h2 class="store__photo__title siau__h2">점포 사진</h2>
+									<div>
+					        			<!-- 등록된 점포 사진 -->
+					        			<img src="../images/${store.sphoto}" class="storeUpdate__photo"/>
+					      			</div>
+								</section>
 							</div>
-							<div class="storeDetail__payment">
-					        <span class="storeDetail__payment__title">
-					        <h4 class="storeDetail__h4">결제 방식</h4></span>
 					        
-					        <!-- 모든 결제 방식 리스트에서 매장 결제방식에 속한 리스트 비교하여 체크된 상태로 만들기 -->
-					        <!-- 
-					        <c:forEach var="payment" items="${paymentList}">
-					        	<c:forEach var="storePayment" items="${storePaymentList}">
-					        		<c:choose>
-							        	<c:when test="${payment.payno eq storePayment.payno}">
-							        		<input type="checkbox" name="paytype" value="${payment.payno}" checked="checked">${payment.paytype}
-							        	</c:when>
-						        		<c:otherwise>
-								        	<input type="checkbox" name="paytype" value="${payment.payno}">${payment.paytype}
-						        		</c:otherwise>
-					        		</c:choose>
-					        	</c:forEach>
-					        </c:forEach>
-						-->
-						
-						<!-- 모든 결제 방식 리스트 -->
-						<c:forEach var="payment" items="${paymentList}">
-					       <input type="checkbox" name="paytype" value="${payment.payno}">${payment.paytype}
-				        </c:forEach>
-					        
-					        
-					      </div>
-					      <div class="storeDetail__category">
-					        <span class="storeDetail__category__title">
-					        <h4 class="storeDetail__h4">취급 품목</h4></span>
-					        <input class="category__input" type="text"
-										id="store__category__contents" name="scategory"
-										placeholder="점포의 취급품목을 알려주세요 !" value="${store.scategory}" />
-					      </div>
-					      <div class="storeDetail__photo">
-					        <!-- 등록된 점포 사진 -->
-					        <img src="../images/${store.sphoto}" style="width:300px; height: 150px;"/>
-					      </div>
-							<div class="insertUpdate__error" id="msg"></div>
+					        <div class="insertUpdate__error" id="msg"></div>
 							<input type="submit" class="store__update__button" value="수정하기">
 						</form>
 					</c:when>
+					
 					<c:otherwise>
 						<!-- 등록화면 -->
-						<form id="store__update__form" class="store__update" action="/finalProject/storeInsert" method="POST">
+						<form id="store__update__form" class="store__insert" action="/finalProject/storeInsert" method="POST">
 							<input type="hidden" name="mno" value="<%=mno%>" />
 							<input type="hidden" name="slat" value="<%=slat%>" />
 							<input type="hidden" name="slng" value="<%=slng%>" />
@@ -182,7 +181,7 @@ String mno = request.getParameter("mno");
 								</section>
 							</div>
 							<div class="insertUpdate__error" id="msg"></div>
-							<input type="submit" class="store__update__button" value="등록하기">
+							<input type="submit" class="store__insert__button" value="등록하기">
 						</form>
 					</c:otherwise>
 				</c:choose>
