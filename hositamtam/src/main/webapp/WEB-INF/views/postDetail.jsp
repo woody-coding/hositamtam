@@ -89,10 +89,10 @@
 	</div>
 	<hr/>
 	<div>
-		${post.pcontent}${post.pphoto}
+		${post.pcontent}
 	</div>
 	<br/>
-	<c:if test="${post.pphoto == null}">
+	<c:if test="${post.pphoto != null}">
 	<img src="${post.pphoto}" style="width: 400px; height: 400px;"></img>
 	</c:if>
 	<br/>
