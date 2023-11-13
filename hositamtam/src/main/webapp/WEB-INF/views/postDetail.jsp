@@ -89,11 +89,12 @@
 	</div>
 	<hr/>
 	<div>
-		${post.pcontent}
+		${post.pcontent}${post.pphoto}
 	</div>
 	<br/>
-	
+	<c:if test="${post.pphoto == null}">
 	<img src="${post.pphoto}" style="width: 400px; height: 400px;"></img>
+	</c:if>
 	<br/>
 	<p id="msg"></p>
 	<hr/>
@@ -102,7 +103,7 @@
 	<label for="pno"></label>
 	<input type="hidden" name="pno" value="${post.pno}">
 	<label for="id"></label>
-	<input  type="hidden" name="id" value="${post.id}">
+	<input  type="hidden" name="id" value="${userId}">
 	<label class="col-2"  for="ccontent">댓글</label>
 	<input class="col-8" type="text" name="ccontent" id="commentContent" placeholder="댓글을 남겨보세요.">
 	<input class="col-1"  type="submit" id="commentInsert" value="등록">

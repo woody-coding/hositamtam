@@ -58,10 +58,10 @@
       <div class="mylevel">
         <section class="mylevel__info">
           <div class="mylevel__picture">
-            <img src="/finalProject/images/grade${memberInfo.grade}.png" />
+            <img src="/finalProject/images/grade${memberList.grade}.png" />
           </div>
           <div class="mylevel__name">
-            <div class="mylevel__grade">${memberInfo.nickname}님의 등급</div>
+            <div class="mylevel__grade">${memberList.nickname}님의 등급</div>
             <div>${gradeName}</div>
           </div>
         </section>
@@ -69,19 +69,14 @@
           <section class="mylevel__gage">
             <div
               class="mylevel__gage__value"
-              style="width: ${memberInfo.exp}%; background-color: #e6007e"
+              style="width: ${memberList.exp}%; background-color: #e6007e"
             >
-              ${memberInfo.exp}%
+              ${memberList.exp}%
             </div>
           </section>
         </div>
 
         <div class="mylevel__gage__data">
-<!--           <span>시장 <br />삐약이</span> -->
-<!--           <span>시장 <br />왕초보</span> -->
-<!--           <span>시장 <br />탐험가</span> -->
-<!--           <span>시장 <br />지킴이</span> -->
-<!--           <span>시장 <br />개척자</span> -->
           <span>삐약이</span>
           <span>왕초보</span>
           <span>탐험가</span>
@@ -92,7 +87,7 @@
 
       <!-- Profile -->
       <div class="myprofile">
-        <div class="myprofile__name">${memberInfo.nickname} 님 (${userId})</div>
+        <div class="myprofile__name">${memberList.nickname} 님 (${userId})</div>
         <div class="modify__delete__button">
         
           <form id="updateForm" class="myprofile__modify__form" action="/finalProject/views/myPageUpdate" method="GET">
