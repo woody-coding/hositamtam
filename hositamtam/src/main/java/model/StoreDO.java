@@ -11,6 +11,7 @@ public class StoreDO {
     private String slng;
     private String stype;
     private String sphoto;
+    private int grade;
     private int sclosecount;
     private int sfavoritecount;
     private String scategory;
@@ -220,6 +221,14 @@ public class StoreDO {
 
 	public void setRno(int rno) {
 		this.rno = rno;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	
 }

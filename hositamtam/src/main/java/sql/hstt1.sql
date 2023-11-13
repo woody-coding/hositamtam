@@ -99,8 +99,8 @@ id 		varchar2(12) 		constraint member_id_ck check (length(id) between 4 and 12)
 
 
 --* 더미 데이터)
-insert into member values ('king123', '효철짱짱맨', '123456789', '2023-10-23', '남', 24, 4, 0);
-insert into member values ('longlee', '롱다리맨', '1234567891', '2000-01-20', '여', 11, 2, 0);
+insert into member values ('king123', '효철짱짱맨', '123456789', '2023-10-23', '남', 45, 2, 0);
+insert into member values ('longlee', '롱다리맨', '1234567891', '2000-01-20', '여', 24, 1, 0);
 insert into member values ('shortlee', '숏다리맨', '123456789', '1995-03-01', '남', 0, 0, 0);
 
 

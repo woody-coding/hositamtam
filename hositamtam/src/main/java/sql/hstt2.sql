@@ -296,8 +296,69 @@ BEGIN
   COMMIT;
 END;
 /
+-- trigger 생성
+-- 리뷰 작성시 exp 1씩 증가
+CREATE OR REPLACE TRIGGER increase_exp_on_review
+AFTER INSERT ON review
+FOR EACH ROW
+BEGIN
+    UPDATE member
+    SET exp = exp + 1
+    WHERE id = :NEW.id;
+END;
+/
 
+-- 댓글 작성시 exp 1씩 증가
+CREATE OR REPLACE TRIGGER increase_exp_on_comment
+AFTER INSERT ON comments
+FOR EACH ROW
+BEGIN
+    UPDATE member
+    SET exp = exp + 1
+    WHERE id = :NEW.id;
+END;
+/
 
+-- 게시글 작성시 exp 3씩 증가
+CREATE OR REPLACE TRIGGER increase_exp_on_post
+AFTER INSERT ON post
+FOR EACH ROW
+BEGIN
+    UPDATE member
+    SET exp = exp + 3
+    WHERE id = :NEW.id;
+END;
+/
+
+-- 점포 등록시 exp 3씩 증가
+CREATE OR REPLACE TRIGGER increase_exp_on_store
+AFTER INSERT ON store
+FOR EACH ROW
+BEGIN
+    UPDATE member
+    SET exp = exp + 5
+    WHERE id = :NEW.id;
+END;
+/
+
+-- exp 에 따른 grade 설정
+CREATE OR REPLACE TRIGGER increase_grade_on_exp
+BEFORE INSERT OR UPDATE ON member
+FOR EACH ROW
+BEGIN
+    IF 	  :NEW.exp < 20 THEN
+        	:NEW.grade := 0;
+    ELSIF :NEW.exp >= 20 AND :NEW.exp < 40 THEN
+        	:NEW.grade := 1;
+    ELSIF :NEW.exp >= 40 AND :NEW.exp < 60 THEN
+        	:NEW.grade := 2;
+    ELSIF :NEW.exp >= 60 AND :NEW.exp < 80 THEN
+        	:NEW.grade := 3;
+    ELSIF :NEW.exp >= 80 THEN
+        	:NEW.grade := 4;
+    END IF;
+END;
+/
 
 COMMIT;
 
