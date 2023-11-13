@@ -51,7 +51,7 @@
 		    mno = (mno === 'null') ? null : mno;
 		    msg = (msg === 'null') ? null : msg;
 		    
-		    console.log('mno : ' + mno + '    /    typeof : ' + typeof(mno));
+		    //console.log('mno : ' + mno + '    /    typeof : ' + typeof(mno));
 		
 		    // 기존의 로컬은 무조건 삭제 후, 다시 등록
 			window.localStorage.removeItem('mnoToStore');
