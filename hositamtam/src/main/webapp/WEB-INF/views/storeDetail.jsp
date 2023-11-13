@@ -138,7 +138,7 @@
       
       <div>
         <!-- 등록된 점포 사진 -->
-        <img src="/finalProject/upload/${store.sphoto}" class="storeDetail__photo" />
+        <img src="${store.sphoto}" class="storeDetail__photo" />
       </div>
     </section>
 

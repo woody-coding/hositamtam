@@ -76,8 +76,8 @@ BEGIN
         WHEN 1 THEN '매장'
       END, -- '좌판' 또는 '매장'
       CASE MOD(i, 2)
-        WHEN 0 THEN 'testphoto.png'
-        WHEN 1 THEN 'testphoto2.jpeg'
+        WHEN 0 THEN '/finalProject/storePhotoUpload/testphoto.png'
+        WHEN 1 THEN '/finalProject/storePhotoUpload/testphoto2.jpeg'
       END, -- 랜덤하게 사진 지정
       0, -- sclosecount 초기값 0
       0, -- sfavoritecount 초기값 0
