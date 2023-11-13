@@ -68,7 +68,6 @@ String mno = request.getParameter("mno");
 										class="store__input" type="text" id="store__name" name="sname" value="${store.sname}"
 										placeholder="점포의 이름을 지어주세요 !"
 									/>
-									<button class="change__location">위치 수정</button>
 								</label>
 							<div class="store__update__form">
 								<section class="store__type">
@@ -81,6 +80,22 @@ String mno = request.getParameter("mno");
 								
 								<section class="store__payment">
 									<h2 class="store__payment__title siau__h2">결제 방식</h2>
+									<!-- 모든 결제 방식 리스트에서 매장 결제방식에 속한 리스트 비교하여 체크된 상태로 만들기 -->
+							        <!-- 
+							        <c:forEach var="payment" items="${paymentList}">
+							        	<c:forEach var="storePayment" items="${storePaymentList}">
+							        		<c:choose>
+									        	<c:when test="${payment.payno eq storePayment.payno}">
+									        		<input type="checkbox" name="paytype" value="${payment.payno}" checked="checked">${payment.paytype}
+									        	</c:when>
+								        		<c:otherwise>
+										        	<input type="checkbox" name="paytype" value="${payment.payno}">${payment.paytype}
+								        		</c:otherwise>
+							        		</c:choose>
+							        	</c:forEach>
+							        </c:forEach>
+									-->
+									
 									<!-- 모든 결제 방식 리스트 -->
 									<div class="store__payment__update">
 										<c:forEach var="payment" items="${paymentList}">
@@ -130,7 +145,6 @@ String mno = request.getParameter("mno");
 										name="sname"
 										placeholder="점포의 이름을 지어주세요 !"
 									/>
-									<button class="change__location">위치 수정</button>
 								</label>
 							<div class="store__update__form">
 								<section class="store__type">
