@@ -41,7 +41,7 @@ String mno = request.getParameter("mno");
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/loginHeader.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/footer2.css" />
     <link rel="stylesheet" href="../css/storeInsertAndUpdate.css" />
 <!--     <link rel="stylesheet" href="../css/storeDetail.css" /> -->
 
@@ -186,5 +186,6 @@ String mno = request.getParameter("mno");
 <!--         </div> -->
 <!--       </div> -->
 <!--     </footer> -->
+<%@ include file="footer.jsp" %>
   </body>
 </html>

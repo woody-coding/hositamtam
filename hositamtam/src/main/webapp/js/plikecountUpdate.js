@@ -38,6 +38,33 @@ function plikecountStatusHandler() {
 
 
 
+function commentInsertHandler(event) {
+	let msg = document.querySelector('#msg');
+	
+	// 로그인되어 있는지 아닌지 로컬스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
+	
+	if(!member) {
+		alert('로그인이 필요한 서비스 입니다.');
+	    event.preventDefault();
+	    window.location.href = '/finalProject/views/login';
+	}
+	
+	if(member) {
+		let commentValue = document.querySelector('#commentContent').value;
+		
+		if(commentValue.length < 5 || commentValue.length > 100) {
+			msg.style.color = 'red';
+			msg.innerHTML = '댓글 내용은 5글자 이상, 100글자 이하여야 합니다.';
+			event.preventDefault();
+		}
+	}
+}
+
+
+
+
 
 
 function init() {
@@ -81,6 +108,9 @@ function init() {
 		    window.location.href = '/finalProject/views/login';
 		}
 	});
+	
+	
+	document.querySelector('#commentInsert').addEventListener('click', commentInsertHandler);
 }
 
 

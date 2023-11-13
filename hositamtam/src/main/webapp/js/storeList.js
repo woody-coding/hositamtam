@@ -10,6 +10,26 @@ let mname;
 
 
 
+
+
+function isLogin(event) {
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
+	
+	if (!member) {
+		alert('로그인이 필요한 서비스 입니다.');
+	    event.preventDefault();
+	    window.location.href = '/finalProject/views/login';
+	}
+}
+
+
+
+
+
+
+
 function notStoreConfirm() {
   Swal.fire({
     title: "정말 제보를 하시겠습니까?",
@@ -307,8 +327,8 @@ function openInfo() {
 				        '</div>' +
 				    '</div>' +
 				    '<div class="btnContainer">' +
-				        '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
-                        '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '&mno=' + currentMno + '">점포 수정</a>' +
+				        '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '&mno=' + currentMno + '">점포 상세</a>' +
+                        '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '&mno=' + currentMno + '" onclick="isLogin(event);">점포 수정</a>' +
 				        '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
 				    '</div></div>'
 				});
@@ -580,8 +600,8 @@ function showMarkers() {
 		        '</div>' +
 		    '</div>' +
 		    '<div class="btnContainer">' +
-		        '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '">점포 상세</a>' +
-                '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '&mno=' + currentMno + '">점포 수정</a>' +
+		        '<a href="/finalProject/views/storeDetail?sno=' + locations[i].sno  + '&mno=' + currentMno + '">점포 상세</a>' +
+                '<a href="/finalProject/views/storeUpdate?sno=' +locations[i].sno  + '&mno=' + currentMno + '" onclick="isLogin(event);">점포 수정</a>' +
 		        '<button id="' + locations[i].sno + '" class="notStore" onclick="notStore()" disabled>이곳에 없어요!</button>' +
 		    '</div></div>'
 		});
