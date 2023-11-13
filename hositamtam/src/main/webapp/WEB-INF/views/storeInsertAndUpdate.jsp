@@ -159,13 +159,13 @@ String mno = request.getParameter("mno");
 								<section class="store__payment">
 									<h2 class="store__payment__title siau__h2">결제 방식</h2>
 									<div class="paymentType__checkbox">
-										<input type="checkbox" id="paytype" name="paytype" value="1"><label for="paytype">현금</label>
+										<input type="checkbox" id="paytype" name="paytype" value="1"><label for="paytype" class="paymentType__label1">현금</label>
 									</div>
 									<div class="paymentType__checkbox">
-										<input type="checkbox" id="paytype" name="paytype" value="2"><label for="paytype">카드</label>
+										<input type="checkbox" id="paytype" name="paytype" value="2"><label for="paytype" class="paymentType__label2">카드</label>
 									</div>
 									<div class=paymentType__checkbox2>
-										<input type="checkbox" id="paytype" name="paytype" value="3"><label for="paytype">계좌이체</label>
+										<input type="checkbox" id="paytype" name="paytype" value="3"><label for="paytype" class="paymentType__label3">계좌이체</label>
 									</div>
 								</section>
 								
