@@ -44,7 +44,7 @@ ul {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 0rem 1rem 0 1rem;
+  padding: 1rem 1rem 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,7 +91,7 @@ input::placeholder {
 .market__search {
   position: relative;
   width: 30rem;
-  border: 2px solid white;
+  border: 2px solid var(--color-white);
   height: 3rem;
   border-radius: 4px;
 }
@@ -120,7 +120,7 @@ input::placeholder {
   padding: 0;
   border: none;
   font-size: 1rem;
-  color: white;
+  color: var(--color-white);
   background-color: transparent; /* 배경색을 투명으로 설정 */
 }
 
