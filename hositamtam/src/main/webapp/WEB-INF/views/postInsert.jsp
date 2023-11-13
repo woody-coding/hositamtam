@@ -47,8 +47,8 @@
 	<%@ include file="navi.jsp" %>
 	<div class="container mt-5">
 	<h2>${market.mname} <span>시끌시끌</span></h2>
-	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div><p id="msg"></p> <!-- 위치 재설정 및 css로 꾸며야 함 -->
-	<br/>	
+	<!--  <div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div><p id="msg"></p>  위치 재설정 및 css로 꾸며야 함
+	<br/>	 -->
 	<form method="POST" action="/finalProject/views/postInsert" enctype="multipart/form-data">
 	<div class="postCategory-radio">
 	            <div class="radioBox">

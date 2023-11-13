@@ -47,8 +47,8 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div><p id="msg"></p> <!-- 위치 재설정 및 css로 꾸며야 함 -->
-	<br/>
+<!-- 	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div><p id="msg"></p> 위치 재설정 및 css로 꾸며야 함
+	<br/> -->
 	<form method="POST" action="/finalProject/views/postUpdate" enctype="multipart/form-data">
 	<div class="postCategory-radio">
 	            <div class="radioBox">
@@ -59,13 +59,7 @@
                   <option value="소통해요" ${post.pcategory eq '소통해요' ? 'selected' : ''}>소통해요</option>
                   <option value="시장소식" ${post.pcategory eq '시장소식' ? 'selected' : ''}>시장소식</option>
                 </select>
-                <!--
-                
-<input type="radio" name="pcategory" value="궁금해요" ${post.pcategory eq '궁금해요' ? 'checked' : ''}/>궁금해요
-				<input type="radio" name="pcategory" value="도와주세요" ${post.pcategory eq '도와주세요' ? 'checked' : ''}/>도와주세요
-				<input type="radio" name="pcategory" value="소통해요" ${post.pcategory eq '소통해요' ? 'checked' : ''}/>소통해요
-				<input type="radio" name="pcategory" value="시장소식" ${post.pcategory eq '시장소식' ? 'checked' : ''}/>시장소식
-    -->
+      
                   </div> 
 	</div>
 	 <div class="postHead row">
