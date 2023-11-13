@@ -108,6 +108,17 @@ function slikecountStatusHandler() {
 
 
 function reviewButton(event) {
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
+	
+	if(!member) {
+		msg.style.color = 'red';
+		msg.innerHTML = '로그인이 필요한 서비스 입니다.';
+		event.preventDefault();
+	}
+	
+	
 	let reviewInput = document.querySelector('.review__input').value;
 	
 	if(reviewInput.length < 5 || reviewInput.length > 500) {
@@ -222,47 +233,6 @@ function init() {
     }
 
 
-
-
-/*
-
-// 별점 메기기
-document.addEventListener("DOMContentLoaded", function () {
-  var stars = document.querySelectorAll("#ratingStar input");
-
-  stars.forEach(function (star, index) {
-    star.addEventListener("click", function () {
-      // 몇 번째 별이 클릭됐는지?
-      var clickedIndex = index;
-
-      // 클릭된 n번째 별과 그 이전 별 색 변경 !
-      for (var i = 0; i <= clickedIndex; i++) {
-        stars[i].style.color = "#FCD53F";
-      }
-
-      // 재클릭했을 때
-      for (var i = clickedIndex + 1; i < stars.length; i++) {
-        stars[i].style.color = "#e0e0e0";
-      }
-    });
-  });
-});
-
-
-
-
-// 별점 누르면 리뷰 창 나오게
-document.addEventListener("DOMContentLoaded", function () {
-  var reviewStars = document.querySelectorAll(".review__star");
-  var reviewForm = document.getElementById("review__form");
-
-  reviewStars.forEach(function (star) {
-    star.addEventListener("click", function () {
-      reviewForm.style.display = "block";
-    });
-  });
-});
-*/
 
 
 

@@ -37,12 +37,12 @@ body {
 /* Login */
 #login {
   display: flex;
-  height: 1116px;
+  height: 70rem;
   width: 100%;
 }
 
 .login__section {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(/finalProject/images/loginBg.png);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(/finalProject/images/busanposter.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
