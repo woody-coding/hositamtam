@@ -28,7 +28,7 @@ public class ReviewDAO {
 	public int insertReview(ReviewDO review) {
 		int rowCount = 0;
 		this.sql = "INSERT INTO review (rno, sno, id, rregdate, rcontent, rrating) " +
-		           "VALUES (seq_rno.nextval, ?, ?, TO_CHAR(sysdate, 'YYYY-MM-DD'), ?, ?)";
+		           "VALUES (seq_rno.nextval, ?, ?, sysdate, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, review.getSno());
