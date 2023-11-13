@@ -1,6 +1,6 @@
 let storeNameCheck = false;
 let storeCategoryCheck = false;
-
+let storePhotoCheck = false;
 
 
 
@@ -104,8 +104,13 @@ function insertAndUpdateButton(event) {
 	let storeCategory = document.querySelector('#store__category__contents').value;
 	let checkboxes = document.getElementsByName("paytype");
 	let msg = document.querySelector('#msg');
+	let storePhoto = document.querySelector('.store__photo__input').value;
 	let isChecked = false;
 	
+	
+	if(storePhoto.length && storePhoto.length > 0) {
+		storePhotoCheck = true;
+	}
 	
 	if(storeName.length >= 2 && storeName.length <= 20) {
 		storeNameCheck = true;
@@ -140,6 +145,12 @@ function insertAndUpdateButton(event) {
 		msg.innerHTML = '1가지 이상 결제방식을 선택해야 합니다.';
 		event.preventDefault();
     }
+    
+    if(storePhotoCheck === false) {
+		msg.style.color = 'red';
+		msg.innerHTML = '점포 등록 시, 사진은 필수로 등록하셔야 합니다!';
+		event.preventDefault();
+	}
 }
     
      
@@ -147,8 +158,7 @@ function insertAndUpdateButton(event) {
     
     
 function init() {
-	
-	document.querySelector('.store__update__button').addEventListener('click', insertAndUpdateButton);
+	document.querySelector('.store__button').addEventListener('click', insertAndUpdateButton);
 }
     
   
