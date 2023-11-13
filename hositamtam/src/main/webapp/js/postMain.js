@@ -39,6 +39,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+function writePostHandler(event) {
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
+	
+	if (!member) {
+		alert('로그인이 필요한 서비스 입니다.');
+	    event.preventDefault();
+	    window.location.href = '/finalProject/views/login';
+	}
+}
+
 
 
 
@@ -76,8 +88,8 @@ radioButtons.forEach(function(radioButton) {
 
 
 
-   function init() {
-
+function init() {
+document.querySelector('#writePost').addEventListener('click', writePostHandler);
 
 document.querySelector("#whatMarket").addEventListener("click",dropDownHandler);  
 
