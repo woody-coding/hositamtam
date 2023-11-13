@@ -27,7 +27,7 @@
 
 # Terminal
 ![git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
-![github](htttps://img.shields.io/badge/Github-FF8C00?style=flat-squre&logo=Github&logoColor=black)
+![gitHub](htttps://img.shields.io/badge/GitHub-FF8C00?style=flat-squre&logo=GitHub&logoColor=black)
 
 # Web Browsers
 ![google chrome](https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white)
