@@ -43,9 +43,8 @@
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/finalProject/js/myPage.js" charset="UTF-8"></script>
-    <script defer src="/finalProject/js/myPageUpdate.js"></script>
-    <script defer src="/finalProject/js/myPageHeader.js"></script>
-    <script defer src="/finalProject/js/anchor.js"></script>
+    <script src="/finalProject/js/myPageHeader.js"></script>
+    <script src="/finalProject/js/anchor.js"></script>
   </head>
   <body>
   
