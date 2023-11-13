@@ -9,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -24,11 +24,12 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
-    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer2.css" />
     <link rel="stylesheet" href="/finalProject/css/join.css" />
 
     <!-- JavaScript -->
+    <script defer src="/finalProject/js/anchor.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
       
@@ -40,9 +41,10 @@
 
     <!-- Main -->
     <!-- Sign Up -->
-    <section id="join" class="section">
+    <section id="join" class="join__section">
       <div class="max-container">
         <div class="join">
+          <img src="/finalProject/images/fontLogo.ico" alt="로고" class="join__logo" />
           <form method="POST" id="join__form" action="/finalProject/views/joinMember">
             <div class="join__form">
               <label for="id" class="join__label">
@@ -53,7 +55,7 @@
                   name="id"
                   placeholder="아이디" required
                 />
-                <button type="button" class="duplication__check" id="id_check" onclick="checkIdDuplicate()">중복확인</button>
+                <button type="button" class="duplication__check" id="id_check"">중복확인</button>
               </label>
               
               <label for="nickname" class="join__label">
@@ -62,9 +64,10 @@
                   type="text"
                   id="nickname"
                   name="nickname"
+                  maxlength="8"
                   placeholder="닉네임" required
                 />
-                <button type="button" class="duplication__check" id="nickname_check" onclick="checkNicknameDuplicate()">중복확인</button>
+                <button type="button" class="duplication__check" id="nickname_check"">중복확인</button>
               </label>
 
               <label for="passwd" class="join__label">
@@ -98,17 +101,22 @@
               </label>
 
               <label for="gender" class="join__label">
-                <input type="radio"  id="genderm" name="gender" value="남" checked/>남
-                <input type="radio" id="genderw" name="gender" value="여" />여
+                <input type="radio"  id="gender" name="gender" value="남" checked/>남
+                <input type="radio" id="gender" name="gender" value="여" />여
               </label>
             </div>
 
-            <div class="join__error" id="msg">${msg}</div>
+            <div class="join__error" id="msg"></div>
             
             <button class="join__button" type="submit" id="join_button">회원가입</button>
           </form>
         </div>
       </div>
+      
+      <a
+        class="joinBg__source"
+        href="https://kr.freepik.com/free-photo/delicious-food-arrangement-above-view_21745221.htm#page=8&query=market&position=3&from_view=search&track=sph"
+        >출처 Freepik</a>
     </section>
 
     <%@ include file="footer.jsp" %>

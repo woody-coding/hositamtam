@@ -9,7 +9,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -26,6 +26,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
+	
     <!-- Font Awesome -->
     <script
       src="https://kit.fontawesome.com/89490613c7.js"
@@ -49,18 +50,19 @@
     <section id="mypage__update" class="section">
       <div class="max-container">
         <div class="mypage__update">
-          <form id="mypage__update__form" action="/finalProject/AjaxController.jsp" method="POST">
+          <!--  <form id="mypage__update__form" action="/finalProject/AjaxController.jsp" method="POST">-->
             <div class="mypage__update__form">
               <label for="new-username" class="mypage__update__id">
                 ${userId}
               </label>
               
-              <label for="change-nickname" class="mypage__update__label">
+              <label for="change__nickname" class="mypage__update__label">
                 <input
                   class="mypage__update__input"
                   type="text"
                   id="change__nickname"
                   name="nickname"
+                  maxlength="8"
                   placeholder="닉네임"
                 />
                 <button class="duplication__check" id="nickname_check" type="button">중복확인</button>
@@ -93,7 +95,7 @@
 	            <button class="mypage__update__button" type="submit" id="update_button">
 	              수정하기
 	            </button>
-         	</form>
+         	<!-- </form> -->
         </div>
       </div>
     </section>

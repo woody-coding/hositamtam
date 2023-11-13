@@ -87,19 +87,21 @@ id 		varchar2(12) 		constraint member_id_ck check (length(id) between 4 and 12)
 , gender 		char(3) 			constraint member_gender_nn not null
 , exp 		number(5) 		default 0 constraint member_exp_nn not null
 , grade 		number(1) 		default 0 constraint member_grade_nn not null
+, exist 		number(1) 		default 0 constraint member_exist_nn not null
 , constraint 	member_id_pk 		primary key (id) 
 , constraint 	member_nickname_uq 	unique (nickname) 
 , constraint 	member_nickname_ck 	check (length(nickname) between 2 and 8)
 , constraint 	member_passwd_ck 	check (length(passwd) between 8 and 16)
 , constraint 	member_gender_ck 		check (gender in ('여', '남'))
 , constraint 	member_grade_ck 		check (grade between 0 and 4)
+, constraint 	member_exist_ck 		check (exist in (0,1))
 );
 
 
 --* 더미 데이터)
-insert into member values ('king123', '효철짱짱맨', '123456789', '2023-10-23', '남', 24, 4);
-insert into member values ('longlee', '롱다리맨', '1234567891', '2000-01-20', '여', 11, 2);
-insert into member values ('shortlee', '숏다리맨', '123456789', '1995-03-01', '남', 0, 0);
+insert into member values ('king123', '효철짱짱맨', '123456789', '2023-10-23', '남', 45, 2, 0);
+insert into member values ('longlee', '롱다리맨', '1234567891', '2000-01-20', '여', 24, 1, 0);
+insert into member values ('shortlee', '숏다리맨', '123456789', '1995-03-01', '남', 0, 0, 0);
 
 
 --2.	MARKET (시장 테이블)

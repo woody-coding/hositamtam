@@ -1,3 +1,18 @@
+// Header 섹션을 아래로 스크롤시 투명하게 처리
+document.addEventListener("DOMContentLoaded", function () {
+  var header = document.querySelector(".mainHeader");
+
+  header.style.opacity = 1;
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 10) {
+      header.style.opacity = 0;
+    } else {
+      header.style.opacity = 1;
+    }
+  });
+});
+
 // 페이지 스크롤
 var mHtml = $("html");
 var page = 1;
@@ -24,10 +39,6 @@ const swiper = new Swiper('.swiper', {
   direction: 'horizontal',
   loop: true,
 
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
 
   // Navigation arrows
   navigation: {
@@ -35,10 +46,7 @@ const swiper = new Swiper('.swiper', {
     prevEl: '.swiper-button-prev',
   },
 
-  // And if we need scrollbar
-  scrollbar: {
-    el: '.swiper-scrollbar',
-  },
+  
 });
 
 

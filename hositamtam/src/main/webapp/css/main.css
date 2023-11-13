@@ -23,8 +23,9 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    letter-spacing: 1.5px;
-    font-family: 'GmarketSans', serif;
+    /*letter-spacing: 1.5px;*/
+    font-family: "GmarketSans";
+    
 }
 html {
   overflow: hidden;
@@ -37,8 +38,12 @@ html, body {
   
 }
 body {
-  font-family: "GmarketSans";
   margin: 0;
+  /*height: 100vh;
+  background-image: url('../images/busanposter.png');
+  background-size: cover;  이미지를 화면에 맞게 늘리거나 축소합니다 
+  background-position: center;  이미지를 가운데 정렬합니다 
+  background-repeat: no-repeat;  배경 이미지 반복 제거 */
 }
 
 button {
@@ -48,7 +53,7 @@ body a {
     text-decoration: none;
 }
 .mainHeader__nav a{
-	color: black;
+	
 	text-decoration: none;
 }
 
@@ -72,7 +77,7 @@ body a {
   position: relative;
 }
 #section1{
-    margin-top: 45px;
+/*    margin-top: 45px;*/
     /* 3rem 나중에 바꾸기 */
     
     background-size: 100% 100%;
@@ -96,44 +101,86 @@ ul {
 	padding-top: 3rem;
 }  
  
-
-#busanExplain{
-    color: white;
-    font-size: 50px;
-    position: absolute;
-    top: 50%;
-    left: 10%;
+ 
+@keyframes narrationEffect {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+#busanExplain {
+  color: white;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 62%;
+  left: 20%;
+  text-shadow: 2px 2px 2px black;
+  animation: narrationEffect 3s ease-in-out; /* 3초 동안 나타나는 효과를 줍니다. */
+}
+
 #btnGroup{
   position: absolute;
   top: 30%;
-  left: 30%;
-  font-size: 1.5rem;
+  right: 1%;
+  font-size: 0.2rem;
   
 }
 #btnGroup i{
-font-size: 2.5rem;
+font-size: 2rem;
 }
 #btnGroup a{
  color: white;
  text-decoration: none;
+}    
+
+.category {
+  display: block;
+  margin-top: 1rem;
+  width: 5rem;
+  height: 5rem;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 5rem;
+/*  background: radial-gradient(rgb(255, 255, 255, 0.7), rgba(1, 136, 204, 0.2));*/
+  border: 0;
+  border: 2px solid white;
+  color: white;
+  background-color: transparent;
 }
-.category{
-    margin-top: 10px;
-    margin-left: 50px;
-    width: 200px;
-    height: 200px;
-    padding: 5px;
-    border-radius: 50%;
-    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
-    background: radial-gradient( #0E4194, #0188CC  );
-    /*opacity: 0.9;*/
-    /*background-color: radial-gradient( circle, #0188CC, white, #0188CC);
-*/    border: 0px;
-    color: white;
- 	
-    
-}
+
+/*.category {*/
+/*    margin-top: 0.5rem;  rem 단위로 조정 */
+/*    margin-left: 2.5rem;  rem 단위로 조정 */
+/*    width: 5rem;  rem 단위로 조정 */
+/*    height: 5rem;  rem 단위로 조정 */
+/*    padding: 0.2rem;  rem 단위로 조정 */
+/*    border-radius: 50%;*/
+/*    text-shadow: 1px 4px 0 2px rgba(0, 0, 255, 1);  파란 그림자를 추가하고 투명도 조정 */
+/*    background: radial-gradient(rgba(14, 65, 148, 0.1), rgba(1, 136, 204, 0.7));  투명한 배경 적용 */
+/*    border: 0;  테두리 제거 */
+/*    color: white;*/
+/*}*/
+
+/*.category{*/
+/*    margin-top: 10px;*/
+/*    margin-left: 50px;*/
+/*    width: 200px;*/
+/*    height: 200px;*/
+/*    padding: 5px;*/
+/*    border-radius: 50%;*/
+/*    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);*/
+/*    background: radial-gradient( #0E4194, #0188CC  );*/
+/*    opacity: 0.9;*/
+/*    background-color: radial-gradient( circle, #0188CC, white, #0188CC);*/
+/*    border: 0px;*/
+/*    color: white;}*/ 	
+
+
 .category:active {
   box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
   position: relative;
@@ -231,12 +278,12 @@ font-size: 2.5rem;
 /*========================= section2===================================== */
 .hosiInfo{
   width: 80%;
-  height: 50vh;
+  
   /* border: 4px solid #0E4194; */
   margin: 0 auto;
 }
 .hosiInfo p {
- font-size: 2rem;
+ font-size: 1.5rem;
  text-align: center;
  color: #0E4194;
 }
@@ -256,9 +303,15 @@ font-size: 2.5rem;
 .grade1, .grade2, .grade3, .grade4, .grade5{
  width: 250px;
  height: 50px;
+ text-align: center;
+ padding-top: 0.9rem;
 }
-.grade1{
 
+.grade1, .grade2, .grade3, .grade4 {
+	color: var(--color-background);
+}
+
+.grade1{
   background-color: #e6007e;
 }
 .grade2{
@@ -269,11 +322,10 @@ font-size: 2.5rem;
 }
 .grade4{
   background-color: #0E4194;
-  
 }
 .grade5{
   background-color: gold;
-  
+  font-weight: bold;
 }
 .gradeNameBox{
   display: flex;
@@ -294,7 +346,7 @@ font-size: 2.5rem;
   background-color: #333333;
   opacity: 0.9;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -324,20 +376,67 @@ font-size: 2.5rem;
 } 
 .fa-github{
   color: white;
+  font-size: 1.5rem;
+  /*margin-bottom: 1rem;*/
 }
-.bi-arrow-up-circle-fill{
-  color: white;
 
+.fa-github:hover {
+	color: var(--color-accent);
+}
+
+.bi-arrow-up-circle-fill {
+  color: white;
 }
 
 .dropDownMenu a{
   color: #333333;
 }
 
-.swiper {
+.carousel{
+	margin: 0 auto;
+	border-radius: 25px;
+	padding: 2rem;
+	width: 1200px;
+	height: 600px;
+	background-color: white;
+	/*border: 2px solid #0188CC;*/
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+
+.btn {
+	margin: 1rem 0;
+}
+
+
+.carousel-item {
   width: 100%;
   height: 600px;
+
 }
+.carousel-item img{
+	
+  width: 100%;
+  height: 500px;
+  margin-bottom: 1rem;
+ border-radius: 25px;
+}
+.carousel-caption{
+	padding-top: 3rem;
+	font-size: 1rem;
+	line-height: 50px;
+}
+#section2 h4{
+	text-align: center;
+	color: #0e4194;
+	font-size: 1.5rem;
+}
+.expInfo{
+	width: 1250px;
+	margin: 0 auto;
+	text-align: right;
+	}
+
 /*====================================================================*/
 @keyframes pong {
   from {

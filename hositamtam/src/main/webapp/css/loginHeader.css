@@ -21,10 +21,10 @@
 
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
 }
 
@@ -43,23 +43,27 @@ ul {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 0;
+  padding: 1rem 1rem 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  background-color: var(--color-background);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+/*  background-color: var(--color-background);*/
+/*  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,*/
+/*    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;*/
+  background-color: transparent;
+  box-shadow:none;
 }
 
 .mainHeader__logo__img {
-  width: 150px;
+  width: 200px;
   padding: 0 1rem;
 }
 
+/* 원본
 .market__search {
   border: 2px solid var(--color-gray);
+  height: 3rem;
   border-radius: 4px;
 }
 
@@ -71,7 +75,6 @@ ul {
   font-size: 1.1rem;
   border: none;
 }
-
 .market__searchButton {
   width: 3rem;
   height: 3rem;
@@ -81,6 +84,44 @@ ul {
   color: var(--color-gray);
   background-color: white;
 }
+*/
+
+.market__search {
+  position: relative;
+  width: 30rem;
+  border: 2px solid var(--color-gray);
+  height: 3rem;
+  border-radius: 4px;
+}
+
+.market__searchInput {
+  position: absolute;
+  top: 0;
+/*  left: 3rem;  searchButton의 너비만큼 왼쪽으로 이동 */
+/*  width: calc(100% - 3rem);*/
+  width: calc(100%);
+  height: 2.92rem;
+  align-items: center;
+  padding: 0 0 0 3rem;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
+.market__searchButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  font-size: 1rem;
+  color: var(--color-gray);
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
+
 
 .market__searchButton:hover {
   color: var(--color-accent);
@@ -89,6 +130,7 @@ ul {
 .mainHeader__menu {
   display: flex;
   gap: 4px;
+  margin-top: 1rem;
 }
 
 .mainHeader__menu__item {
@@ -99,13 +141,27 @@ ul {
 }
 
 .mainHeader__menu__item:hover {
+  color: var(--color-primary);
   border: 1.5px solid var(--color-accent);
   border-radius: 0.5rem;
 }
 
+.dropdown-menu.show {
+	text-align: center;
+}
+
+.mainHeader__menu__li {
+	margin: 0.3rem 0;
+}
+
+.mainHeader__menu__category:hover {
+	color: var(--color-accent);
+}
+
 .mainHeader__menu__item.active {
-  border: 1px solid var(--color-accent);
-  border-radius: 4px;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-accent);
+  border-radius: 0.5rem;
 }
 
 

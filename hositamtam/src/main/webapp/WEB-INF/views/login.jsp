@@ -10,7 +10,7 @@
     <title>호시탐탐</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/finalProject/images/favicon.ico" type="image/x-icon" />
 
     <!-- G-Market Fonts -->
     <link
@@ -25,13 +25,14 @@
     ></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/finalProject/css/loginHeader.css" />
-    <link rel="stylesheet" href="/finalProject/css/footer.css" />
+    <link rel="stylesheet" href="/finalProject/css/whiteBgHeader.css" />
+    <link rel="stylesheet" href="/finalProject/css/footer2.css" />
     <link rel="stylesheet" href="/finalProject/css/login.css" />
 
     <!-- JavaScript -->
+    <script defer src="/finalProject/js/anchor.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
       
     <script src="/finalProject/js/login.js" charset="UTF-8"></script>
     <script>
@@ -47,29 +48,11 @@
     <%@ include file="navi.jsp" %>
 
     <!-- Main -->
-    <!-- Category -->
-    <!-- <section class="category">
-      <div class="category__menu">
-        <ul class="category__list">
-          <li><a class="category__contents">농산물</a></li>
-          <li><a class="category__contents">가공식품</a></li>
-          <li><a class="category__contents">축산물</a></li>
-          <li><a class="category__contents">의류</a></li>
-          <li><a class="category__contents">신발</a></li>
-        </ul>
-        <ul class="category__list">
-          <li><a class="category__contents">음식점</a></li>
-          <li><a class="category__contents">수산물</a></li>
-          <li><a class="category__contents">가정용품</a></li>
-          <li><a class="category__contents">기타</a></li>
-        </ul>
-      </div>
-    </section> -->
-
     <!-- Login -->
-    <section id="login" class="section">
+    <section id="login" class="login__section">
       <div class="max-container">
         <div class="login">
+        <img src="/finalProject/images/fontLogo.ico" alt="로고" class="login__logo" />
           <form method="POST" id="login__form" action="/finalProject/views/loginMember">
             <div class="login__form">
               <label for="id" class="login__label">
@@ -94,7 +77,7 @@
                 <br />
               </label>
 
-              <div class="login__error" id="msg">${error}</div>
+              <div class="login__error" id="msg">${msg}</div>
 
               <div class="login__signup__button">
                 <button class="login__button" type="submit" id="login_button">로그인</button>
@@ -104,6 +87,11 @@
           </form>
         </div>
       </div>
+      
+      <a
+        class="loginBg__source"
+        href="https://kr.freepik.com/free-photo/delicious-food-arrangement-above-view_21745221.htm#page=8&query=market&position=3&from_view=search&track=sph"
+        >출처 Freepik</a>
     </section>
 
     <!-- Footer -->

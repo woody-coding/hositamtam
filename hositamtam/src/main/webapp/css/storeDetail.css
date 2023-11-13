@@ -14,6 +14,7 @@
   --color-pink: #e6007e;
   --color-purple: #662583;
   --color-gray: #a6a6a6;
+  --color-lightgray: #d9d9d9;
   --color-reviewIcon: #d4cfd8;
   --color-starIcon: #fcd53f;
 
@@ -23,6 +24,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 html {
@@ -30,8 +32,13 @@ html {
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
+  /*background-image: url('../images/storeDetailBg1.png');
+  background-size: cover;  이미지를 화면에 맞게 늘리거나 축소합니다 
+  background-position: center;  이미지를 가운데 정렬합니다 
+  background-repeat: no-repeat;  배경 이미지 반복 제거 */
+  /*background-color: var(--color-gray);*/
+  background-color: #faf7f7;
 }
 
 a {
@@ -46,44 +53,64 @@ a {
 }
 
 .storeDetail__hr {
-  background: var(--color-accent);
+  background: var(--color-lightgray);
   height: 1px;
   border: 0;
-  width: 80%;
+  width: 85%;
+  margin: 1rem 0 1rem 5rem;
+  opacity: 1;
 }
 
 .storeDetail__h4 {
   margin: 0;
+  font-weight: bold;
+}
+
+/* Main */
+#storeDetail__main {
+	background-color: white;
 }
 
 /* Store Detail */
 #storeDetail {
-  width: 960px;
+  width: 60rem;
   text-align: center;
   margin-top: 10rem;
   padding: 2rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
 }
 
 .storeDetail__info {
   display: block;
   font-size: 2rem;
   color: var(--color-gray);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.storeDetail__star__like {
+	display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0 0 1.5rem 20rem;
 }
 
 .storeDetail__like {
+	display: flex;
+	gap: 0.7rem;
   font-size: 2rem;
-  color: var(--color-gray);
+  /*color: var(--color-gray);*/
   border: none;
   background-color: var(--color-background);
   margin-right: 1rem;
   /* pulse */
   width: 2.3rem;
-  height: 2.3rem;
+  /*height: 2.3rem;*/
   border-radius: 50%;
-  line-height: 2.3rem;
+  /*line-height: 2.3rem;*/
+  line-height: normal;
   font-size: 1.5rem;
+  color: red;
 }
 
 .storeDetail__like:hover {
@@ -91,7 +118,7 @@ a {
 }
 
 /* pulse */
-.storeDetail__like {
+/*.storeDetail__like {
     &:hover {
       box-shadow: 0 0 0 18px transparent;
       animation: pulse 1s;
@@ -101,7 +128,7 @@ a {
   from {
     box-shadow: 0 0 0 0 #E6007E;
   }
-}
+}*/
 
 /* pulse */
 /*.storeDetail__like{
@@ -129,7 +156,8 @@ a {
 }*/
 
 .storeDetail__like__count {
-  font-size: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   color: black;
 }
 
@@ -151,7 +179,7 @@ a {
 
 .storeDetail__star {
   color: black;
-  margin-bottom: 1rem;
+  /*margin-bottom: 1rem;*/
 }
 
 .storeDetail__starIcon {
@@ -164,7 +192,8 @@ a {
   display: flex;
   align-items: center;
   text-align: center;
-  margin: 0 0 1rem 14.5rem;
+  /*margin: 0 0 1rem 14.5rem;*/
+  margin: 0 0 1rem 16rem;
   font-size: 1.3rem;
 }
 
@@ -175,7 +204,7 @@ a {
 }
 
 .storeDetail__storeInsert__name {
-  margin-right: 3.8rem;
+  margin-right: 3.55rem;
 }
 
 .storeDetail__photo {
@@ -188,14 +217,20 @@ a {
 
 /* Review */
 #review {
-  width: 100%;
+  width: 60rem;
   text-align: center;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /*border-top: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);*/
 }
 
 .review__info {
   display: block;
   font-size: 1.7rem;
-  margin: 2.5rem 0 1.7rem;
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+  
 }
 
 .review__level {
@@ -205,7 +240,6 @@ a {
 .review__level__photo {
   width: 2rem;
   margin-right: 1rem;
-  padding-top: 1rem;
 }
 
 .review__ask {
@@ -239,7 +273,7 @@ a {
 }
 
 #review__form {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .review__form {
@@ -262,6 +296,7 @@ a {
   border: none;
   background-color: var(--color-primary);
   border-radius: 5px;
+  margin-bottom: 2.5rem;
 }
 
 .review__button:hover {
@@ -270,12 +305,16 @@ a {
 
 /* Review Contents */
 #review__contents {
-  width: 100%;
+  width: 60rem;
+  background-color: white;
+  padding: 2.5rem 0 3rem;
+  margin-bottom: 5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .review__contents__total {
   font-size: 1.3rem;
-  margin: 0 0 0.5rem 10rem;
+  margin: 0 0 0.5rem 6rem;
 }
 
 .review__contents__star {
@@ -290,14 +329,13 @@ a {
   display: grid;
   grid-template-columns: 1fr 9fr;
   align-items: center;
-  margin: 1rem 10rem 1rem 10rem;
+  margin: 1rem 5rem 1rem 5rem;
 }
 
 .review__contents__photo {
   color: var(--color-gray);
   grid-row: span 2;
   font-size: 2.5rem;
-  padding: 10px 0 0 0;
 }
 
 .review__contents__img {
@@ -315,6 +353,14 @@ a {
 
 .review__contents__ownerInfo {
   font-weight: bolder;
+}
+
+.reviewDelete__button {
+	border: none;
+	border-radius: 5px;
+	padding-top: 0.2rem;
+	margin-left: 0.5rem;
+	background-color: var(--color-lightgray);
 }
 
 .review__contents__value {

@@ -1,3 +1,10 @@
+let storeNameCheck = false;
+let storeCategoryCheck = false;
+
+
+
+
+
 // 항목 선택시 버튼색 변경
 document.addEventListener("DOMContentLoaded", function () {
   var typeButtons = document.querySelectorAll(".store__type__button1, .store__type__button2");
@@ -58,3 +65,85 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// 최소 하나의 결제방식이 필수로 선택되어야 함
+ function validatePayment() {
+        var checkboxes = document.getElementsByName('paytype');
+        
+        // 최소한 하나의 체크박스가 선택되었는지 확인합니다.
+        var isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        
+        // 최소한 하나가 선택되지 않았다면 알림창을 띄우고 false를 반환합니다.
+        if (!isChecked) {
+            alert("적어도 하나 이상의 결제 방식을 선택해주세요.");
+            return false;
+        }
+        return true;
+    }
+
+    // 폼이 제출될 때 validatePayment 함수를 실행합니다.
+    document.querySelector('form').addEventListener('submit', validatePayment);
+
+    
+    
+    
+    
+    
+    
+    
+    
+function insertAndUpdateButton(event) {
+	let storeName = document.querySelector('#store__name').value;
+	let storeCategory = document.querySelector('#store__category__contents').value;
+	let checkboxes = document.getElementsByName("paytype");
+	let msg = document.querySelector('#msg');
+	let isChecked = false;
+	
+	
+	if(storeName.length >= 2 && storeName.length <= 20) {
+		storeNameCheck = true;
+	}
+	
+	if(storeCategory.length >= 2 && storeCategory.length <= 10) {
+		storeCategoryCheck = true;
+	}
+	
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            isChecked = true;
+            break;
+        }
+    }
+
+	
+	if(storeNameCheck === false) {
+		msg.style.color = 'red';
+		msg.innerHTML = '점포명은 2글자 이상, 20글자 이하여야 합니다.';
+		event.preventDefault();
+	}
+	
+	if(storeCategoryCheck === false) {
+		msg.style.color = 'red';
+		msg.innerHTML = '점포 카테고리는 2글자 이상, 10글자 이하여야 합니다.';
+		event.preventDefault();
+	}
+	
+    if (isChecked === false) {
+		msg.style.color = 'red';
+		msg.innerHTML = '1가지 이상 결제방식을 선택해야 합니다.';
+		event.preventDefault();
+    }
+}
+    
+    
+    
+    
+    
+function init() {
+	
+	document.querySelector('.store__update__button').addEventListener('click', insertAndUpdateButton);
+}
+    
+  
+    
+window.addEventListener('load', init);    

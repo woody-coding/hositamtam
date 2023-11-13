@@ -21,10 +21,10 @@
 
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
 }
 
@@ -41,6 +41,12 @@ body {
   width: 100%;
 }
 
+.login__section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(/finalProject/images/loginBg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
 .login {
   display: block;
   align-items: center;
@@ -50,6 +56,15 @@ body {
   width: 450px;
   border: 3px solid var(--color-accent);
   border-radius: 50px;
+  margin-left: 55rem;
+  /*margin-left: 115%;*/
+  /* background-color: var(--color-background); */
+  background-color: #faf7f7;
+}
+
+.login__logo {
+  width: 12rem;
+  margin: 0;
 }
 
 .login__label {
@@ -57,11 +72,13 @@ body {
   justify-content: center;
   align-items: center;
   margin: 1rem;
+  
 }
 
 .login__error {
   color: red;
-  margin: 1rem 0;
+  /*margin: 1rem 0;*/
+  margin: 2rem 0;
 }
 
 .login__input {
@@ -72,6 +89,7 @@ body {
   border: 3px solid var(--color-primary);
   border-radius: 4px;
   font-size: 1rem;
+  background-color: #faf7f7;
 }
 
 #login__form {
@@ -114,4 +132,15 @@ body {
 
 .signup__button:hover {
   background-color: var(--color-accent);
+}
+
+.loginBg__source {
+  position: fixed;
+  color: var(--color-gray);
+  font-size: 0.8rem;
+  width: 3rem;
+  height: 3rem;
+  bottom: 12rem;
+  right: 1rem;
+  text-decoration: none;
 }

@@ -21,10 +21,10 @@
 
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 body {
-  font-family: "GmarketSans";
   margin: 0;
 }
 
@@ -50,10 +50,6 @@ body {
   width: 450px;
   border: 3px solid var(--color-accent);
   border-radius: 50px;
-}
-
-#mypage__update__form {
-  margin: 0;
 }
 
 .mypage__update__id {
@@ -108,4 +104,8 @@ body {
 
 .mypage__update__button:hover {
   background-color: var(--color-accent);
+}
+
+#error_msg {
+	color: red;
 }

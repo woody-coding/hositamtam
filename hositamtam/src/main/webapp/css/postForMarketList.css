@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  font-family: "GmarketSans";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+ 
+  margin: 0;
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  #section1{
+      margin-top: 6rem;
+     
+      padding-top: 10px;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      
+  }
+
+a{
+    text-decoration: none;
+}
+td a{
+	 text-decoration: none;
+	 color: black;
+}
+td,tr{
+	text-align: left;
+	font-size: 1rem;
+}
+button {
+	display: inline-block;
+}
+.container img{
+	text-align: center;
+	
+}
+.container {
+	margin-bottom: 2rem;
+}
+.list {
+    display: flex;
+   clear: both;
+   
+    padding: 0;
+    border-bottom: 2px solid #0188CC;
+}
+.list button:hover{
+    
+    border: 1px solid #0188CC;
+    
+}
+
+
+.firstShow{
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    background-image: url(../images/부기.png);
+    z-index: -1;
+    opacity: 0.4;
+        background-size: 100% 100%;
+
+}
+
+
+
+  
+.show {
+  display: block;
+}
+  
+
+#mkName{
+    font-size: 40px;
+}
+#mkNameBox{
+	color: #0188CC;
+}
+#submit{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+}
+.submitBox{
+    text-align: center;
+
+}
+
+.mkNameList{
+	z-index: 5;
+    position: absolute;
+    top: 150px;
+    width: 1400px;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.mkNameList span{
+    margin-right: 20px;
+}
+
+/*
+.show-mkNameList{
+  
+    visibility: visible;
+    opacity: 1;
+    
+}*/
+
+
+
+
+#mno {
+	
+	border-radius: 5px;
+	text-shadow: 1px 1px 0px  white;
+	background-color: transparent;
+	color: black;
+	border: 0px;
+	padding: 2px;
+	font-size: 1.2rem;
+	text-align: left;
+	margin-bottom: 2px;
+}
+#mno:hover {
+	background-color: #0e4194;
+	color: white;
+	cursor : url(../images/cursor.png) 20 30, auto;
+}
+#whatMarket{
+	box-sizing: border-box;
+	border-radius: 4px;
+	background-color: #0e4194;
+	color: white;
+	border: 0px;
+	padding: 4px;
+	width: 150px;
+	font-size: 1.2rem;
+}
+th {
+    min-width: 100px; 
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid #0e4194;     
+    }

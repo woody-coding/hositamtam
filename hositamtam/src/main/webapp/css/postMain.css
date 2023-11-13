@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "GmarketSans";
 }
 
 html {
@@ -7,7 +8,7 @@ html {
 }
 
 body {
-  font-family: "GmarketSans";
+ 
   margin: 0;
 }
 
@@ -42,6 +43,9 @@ button {
 	text-align: center;
 	
 }
+.container {
+	margin-bottom: 2rem;
+}
 #postlistTable th,
 #postlistTable td {
   border-bottom: 1px solid #0e4194;
@@ -52,8 +56,8 @@ button {
 }
 .list {
     display: flex;
+   clear: both;
    
-    margin: 0;
     padding: 0;
     border-bottom: 2px solid #0188CC;
 }
@@ -63,12 +67,12 @@ button {
     clear: both;
 }*/
 .tab-button{
-	 display: block;
-	 width: 120px;
+	display: block;
+	width: 120px;
     padding: 5px 5px 5px 5px;
     float: left;
-   margin-bottom: 2px;
-    margin-left: 2px;
+   	margin-bottom: 5px;
+  	margin-right: 2px;
     color: black;
     text-decoration: none;
     border: 1px solid black;
@@ -110,17 +114,20 @@ button {
 }
 
   
-  .show {
-    display: block;
-  }
+.show {
+  display: block;
+}
   
-  .left{
-    display: flex;
+.left{
+  display: flex;
     
-  }
+}
 
 #mkName{
     font-size: 40px;
+}
+#mkNameBox{
+	color: #0188CC;
 }
 #submit{
     width: 100px;
@@ -139,9 +146,11 @@ button {
     border-radius: 5px;
     background-color: #0188CC;
     color: white;
+   
 }
 
 .mkNameList{
+
     position: absolute;
     width: 1400px;
     visibility: hidden;
@@ -163,128 +172,38 @@ button {
     border: 0;
     background-color: white;
 }
-.commentBox button{
+
+.modify{
     width: 80px;
-    border: 0;
-    background-color: #0188CC;
-}
-.commentList #submit{
-    width: 80px;
-    height: 40px;
-    border: 0;
-    background-color: #0188CC;
-}
-#delete{
-    width: 80px;
-    height: 40px;
+    height: 30px;
     border: 0;
     background-color: #eeeeee;
+    border-radius: 5px;
+    line-height: 30px;
 }
-#postModify{
-    width: 80px;
-    height: 40px;
-    border: 0;
-    background-color: #eeeeee;
+.modify:hover{
+    background-color: #0e4194;
+    color: white;
 }
 .btn-primary{
     background-color: #0e4194;
 }
 
-/* .market_form{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button{
-	margin-bottom: 10px;
+
+.market_form label{
+	margin:0;
+	padding:0;
+	
 }
 
 
-.market_form > .flex-container {
-  display: flex-flow;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 10px;
-} */
 
-
-
-
-.market_form > button[name^="ㄱ-가"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㄴ-나"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㄷ-다"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㄹ-라"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅁ-마"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅂ-바"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅅ-사"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅇ-아"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅈ-자"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅊ-차"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅋ-카"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅌ-타"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅍ-파"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
-.market_form > button[name^="ㅎ-하"]{
-	display: flex;
-  	flex-direction: column;
-  	justify-content: space-between;
-}
 
 #mno {
-	border-radius: 2px;
-	background-color: gray;
-	color: white;
+	font-family: "GmarketSans";
+	border-radius: 5px;
+	background-color: white;
+	color: black;
 	border: 0px;
 	padding: 2px;
 	font-size: 1.05rem;
@@ -293,6 +212,7 @@ button {
 }
 #mno:hover {
 	background-color: #0e4194;
+	color: white;
 }
 #whatMarket{
 	border-radius: 2px;

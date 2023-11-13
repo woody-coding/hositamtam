@@ -1,6 +1,11 @@
 <%@ page contentType="application/json; charset=UTF-8"%>
 
-
+<%
+	System.out.println("joke");
+	System.out.println("command=" + request.getParameter("command"));
+	System.out.println("slat=" + request.getParameter("slat"));
+	System.out.println("slng=" + request.getParameter("slng"));
+%>
 <jsp:useBean id="postDAO" class="model.PostDAO" />
 <jsp:useBean id="marketDAO" class="model.MarketDAO" />
 <jsp:useBean id="storeDAO" class="model.StoreDAO" />
@@ -24,7 +29,6 @@
 		if(!cateno.equals("1") && !cateno.equals("2") && !cateno.equals("3") && !cateno.equals("4") && !cateno.equals("5") && !cateno.equals("6") && !cateno.equals("7") && !cateno.equals("8") && !cateno.equals("9")) {
 			cateno = "11";
 		}
-		
 		out.println(marketDAO.getMarketListByItem((Integer.parseInt(cateno))));
 	}
 	else if(command != null && command.equals("getMarketListBySearch")) {
@@ -43,6 +47,12 @@
         	out.println(marketDAO.getMarketLatLng(0));
         }	
 	}
+	
+//신성추가 : 점포 최신 등록순	
+	else if(command != null && command.equals("getRecentInsert")) {
+		out.println(storeDAO.getRecentInsert((Integer.parseInt(mno))));
+	}
+//
 	else if(command != null && command.equals("getManyReview")) {
 		out.println(storeDAO.getManyReview((Integer.parseInt(mno))));
 	}
@@ -60,11 +70,11 @@
 	}
 	// 글 좋아요 상태 확인
 	else if(command != null && command.equals("updateLikeStatus")) {
-		out.println(postDAO.updateLikeStatus((Integer.parseInt(pno)), id));
+		out.println(postDAO.updateLikeStatus((Integer.parseInt(pno))));
 	}
 	// 점포 찜 상태 확인
 	else if(command != null && command.equals("updateLikeStoreStatus")) {
-		out.println(storeDAO.updateLikeStoreStatus((Integer.parseInt(sno)), id));
+		out.println(storeDAO.updateLikeStoreStatus((Integer.parseInt(sno))));
 	}
 	
 	// 점포 제보
@@ -75,6 +85,14 @@
 	else if(command != null && command.equals("notStoreStatus")) {
 		out.println(storeDAO.notStoreStatus((Integer.parseInt(sno)), id));
 	}
+	
+	// 점포 등록
+	else if(command != null && command.equals("insertStore")) {
+		RequestDispatcher dis = request.getRequestDispatcher("/views/storeInsert");
+		dis.forward(request, response);
+
+	}
+	
 	
 	out.flush();
 %>

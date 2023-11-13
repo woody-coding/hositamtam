@@ -5,10 +5,6 @@ let mapOptions = {};
 let map;
 let currentMno;
 
-
-
-
-
 // 초기화 함수
 function init() {
 
@@ -21,36 +17,21 @@ function init() {
         }
     });
 
-
-
-
-
-
 	const keyCate = window.localStorage.getItem('KeywordAndCateno');
 	const KeywordAndCateno = JSON.parse(keyCate);
 
+	
 
 	if(KeywordAndCateno.msg) {
 				
-		let errMsg = KeywordAndCateno.msg;
-					
-		// 기존 jsp에 있던 div 태그들 숨기기
-		document.querySelector("#map").style.display = "none";
-        document.querySelector("#howGetMarket").style.display = "none";
-        document.querySelector("#marketContent").style.display = "none";
-		
-        // 에러 메시지를 표시할 요소 선택
-        document.querySelector("#marketErrorMsg").innerHTML = errMsg;
-        
-        // 마커 및 기존 컨텐츠를 지우기
-        removeMarker();
+		window.location.href = '/finalProject/views/error';
 	}
 
     else if (KeywordAndCateno.keyword) {
 
         let currentKeyword = KeywordAndCateno.keyword;
         
-        document.querySelector('#howGetMarket').innerHTML = "'"+ currentKeyword + "' (으)로 검색된 결과입니다.";	
+        document.querySelector('#howGetMarket').innerHTML = "'"+ currentKeyword + "'(으)로 조회한 결과입니다.";	
         
         
         xhr.onreadystatechange = marketAjaxHandler;
@@ -62,7 +43,10 @@ function init() {
     
     else if(KeywordAndCateno.cateno) {
 		
-		let currentCateno = KeywordAndCateno.cateno;
+		let currentCateno = KeywordAndCateno.cateno + '';
+		
+		
+		
 		let currentCate = '';
 		
 		document.querySelector('#howGetMarket').innerHTML = '';
@@ -87,10 +71,11 @@ function init() {
 			currentCate = '기타';
 		}
 		
-		if(currentCateno !== '1' && currentCateno !== '2' && currentCateno !== '3' && currentCateno !== '4' && currentCateno !== '5' && currentCateno !== '6' && currentCateno !== '7' && currentCateno !== '8' && currentCateno !== '9') {
-			document.querySelector('#marketErrorMsg').innerHTML = "잘못된 접근입니다. 올바른 방식으로 카테고리 선택을 해주세요!"+ currentCateno + "추가";
+		currentCateno = currentCateno * 1;		
+		if(currentCateno < 1 || currentCateno > 9) {
+			window.location.href = '/finalProject/views/error';
 		} else {
-			document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'에 특화된 전통시장 목록 입니다.";
+			document.querySelector('#howGetMarket').innerHTML = "'" + currentCate + "'(으)로 조회한 결과입니다.";
 
 		}
 		
@@ -104,8 +89,6 @@ function init() {
 }
 
 
-
-
 // 해당 점포 정보에 연동된 인포윈도우창을 지도 상에서 띄우기
 function openInfo() {
 	
@@ -116,10 +99,16 @@ function openInfo() {
             
 	         var infowindow = new naver.maps.InfoWindow({
 	       /*     content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
-	     	 */ content: '<div class="goMarket"><div class="up">' + locations[i].mname + '</div><div class="down"><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a></div></div>', 
-	                    maxWidth: 300,
-	                    borderWidth: 0,
-	                    disableAnchor: true, 
+	     	 */ content:    '<div class="goMarket">' +
+        '<div class="row">' +
+            '<p class="mkName" id="'+ locations[i].mno +'">' + locations[i].mname + '</p>' +
+            '<p id="mkaddr">' + locations[i].maddr + '</p>' +
+            '<p class="mkEtc"><i class="fa-solid fa-restroom"></i> ' + locations[i].mtoilet + ' <i class="fa-solid fa-square-parking"></i> ' + locations[i].mparking + '<p>' +
+            '<a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>' +
+        '</div>' +
+    '</div>',
+
+  
 		 	});
 		 	
             infowindow.open(map, marker);
@@ -131,15 +120,6 @@ function openInfo() {
     }
 }
 
-
-
-
-
-
-
-
-
-
 // marketAjaxHandler 함수
 function marketAjaxHandler() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -148,33 +128,14 @@ function marketAjaxHandler() {
 
         const allMarketList = JSON.parse(xhr.responseText);
         
-        
-        
-        
-        
         // marketErrorMsg 값(내용)을 가져옵니다.
         const marketErrorMsg = allMarketList[0].marketErrorMsg;
         
         // 에러 메시지가 있는지 확인하고 화면에 표시
         if (marketErrorMsg) {
 			
-			// 기존 jsp에 있던 div 태그들 숨기기
-			document.querySelector("#map").style.display = "none";
-            document.querySelector("#howGetMarket").style.display = "none";
-            document.querySelector("#marketContent").style.display = "none";
-			
-            // 에러 메시지를 표시할 요소 선택
-            document.querySelector("#marketErrorMsg").innerHTML = marketErrorMsg;
-            
-            // 마커 및 기존 컨텐츠를 지우기
-            removeMarker();
+			window.location.href = '/finalProject/views/error';
         }
-        
-        
-        
-        
-        
-        
         
 		// 지도 생성
 		mapOptions = {  			//35.21003 129.0689
@@ -190,16 +151,11 @@ function marketAjaxHandler() {
 		
 		map = new naver.maps.Map('map', mapOptions);
 
-
-
-
-
-        
         let marketContents ='';
         
         
         if (allMarketList.length === 0) {
-            marketContents = '시장 정보가 없습니다!';
+           	window.location.href = '/finalProject/views/error';
         } 
         
         
@@ -209,26 +165,18 @@ function marketAjaxHandler() {
 				allMarketList[i].mtel = '';
 			}
 			
-			//marketContents += '<div id="'+ allMarketList[i].mno +'" class="personalMcontent">' + allMarketList[i].mname + '|' + allMarketList[i].mtype + 
-			//'|' + allMarketList[i].maddr + '| 화장실 여부: ' + allMarketList[i].mtoilet + '| 주차가능 여부: ' + allMarketList[i].mparking + '|' + allMarketList[i].mtel + '</div>';
 			
 			marketContents += '<div id="'+ allMarketList[i].mno +'" class="mkcontainer">' +
 					            '<div class="row">' +
 					                '<p class="mkName" id="'+ allMarketList[i].mno +'">' + allMarketList[i].mname + '</p>' +
 					                '<p id="mkaddr">' + allMarketList[i].maddr + '</p>' +
-					                '<p class="mkEtc">화장실 ' + allMarketList[i].mtoilet + ' 주차장 ' + allMarketList[i].mparking + '<p>' +
+					                '<p class="mkEtc"><i class="fa-solid fa-restroom"></i> ' + allMarketList[i].mtoilet + ' <i class="fa-solid fa-square-parking"></i> ' + allMarketList[i].mparking + '<p>' +
 					            '</div>' +
 					        '</div>'
 		}
 
 		
-		
 		document.querySelector('#marketContent').innerHTML = marketContents;
-        
-        
-        
-        
-        
         
         for (let i in allMarketList) {
             const mno = parseFloat(allMarketList[i].mno);
@@ -264,15 +212,6 @@ function marketAjaxHandler() {
 }
 
 
-
-
-
-
-
-
-
-
-
 // 지도 위에 마커를 표시하는 함수
 function showMarkers() {
     for (var i = 0; i < locations.length; i++) {
@@ -283,10 +222,14 @@ function showMarkers() {
 
         var infowindow = new naver.maps.InfoWindow({
        /*     content: '<div>' + locations[i].mname + '</div><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>'
-      */ content: '<div class="goMarket"><div class="up">' + locations[i].mname + '</div><div class="down"><a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a></div></div>', 
-                    maxWidth: 300,
-                    borderWidth: 0,
-                    disableAnchor: true, 
+      */ content: '<div class="goMarket">' +
+        '<div class="row">' +
+            '<p class="mkName" id="'+ locations[i].mno +'">' + locations[i].mname + '</p>' +
+            '<p id="mkaddr">' + locations[i].maddr + '</p>' +
+            '<p class="mkEtc"><i class="fa-solid fa-restroom"></i> ' + locations[i].mtoilet + ' <i class="fa-solid fa-square-parking"></i> ' + locations[i].mparking + '<p>' +
+            '<a href="/finalProject/views/store?mno=' + locations[i].mno + '">이동하기!</a>' +
+        '</div>' +
+    '</div>',
 	  });
 
         (function (marker, infowindow) {
@@ -304,8 +247,6 @@ function showMarkers() {
 }
 
 
-
-
 // 지도 위에 표시되고 있는 마커를 모두 제거하는 함수
 function removeMarker() {
     for (var i = 0; i < markers.length; i++) {
@@ -313,8 +254,5 @@ function removeMarker() {
     }
     markers = [];
 }
-
-
-
 
 window.addEventListener('load', init);

@@ -21,9 +21,9 @@
 <script src="https://kit.fontawesome.com/89490613c7.js"
 	crossorigin="anonymous"></script>
 <!-- CSS -->
-<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/whiteBgHeader.css" />
 <link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/postMain.css" />
+<link rel="stylesheet" href="../css/postForMarketList.css" />
 <!-- JavaScript -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -51,22 +51,135 @@
 
 	<div class="section" id="section1">
 		<div class="container mt-5">
-			<h3>호시탐탐의 시끌시끌 페이지 입니다</h3>
+			<h3>시끌시끌</h3>
 			<button id="whatMarket">시장 선택하기</button>
-			<hr />
+		
 			<div class="mkNameList">
-				<form class="market_form" method="GET" action="/finalProject/views/postMain">
-					<c:forEach items="${marketList}" var="market">
-						<label for="mno"></label>
-						<button id="mno" name="mno" value="${market.mno}" class="flex-container">${market.mname}</button>
-					</c:forEach>
-				</form>
+				<table>
+<!-- 					<tr> -->
+<!-- 						<th>ㄱ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+							
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㄴ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㄷ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㄹ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅁ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅂ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅅ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅇ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅈ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅊ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅋ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅌ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅍ - </th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+						
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<th>ㅎ - </th> -->
+<!-- 					</tr> -->
+					<tr>
+						<td>
+							<form class="market_form" method="GET" action="/finalProject/views/postMain">
+								<c:forEach items="${marketList}" var="market">
+									<label for="mno"></label>
+									<button id="mno" name="mno" value="${market.mno}" class="flex-container">${market.mname}</button>
+								</c:forEach>
+							</form>
+						</td>
+					</tr>
+				</table>
 			</div>
-			<hr>
+			
 			<div class="firstShow"></div>
 		</div>
 	</div>
 
-	<%@ include file="footer.jsp"%>
+	<%-- <%@ include file="footer.jsp"%> --%>
 </body>
 </html>

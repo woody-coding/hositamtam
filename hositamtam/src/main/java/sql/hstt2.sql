@@ -40,7 +40,7 @@ sno 		number(5)
 , constraint 	store_mno_fk	 	foreign key (mno) references market (mno)
 , constraint 	store_id_fk 		foreign key (id) references member (id)
 , constraint 	store_name_uq 		unique (sname)
-, constraint 	store_name_ck 		check (length(sname) between 2 and 15)
+, constraint 	store_name_ck 		check (length(sname) between 2 and 20)
 , constraint 	store_type_ck 		check (stype in ('좌판', '매장'))
 , constraint 	store_photo_ck 		check (substr(sphoto, -3) in ('png', 'jpg') or substr(sphoto, -4) = 'jpeg')
 , constraint 	store_category_ck 		check (length(scategory) between 2 and 10)
@@ -49,12 +49,49 @@ sno 		number(5)
 );
 
 --* 더미 데이터)
-insert into store values (seq_sno.nextval, 2, 'king123', '문현역 7번 출구 앞 10m', '35.13931', '129.1052', '좌판', 'testphoto.png', 1, 0, '분식');
-insert into store values (seq_sno.nextval, 99, 'longlee', '지게골역 출구 앞 5m', '35.15445', '129.1190', '좌판', 'testphoto2.jpeg', 2, 22, '야채 가게');
-insert into store values (seq_sno.nextval, 2, 'shortlee', '문현역 5번 출구 앞', '35.16046', '129.0562', '매장', 'testphoto2.jpeg', 2, 79, '과일 가게');
-insert into store values (seq_sno.nextval, 2, 'longlee', '서면역 출구 앞 5m', '35.16638', '129.0712', '좌판', 'testphoto3.jpg', 2, 39, '떡볶이 가게');
-insert into store values (seq_sno.nextval, 99, 'king123', '지게골역 출구 5m', '35.14459', '129.0285', '좌판', 'testphoto22.png', 2, 199, '잡화점');
-insert into store values (seq_sno.nextval, 152, 'king123', '역 7번 출구 앞 10m', '35.13933', '129.1051', '좌판', 'testphoto.png', 1, 0, '떡볶이집');
+insert into store values (seq_sno.nextval, 2, 'king123', '문현역 7번 출구 앞 10m', '35.13931', '129.1052', '좌판', 'testphoto.png', 0, 0, '분식');
+insert into store values (seq_sno.nextval, 99, 'longlee', '지게골역 출구 앞 5m', '35.15445', '129.1190', '좌판', 'testphoto2.jpeg', 0, 22, '야채 가게');
+insert into store values (seq_sno.nextval, 2, 'shortlee', '문현역 5번 출구 앞', '35.16046', '129.0562', '매장', 'testphoto2.jpeg', 0, 79, '과일 가게');
+insert into store values (seq_sno.nextval, 2, 'longlee', '서면역 출구 앞 5m', '35.16638', '129.0712', '좌판', 'testphoto3.jpg', 0, 39, '떡볶이 가게');
+insert into store values (seq_sno.nextval, 99, 'king123', '지게골역 출구 5m', '35.14459', '129.0285', '좌판', 'testphoto22.png', 0, 199, '잡화점');
+insert into store values (seq_sno.nextval, 152, 'king123', '역 7번 출구 앞 10m', '35.13933', '129.1051', '좌판', 'testphoto.png', 0, 0, '떡볶이집');
+
+-- 10000개의 더미 데이터 추가 삽입
+BEGIN
+  FOR i IN 1..10000 LOOP
+    INSERT INTO store (sno, mno, id, sname, slat, slng, stype, sphoto, sclosecount, sfavoritecount, scategory)
+    VALUES (
+      seq_sno.nextval,
+      FLOOR(DBMS_RANDOM.VALUE(1, 166)), -- 1부터 165 사이의 임의의 mno
+      CASE MOD(i, 3)
+        WHEN 0 THEN 'king123'
+        WHEN 1 THEN 'longlee'
+        WHEN 2 THEN 'shortlee'
+      END, -- 3개의 id를 번갈아가며 사용
+      '부산역 1번 출구 앞 ' || i || 'm', -- 1m부터 10000m까지 변하는 sname
+      TO_CHAR(FLOOR(DBMS_RANDOM.VALUE(35.1, 35.3)), 'FM999.99999'), -- 부산 위도의 임의의 값
+      TO_CHAR(FLOOR(DBMS_RANDOM.VALUE(129.0, 129.2)), 'FM999.99999'), -- 부산 경도의 임의의 값
+      CASE MOD(i, 2)
+        WHEN 0 THEN '좌판'
+        WHEN 1 THEN '매장'
+      END, -- '좌판' 또는 '매장'
+      CASE MOD(i, 2)
+        WHEN 0 THEN 'testphoto.png'
+        WHEN 1 THEN 'testphoto2.jpeg'
+      END, -- 랜덤하게 사진 지정
+      0, -- sclosecount 초기값 0
+      0, -- sfavoritecount 초기값 0
+      CASE MOD(i, 4)
+        WHEN 0 THEN '분식'
+        WHEN 1 THEN '양식'
+        WHEN 2 THEN '한식'
+        WHEN 3 THEN '야채가게'
+      END -- 4가지 카테고리 중 랜덤하게 지정
+    );
+  END LOOP;
+END;
+/
+
 
 
 --6.	POST (글 테이블)
@@ -165,8 +202,7 @@ sno 		number(5)
 
 
 --* 더미 데이터)
-insert into member_store_close values (1, 'king123');
-insert into member_store_close values (2, 'king123');
+
 
 
 
@@ -245,10 +281,84 @@ sno 		number(5)
 
 --* 더미 데이터)
 insert into store_payment values (1, 1);
-insert into store_payment values (1, 3);
+insert into store_payment values (1, 2);
 insert into store_payment values (2, 1);
+insert into store_payment values (2, 3);
+insert into store_payment values (3, 1);
 
+BEGIN
+  FOR i IN 4..10006 LOOP
+    INSERT INTO store_payment (sno, payno)
+    SELECT i, LEVEL
+    FROM DUAL
+    CONNECT BY LEVEL <= ROUND(DBMS_RANDOM.VALUE(1, 3));
+  END LOOP;
+  COMMIT;
+END;
+/
+-- trigger 생성
+-- 리뷰 작성시 exp 1씩 증가
+CREATE OR REPLACE TRIGGER increase_exp_on_review
+AFTER INSERT ON review
+FOR EACH ROW
+BEGIN
+    UPDATE member
+    SET exp = exp + 1
+    WHERE id = :NEW.id;
+END;
+/
 
+-- 댓글 작성시 exp 1씩 증가
+CREATE OR REPLACE TRIGGER increase_exp_on_comment
+AFTER INSERT ON comments
+FOR EACH ROW
+BEGIN
+    UPDATE member
+    SET exp = exp + 1
+    WHERE id = :NEW.id;
+END;
+/
+
+-- 게시글 작성시 exp 3씩 증가
+CREATE OR REPLACE TRIGGER increase_exp_on_post
+AFTER INSERT ON post
+FOR EACH ROW
+BEGIN
+    UPDATE member
+    SET exp = exp + 3
+    WHERE id = :NEW.id;
+END;
+/
+
+-- 점포 등록시 exp 3씩 증가
+CREATE OR REPLACE TRIGGER increase_exp_on_store
+AFTER INSERT ON store
+FOR EACH ROW
+BEGIN
+    UPDATE member
+    SET exp = exp + 5
+    WHERE id = :NEW.id;
+END;
+/
+
+-- exp 에 따른 grade 설정
+CREATE OR REPLACE TRIGGER increase_grade_on_exp
+BEFORE INSERT OR UPDATE ON member
+FOR EACH ROW
+BEGIN
+    IF 	  :NEW.exp < 20 THEN
+        	:NEW.grade := 0;
+    ELSIF :NEW.exp >= 20 AND :NEW.exp < 40 THEN
+        	:NEW.grade := 1;
+    ELSIF :NEW.exp >= 40 AND :NEW.exp < 60 THEN
+        	:NEW.grade := 2;
+    ELSIF :NEW.exp >= 60 AND :NEW.exp < 80 THEN
+        	:NEW.grade := 3;
+    ELSIF :NEW.exp >= 80 THEN
+        	:NEW.grade := 4;
+    END IF;
+END;
+/
 
 COMMIT;
 

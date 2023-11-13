@@ -19,7 +19,7 @@
 <script src="https://kit.fontawesome.com/89490613c7.js"
 	crossorigin="anonymous"></script>
 <!-- CSS -->
-<link rel="stylesheet" href="../css/loginHeader.css" />
+<link rel="stylesheet" href="../css/mainHeader.css" />
 <link rel="stylesheet" href="../css/main.css" />
 
 <!-- JavaScript -->
@@ -33,25 +33,30 @@
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
 
-​
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	
 <script>
 	function init() {
+		window.sessionStorage.removeItem('memberId');
+		
+		
 	    // 현재 접속한 사용자가 회원인지 비회원인지 판단하기
 	    let id = '<%= session.getAttribute("userId") %>';
 	    
 	    id = (id === 'null') ? null : id;
-	    
-	    console.log('id : ' + id + '    /    typeof : ' + typeof(id));
 	    
 	    // 세션 스토리지에 저장되어 있는 데이터를 가져옴
 	    const sessionStorageData = window.sessionStorage.getItem("memberId");
@@ -79,10 +84,10 @@
 </head>
 <body>
 
-	<%@ include file="navi.jsp" %>
+	<%@ include file="mainNavi.jsp" %>
 
     <div  class="section" id="section1">
-     <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video>
+      <video src="../video/main영상.mp4" muted autoplay loop id="myVideo"> </video> 
 
       
 
@@ -112,21 +117,25 @@
       <div id="btnGroup">
           <button id="mkList" class="category">
           
-          <i class="bi bi-basket-fill"></i><br>
-           시장 리스트 
+          <i class="bi bi-basket-fill"></i>
+          <br>
+<!--            시장 리스트  -->
      
            </button>
-          <button id="goPost" class="category" onclick="location.href='/finalProject/views/post'"><i class="bi bi-megaphone-fill"></i><br> 시끌시끌</button>
+          <button id="goPost" class="category" onclick="location.href='/finalProject/views/post'"><i class="bi bi-megaphone-fill"></i>
+<!--           <br> 시끌시끌 -->
+          </button>
      
 			<button id="service" class="category" onclick="location.href='#section2'">
-				<i class="bi bi-info-circle-fill"></i><br>
-				서비스 안내
+				<i class="bi bi-info-circle-fill"></i>
+<!-- 				<br> 서비스 안내 -->
 			</button>
 			<!-- 서비스안내 조정 -->
 		</div>
+		
 		<div id="busanExplain">
-			<p>부산 전통 시장</p>
-			<p>부산의 맛과 문화를 만나다!</p>
+			<p>부산 전통시장<br/>
+			문화와 맛을 즐기다!</p>
 		</div>
 	</div>
 
@@ -137,63 +146,70 @@
 		<div id="goService" class="hosiInfo">
 			<p>부산 전통시장에 대한 정보를 공유하고 등록되지 않은 점포를 등록해보세요!</p>
 			<!-- carosell 3초마다 이미지 변경 시장리스트사진 커뮤니티  모든 페이지 완성하면 캡쳐해서 슬라이드이미지로 넣기-->
-			<div class="swiper">
-				<!-- Additional required wrapper -->
-				<div class="swiper-wrapper">
-					<!-- Slides -->
-					<div class="swiper-slide">시끌시끌사이트이미지</div>
-					<div class="swiper-slide">시장사이트이미지</div>
-					<div class="swiper-slide">시장내부사이트이미지</div>
 
-				</div>
-				
-				<!-- If we need navigation buttons -->
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-
-
-			</div>
+			<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+  
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="1500">
+              <img src="../images/시장리스트.PNG" >
+              <div class="carousel-caption">
+		        
+    		  </div>
+    		  <p>부산전통시장을 탐험해보세요!</p>
+            </div>
+            <div class="carousel-item" data-bs-interval="1500">
+              <img src="../images/점포리스트.PNG" >
+              <div class="carousel-caption ">
+		       
+    		  </div>
+    		   <p>점포를 검색하고 등록되지 않은 점포를 등록해보세요!</p>
+   	        </div>
+            <div class="carousel-item" data-bs-interval="1500">
+   			  <img src="../images/시끌시끌.PNG" >
+              <div class="carousel-caption d-none d-md-block">
+      		  	<!-- <p>전통시장과 관련된 정보를 다른 사용자들과 나누세요!</p> -->
+  		    </div>
+  		    	<p>전통시장과 관련된 정보를 다른 사용자들과 나누세요!</p>
+            </div>
+          </div>
+          
+        </div>
 		</div>
-		<h4>등급 안내</h4>
+		<br/>
+		<br/>
+		<h4>열심히 활동해 등급을 올려보세요!</h4>
+		
 		<div class="gradeInfo">
 			<div class="gradeIcon">
 				<div class="gradeImage">
-					<img src="../images/icons8-아가-64.png">
-
+					<img src="../images/icons8-병아리-60.png">
 				</div>
+				
 				<div class="gradeImage">
 					<img src="../images/icons8-caveman-64.png" >
-
 				</div>
 				<div class="gradeImage">
 					<img src="../images/icons8-explorer-60.png" >
-
 				</div>
+				
 				<div class="gradeImage">
 					<img src="../images/icons8-기사-64.png" >
-
 				</div>
+				
 				<div class="gradeImage">
 					<img src="../images/icons8-spaceman-66.png" >
-
 				</div>
-
 			</div>
+			
 			<div class="gradeLine">
-				<div class="grade1"></div>
-				<div class="grade2"></div>
-				<div class="grade3"></div>
-				<div class="grade4"></div>
-				<div class="grade5"></div>
-
+				<div class="grade1">시장 삐약이</div>
+				<div class="grade2">시장 왕초보</div>
+				<div class="grade3">시장 탐험가</div>
+				<div class="grade4">시장 지킴이</div>
+				<div class="grade5">시장 개척자</div>
 			</div>
-			<div class="gradeNameBox">
-				<div class="gradeName">시장 왕초보</div>
-				<div class="gradeName">시장 햇병아리</div>
-				<div class="gradeName">시장 탐험가</div>
-				<div class="gradeName">시장 지킴이</div>
-				<div class="gradeName">시장 지박령</div>
-
+			<div class="expInfo">
+			<span>경험치 : 리뷰, 댓글 개당 1점 | 게시글 개당 3점 | 점포 등록 개당 5점</span>
 			</div>
 
 		</div>

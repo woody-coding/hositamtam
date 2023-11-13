@@ -1,0 +1,166 @@
+/* Global */
+:root {
+  /* App Colors */
+  --color-primary: var(--color-navy);
+  --color-primary-variant: var(--color-purple);
+  --color-accent: var(--color-blue);
+  --color-accent-variant: var(--color-pink);
+  --color-background: var(--color-white);
+
+  /* Colors */
+  --color-white: #ffffff;
+  --color-navy: #0e4194;
+  --color-blue: #0188cc;
+  --color-pink: #e6007e;
+  --color-purple: #662583;
+  --color-gray: #a6a6a6;
+
+  /* Size */
+  --size-max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "GmarketSans";
+}
+
+body {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mainHeader__nav a {
+  text-decoration: none;
+  color: black;
+}
+
+/* header */
+.mainHeader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 0rem 1rem 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  background-color: var(--color-background);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transition: all 200ms ease-in;
+}
+
+.mainHeader__logo__img {
+  width: 200px;
+  padding: 0 1rem;
+}
+
+/* 원본
+.market__search {
+  border: 2px solid var(--color-gray);
+  height: 3rem;
+  border-radius: 4px;
+}
+
+.market__searchInput {
+  width: 40rem;
+  height: 3rem;
+  align-items: center;
+  padding: 0;
+  font-size: 1.1rem;
+  border: none;
+}
+.market__searchButton {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--color-gray);
+  background-color: white;
+}
+*/
+
+.market__search {
+  position: relative;
+  width: 30rem;
+  border: 2px solid var(--color-gray);
+  height: 3rem;
+  border-radius: 4px;
+}
+
+.market__searchInput {
+  position: absolute;
+  top: 0;
+/*  left: 3rem;  searchButton의 너비만큼 왼쪽으로 이동 */
+/*  width: calc(100% - 3rem);*/
+  width: calc(100%);
+  height: 2.92rem;
+  align-items: center;
+  padding: 0 0 0 3rem;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
+.market__searchButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  font-size: 1rem;
+  color: var(--color-gray);
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
+
+
+.market__searchButton:hover {
+  color: var(--color-accent);
+}
+
+.mainHeader__menu {
+  display: flex;
+  gap: 4px;
+  margin-top: 1rem;
+}
+
+.mainHeader__menu__item {
+  display: block;
+  font-size: 1.1rem;
+  padding: 8px 20px;
+  border-bottom: 1px solid transparent;
+}
+
+.mainHeader__menu__item:hover {
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-accent);
+  border-radius: 0.5rem;
+}
+
+.dropdown-menu.show {
+	text-align: center;
+}
+
+.mainHeader__menu__li {
+	margin: 0.3rem 0;
+}
+
+.mainHeader__menu__category:hover {
+	color: var(--color-accent);
+}
+
+.mainHeader__menu__item.active {
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-accent);
+  border-radius: 0.5rem;
+}
+
+
