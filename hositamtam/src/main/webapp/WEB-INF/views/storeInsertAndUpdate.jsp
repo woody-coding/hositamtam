@@ -98,8 +98,8 @@ String mno = request.getParameter("mno");
 									
 									<div class="store__payment__update">
 										<input type="checkbox" id="paytype" name="paytype" value="1" checked><label for="paytype">현금</label>
-									  <input type="checkbox" id="paytype" name="paytype" value="2"><label for="paytype">카드</label>
-									  <input type="checkbox" id="paytype" name="paytype" value="3"><label for="paytype">계좌이체</label>
+									  	<input type="checkbox" id="paytype" name="paytype" value="2"><label for="paytype">카드</label>
+									  	<input type="checkbox" id="paytype" name="paytype" value="3"><label for="paytype">계좌이체</label>
 									</div>
 								</section>
 								
@@ -133,7 +133,7 @@ String mno = request.getParameter("mno");
 					
 					<c:otherwise>
 						<!-- 등록화면 -->
-						<form id="store__update__form" method="POST" action="/finalProject/storeInsert" enctype="multipart/form-data">
+						<form id="store__update__form" class="store__insert" method="POST" action="/finalProject/storeInsert" enctype="multipart/form-data">
 							<input type="hidden" name="mno" value="<%=mno%>" />
 							<input type="hidden" name="slat" value="<%=slat%>" />
 							<input type="hidden" name="slng" value="<%=slng%>" />
@@ -158,12 +158,18 @@ String mno = request.getParameter("mno");
 								
 								<section class="store__payment">
 									<h2 class="store__payment__title siau__h2">결제 방식</h2>
-									<label for="paytype"></label>
-									<input type="checkbox" id="paytype" name="paytype" value="1">현금 
-									<input type="checkbox" id="paytype" name="paytype" value="2">카드 
-									<input type="checkbox" id="paytype" name="paytype" value="3">계좌이체
-								</div>
-								<div class="store__category">
+									<div class="paymentType__checkbox">
+										<input type="checkbox" id="paytype" name="paytype" value="1"><label for="paytype">현금</label>
+									</div>
+									<div class="paymentType__checkbox">
+										<input type="checkbox" id="paytype" name="paytype" value="2"><label for="paytype">카드</label>
+									</div>
+									<div class=paymentType__checkbox2>
+										<input type="checkbox" id="paytype" name="paytype" value="3"><label for="paytype">계좌이체</label>
+									</div>
+								</section>
+								
+								<section class="store__category">
 									<h2 class="store__category__title siau__h2">취급 품목</h2>
 									<label for="store__category__contents" class="category__label">
 										<input
