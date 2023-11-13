@@ -1,46 +1,25 @@
-/*
-function insertHandler(e) {
+function writePostHandler(event) {
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
 	
-	let memberId = localStorage.getItem('memberId');
-	if(!memberId) {
-		e.preventDefault();
-		
-		location.href = '/finalProject/views/login';	
-	} else {
+	if (!member) {
+		writePostLoginCheck();
+	    event.preventDefault();
 	}
 }
 
-
-function clickHandler(event) {
-	let id = event.target.getAttribute('id');
-    
-	if (id == "updateOrHide") {
-		updateOrHideHandler();
-	} else {
-		let url = '/finalProject/views/toPostDetail?pno=' + id;
-		location.href = url;
-	}
+function writePostLoginCheck(){
+	Swal.fire({
+		title: '로그인이 필요한 서비스 입니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
 }
-
-function updateOrHideHandler() {
-	alert('수정하는 창');
-}
-
 
 function init() {
-	let postlistTable = document.querySelector('#postlistTable');
-	let insert = document.querySelector('#insert');
-
-	postlistTable.addEventListener('click', clickHandler);
-	insert.addEventListener('submit', insertHandler);
+	document.querySelector('#writePost').addEventListener('click', writePostHandler);
 }
 
 window.addEventListener('load', init);
-
-*/
-
-
-
-
-
-

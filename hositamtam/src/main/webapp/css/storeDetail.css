@@ -389,3 +389,22 @@ a {
 }
 
 
+
+#ratingStar {
+    display: inline-block;
+    direction: rtl;
+}
+#ratingStar input[type=radio]{
+    display: none;
+}
+#ratingStar label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #ddd;
+}
+#ratingStar input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 gold;
+}
+.spanStar {
+    color: gold;
+}
