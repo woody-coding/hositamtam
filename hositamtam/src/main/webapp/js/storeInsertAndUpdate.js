@@ -75,16 +75,23 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // 최소한 하나가 선택되지 않았다면 알림창을 띄우고 false를 반환합니다.
         if (!isChecked) {
-            alert("적어도 하나 이상의 결제 방식을 선택해주세요.");
+            notSelectPayment("적어도 하나 이상의 결제 방식을 선택해주세요.");
             return false;
         }
         return true;
-    }
+}
+
+	function notSelectPayment(){
+		Swal.fire({
+			title: '적어도 하나 이상의 <br> 결제 방식을 선택해주세요.',
+			icon: 'warning',
+		});
+	}
 
     // 폼이 제출될 때 validatePayment 함수를 실행합니다.
     document.querySelector('form').addEventListener('submit', validatePayment);
 
-    
+   
     
     
     
@@ -135,7 +142,7 @@ function insertAndUpdateButton(event) {
     }
 }
     
-    
+     
     
     
     

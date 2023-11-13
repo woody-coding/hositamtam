@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="../css/footer.css" />
 <link rel="stylesheet" href="../css/postMain.css" />
 <!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
