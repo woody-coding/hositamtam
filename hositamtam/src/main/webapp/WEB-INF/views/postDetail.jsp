@@ -94,6 +94,7 @@
 	<!-- "/finalProject/images/' + locations[i].sphoto  + '" -->
 	<img src="${post.pphoto}"></img>
 	<br/>
+	<p id="msg"></p>
 	<hr/>
 	<div class="commentInsert row">
 	<form method="POST" action="/finalProject/views/InsertComment">
@@ -102,8 +103,8 @@
 	<label for="id"></label>
 	<input  type="hidden" name="id" value="${post.id}">
 	<label class="col-2"  for="ccontent">댓글</label>
-	<input class="col-8" type="text" name="ccontent" placeholder="댓글을 남겨보세요.">
-	<input class="col-1"  type="submit" value="등록">
+	<input class="col-8" type="text" name="ccontent" id="commentContent" placeholder="댓글을 남겨보세요.">
+	<input class="col-1"  type="submit" id="commentInsert" value="등록">
 	</form>
 	</div>
 	<c:forEach items="${commentList}" var="comment" varStatus="status">		

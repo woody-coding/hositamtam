@@ -51,7 +51,7 @@
 		    mno = (mno === 'null') ? null : mno;
 		    msg = (msg === 'null') ? null : msg;
 		    
-		    console.log('mno : ' + mno + '    /    typeof : ' + typeof(mno));
+		    //console.log('mno : ' + mno + '    /    typeof : ' + typeof(mno));
 		
 		    // 기존의 로컬은 무조건 삭제 후, 다시 등록
 			window.localStorage.removeItem('mnoToStore');
@@ -86,8 +86,11 @@
 		</div>
 		
 		<div class ="map store" id="map">
+			
 			<button id="insertStore" class="plusStore">
-			<i class="bi bi-plus-circle-fill"></i></button>
+			<i class="bi bi-plus-circle-fill"></i>
+			<span>점포등록!</span>
+			</button>
 		</div>
 	
 	</div>

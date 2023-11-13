@@ -2,6 +2,7 @@ let xhr = new XMLHttpRequest();
 let currentSno;
 let currentId;
 let msg = document.querySelector('#msg');
+let currentMno;
 
 
 
@@ -27,6 +28,21 @@ let msg = document.querySelector('#msg');
 
 
 
+
+
+function storeModify() {
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
+	
+	if(member) {
+		window.location.href = '/finalProject/views/storeUpdate?sno=' + currentSno + '&mno=' + currentMno;
+	}
+	else if(!member) {
+		alert('로그인이 필요한 서비스 입니다.');
+		window.location.href = '/finalProject/views/login';
+	}
+}
 
 
 
@@ -89,6 +105,17 @@ function reviewInput() {
 
 
 function init() {
+	// 현재 페이지의 URL에서 쿼리 스트링을 가져옴
+	let queryString = window.location.search;
+	
+	// URLSearchParams를 사용하여 쿼리 스트링을 파싱
+	let urlParams = new URLSearchParams(queryString);
+	
+	// mno 파라미터 값을 얻음
+	currentMno = urlParams.get('mno');
+	
+	
+	
 	
 
 	// 찜 버튼
@@ -136,6 +163,10 @@ function init() {
 				}*/ 
 	    }
 	});
+	
+	
+	
+	document.querySelector('.storeDetail__modify').addEventListener('click', storeModify);
 
 }
 

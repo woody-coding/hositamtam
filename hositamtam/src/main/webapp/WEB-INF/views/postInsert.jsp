@@ -39,6 +39,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/finalProject/js/postInsert.js"></script>
 </head>
 <body>
 	
@@ -46,7 +47,7 @@
 	<%@ include file="navi.jsp" %>
 	<div class="container mt-5">
 	<h2>${market.mname} <span>시끌시끌</span></h2>
-	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div> <!-- 위치 재설정 및 css로 꾸며야 함 -->
+	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div><p id="msg"></p> <!-- 위치 재설정 및 css로 꾸며야 함 -->
 	<br/>	
 	<form method="POST" action="/finalProject/views/postInsert" enctype="multipart/form-data">
 	<div class="postCategory-radio">
@@ -62,7 +63,7 @@
 	</div>
 	 <div class="postHead row">
 	<label for="ptitle">제목</label>
-	<input type="text" name="ptitle" placeholder="제목을 입력하세요" />
+	<input type="text" name="ptitle" id="ptitle" placeholder="제목을 입력하세요" />
 	</div> 
 	
 	<div class="postContent row">
@@ -78,7 +79,7 @@
 	<label for="id"></label>
 	<input type="hidden" name="id" value="${userId}"/>
 	<div class=btnBox>
-	<input class="submit" type="submit" value="등록하기">
+	<input class="submit" type="submit" id="postInsertButton" value="등록하기">
 	</div>
 	</form>
 	</div>
