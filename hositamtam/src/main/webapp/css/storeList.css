@@ -79,6 +79,9 @@ body {
 	
 	/* background-color: #eeeeee; */
 }
+.map {
+    position: relative;
+}
 /*호버 하면 점포등록이라고 옆에 나오게하기*/
 .plusStore{
     width: 50px;
@@ -86,14 +89,52 @@ body {
     border: 0;
     border-radius: 50%;
     color: white;
-    font-size: 2rem;
-    line-height: 35px;
+    padding: 5px;
+    
     background-color: #e6007e;
     z-index: 9;
     position: absolute;
     right: 10px;
     bottom: 30px;
-    transition: all 0.5s;
+    overflow: hidden;
+    transition: width 0.5s, border-radius 0.5s;
+}
+.plusStore i {
+	font-size: 2rem;
+	
+}
+.plusStore  {
+	 font-size: 1.1rem;
+
+}
+.plusStore:hover  {
+   width: 140px;
+   
+    border-radius: 25px;
+   
+    
+    
+}
+.hideBox{
+	
+    width: 120px;
+    height: 50px;
+    border: 0;
+    border-radius: 25px;
+   
+    color: white;
+    font-size: 1rem;
+    line-height: 50px;
+    padding-left: 20px;
+    text-align: left;
+    background-color: #e6007e;
+    z-index: 9;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    
+    transition: left 0.5s;
+   
 }
 
 button{
@@ -126,9 +167,7 @@ button{
 	
 }
 
-.personalScontent{
-	
-}
+
 #mkSearchName{
     font-size: 2rem;
     font-weight: bold;
@@ -285,14 +324,12 @@ button{
     width: 400px;
     padding: 5px;
     text-align: center;
-    /* background-color: #eeeeee; */
+    
 }
-/*.infoContent h4{
-    text-align: center;
-}*/
+
 .infoContent a{
     display: inline-block;
-    /* font-family: 'GmarketSans'; */
+    
     margin-left: 5px;
     background-color: #0e4194;
     color: white;
@@ -313,9 +350,9 @@ button{
 
 .notStore{
     display: inline-block;
-    /* font-family: 'GmarketSans'; */
+    
     margin-left: 5px;
-    background-color: grey;		/* #e6007e; */
+    background-color: grey;		
     color: white;
     border: 0px;
     font-size: 1rem;

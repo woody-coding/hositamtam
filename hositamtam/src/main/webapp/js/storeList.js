@@ -331,7 +331,7 @@ function openInfo() {
 
 // '새 점포 등록' 버튼 클릭 시
 function insertStoreHandler() {
-	debugger;//joke
+	/*debugger;//joke*/
 	
 	// 회원이라면 새 점포 등록 버튼 이용 가능
 	if(currentId !== null) {
@@ -368,8 +368,7 @@ function insertStoreHandler() {
 	        var longitude = e.coord.lng();		
 	        var iwContent = '<div class="iwContent" style="padding:5px;">' +
 	            '<a href="../ajaxController/toAjaxController.jsp?command=insertStore&mno=' + mnoToStore.mno + '&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
-//	            '<a href="/finalProject/views/toStoreInsert?id=' + currentId + '&mno=' + currentMno + '&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
-//>>>>>>> a66775a9da679f228173c5e23795d00fae178a99
+
 	        infowindow = new naver.maps.InfoWindow({
 	            content: iwContent
 	        });

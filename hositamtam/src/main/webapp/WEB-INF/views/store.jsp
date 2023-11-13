@@ -86,8 +86,11 @@
 		</div>
 		
 		<div class ="map store" id="map">
+			
 			<button id="insertStore" class="plusStore">
-			<i class="bi bi-plus-circle-fill"></i></button>
+			<i class="bi bi-plus-circle-fill"></i>
+			<span>점포등록!</span>
+			</button>
 		</div>
 	
 	</div>
