@@ -35,7 +35,7 @@ input, textarea{
 	border: 1px solid #eeeeee;
 } 
 textarea {
-	min-height: 400px;
+	min-height: 350px;
 }
  .postCategory{
     margin: 1rem;
