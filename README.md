@@ -1,11 +1,11 @@
 # 팀 이름 : TMI(Traditional Market Interface)
 #최종 프로젝트 : hositamtam
-Cheer up Everyone! :) by holyWater
-Cheer up too! :) by seong
+
 
 # Group
 ![slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
 ![discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)
+![zoom](https://img.shields.io/badge/Zoom-0000FF?style=for-the-badge&logo=zoom&logoColor=white)
 
 # OS
 ![windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
@@ -27,7 +27,7 @@ Cheer up too! :) by seong
 
 # Terminal
 ![git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
-![github](htttps://img.shields.io/badge/GITHUB-FF8C00?style=flat-squre&logo=GitHub&logoColor=black)
+![github](htttps://img.shields.io/badge/Github-FF8C00?style=flat-squre&logo=Github&logoColor=black)
 
 # Web Browsers
 ![google chrome](https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white)
