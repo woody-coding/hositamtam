@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="/finalProject/css/myPage.css" />
 
     <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/finalProject/js/myPage.js" charset="UTF-8"></script>
     <script defer src="/finalProject/js/myPageUpdate.js"></script>
     <script defer src="/finalProject/js/myPageHeader.js"></script>

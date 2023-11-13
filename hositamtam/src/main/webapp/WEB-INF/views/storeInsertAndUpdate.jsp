@@ -67,7 +67,6 @@ String mno = request.getParameter("mno");
 										class="store__input" type="text" id="store__name" name="sname" value="${store.sname}"
 										placeholder="점포의 이름을 지어주세요 !"
 									/>
-									<button class="change__location">위치 수정</button>
 								</label>
 							<div class="store__update__form">
 								<section class="store__type">
@@ -77,26 +76,56 @@ String mno = request.getParameter("mno");
 								    	<input type="radio" name="stype" value="매장" <c:if test="${store.stype eq '매장'}">checked="checked"</c:if> id="storeUpdate__type2"><label for="storeUpdate__type2">매장</label>
 									</div>
 								</section>
-							<div class="storeDetail__payment">
-					        <span class="storeDetail__payment__title">
-					        <h4 class="storeDetail__h4">결제 방식</h4></span>
-					        	<label for="paytype"></label>
-									<input type="checkbox" id="paytype" name="paytype" value="1" checked>현금 
-									<input type="checkbox" id="paytype" name="paytype" value="2">카드 
-									<input type="checkbox" id="paytype" name="paytype" value="3">계좌이체
-					      </div>
-					      <div class="storeDetail__category">
-					        <span class="storeDetail__category__title">
-					        <h4 class="storeDetail__h4">취급 품목</h4></span>
-					        <input class="category__input" type="text"
-										id="store__category__contents" name="scategory"
-										placeholder="점포의 취급품목을 알려주세요 !" value="${store.scategory}" />
-					      </div>
-					      <div class="storeDetail__photo">
-					        <!-- 등록된 점포 사진 -->
-					        <img src="${store.sphoto}" style="width:300px; height: 150px;"/>
-					      </div>
-							<div class="insertUpdate__error" id="msg"></div>
+								
+								<section class="store__payment">
+									<h2 class="store__payment__title siau__h2">결제 방식</h2>
+									<!-- 모든 결제 방식 리스트에서 매장 결제방식에 속한 리스트 비교하여 체크된 상태로 만들기 -->
+							        <!-- 
+							        <c:forEach var="payment" items="${paymentList}">
+							        	<c:forEach var="storePayment" items="${storePaymentList}">
+							        		<c:choose>
+									        	<c:when test="${payment.payno eq storePayment.payno}">
+									        		<input type="checkbox" name="paytype" value="${payment.payno}" checked="checked">${payment.paytype}
+									        	</c:when>
+								        		<c:otherwise>
+										        	<input type="checkbox" name="paytype" value="${payment.payno}">${payment.paytype}
+								        		</c:otherwise>
+							        		</c:choose>
+							        	</c:forEach>
+							        </c:forEach>
+									-->
+									
+									<div class="store__payment__update">
+										<input type="checkbox" id="paytype" name="paytype" value="1" checked><label for="paytype">현금</label>
+									  <input type="checkbox" id="paytype" name="paytype" value="2"><label for="paytype">카드</label>
+									  <input type="checkbox" id="paytype" name="paytype" value="3"><label for="paytype">계좌이체</label>
+									</div>
+								</section>
+								
+								<section class="store__category">
+									<h2 class="store__category__title siau__h2">취급 품목</h2>
+									<label for="store__category__contents" class="category__label">
+										<input
+											class="category__input__update"
+											type="text"
+											id="store__category__contents"
+											name="scategory"
+											placeholder="점포의 취급품목을 알려주세요 !"
+											value="${store.scategory}"
+										/>
+									</label>
+								</section>
+								
+								<section class="store__photo">
+									<h2 class="store__photo__title siau__h2">점포 사진</h2>
+									<div>
+					        			<!-- 등록된 점포 사진 -->
+					        			<img src="${store.sphoto}" class="storeUpdate__photo"/>
+					      			</div>
+								</section>
+							</div>
+					        
+					        <div class="insertUpdate__error" id="msg"></div>
 							<input type="submit" class="store__update__button" value="수정하기">
 						</form>
 					</c:when>
@@ -114,7 +143,6 @@ String mno = request.getParameter("mno");
 										name="sname"
 										placeholder="점포의 이름을 지어주세요 !"
 									/>
-									<button class="change__location">위치 수정</button>
 								</label>
 							<div class="store__update__form">
 								<section class="store__type">

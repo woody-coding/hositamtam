@@ -93,8 +93,7 @@ body {
   font-size: 1.2rem;
 }
 
-.change__location {
-  /* width: 17%; */
+/*.change__location {
   width: 15%;
   border: none;
   border-radius: 4px;
@@ -102,9 +101,8 @@ body {
   background-color: #d9d9d9;
   font-size: 1rem;
   margin-left: 1rem;
-  /* padding: 0.5rem; */
   cursor: pointer;
-}
+}*/
 
 .store__type,
 .store__payment,
