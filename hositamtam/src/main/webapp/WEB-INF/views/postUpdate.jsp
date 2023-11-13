@@ -40,14 +40,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script  src ="../js/postMain.js"></script>	
+<script  src ="/finalProject/js/postMain.js"></script>	
 
 </head>
 <body>
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">
-	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div> <!-- 위치 재설정 및 css로 꾸며야 함 -->
+	<div class="col-1"><button type="button" onclick="javascript:history.back()">목록으로</button></div><p id="msg"></p> <!-- 위치 재설정 및 css로 꾸며야 함 -->
 	<br/>
 	<form method="POST" action="/finalProject/views/postUpdate" enctype="multipart/form-data">
 	<div class="postCategory-radio">
@@ -70,12 +70,12 @@
 	</div>
 	 <div class="postHead row">
 	<label for="ptitle">제목</label>
-	<input type="text" name="ptitle" value="${post.ptitle}" placeholder="제목을 입력하세요" />
+	<input type="text" name="ptitle" value="${post.ptitle}" id="ptitle" placeholder="제목을 입력하세요" />
 	</div> 
 	
      <div class="postContent row">
 	<label for="pcontent">내용</label>
-	<textarea name="pcontent" placeholder="내용을 입력하세요" >${post.pcontent}</textarea>
+	<textarea name="pcontent" id="myTextarea" placeholder="내용을 입력하세요" >${post.pcontent}</textarea>
 	</div>  
 	
 	<label for="pphoto">사진</label>
