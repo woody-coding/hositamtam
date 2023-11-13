@@ -66,6 +66,7 @@
 	</script>
     <script defer src="/finalProject/js/storeDetailReview.js"></script>
     <script defer src="/finalProject/js/anchor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 	<%@ include file="navi.jsp" %>

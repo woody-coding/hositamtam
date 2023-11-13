@@ -46,6 +46,7 @@ String mno = request.getParameter("mno");
     <!-- <link rel="stylesheet" href="../css/storeDetail.css" /> -->
 
     <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="../js/storeInsertAndUpdate.js"></script>
   </head>
   <body>
