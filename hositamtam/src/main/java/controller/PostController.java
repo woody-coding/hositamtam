@@ -87,7 +87,9 @@ public class PostController {
 
 	// 글 등록 기능
 	@PostMapping("/views/postInsert")
-	public String insertPost(@ModelAttribute PostDO command, Model model, HttpServletRequest request) throws IOException {
+	public String insertPost(@ModelAttribute PostDO command, Model model, HttpServletRequest request) {
+		
+		try	{ 
 		System.out.print("컨트롤러 진입");
 		String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
 		int sizeLimit = 1024 * 1024 * 5;
@@ -126,6 +128,9 @@ public class PostController {
 		model.addAttribute("postList", postDAO.getAllPost(mno));
 		model.addAttribute("market", postDAO.getSelectedMarket(mno));
 		System.out.print("뷰 처리");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 		return "postList";
 	}
 

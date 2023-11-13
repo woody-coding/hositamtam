@@ -161,7 +161,7 @@ public class StoreDAO {
 			sql = "SELECT R.*, I.REVIEW, I.RATING, M.NICKNAME, M.GRADE "
 					+ "FROM STORE S "
 					+ "LEFT JOIN ("
-						+ "SELECT R.RNO, R.SNO, R.ID, R.RREGDATE, R.RCONTENT, R.RRATING "
+						+ "SELECT R.RNO, R.SNO, R.ID, TO_CHAR(R.RREGDATE, 'YYYY-MM-DD HH24:MI') AS RREGDATE, R.RCONTENT, R.RRATING "
 						+ "FROM REVIEW R"
 						+ ") R ON S.SNO = R.SNO "
 					+ "LEFT JOIN ("
