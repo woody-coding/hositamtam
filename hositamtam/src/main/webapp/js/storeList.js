@@ -312,7 +312,7 @@ function openInfo() {
 				content: '<div id="'+ locations[i].sno +'" class="infoContent">' + 
 				    '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">' + 
 				        '<div class="infoImgContainer">' +
-				            '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
+				            '<img src="' + locations[i].sphoto  + '">' +
 				        '</div>' +
 				        '<div class="sName">'+
 				            '<img src="../images/2b50.png" alt="평균별점">' + 
@@ -470,7 +470,7 @@ function storeAjaxHandler() {
                    '</div>' +
                    '</div>'+
                    '<div class="storeImgContainer">' +
-				   	 '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '" >' +
+				   	 '<img src="' + allStoreList[i].sphoto  + '" >' +
 				    '</div>'+
 				    /*<i class="fa-solid fa-arrow-up-right-from-square"></i> 이동하기 아이콘*/
 				'</div>'+
@@ -584,7 +584,7 @@ function showMarkers() {
 		content: '<div id="'+ locations[i].sno +'" class="infoContent">' + 
 		    '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">' + 
 		        '<div class="infoImgContainer">' +
-		            '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
+		            '<img src="' + locations[i].sphoto  + '">' +
 		        '</div>' +
 		        '<div class="sName">'+
 		            '<img src="../images/2b50.png" alt="평균별점">' + 

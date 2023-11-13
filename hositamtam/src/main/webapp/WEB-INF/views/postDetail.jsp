@@ -69,8 +69,8 @@
 	<%@ include file="navi.jsp" %>
 	<div  class="section" id="section1">
 	<div class="container mt-5">	
-	<div class="col-1"><button onclick="javascript:history.back()">목록으로</button></div> <!-- 위치 재설정 및 css로 꾸며야 함 -->
-	<br/>
+	<!-- <div class="col-1"><button onclick="javascript:history.back()">목록으로</button></div> 위치 재설정 및 css로 꾸며야 함
+	<br/> -->
 	<span>커뮤니티 > ${post.pcategory}</span>
 	<hr/>
 	
