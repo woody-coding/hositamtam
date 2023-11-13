@@ -27,8 +27,8 @@ public class ReviewDAO {
 	// 1. 리뷰 등록
 	public int insertReview(ReviewDO review) {
 		int rowCount = 0;
-		this.sql = "insert into review (rno, sno, id, to_char(rregdate, 'YYYY-MM-DD') as rregdate, rcontent, rrating)"
-				+ "values (seq_rno.nextval, ?, ?, sysdate, ?, ?)";	
+		this.sql = "INSERT INTO review (rno, sno, id, rregdate, rcontent, rrating) " +
+		           "VALUES (seq_rno.nextval, ?, ?, TO_CHAR(sysdate, 'YYYY-MM-DD'), ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, review.getSno());
