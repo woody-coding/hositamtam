@@ -27,6 +27,29 @@ let currentMno;
 }*/
 
 
+/* 경인 별
+
+// 선택된 별의 개수 업데이트
+function updateStars(starCount) {
+    // 별 개수를 히든 필드에 설정
+    document.getElementById('rrating').value = starCount;
+
+    // 별 디자인 업데이트
+    for (var i = 1; i <= 5; i++) {
+        var starElement = document.querySelector('.review__star' + i);
+        if (i <= starCount) {
+            starElement.classList.add('selected');
+        } else {
+            starElement.classList.remove('selected');
+        }
+    }
+}
+*/
+
+
+
+
+
 
 
 
@@ -39,9 +62,17 @@ function storeModify() {
 		window.location.href = '/finalProject/views/storeUpdate?sno=' + currentSno + '&mno=' + currentMno;
 	}
 	else if(!member) {
-		alert('로그인이 필요한 서비스 입니다.');
-		window.location.href = '/finalProject/views/login';
+		storeDetailUpdateLoginCheck();
 	}
+}
+
+function storeDetailUpdateLoginCheck(){
+	Swal.fire({
+		title: '로그인이 필요한 서비스 입니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
 }
 
 
@@ -77,6 +108,17 @@ function slikecountStatusHandler() {
 
 
 function reviewButton(event) {
+	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
+	const memberId = window.sessionStorage.getItem('memberId');
+	const member = JSON.parse(memberId);
+	
+	if(!member) {
+		msg.style.color = 'red';
+		msg.innerHTML = '로그인이 필요한 서비스 입니다.';
+		event.preventDefault();
+	}
+	
+	
 	let reviewInput = document.querySelector('.review__input').value;
 	
 	if(reviewInput.length < 5 || reviewInput.length > 500) {
@@ -155,8 +197,8 @@ function init() {
 	        xhr.open('GET', '../ajaxController/toAjaxController.jsp' + param, true);
 	        xhr.send();
 	    } else if(member === null) {
-			alert('로그인이 필요한 서비스입니다.');
-			window.location.href = '/finalProject/views/login';
+			storeDetailLikeLoginCheck();
+			
 /*        		if (needLogin()) {
 			
 					window.location.href = '/finalProject/views/login';
@@ -165,46 +207,37 @@ function init() {
 	});
 	
 	
+	function storeDetailLikeLoginCheck(){
+		Swal.fire({
+			title: '로그인이 필요한 서비스 입니다.',
+			icon: 'warning',
+		}).then(function() {
+			window.location.href = '/finalProject/views/login';
+		});
+	}
+	
 	
 	document.querySelector('.storeDetail__modify').addEventListener('click', storeModify);
 
 }
 
-// 별점 메기기
-document.addEventListener("DOMContentLoaded", function () {
-  var stars = document.querySelectorAll(".review__star i");
 
-  stars.forEach(function (star, index) {
-    star.addEventListener("click", function () {
-      // 몇 번째 별이 클릭됐는지?
-      var clickedIndex = index;
 
-      // 클릭된 n번째 별과 그 이전 별 색 변경 !
-      for (var i = 0; i <= clickedIndex; i++) {
-        stars[i].style.color = "#FCD53F";
-      }
 
-      // 재클릭했을 때
-      for (var i = clickedIndex + 1; i < stars.length; i++) {
-        stars[i].style.color = "#e0e0e0";
-      }
-    });
-  });
-});
+    function updateRating(value) {
+        // 레인지 값을 히든 필드에 업데이트
+        document.getElementById('rrating').value = value;
+
+        // 레인지 값 표시 업데이트
+        document.getElementById('ratingValue').innerText = value;
+    }
 
 
 
 
-// 별점 누르면 리뷰 창 나오게
-document.addEventListener("DOMContentLoaded", function () {
-  var reviewStars = document.querySelectorAll(".review__star");
-  var reviewForm = document.getElementById("review__form");
 
-  reviewStars.forEach(function (star) {
-    star.addEventListener("click", function () {
-      reviewForm.style.display = "block";
-    });
-  });
-});
+
+
+
 
 window.addEventListener('load', init);

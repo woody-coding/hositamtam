@@ -46,9 +46,8 @@ function commentInsertHandler(event) {
 	const member = JSON.parse(memberId);
 	
 	if(!member) {
-		alert('로그인이 필요한 서비스 입니다.');
+		writeCommentsLoginCheck();
 	    event.preventDefault();
-	    window.location.href = '/finalProject/views/login';
 	}
 	
 	if(member) {
@@ -62,7 +61,14 @@ function commentInsertHandler(event) {
 	}
 }
 
-
+function writeCommentsLoginCheck(){
+	Swal.fire({
+		title: '로그인이 필요한 서비스 입니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
+}
 
 
 
@@ -104,8 +110,7 @@ function init() {
 		    xhr.send();		
 		}
 		else {
-		    alert('로그인이 필요한 서비스 입니다.');
-		    window.location.href = '/finalProject/views/login';
+		    postLikeButtonLoginCheck();
 		}
 	});
 	
@@ -113,7 +118,14 @@ function init() {
 	document.querySelector('#commentInsert').addEventListener('click', commentInsertHandler);
 }
 
-
+function postLikeButtonLoginCheck(){
+	Swal.fire({
+		title: '로그인이 필요한 서비스 입니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
+}
 
 
 

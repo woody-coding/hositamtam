@@ -1,27 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function postInsertButtonHandler(event) {
 	let ptitle = document.querySelector('#ptitle').value;
 	let pcontent = document.querySelector('#myTextarea').value;

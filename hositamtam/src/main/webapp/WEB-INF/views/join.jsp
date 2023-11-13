@@ -30,6 +30,7 @@
 
     <!-- JavaScript -->
     <script defer src="/finalProject/js/anchor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
       
@@ -112,11 +113,6 @@
           </form>
         </div>
       </div>
-      
-      <a
-        class="joinBg__source"
-        href="https://kr.freepik.com/free-photo/delicious-food-arrangement-above-view_21745221.htm#page=8&query=market&position=3&from_view=search&track=sph"
-        >출처 Freepik</a>
     </section>
 
     <%@ include file="footer.jsp" %>

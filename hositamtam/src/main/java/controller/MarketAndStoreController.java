@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +28,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import model.MarketDAO;
 import model.PaymentDO;
 import model.PostDAO;
+import model.PostDO;
 import model.ReviewDAO;
 import model.ReviewDO;
 import model.StoreDAO;
@@ -127,34 +129,45 @@ public class MarketAndStoreController {
 	
 	// 점포등록
 	@PostMapping("/storeInsert")
-	public String storeInsert(HttpServletRequest request, HttpSession session, Model model, @ModelAttribute StoreDO storeDO) {
+	public String storeInsert(HttpServletRequest request, HttpSession session) throws IOException {
 	    // 현재 사용자 아이디 가져오기
 	    String userId = (String) session.getAttribute("userId");
-	    
-	 // sphoto가 비어있거나 공백이면 "testphoto2.png"를 대입
-        if (storeDO.getSphoto() == null || storeDO.getSphoto().trim().isEmpty()) {
-            storeDO.setSphoto("testphoto2.jpeg");
-        }
-        
-	    try {
-	    	storeDO.setId(userId);
-	    	System.out.println("시장[mno] : " 			+ storeDO.getMno());
-	    	System.out.println("등록자[id] : " 			+ storeDO.getId());
-	    	System.out.println("점포명[snam] : " 		+ storeDO.getSname());
-	    	System.out.println("점포형태(stype] : " 	+ storeDO.getStype());
-	    	System.out.println("결제방식[paytype] : " 	+ storeDO.getPaytype());
-	    	System.out.println("취급품목[scategory] : " + storeDO.getScategory());
-	    	System.out.println("점포사진[sphoto] : "	+ storeDO.getSphoto());
-	    	
-	    	String[] payType = storeDO.getPaytype().split(",");
-	    	// 등록
-	    	storeDAO.insertStore(storeDO, payType);
-	    } catch(Exception e) {
-	    	e.printStackTrace();
-	    }
-	    
-//	    return "redirect:/views/myPage"; // 점포 등록 후 마이페이지로 리다이렉트
-	    return "redirect:/views/store?mno=" + storeDO.getMno();  // 점포 등록 후 시장 화면으로
+	    // sphoto가 비어있거나 공백이면 "testphoto2.png"를 대입
+//        if (storeDO.getSphoto() == null || storeDO.getSphoto().trim().isEmpty()) {
+//            storeDO.setSphoto("testphoto2.jpeg");
+//        }
+		
+        String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\src\\main\\webapp\\storePhotoUpload";
+		int sizeLimit = 1024 * 1024 * 5;
+		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8",
+				new DefaultFileRenamePolicy());
+		
+		File uploadDir = new File(directory);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdirs();
+		}
+		String savedName = "";
+		@SuppressWarnings("unchecked")
+		Enumeration<String> fileNames = multi.getFileNames();
+		if (fileNames.hasMoreElements()) {
+			String paramName = fileNames.nextElement();
+			savedName = multi.getFilesystemName(paramName);
+		}
+		String storePhoto = "/finalProject/storePhotoUpload/" + savedName;
+
+		StoreDO store = new StoreDO();
+		store.setId(userId);
+		store.setMno(Integer.parseInt(multi.getParameter("mno")));;
+		store.setSname(multi.getParameter("sname"));
+		store.setSlat(multi.getParameter("slat"));
+		store.setSlng(multi.getParameter("slng"));
+		store.setStype(multi.getParameter("stype"));
+		store.setSphoto(storePhoto);
+		store.setScategory(multi.getParameter("scategory"));
+		
+		String[] paytypes = multi.getParameterValues("paytype");
+		storeDAO.insertStore(store, paytypes);
+	    return "redirect:/views/store?mno=" + store.getMno();
 	}
 
 	// 점포수정 준비
@@ -168,8 +181,6 @@ public class MarketAndStoreController {
 		storeDO.setSno(Integer.parseInt(sno));
 		storeDO.setMno(Integer.parseInt(mno));
 		
-	    System.out.println("시장[mno] : " 			+ storeDO.getMno()); // joke
-	    
 		// 점포 정보 조회
 		storeDO = storeDAO.getStore(storeDO);
 		model.addAttribute("store", storeDO);
@@ -183,12 +194,8 @@ public class MarketAndStoreController {
 		List<PaymentDO> paymentList = new ArrayList<PaymentDO>();
 		paymentList = storeDAO.getPaymentList();
 		model.addAttribute("paymentList", paymentList);
-
 		model.addAttribute("sno", sno);
 		model.addAttribute("mno", mno);
-		
-	    System.out.println("시장[mno] : " 			+ storeDO.getMno()); // joke
-		
 		model.addAttribute("update", true);
 		return "storeInsertAndUpdate"; // 수정화면
 

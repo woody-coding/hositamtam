@@ -16,7 +16,7 @@ function editHandler(event) {
      
 }
 
-function deleteHandler(event){
+/*function deleteHandler(event){
 	if(confirm('정말 탈퇴하시겠습니까? 신중하게 결정해주세요. (탈퇴후 기존 아이디로 재가입 불가)')){
 		 document.getElementById('deleteForm').submit();
 		
@@ -24,6 +24,28 @@ function deleteHandler(event){
 		
 		event.preventDefault();
 	}
+}*/
+
+function deleteHandler(event){
+	if(memberDelete()){
+		document.getElementById('deleteForm').submit();
+	}else{
+		event.preventDefault();
+	}
+}
+
+function memberDelete(){
+	Swal.fire({
+		title: '정말 탈퇴하시겠습니까? <br> 신중하게 결정해주세요.',
+		text: '(탈퇴 후 기존 아이디로 재가입 불가)',
+		icon: 'warning',
+		
+		showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+	   	confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+	   	cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+	   	confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+	   	cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+	});
 }
 
 

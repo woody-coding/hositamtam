@@ -107,7 +107,7 @@ public class PostDAO {
 	// 2. 게시글 조회
 	public PostDO getAllPostInfo(int pno) {
 		PostDO postDO = new PostDO();
-		sql = "select id, pno, ptitle, pcontent, pphoto, plikecount, to_char(pregdate, 'YYYY-MM-DD') as pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+		sql = "select id, pno, ptitle, pcontent, pphoto, plikecount, to_char(pregdate, 'YYYY-MM-DD HH24:MI:SS') as pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 				+ "(select nickname from member where post.id = member.id) as nickname " + "from post "
 				+ "where pno = ?";
 		try {
@@ -121,6 +121,7 @@ public class PostDAO {
 				postDO.setPcontent(rs.getString("pcontent"));
 				postDO.setPregdate(rs.getString("pregdate"));
 				postDO.setPphoto(rs.getString("pphoto"));
+				System.out.println(rs.getString("pphoto"));
 				postDO.setPlikecount(rs.getInt("plikecount"));
 				postDO.setNickname(rs.getString("nickname"));
 				postDO.setCountcomments(rs.getInt("countcomments"));
@@ -143,7 +144,7 @@ public class PostDAO {
 	// 2-1-1. 게시글 최신순 목록 조회
 	public ArrayList<PostDO> getAllPost(int mno) {
 		ArrayList<PostDO> postList = new ArrayList<PostDO>();
-		sql = "SELECT id, pno, ptitle, pcontent, pphoto, plikecount, to_char(pregdate, 'YYYY-MM-DD') as pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
+		sql = "SELECT id, pno, ptitle, pcontent, pphoto, plikecount, to_char(pregdate, 'YYYY-MM-DD HH24:MI:SS') as pregdate, pcategory, (select count(cno) from comments where post.pno = comments.pno) as countcomments, "
 				+ "(select nickname from member where post.id = member.id) as nickname " + "FROM post "
 				+ "WHERE mno = ? " + "ORDER BY pregdate DESC";
 		try {
@@ -315,17 +316,25 @@ public class PostDAO {
 	// 3. 게시글 등록
 	public int insertPost(PostDO post) {
 		int rowCount = 0;
-		this.sql = "insert into post (pno, mno, id, to_char(pregdate, 'YYYY-MM-DD') as pregdate, pTitle, pContent, pphoto, plikecount, pcategory)"
-				+ "values (seq_pno.nextval, ?, ?, sysdate, ?, ?, ?, 0, ?) ";
+		this.sql = "insert into post (pno, mno, id, pregdate, pTitle, pContent, pphoto, plikecount, pcategory)"
+				+ "values (seq_pno.nextval, ?, ?, sysdate, ?, ?, NULL, 0, ?) ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, post.getMno());
 			pstmt.setString(2, post.getId());
 			pstmt.setString(3, post.getPtitle());
 			pstmt.setString(4, post.getPcontent());
-			pstmt.setString(5, post.getPphoto());
-			pstmt.setString(6, post.getPcategory());
+			pstmt.setString(5, post.getPcategory());
 			rowCount = pstmt.executeUpdate();
+			
+			if(!post.getPphoto().equals("/finalProject/upload/null")) {
+				String photoSql = "update post set pphoto = ?";
+				pstmt = conn.prepareStatement(photoSql);
+				pstmt.setString(1, post.getPphoto());
+				pstmt.executeUpdate();
+			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -343,16 +352,23 @@ public class PostDAO {
 	// 3-1. 게시글 수정
 	public int updatePost(PostDO post) {
 		int rowCount = 0;
-		this.sql = "UPDATE post SET mno=?, ptitle=?, pcontent=?, pphoto=?, pcategory=? WHERE pno=?";
+		this.sql = "UPDATE post SET mno=?, ptitle=?, pcontent=?, pcategory=?, pphoto = null WHERE pno=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, post.getMno());
 			pstmt.setString(2, post.getPtitle());
 			pstmt.setString(3, post.getPcontent());
-			pstmt.setString(4, post.getPphoto());
-			pstmt.setString(5, post.getPcategory());
-			pstmt.setInt(6, post.getPno());
+			pstmt.setString(4, post.getPcategory());
+			pstmt.setInt(5, post.getPno());
 			rowCount = pstmt.executeUpdate();
+			
+			if(!post.getPphoto().equals("/finalProject/upload/null")) {
+				String photoSql = "update post set pphoto = ?";
+				pstmt = conn.prepareStatement(photoSql);
+				pstmt.setString(1, post.getPphoto());
+				pstmt.executeUpdate();
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -397,7 +413,7 @@ public class PostDAO {
 	// 4. 댓글 조회
 	public ArrayList<PostDO> getComment(int pno) {
 		ArrayList<PostDO> commentList = new ArrayList<PostDO>();
-		sql = "SELECT pno, cno, (SELECT nickname FROM member WHERE comments.id = member.id) AS cnickname, ccontent, to_char(cregdate, 'YYYY-MM-DD') as cregdate "
+		sql = "SELECT pno, cno, (SELECT nickname FROM member WHERE comments.id = member.id) AS cnickname, ccontent, to_char(cregdate, 'YYYY-MM-DD HH24:MI') as cregdate "
 				+ "FROM comments " + "WHERE pno = ? " + "ORDER BY cregdate DESC";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -430,8 +446,8 @@ public class PostDAO {
 	// 4-1. 댓글 등록
 	public int InsertComment(PostDO post) {
 		int rowCount = 0;
-		this.sql = "insert into comments (cNo, pNo, id, cContent, to_char(cregdate, 'YYYY-MM-DD') as cregdate)"
-				+ "values (seq_pno.nextval, ?, ?, ?, sysdate) ";
+		this.sql = "INSERT INTO comments (cNo, pNo, id, cContent, cregdate) " +
+		           "VALUES (seq_pno.nextval, ?, ?, ?, sysdate)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, post.getPno());

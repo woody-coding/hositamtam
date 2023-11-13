@@ -27,9 +27,6 @@ function isLogin(event) {
 
 
 
-
-
-
 function notStoreConfirm() {
   Swal.fire({
     title: "정말 제보를 하시겠습니까?",
@@ -49,8 +46,6 @@ function notStoreConfirm() {
     }
   });
 }
-
-
 
 
 
@@ -145,7 +140,6 @@ function notStoreHandler() {
 function confirmAndSend() {
     // 사용자에게 확인을 요청
     let userConfirmed = window.confirm("정말로 제보하시겠습니까? 한번 제보 후 취소는 불가능하니 신중히 결정해주세요.");
-    
     // 사용자가 확인 버튼을 클릭한 경우에만 서버로 요청을 보냄
     if (userConfirmed) {
         let param = '?command=notStore&sno=' + currentSno + '&id=' + currentId;
@@ -153,6 +147,8 @@ function confirmAndSend() {
         xhr.send();
     }
 }
+
+
 
 
 
@@ -312,7 +308,7 @@ function openInfo() {
 				content: '<div id="'+ locations[i].sno +'" class="infoContent">' + 
 				    '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">' + 
 				        '<div class="infoImgContainer">' +
-				            '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
+				            '<img src="' + locations[i].sphoto  + '">' +
 				        '</div>' +
 				        '<div class="sName">'+
 				            '<img src="../images/2b50.png" alt="평균별점">' + 
@@ -351,7 +347,7 @@ function openInfo() {
 
 // '새 점포 등록' 버튼 클릭 시
 function insertStoreHandler() {
-	debugger;//joke
+	/*debugger;//joke*/
 	
 	// 회원이라면 새 점포 등록 버튼 이용 가능
 	if(currentId !== null) {
@@ -382,20 +378,19 @@ function insertStoreHandler() {
 	        });
 	        prevClickCoord = e.coord;
 	        // 마커를 클릭했을 때 인포윈도우를 생성하고 표시(위도, 경도 값 a태그 파라미터로 넣어주기)
-	        debugger; //joke
+	        
 	        mnoToStore = JSON.parse(window.localStorage.getItem('mnoToStore'));
 	        var latitude = e.coord.lat();
 	        var longitude = e.coord.lng();		
 	        var iwContent = '<div class="iwContent" style="padding:5px;">' +
 	            '<a href="../ajaxController/toAjaxController.jsp?command=insertStore&mno=' + mnoToStore.mno + '&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
-//	            '<a href="/finalProject/views/toStoreInsert?id=' + currentId + '&mno=' + currentMno + '&slat=' + latitude + '&slng=' + longitude + '" target="_self"><div class="up"><i class="bi bi-shop"></i></div><div class="down">등록하기</div></a></div>';
-//>>>>>>> a66775a9da679f228173c5e23795d00fae178a99
+
 	        infowindow = new naver.maps.InfoWindow({
 	            content: iwContent
 	        });
 	        infowindow.open(map, marker);
 	    }
-	debugger;
+	
 	    // 마우스 우클릭 이벤트 처리
 	    naver.maps.Event.addListener(map, 'rightclick', function (e) {
 	        if (clickEventListener) {
@@ -411,7 +406,7 @@ function insertStoreHandler() {
 	            marker = null;
 	        }
 	    });
-	    debugger;
+	    
 	
 	    // 클릭 이벤트 리스너 등록
 	    clickEventListener = naver.maps.Event.addListener(map, 'click', handleMapClick);
@@ -425,6 +420,8 @@ function insertStoreHandler() {
 		window.location.href = '/finalProject/views/login';
 	}
 }
+
+
 
 
 
@@ -471,7 +468,7 @@ function storeAjaxHandler() {
                    '</div>' +
                    '</div>'+
                    '<div class="storeImgContainer">' +
-				   	 '<img src="/finalProject/images/' + allStoreList[i].sphoto  + '" >' +
+				   	 '<img src="' + allStoreList[i].sphoto  + '" >' +
 				    '</div>'+
 				    /*<i class="fa-solid fa-arrow-up-right-from-square"></i> 이동하기 아이콘*/
 				'</div>'+
@@ -585,7 +582,7 @@ function showMarkers() {
 		content: '<div id="'+ locations[i].sno +'" class="infoContent">' + 
 		    '<div id="'+ locations[i].sno +'" class="personalInfowindowScontent">' + 
 		        '<div class="infoImgContainer">' +
-		            '<img src="/finalProject/images/' + locations[i].sphoto  + '">' +
+		            '<img src="' + locations[i].sphoto  + '">' +
 		        '</div>' +
 		        '<div class="sName">'+
 		            '<img src="../images/2b50.png" alt="평균별점">' + 

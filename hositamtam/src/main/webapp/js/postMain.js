@@ -39,19 +39,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-function writePostHandler(event) {
-	// 로그인되어 있는지 아닌지 세션스토리지 존재 유무로 판단하기
-	const memberId = window.sessionStorage.getItem('memberId');
-	const member = JSON.parse(memberId);
+
+
+function postModifyButtonHandler(event) {
+	let ptitle = document.querySelector('#ptitle').value;
+	let pcontent = document.querySelector('#myTextarea').value;
+	let msg = document.querySelector('#msg');
 	
-	if (!member) {
-		alert('로그인이 필요한 서비스 입니다.');
-	    event.preventDefault();
-	    window.location.href = '/finalProject/views/login';
+	if(ptitle.length < 5 || ptitle.length > 20) {
+		msg.style.color = 'red';
+		msg.innerHTML = '제목은 5글자 이상, 20글자 이하여야 합니다.';
+		event.preventDefault();
+	}
+	
+	if(pcontent.length < 5 || pcontent.length > 500) {
+		msg.style.color = 'red';
+		msg.innerHTML = '내용은 5글자 이상, 500글자 이하여야 합니다.';
+		event.preventDefault();
 	}
 }
-
-
 
 
 
@@ -89,7 +95,7 @@ radioButtons.forEach(function(radioButton) {
 
 
 function init() {
-document.querySelector('#writePost').addEventListener('click', writePostHandler);
+document.querySelector('.modify').addEventListener('click', postModifyButtonHandler);
 
 document.querySelector("#whatMarket").addEventListener("click",dropDownHandler);  
 

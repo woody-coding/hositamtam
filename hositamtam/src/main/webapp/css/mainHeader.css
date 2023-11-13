@@ -160,7 +160,7 @@ input::placeholder {
 }
 
 .mainHeader__menu__category:hover {
-	color: var(--color-white);
+	color: var(--color-accent);
 }
 
 .mainHeader__menu__item.active {
