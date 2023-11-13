@@ -76,7 +76,6 @@
 	
 	<label for="pphoto">사진</label>
 		<input type="file" name="pphoto" value="${post.pphoto}" />
-	
 	<label for="mno"></label>
 		<input type="hidden" name="mno" value="${market.mno}"/>
 	<label for="id"></label>
