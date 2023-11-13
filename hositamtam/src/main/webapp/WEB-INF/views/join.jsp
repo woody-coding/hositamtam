@@ -113,11 +113,6 @@
           </form>
         </div>
       </div>
-      
-      <a
-        class="joinBg__source"
-        href="https://kr.freepik.com/free-photo/delicious-food-arrangement-above-view_21745221.htm#page=8&query=market&position=3&from_view=search&track=sph"
-        >출처 Freepik</a>
     </section>
 
     <%@ include file="footer.jsp" %>
