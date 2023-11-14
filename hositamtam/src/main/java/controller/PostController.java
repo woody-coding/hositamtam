@@ -91,7 +91,7 @@ public class PostController {
 		
 		try	{ 
 		System.out.print("컨트롤러 진입");
-		String directory = "C:\\projects\\apache-tomcat-9.0.80\\webapps\\finalProject\\upload";
+		String directory = "C:\\projects\\finalworkspace\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
 		int sizeLimit = 1024 * 1024 * 5;
 		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8",
 				new DefaultFileRenamePolicy());
@@ -138,7 +138,7 @@ public class PostController {
 	@PostMapping("/views/postUpdate")
 	public String updatePost(@ModelAttribute PostDO command, Model model, HttpServletRequest request)
 			throws IOException {
-		String directory = "C:\\projects\\apache-tomcat-9.0.80\\webapps\\finalProject\\upload";
+		String directory = "C:\\projects\\finalworkspace\\hositamtam\\hositamtam\\src\\main\\webapp\\upload";
 		int sizeLimit = 1024 * 1024 * 5;
 		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8",
 				new DefaultFileRenamePolicy());
