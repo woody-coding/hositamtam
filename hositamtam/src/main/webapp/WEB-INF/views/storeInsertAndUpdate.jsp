@@ -127,7 +127,7 @@ String mno = request.getParameter("mno");
 							</div>
 					        
 					        <div class="insertUpdate__error" id="msg"></div>
-							<input type="submit" class="store__update__button" value="수정하기">
+							<input type="submit" class="store__button" id="store__update__button" value="수정하기">
 						</form>
 					</c:when>
 					
@@ -190,7 +190,7 @@ String mno = request.getParameter("mno");
 								</section>
 							</div>
 							<div class="insertUpdate__error" id="msg"></div>
-							<input type="submit" class="store__insert__button" value="등록하기">
+							<input type="submit" class="store__button" id="store__insert__button" value="등록하기">
 						</form>
 					</c:otherwise>
 				</c:choose>
