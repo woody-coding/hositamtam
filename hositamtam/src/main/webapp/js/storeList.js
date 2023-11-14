@@ -18,10 +18,19 @@ function isLogin(event) {
 	const member = JSON.parse(memberId);
 	
 	if (!member) {
-		alert('로그인이 필요한 서비스 입니다.');
+		storeListLoginCheck();
 	    event.preventDefault();
-	    window.location.href = '/finalProject/views/login';
 	}
+}
+
+
+function storeListLoginCheck(){
+	Swal.fire({
+		title: '로그인이 필요한 서비스입니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
 }
 
 
@@ -416,13 +425,19 @@ function insertStoreHandler() {
     } 
     // 비회원이라면 새 점포 등록 버튼 이용 못하고 로그인 페이지로 리디렉션
     else {
-		alert('로그인 하시면 새 점포 등록이 가능합니다!');
-		window.location.href = '/finalProject/views/login';
+		storeInsertLoginCheck();
 	}
 }
 
 
-
+function storeInsertLoginCheck(){
+	Swal.fire({
+		title: '로그인 하시면 <br> 점포 등록이 가능합니다.',
+		icon: 'warning',
+	}).then(function() {
+		window.location.href = '/finalProject/views/login';
+	});
+}
 
 
 

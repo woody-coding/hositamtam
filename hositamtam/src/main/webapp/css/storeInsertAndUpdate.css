@@ -251,7 +251,7 @@ body {
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
-.store__insert__button {
+#store__insert__button {
   width: 25%;
   height: 40px;
   font-size: 1.3rem;
@@ -263,7 +263,7 @@ body {
   margin: 2rem 0 0;
 }
 
-.store__update__button {
+#store__update__button {
   width: 25%;
   height: 40px;
   font-size: 1.3rem;

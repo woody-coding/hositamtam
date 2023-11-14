@@ -27,39 +27,28 @@ function editHandler(event) {
 }*/
 
 function deleteHandler(event){
-	if(memberDelete()){
-		document.getElementById('deleteForm').submit();
+	if(confirm('정말 탈퇴하시겠습니까? 신중하게 결정해주세요. (탈퇴후 기존 아이디로 재가입 불가)')){
+		 document.getElementById('deleteForm').submit();
+		
 	}else{
+		
 		event.preventDefault();
 	}
 }
 
-function memberDelete(){
-	Swal.fire({
-		title: '정말 탈퇴하시겠습니까? <br> 신중하게 결정해주세요.',
-		text: '(탈퇴 후 기존 아이디로 재가입 불가)',
-		icon: 'warning',
-		
-		showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-	   	confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-	   	cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-	   	confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-	   	cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-	});
-}
 
 
 function init() {
-    let mypageedit_button = document.querySelector('#mypageedit_button');
-    mypageedit_button.addEventListener('click', editHandler);
+/*    let mypageedit_button = document.querySelector('#mypageedit_button');
+    mypageedit_button.addEventListener('click', editHandler);*/
     
     let delete_button = document.querySelector('#delete_button');
     delete_button.addEventListener('click', deleteHandler);
     
 	// userId 변수를 maskUserId 함수에 전달하여 마스킹
-    var maskedUserId = maskUserId(userId);
+/*    var maskedUserId = maskUserId(userId);
     // 마스킹된 userId를 특정 HTML 요소에 표시
-    document.querySelector('maskedUserId').textContent = maskedUserId;
+    document.querySelector('maskedUserId').textContent = maskedUserId;*/
 }
 
 

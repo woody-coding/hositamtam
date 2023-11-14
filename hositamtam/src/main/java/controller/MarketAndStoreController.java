@@ -137,7 +137,7 @@ public class MarketAndStoreController {
 //            storeDO.setSphoto("testphoto2.jpeg");
 //        }
 		
-        String directory = "C:\\projects\\final\\hositamtam\\hositamtam\\src\\main\\webapp\\storePhotoUpload";
+        String directory = "C:\\projects\\finalworkspace\\hositamtam\\hositamtam\\src\\main\\webapp\\storePhotoUpload";
 		int sizeLimit = 1024 * 1024 * 5;
 		MultipartRequest multi = new MultipartRequest(request, directory, sizeLimit, "UTF-8",
 				new DefaultFileRenamePolicy());
