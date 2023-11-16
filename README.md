@@ -1,7 +1,6 @@
 # 팀 이름 : TMI(Traditional Market Interface)
 #최종 프로젝트 : hositamtam
-
-
+![프로젝트 우수상](https://github.com/wlstjd3398/hositamtam/assets/137469294/504af04d-8873-4dc2-a688-5c2718df9d3b)
 # Group
 ![slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
 ![discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)
