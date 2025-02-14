@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import model.TestModel;
 
-import org.apache.catalina.util.URLEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
